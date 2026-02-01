@@ -748,6 +748,7 @@ p {
 .footer-location {
     font-style: italic;
 }
+
 /* ===== LIGHTBOX GALLERY ===== */
 .lightbox-modal {
     display: none;
@@ -780,7 +781,7 @@ p {
     max-width: 100%;
     max-height: 80vh;
     border-radius: var(--radius-sm);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox-close {
@@ -817,7 +818,7 @@ p {
     border-radius: 0 3px 3px 0;
     user-select: none;
     -webkit-user-select: none;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .lightbox-next {
@@ -854,7 +855,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -885,7 +886,7 @@ p {
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -911,9 +912,17 @@ p {
 }
 
 /* Staggered delays for child elements if needed */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
+.delay-100 {
+    transition-delay: 100ms;
+}
+
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-300 {
+    transition-delay: 300ms;
+}
 
 /* ===== HERO BACKGROUND ANIMATION ===== */
 .hero {
@@ -923,9 +932,17 @@ p {
 }
 
 @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* ===== TYPEWRITER EFFECT ===== */
@@ -935,19 +952,31 @@ p {
 }
 
 @keyframes cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 /* ===== GLASSMORPHISM ===== */
-.service-card, .pricing-card, .metric-card {
+.service-card,
+.pricing-card,
+.metric-card {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out; /* Preserve animation transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out;
+    /* Preserve animation transition */
 }
 
-.service-card:hover, .pricing-card:hover, .metric-card:hover {
+.service-card:hover,
+.pricing-card:hover,
+.metric-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.95);
@@ -959,9 +988,11 @@ p {
 .tech-stack-container {
     overflow: hidden;
     position: relative;
-    max-width: 800px; /* Limit width */
+    max-width: 800px;
+    /* Limit width */
     margin: 2rem auto 0;
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* Fade edges */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    /* Fade edges */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
@@ -973,7 +1004,8 @@ p {
 }
 
 .tech-item {
-    font-size: 2.5rem; /* Icon size */
+    font-size: 2.5rem;
+    /* Icon size */
     color: var(--color-gray);
     transition: color 0.3s ease;
 }
@@ -983,7 +1015,9 @@ p {
 }
 
 @keyframes scroll {
-    to { transform: translateX(-50%); }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 /* Pause on hover */
@@ -1009,7 +1043,7 @@ p {
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: var(--radius-lg);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     position: relative;
 }
 
@@ -1051,7 +1085,8 @@ p {
 }
 
 .stars {
-    color: #FFD700; /* Gold */
+    color: #FFD700;
+    /* Gold */
     margin-bottom: 1rem;
     font-size: 0.9rem;
 }
@@ -1106,7 +1141,8 @@ p {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px; /* Adjust based on content */
+    max-height: 200px;
+    /* Adjust based on content */
 }
 
 .faq-icon {
@@ -1118,50 +1154,7 @@ p {
     transform: rotate(180deg);
 }
 
-/* ===== CUSTOM CURSOR ===== */
-.cursor-dot,
-.cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    pointer-events: none;
-}
 
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-accent);
-}
-
-.cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--color-accent);
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-
-/* Hover effect */
-body:hover .cursor-dot,
-body:hover .cursor-outline {
-    opacity: 1;
-}
-
-.cursor-hover {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(10, 102, 194, 0.1); /* Accent with opacity */
-    border-color: transparent;
-}
-
-/* Hide default cursor only on non-touch devices if desired, 
-   but for now we keep default as backup or hide entirely */
-@media (hover: hover) and (pointer: fine) {
-    /* body { cursor: none; } */
-    /* Only hide if we are confident */
-}
 
 /* ===== BACK TO TOP BUTTON ===== */
 .back-to-top {
@@ -1177,7 +1170,7 @@ body:hover .cursor-outline {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 999;
     opacity: 0;
     visibility: hidden;
