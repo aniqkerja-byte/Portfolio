@@ -738,3 +738,83 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, 500);
     }
 });
+
+/* ===== FAQ ACCORDION ===== */
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        
+        // Close others
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').style.maxHeight = null;
+            }
+        });
+
+        // Toggle current
+        faqItem.classList.toggle('active');
+        const answer = faqItem.querySelector('.faq-answer');
+        if (faqItem.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+            answer.style.maxHeight = null;
+        }
+    });
+});
+
+/* ===== BACK TO TOP ===== */
+const backToTopBtn = document.querySelector('.back-to-top');
+
+if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+/* ===== CUSTOM CURSOR ===== */
+// Only activate on desktop
+if (window.matchMedia('(pointer: fine)').matches) {
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    if (cursorDot && cursorOutline) {
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = \\px\;
+            cursorDot.style.top = \\px\;
+
+            // Outline follows with delay
+            cursorOutline.animate({
+                left: \\px\,
+                top: \\px\
+            }, { duration: 500, fill: 'forwards' });
+        });
+
+        // Hover effect for links and buttons
+        const interactiveElements = document.querySelectorAll('a, button, .faq-question, .service-card, .pricing-card, .portfolio-item');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.classList.remove('cursor-hover');
+            });
+        });
+    }
+}
