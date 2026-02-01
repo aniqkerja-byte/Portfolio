@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 subtitle: 'Choose the package that fits your business needs. All packages include domain, hosting, and full technical maintenance for 1 year.',
                 landing: {
                     title: 'Landing Page / 1-Page Website',
-                    price: 'RM1500 – RM1700',
+                    price: 'RM490 – RM890',
                     f1: '1-page premium landing design',
                     f2: 'Optional payment gateway / OnPay (+RM200)',
                     f3: '1 year domain & hosting',
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 corporate: {
                     badge: 'Most Popular',
                     title: 'Business / Corporate Website',
-                    price: 'Starts from RM3800',
+                    price: 'Starts from RM990',
                     f1: 'Up to 10 structured pages',
                     f2: 'Profile, services, forms',
                     f3: '1 year domain & hosting',
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 ecommerce: {
                     title: 'E-Commerce Website',
-                    price: 'Starts from RM4000',
+                    price: 'Starts from RM1,890',
                     f1: 'WooCommerce / Shopify',
                     f2: 'Full store setup & checkout',
                     f3: 'Payment gateway integration',
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 subtitle: 'Pilih pakej yang sesuai dengan keperluan perniagaan anda. Semua pakej termasuk domain, hosting, dan penyelenggaraan teknikal penuh selama 1 tahun.',
                 landing: {
                     title: 'Landing Page / Laman 1-Muka',
-                    price: 'RM1500 – RM1700',
+                    price: 'RM490 – RM890',
                     f1: 'Reka bentuk landing page premium',
                     f2: 'Gerbang pembayaran pilihan / OnPay (+RM200)',
                     f3: '1 tahun domain & hosting',
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 corporate: {
                     badge: 'Paling Popular',
                     title: 'Laman Web Perniagaan / Korporat',
-                    price: 'Bermula dari RM3800',
+                    price: 'Bermula dari RM990',
                     f1: 'Sehingga 10 halaman berstruktur',
                     f2: 'Profil, perkhidmatan, borang',
                     f3: '1 tahun domain & hosting',
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 ecommerce: {
                     title: 'Laman Web E-Dagang',
-                    price: 'Bermula dari RM4000',
+                    price: 'Bermula dari RM1,890',
                     f1: 'WooCommerce / Shopify',
                     f2: 'Persediaan kedai & pembayaran penuh',
                     f3: 'Integrasi gerbang pembayaran',
