@@ -650,7 +650,7 @@ function closeGallery() {
 document.querySelector('.lightbox-close').addEventListener('click', closeGallery);
 
 // Close lightbox when clicking outside the image
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const modal = document.getElementById('lightbox-modal');
     if (event.target === modal) {
         closeGallery();
@@ -665,20 +665,20 @@ function changeSlide(n) {
 function showSlide(n) {
     const imgElement = document.querySelector('.lightbox-image');
     const captionText = document.querySelector('.lightbox-caption');
-    
+
     if (n >= currentGallery.length) {
         currentSlideIndex = 0;
     }
     if (n < 0) {
         currentSlideIndex = currentGallery.length - 1;
     }
-    
+
     imgElement.src = currentGallery[currentSlideIndex];
     captionText.innerHTML = 'Image ' + (currentSlideIndex + 1) + ' / ' + currentGallery.length;
 }
 
 // Keyboard navigation
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (document.getElementById('lightbox-modal').style.display === 'block') {
         if (event.key === 'ArrowLeft') {
             changeSlide(-1);
@@ -691,7 +691,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 /* ===== SCROLL ANIMATION OBSERVER ===== */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -719,7 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = subtitle.innerText.trim();
         subtitle.innerHTML = ''; // Clear content
         subtitle.classList.add('typewriter'); // Add cursor
-        
+
         let i = 0;
         const speed = 30; // ms per char
 
@@ -733,7 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // subtitle.classList.remove('typewriter');
             }
         }
-        
+
         // Small delay before starting
         setTimeout(type, 500);
     }
@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
         const faqItem = button.parentElement;
-        
+
         // Close others
         document.querySelectorAll('.faq-item').forEach(item => {
             if (item !== faqItem) {
@@ -795,19 +795,19 @@ if (window.matchMedia('(pointer: fine)').matches) {
             const posY = e.clientY;
 
             // Dot follows instantly
-            cursorDot.style.left = \\px\;
-            cursorDot.style.top = \\px\;
+            cursorDot.style.left = posX + 'px';
+            cursorDot.style.top = posY + 'px';
 
             // Outline follows with delay
             cursorOutline.animate({
-                left: \\px\,
-                top: \\px\
+                left: posX + 'px',
+                top: posY + 'px'
             }, { duration: 500, fill: 'forwards' });
         });
 
         // Hover effect for links and buttons
         const interactiveElements = document.querySelectorAll('a, button, .faq-question, .service-card, .pricing-card, .portfolio-item');
-        
+
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorOutline.classList.add('cursor-hover');
