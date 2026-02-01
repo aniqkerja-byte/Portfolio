@@ -954,3 +954,104 @@ p {
     border-color: rgba(255, 255, 255, 0.8);
     z-index: 10;
 }
+
+/* =====TECH STACK MARQUEE ===== */
+.tech-stack-container {
+    overflow: hidden;
+    position: relative;
+    max-width: 800px; /* Limit width */
+    margin: 2rem auto 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* Fade edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tech-marquee {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+
+.tech-item {
+    font-size: 2.5rem; /* Icon size */
+    color: var(--color-gray);
+    transition: color 0.3s ease;
+}
+
+.tech-item:hover {
+    color: var(--color-accent);
+}
+
+@keyframes scroll {
+    to { transform: translateX(-50%); }
+}
+
+/* Pause on hover */
+.tech-stack-container:hover .tech-marquee {
+    animation-play-state: paused;
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials {
+    padding: 100px 0;
+    background-color: var(--color-pale-gray);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.testimonial-card {
+    /* Glassmorphism inherit from shared styles or redefine */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.testimonial-quote {
+    font-size: 1rem;
+    color: var(--color-dark-gray);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.author-info h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    color: var(--color-charcoal);
+}
+
+.author-info p {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+}
+
+.stars {
+    color: #FFD700; /* Gold */
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
