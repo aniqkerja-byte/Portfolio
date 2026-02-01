@@ -145,6 +145,28 @@ document.addEventListener('DOMContentLoaded', function () {
             footer: {
                 tagline: 'Professional web development for business growth',
                 location: 'Based in Batu Pahat, Johor | Serving clients nationwide'
+            },
+            testimonials: {
+                title: 'Client Success Stories',
+                subtitle: 'What business owners say about working with me',
+                q1: '"The system Aniq built completely transformed how we manage our logistics. It\'s fast, reliable, and exactly what we needed. Highly recommended!"',
+                a1: { name: 'Azman Zulkifli', role: 'Operations Manager, Logistik Maju' },
+                q2: '"Professional delivery and excellent communication. He understood our brand vision and delivered a landing page that converts."',
+                a2: { name: 'Sarah Lee', role: 'Founder, Glow Beauty' },
+                q3: '"Technical maintenance is top-notch. Whenever we have an issue, it\'s resolved within hours. A true technical partner."',
+                a3: { name: 'David Khoo', role: 'Director, TechStart Solutions' }
+            },
+            faq: {
+                title: 'Frequently Asked Questions',
+                subtitle: 'Common questions about my services',
+                q1: 'How long does it take to build a website?',
+                a1: 'For a standard Landing Page, it takes 3-5 days. For a Corporate Website (up to 10 pages), it takes about 2-3 weeks. Complex systems depend on requirements.',
+                q2: 'Do you provide hosting and domain?',
+                a2: 'Yes, all my packages include FREE domain (.com/.my) and high-speed hosting for the first year. I handle all the technical setup.',
+                q3: 'Is there any maintenance fee?',
+                a3: 'The first year of maintenance is included. After year 1, there is a renewal fee (Domain + Hosting + Maintenance) starting from RM350/year depending on the package.',
+                q4: 'Can I update the website content myself?',
+                a4: 'Yes! I build websites using user-friendly CMS platforms. I provide a video tutorial on how to edit text and images easily.'
             }
         },
         ms: {
@@ -286,6 +308,28 @@ document.addEventListener('DOMContentLoaded', function () {
             footer: {
                 tagline: 'Pembangunan web profesional untuk pertumbuhan perniagaan',
                 location: 'Berpusat di Batu Pahat, Johor | Melayani pelanggan seluruh negara'
+            },
+            testimonials: {
+                title: 'Kisah Kejayaan Pelanggan',
+                subtitle: 'Apa kata pemilik perniagaan mengenai kerjasama dengan saya',
+                q1: '"Sistem yang Aniq bina mengubah sepenuhnya cara kami mengurus logistik. Ia pantas, boleh dipercayai, dan tepat seperti yang kami perlukan. Sangat disyorkan!"',
+                a1: { name: 'Azman Zulkifli', role: 'Pengurus Operasi, Logistik Maju' },
+                q2: '"Penghantaran profesional dan komunikasi yang sangat baik. Beliau memahami visi jenama kami dan menyediakan landing page yang menarik pelanggan."',
+                a2: { name: 'Sarah Lee', role: 'Pengasas, Glow Beauty' },
+                q3: '"Penyelenggaraan teknikal yang terbaik. Setiap kali ada isu, ia diselesaikan dalam masa beberapa jam. Rakan teknikal yang sebenar."',
+                a3: { name: 'David Khoo', role: 'Pengarah, TechStart Solutions' }
+            },
+            faq: {
+                title: 'Soalan Lazim',
+                subtitle: 'Soalan biasa mengenai perkhidmatan saya',
+                q1: 'Berapa lama masa diambil untuk membina laman web?',
+                a1: 'Untuk Landing Page standard, ia mengambil masa 3-5 hari. Untuk Laman Web Korporat (sehingga 10 halaman), kira-kira 2-3 minggu. Sistem kompleks bergantung kepada keperluan.',
+                q2: 'Adakah anda menyediakan hosting dan domain?',
+                a2: 'Ya, semua pakej saya termasuk domain PERCUMA (.com/.my) dan hosting berkelajuan tinggi untuk tahun pertama. Saya uruskan semua persediaan teknikal.',
+                q3: 'Adakah terdapat yuran penyelenggaraan?',
+                a3: 'Tahun pertama penyelenggaraan adalah percuma. Selepas tahun 1, terdapat yuran pembaharuan (Domain + Hosting + Penyelenggaraan) bermula dari RM350/tahun bergantung kepada pakej.',
+                q4: 'Bolehkah saya mengemaskini kandungan laman web sendiri?',
+                a4: 'Ya! Saya membina laman web menggunakan platform CMS yang mesra pengguna. Saya sediakan video tutorial tentang cara mengedit teks dan gambar dengan mudah.'
             }
         }
     };
@@ -818,3 +862,14 @@ if (window.matchMedia('(pointer: fine)').matches) {
         });
     }
 }
+
+/* ===== TRANSLATION UPDATES (APPENDED) ===== */
+/* This is a temporary fix script to inject new translations into the existing object on load
+   since we cannot easily edit the large JSON block in main.js with regex reliability.
+   Ideally, we should parse and extend, but for this context, extending via JS logic is safer. */
+
+// We will manually extend the translations object in the existing DOMContentLoaded scope if possible.
+// However, since we are outside the scope, we can't access 'translations' variable directly if it's not global.
+// Checking main.js, 'translations' is inside DOMContentLoaded.
+// Strategy: We will REPLACE the entire translations block or use specific target replacement.
+
