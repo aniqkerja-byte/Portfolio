@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 project: 'Project'
             },
             hero: {
-                title: 'Professional Digital Architecture for Business Growth',
-                subtitle: 'Building high-conversion websites and scalable internal systems for SMEs and enterprises. Production-ready solutions, not prototypes.',
-                cta_primary: 'Get a Website Built for Your Business',
+                title: 'Let\'s Build Your Digital Success with JomBina',
+                subtitle: 'Partner with JomBina to build high-conversion websites and scalable internal systems. Production-ready solutions, not prototypes.',
+                cta_primary: 'Start Building with JomBina',
                 cta_secondary: 'See portfolio of work',
                 tech_stack: 'Powering solutions with modern technology:'
             },
@@ -179,9 +179,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 contact: 'Mula Sekarang'
             },
             hero: {
-                title: 'Arkitektur Digital Profesional untuk Pertumbuhan Bisnes',
-                subtitle: 'Membina laman web penukaran tinggi dan sistem dalaman berskala untuk PKS dan korporat. Penyelesaian sedia produksi, bukan prototaip.',
-                cta_primary: 'Buat Laman Web untuk Bisnes Anda',
+                title: 'Jom Bina Website & Sistem Digital Untuk Bisnes Anda',
+                subtitle: 'Bersama JomBina, kami realisasikan laman web penukaran tinggi dan sistem dalaman berskala. Penyelesaian sedia produksi, bukan prototaip.',
+                cta_primary: 'Jom Bina Sekarang',
                 cta_secondary: 'Lihat portfolio kerja',
                 tech_stack: 'Memperkasakan solusi dengan teknologi moden:'
             },
