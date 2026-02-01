@@ -710,3 +710,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
 });
+
+/* ===== TYPEWRITER EFFECT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+    const subtitle = document.querySelector('.hero-subtitle');
+    if (subtitle) {
+        // Store original text
+        const text = subtitle.innerText.trim();
+        subtitle.innerHTML = ''; // Clear content
+        subtitle.classList.add('typewriter'); // Add cursor
+        
+        let i = 0;
+        const speed = 30; // ms per char
+
+        function type() {
+            if (i < text.length) {
+                subtitle.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                // Keep cursor blinking or remove? Keep for effect.
+                // subtitle.classList.remove('typewriter');
+            }
+        }
+        
+        // Small delay before starting
+        setTimeout(type, 500);
+    }
+});
