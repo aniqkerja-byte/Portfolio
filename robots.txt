@@ -1,4 +1,12 @@
+# robots.txt for jombina.site
+# Allow all search engines to crawl all content
+
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://jombina.site/sitemap.xml
+
+# Disallow admin or private paths (if any exist in future)
+# Disallow: /admin/
+# Disallow: /private/

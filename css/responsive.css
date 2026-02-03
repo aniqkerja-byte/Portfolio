@@ -203,4 +203,170 @@
         height: 32px;
         /* Slightly smaller on mobile if needed, or keep 40px */
     }
+
+    /* === PRICING CARDS MOBILE === */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .pricing-card {
+        padding: var(--space-lg);
+    }
+
+    .pricing-card.featured {
+        transform: none;
+        /* Remove scale on mobile */
+    }
+
+    /* === BLOG GRID MOBILE === */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .blog-card {
+        max-width: 100%;
+    }
+
+    .blog-image {
+        height: 180px;
+    }
+
+    /* === CALCULATOR MOBILE === */
+    .calculator-container {
+        padding: var(--space-md);
+    }
+
+    .calc-progress-steps {
+        gap: var(--space-xs);
+    }
+
+    .calc-step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.875rem;
+    }
+
+    .project-type-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .estimation-form {
+        gap: var(--space-md);
+    }
+
+    /* === CHAT WIDGET MOBILE === */
+    .chat-toggle {
+        width: 50px;
+        height: 50px;
+        bottom: 80px;
+        right: 15px;
+    }
+
+    .chat-window {
+        width: calc(100vw - 30px);
+        height: 70vh;
+        right: 15px;
+        bottom: 140px;
+        max-width: none;
+    }
+
+    .chat-messages {
+        height: calc(70vh - 140px);
+    }
+
+    /* === FAQ MOBILE === */
+    .faq-container {
+        padding: 0;
+    }
+
+    .faq-question {
+        padding: var(--space-md);
+        font-size: 1rem;
+    }
+
+    .faq-answer {
+        padding: 0 var(--space-md) var(--space-md);
+        font-size: 0.9375rem;
+    }
+
+    /* === TECH STACK MOBILE === */
+    .tech-stack-bar {
+        padding: var(--space-sm) 0;
+    }
+
+    .tech-stack-label {
+        font-size: 0.75rem;
+        margin-bottom: var(--space-xs);
+    }
+
+    .tech-marquee {
+        gap: var(--space-lg);
+    }
+
+    .tech-marquee i {
+        font-size: 1.25rem;
+    }
+
+    /* === FLOATING BUTTONS MOBILE === */
+    .floating-buttons {
+        right: 15px;
+        bottom: 15px;
+        gap: var(--space-sm);
+    }
+
+    .back-to-top,
+    .whatsapp-float {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* === TESTIMONIALS MOBILE === */
+    .testimonial-card {
+        padding: var(--space-lg);
+    }
+
+    .testimonial-content {
+        font-size: 1rem;
+    }
+
+    /* === LIGHTBOX MOBILE === */
+    .lightbox-content {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* === EXTRA SMALL MOBILE (≤ 360px) === */
+@media (max-width: 360px) {
+    :root {
+        --container-padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .metric-value {
+        font-size: 2rem;
+    }
+
+    .chat-window {
+        height: 60vh;
+        bottom: 130px;
+    }
+
+    .chat-messages {
+        height: calc(60vh - 140px);
+    }
 }

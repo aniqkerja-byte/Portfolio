@@ -1144,8 +1144,11 @@ p {
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease, padding 0.3s ease;
     padding-right: 2rem;
+    padding-bottom: 0;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .faq-answer p {
@@ -1155,8 +1158,11 @@ p {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px;
-    /* Adjust based on content */
+    max-height: 500px;
+    /* Increased for longer answers */
+    opacity: 1;
+    visibility: visible;
+    padding-bottom: 1rem;
 }
 
 .faq-icon {
@@ -3079,4 +3085,263 @@ body.dark-mode .skeleton {
 
 .section-stagger>*:nth-child(6) {
     animation-delay: 0.6s;
+}
+
+/* ===== MICRO-INTERACTIONS & HOVER EFFECTS ===== */
+
+/* === CARD LIFT EFFECTS === */
+.service-card {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(10, 102, 194, 0.15);
+}
+
+.pricing-card {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(10, 102, 194, 0.2);
+    border-color: var(--color-accent);
+}
+
+.blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.08);
+}
+
+.blog-image img {
+    transition: transform 0.5s ease;
+}
+
+/* === PORTFOLIO HOVER === */
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(10, 102, 194, 0.9) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.portfolio-item:hover::after {
+    opacity: 1;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.1);
+}
+
+.portfolio-image img {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* === BUTTON EFFECTS === */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* === NAV LINK UNDERLINE ANIMATION === */
+.nav-menu a {
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* === ICON ANIMATIONS === */
+.service-icon {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.15) rotate(-5deg);
+    color: var(--color-accent);
+}
+
+/* Process step number pulse */
+.step-number {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-step:hover .step-number {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(10, 102, 194, 0.15);
+}
+
+/* FAQ icon smooth rotation */
+.faq-icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* === FLOATING BUTTON EFFECTS === */
+.whatsapp-float {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
+.back-to-top {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(10, 102, 194, 0.3);
+}
+
+/* === CHAT TOGGLE EFFECT === */
+.chat-toggle {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+}
+
+/* === TECH STACK ICONS BOUNCE === */
+.tech-marquee i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tech-marquee i:hover {
+    transform: translateY(-5px) scale(1.2);
+    color: var(--color-accent);
+}
+
+/* === TESTIMONIAL CARD === */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* === FILTER BUTTON EFFECTS === */
+.filter-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.filter-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.filter-btn:hover {
+    color: var(--color-white);
+}
+
+.filter-btn.active {
+    background: var(--color-accent);
+    color: var(--color-white);
+}
+
+/* === METRIC CARD GLOW === */
+.metric-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(10, 102, 194, 0.1);
+}
+
+/* === LINK HOVER GLOW === */
+.portfolio-link:hover {
+    text-shadow: 0 0 8px rgba(10, 102, 194, 0.5);
+}
+
+/* === SOCIAL LINK EFFECTS === */
+.footer-social a {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+    transform: translateY(-3px) scale(1.15);
+    color: var(--color-accent);
 }
