@@ -828,48 +828,235 @@ if (backToTopBtn) {
 }
 
 /* ===== CUSTOM CURSOR ===== */
-// Only activate on desktop
+// Only activate on desktop with fine pointer
 if (window.matchMedia('(pointer: fine)').matches) {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+    const cursorMain = document.getElementById('cursor-main');
+    const cursorFollower = document.getElementById('cursor-follower');
 
-    if (cursorDot && cursorOutline) {
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+    if (cursorMain && cursorFollower) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
 
-            // Dot follows instantly
-            cursorDot.style.left = posX + 'px';
-            cursorDot.style.top = posY + 'px';
-
-            // Outline follows with delay
-            cursorOutline.animate({
-                left: posX + 'px',
-                top: posY + 'px'
-            }, { duration: 500, fill: 'forwards' });
+        // Track mouse position
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        // Hover effect for links and buttons
-        const interactiveElements = document.querySelectorAll('a, button, .faq-question, .service-card, .pricing-card, .portfolio-item');
+        // Smooth cursor animation
+        function animateCursor() {
+            // Main cursor follows with slight delay
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursorMain.style.left = cursorX + 'px';
+            cursorMain.style.top = cursorY + 'px';
+
+            // Follower with more delay
+            followerX += (mouseX - followerX) * 0.25;
+            followerY += (mouseY - followerY) * 0.25;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .faq-question, .service-card, .pricing-card, .portfolio-item, .filter-btn');
 
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorOutline.classList.add('cursor-hover');
+                cursorMain.classList.add('hover');
             });
             el.addEventListener('mouseleave', () => {
-                cursorOutline.classList.remove('cursor-hover');
+                cursorMain.classList.remove('hover');
             });
+        });
+
+        // Click effect
+        document.addEventListener('mousedown', () => {
+            cursorMain.classList.add('click');
+        });
+        document.addEventListener('mouseup', () => {
+            cursorMain.classList.remove('click');
         });
     }
 }
 
-/* ===== TRANSLATION UPDATES (APPENDED) ===== */
-/* This is a temporary fix script to inject new translations into the existing object on load
-   since we cannot easily edit the large JSON block in main.js with regex reliability.
-   Ideally, we should parse and extend, but for this context, extending via JS logic is safer. */
+/* ===== DARK MODE TOGGLE ===== */
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const darkModeIcon = document.getElementById('dark-mode-icon');
 
-// We will manually extend the translations object in the existing DOMContentLoaded scope if possible.
-// However, since we are outside the scope, we can't access 'translations' variable directly if it's not global.
-// Checking main.js, 'translations' is inside DOMContentLoaded.
-// Strategy: We will REPLACE the entire translations block or use specific target replacement.
+// Check for saved preference or system preference
+function initDarkMode() {
+    const savedMode = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
+    if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+        document.body.classList.add('dark-mode');
+        if (darkModeIcon) {
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+        }
+    }
+}
+
+// Toggle dark mode
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+
+        if (darkModeIcon) {
+            if (isDark) {
+                darkModeIcon.classList.remove('fa-moon');
+                darkModeIcon.classList.add('fa-sun');
+            } else {
+                darkModeIcon.classList.remove('fa-sun');
+                darkModeIcon.classList.add('fa-moon');
+            }
+        }
+    });
+}
+
+// Initialize on load
+initDarkMode();
+
+/* ===== HERO PARTICLES ANIMATION ===== */
+const canvas = document.getElementById('hero-particles');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId;
+
+    // Resize canvas to match hero
+    function resizeCanvas() {
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+        }
+    }
+
+    // Particle class
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 4 + 1;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.5 + 0.1;
+
+            // Color variations
+            const colors = [
+                'rgba(10, 102, 194, ', // Accent blue
+                'rgba(77, 159, 236, ', // Light blue
+                'rgba(100, 100, 100, ', // Gray
+            ];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // Bounce off edges
+            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.fill();
+        }
+    }
+
+    // Initialize particles
+    function initParticles() {
+        particles = [];
+        // Reduce particle count on mobile
+        const particleCount = window.innerWidth < 768 ? 30 : 60;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    // Connect nearby particles with lines
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 120) {
+                    const opacity = (1 - distance / 120) * 0.15;
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(10, 102, 194, ${opacity})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    // Animation loop
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        connectParticles();
+
+        animationId = requestAnimationFrame(animateParticles);
+    }
+
+    // Start animation
+    resizeCanvas();
+    initParticles();
+    animateParticles();
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles();
+    });
+
+    // Pause animation when not visible (performance)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            cancelAnimationFrame(animationId);
+        } else {
+            animateParticles();
+        }
+    });
+}
+
+/* ===== PRELOADER ===== */
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Small delay for smoother experience
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            // Remove from DOM after transition
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 800);
+    }
+});

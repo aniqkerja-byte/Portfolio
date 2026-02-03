@@ -6,7 +6,7 @@
 }
 
 :root {
-    /* Color System */
+    /* Color System - Light Mode */
     --color-white: #FFFFFF;
     --color-black: #000000;
     --color-charcoal: #1A1A1A;
@@ -48,6 +48,19 @@
     --transition-fast: 150ms ease;
     --transition-normal: 250ms ease;
     --transition-slow: 350ms ease;
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+    --color-white: #0D0D0D;
+    --color-black: #FFFFFF;
+    --color-charcoal: #F5F5F7;
+    --color-dark-gray: #E0E0E0;
+    --color-gray: #B0B0B0;
+    --color-light-gray: #808080;
+    --color-pale-gray: #1A1A1A;
+    --color-accent: #4D9FEC;
+    --color-accent-dark: #6BB3F0;
 }
 
 html {
@@ -1186,4 +1199,265 @@ p {
 .back-to-top:hover {
     background-color: var(--color-accent);
     transform: translateY(-5px);
+}
+
+/* ===== PRELOADER ===== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s ease-in-out infinite;
+    border-radius: 12px;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.preloader-spinner {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 15px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.preloader-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.cursor-main {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+}
+
+.cursor-main.hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(10, 102, 194, 0.1);
+    border-color: var(--color-accent);
+}
+
+.cursor-main.click {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+
+    .cursor-main,
+    .cursor-follower {
+        display: none !important;
+    }
+}
+
+/* ===== DARK MODE TOGGLE BUTTON ===== */
+.dark-mode-btn {
+    background: transparent;
+    border: 1px solid var(--color-light-gray);
+    color: var(--color-charcoal);
+    padding: 0.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: rotate(20deg);
+}
+
+.dark-mode-btn i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode .dark-mode-btn i {
+    transform: rotate(180deg);
+}
+
+/* ===== HERO PARTICLES CANVAS ===== */
+#hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== DARK MODE SPECIFIC OVERRIDES ===== */
+body.dark-mode {
+    background-color: #0D0D0D;
+}
+
+body.dark-mode .navbar {
+    background-color: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(-45deg, #0D0D0D, #1A1A1A, #0D1520, #0D0D0D);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+body.dark-mode .service-card,
+body.dark-mode .pricing-card,
+body.dark-mode .metric-card,
+body.dark-mode .testimonial-card {
+    background: rgba(30, 30, 30, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .service-card:hover,
+body.dark-mode .pricing-card:hover,
+body.dark-mode .metric-card:hover {
+    background: rgba(40, 40, 40, 0.95);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .pricing-card.popular {
+    border-color: var(--color-accent);
+}
+
+body.dark-mode .footer {
+    background-color: #000000;
+}
+
+body.dark-mode .faq-item {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .portfolio-item {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .filter-btn {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-gray);
+}
+
+body.dark-mode .filter-btn.active,
+body.dark-mode .filter-btn:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #0D0D0D;
+}
+
+body.dark-mode .back-to-top {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .back-to-top:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #0D0D0D;
+}
+
+/* Smooth transition for all elements when switching themes */
+body,
+.navbar,
+.hero,
+.service-card,
+.pricing-card,
+.metric-card,
+.testimonial-card,
+.footer,
+.faq-item,
+.portfolio-item,
+.filter-btn,
+.btn,
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+span {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }

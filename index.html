@@ -61,6 +61,19 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <img src="jombinasquare.png" alt="Loading..." class="preloader-logo">
+            <div class="preloader-spinner"></div>
+            <p class="preloader-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-main" id="cursor-main"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -80,6 +93,11 @@
                     <li><a href="#about" data-i18n="nav.about">About</a></li>
                     <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Get Started</a></li>
                     <li>
+                        <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-moon" id="dark-mode-icon"></i>
+                        </button>
+                    </li>
+                    <li>
                         <button id="lang-toggle" class="lang-btn" aria-label="Switch Language">
                             <span class="lang-text">EN</span>
                         </button>
@@ -91,6 +109,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <canvas id="hero-particles"></canvas>
         <div class="container">
             <div class="hero-content animate-on-scroll">
                 <h1 class="hero-title" data-i18n="hero.title">Let's Build Your Digital Success with JomBina</h1>
