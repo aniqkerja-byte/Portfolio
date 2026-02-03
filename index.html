@@ -58,6 +58,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="jombinasquare.png">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0A66C2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="JomBina">
+    <link rel="apple-touch-icon" href="jombinasquare.png">
 </head>
 
 <body>
@@ -349,7 +356,8 @@
                 <!-- Landing Pages -->
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
-                        <img src="bukupanduansihat.png" alt="Buku Panduan Sihat Landing Page"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="bukupanduansihat.png" alt="Buku Panduan Sihat Landing Page" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -360,7 +368,8 @@
                 </div>
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
-                        <img src="probiozen.png" alt="Probiozen Landing Page"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="probiozen.png" alt="Probiozen Landing Page" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -371,7 +380,8 @@
                 </div>
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
-                        <img src="formulaturun10kg.png" alt="Modul Formula Turun 10KG Landing Page"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="formulaturun10kg.png" alt="Modul Formula Turun 10KG Landing Page" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -383,7 +393,8 @@
                 </div>
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
-                        <img src="ellscafe.png" alt="Ells Cafe Landing Page"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="ellscafe.png" alt="Ells Cafe Landing Page" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -394,7 +405,8 @@
                 </div>
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
-                        <img src="missgoldenhair.png" alt="MissGolden Hair Landing Page"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="missgoldenhair.png" alt="MissGolden Hair Landing Page" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -405,7 +417,8 @@
                 </div>
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
-                        <img src="rawathotmon.png" alt="Webinar Rawat Hormon Landing Page"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="rawathotmon.png" alt="Webinar Rawat Hormon Landing Page" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -418,7 +431,8 @@
                 <!-- Web Systems -->
                 <div class="portfolio-item animate-on-scroll" data-category="system">
                     <div class="portfolio-image" onclick="openGallery('logistik')" style="cursor: pointer;">
-                        <img src="LOGISTIK/1.png" alt="Sistem Logistik"
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="LOGISTIK/1.png" alt="Sistem Logistik" loading="lazy"
                             style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="gallery-overlay">
                             <i class="fas fa-images"></i>
@@ -530,6 +544,107 @@
         </div>
     </section>
 
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="blog.title">Blog & Insights</h2>
+                <p class="section-subtitle" data-i18n="blog.subtitle">Tips, tutorials, and insights about web
+                    development</p>
+            </div>
+
+            <div class="blog-grid animate-on-scroll delay-100">
+                <!-- Article 1 -->
+                <article class="blog-card" data-article="bisnes-perlu-website">
+                    <div class="blog-image">
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="Blog1.png" alt="Bisnes Perlu Website" loading="lazy">
+                        <span class="blog-category">Business</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> Jan 2026</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 5 min</span>
+                        </div>
+                        <h3 data-i18n="blog.article1.title">5 Sebab Kenapa Bisnes Anda Perlu Website</h3>
+                        <p data-i18n="blog.article1.excerpt">Dalam era digital ini, website bukan lagi pilihan tetapi
+                            keperluan. Ketahui kenapa bisnes anda perlu website untuk terus relevan...</p>
+                        <button class="btn-read-more"><span data-i18n="blog.readMore">Baca Lagi</span> <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card" data-article="landing-vs-website">
+                    <div class="blog-image">
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="Blog2.png" alt="Landing Page vs Website" loading="lazy">
+                        <span class="blog-category">Guide</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> Jan 2026</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 4 min</span>
+                        </div>
+                        <h3 data-i18n="blog.article2.title">Landing Page vs Website: Mana Satu Yang Sesuai?</h3>
+                        <p data-i18n="blog.article2.excerpt">Ramai yang keliru antara landing page dan website. Artikel
+                            ini akan membantu anda memilih yang terbaik untuk bisnes anda...</p>
+                        <button class="btn-read-more"><span data-i18n="blog.readMore">Baca Lagi</span> <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card" data-article="kos-buat-website">
+                    <div class="blog-image">
+                        <div class="skeleton-image skeleton"></div>
+                        <img src="Blog3.png" alt="Kos Buat Website" loading="lazy">
+                        <span class="blog-category">Pricing</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar-alt"></i> Feb 2026</span>
+                            <span class="blog-read-time"><i class="fas fa-clock"></i> 6 min</span>
+                        </div>
+                        <h3 data-i18n="blog.article3.title">Berapa Kos Buat Website di Malaysia? (2026)</h3>
+                        <p data-i18n="blog.article3.excerpt">Panduan lengkap tentang kos membuat website di Malaysia.
+                            Dari landing page hingga e-commerce, ketahui budget yang diperlukan...</p>
+                        <button class="btn-read-more"><span data-i18n="blog.readMore">Baca Lagi</span> <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Article Modal -->
+    <div id="blog-modal" class="blog-modal">
+        <div class="blog-modal-overlay" id="blog-modal-overlay"></div>
+        <div class="blog-modal-content">
+            <button class="blog-modal-close" id="blog-modal-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <article class="blog-article">
+                <header class="blog-article-header">
+                    <span class="blog-article-category" id="blog-article-category">Business</span>
+                    <h1 id="blog-article-title">Article Title</h1>
+                    <div class="blog-article-meta">
+                        <span><i class="fas fa-calendar-alt"></i> <span id="blog-article-date">Jan 2026</span></span>
+                        <span><i class="fas fa-clock"></i> <span id="blog-article-read-time">5 min read</span></span>
+                    </div>
+                </header>
+                <div class="blog-article-body" id="blog-article-body">
+                    <!-- Article content will be inserted here -->
+                </div>
+                <footer class="blog-article-footer">
+                    <a href="#contact" class="btn btn-primary" onclick="closeBlogModal()">
+                        <i class="fas fa-comments"></i> Hubungi Kami
+                    </a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
@@ -594,6 +709,189 @@
         </div>
     </section>
 
+    <!-- Project Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="calculator.title">Project Cost Calculator</h2>
+                <p class="section-subtitle" data-i18n="calculator.subtitle">Get an instant estimate for your project</p>
+            </div>
+
+            <div class="calculator-container animate-on-scroll delay-100">
+                <!-- Progress Bar -->
+                <div class="calc-progress">
+                    <div class="calc-step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label" data-i18n="calculator.step1">Jenis Projek</span>
+                    </div>
+                    <div class="calc-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label" data-i18n="calculator.step2">Tambahan</span>
+                    </div>
+                    <div class="calc-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label" data-i18n="calculator.step3">Anggaran</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Project Type -->
+                <div class="calc-panel active" id="calc-step-1">
+                    <h3 data-i18n="calculator.selectType">Jenis projek apa yang anda perlukan?</h3>
+                    <div class="project-types">
+                        <label class="project-type-card">
+                            <input type="radio" name="projectType" value="landing" data-price="490"
+                                data-timeline="3-5 days">
+                            <div class="card-content">
+                                <i class="fas fa-file-alt"></i>
+                                <h4>Landing Page</h4>
+                                <p class="price">From RM 490</p>
+                                <span class="timeline">3-5 days</span>
+                            </div>
+                        </label>
+                        <label class="project-type-card">
+                            <input type="radio" name="projectType" value="business" data-price="990"
+                                data-timeline="1-2 weeks">
+                            <div class="card-content">
+                                <i class="fas fa-building"></i>
+                                <h4>Business Website</h4>
+                                <p class="price">From RM 990</p>
+                                <span class="timeline">1-2 weeks</span>
+                            </div>
+                        </label>
+                        <label class="project-type-card">
+                            <input type="radio" name="projectType" value="ecommerce" data-price="1890"
+                                data-timeline="2-3 weeks">
+                            <div class="card-content">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h4>E-Commerce Store</h4>
+                                <p class="price">From RM 1,890</p>
+                                <span class="timeline">2-3 weeks</span>
+                            </div>
+                        </label>
+                        <label class="project-type-card">
+                            <input type="radio" name="projectType" value="webapp" data-price="2500"
+                                data-timeline="3-4 weeks">
+                            <div class="card-content">
+                                <i class="fas fa-laptop-code"></i>
+                                <h4>Web Application</h4>
+                                <p class="price">From RM 2,500</p>
+                                <span class="timeline">3-4 weeks</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="calc-actions">
+                        <button class="btn btn-primary calc-next" disabled>Next <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Add-ons -->
+                <div class="calc-panel" id="calc-step-2">
+                    <h3 data-i18n="calculator.selectAddons">Pilih ciri tambahan:</h3>
+                    <div class="addons-grid">
+                        <label class="addon-item">
+                            <input type="checkbox" name="addon" value="seo" data-price="100">
+                            <div class="addon-content">
+                                <i class="fas fa-search"></i>
+                                <div class="addon-info">
+                                    <h4>SEO Optimization</h4>
+                                    <p>On-page SEO setup</p>
+                                </div>
+                                <span class="addon-price">+RM 100</span>
+                            </div>
+                        </label>
+                        <label class="addon-item">
+                            <input type="checkbox" name="addon" value="admin" data-price="100">
+                            <div class="addon-content">
+                                <i class="fas fa-cogs"></i>
+                                <div class="addon-info">
+                                    <h4>Admin Dashboard</h4>
+                                    <p>Content management</p>
+                                </div>
+                                <span class="addon-price">+RM 100</span>
+                            </div>
+                        </label>
+                        <label class="addon-item">
+                            <input type="checkbox" name="addon" value="payment" data-price="100">
+                            <div class="addon-content">
+                                <i class="fas fa-credit-card"></i>
+                                <div class="addon-info">
+                                    <h4>Payment Gateway</h4>
+                                    <p>Online payment setup</p>
+                                </div>
+                                <span class="addon-price">+RM 100</span>
+                            </div>
+                        </label>
+                        <label class="addon-item">
+                            <input type="checkbox" name="addon" value="hosting" data-price="150">
+                            <div class="addon-content">
+                                <i class="fas fa-server"></i>
+                                <div class="addon-info">
+                                    <h4>Hosting & Domain</h4>
+                                    <p>1 year included</p>
+                                </div>
+                                <span class="addon-price">+RM 150</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="calc-actions">
+                        <button class="btn-link calc-back"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn btn-primary calc-next">See Estimate <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Estimate -->
+                <div class="calc-panel" id="calc-step-3">
+                    <div class="estimate-container">
+                        <div class="estimate-header">
+                            <i class="fas fa-calculator"></i>
+                            <h3 data-i18n="calculator.summary">Anggaran Anda</h3>
+                        </div>
+
+                        <div class="estimate-details">
+                            <div class="estimate-row project-row">
+                                <span class="label" data-i18n="calculator.projectType">Jenis Projek:</span>
+                                <span class="value" id="est-project-type">-</span>
+                            </div>
+                            <div class="estimate-row">
+                                <span class="label" data-i18n="calculator.basePrice">Harga Asas:</span>
+                                <span class="value" id="est-base-price">RM 0</span>
+                            </div>
+
+                            <div class="estimate-addons" id="est-addons-list">
+                                <!-- Add-ons will be inserted here -->
+                            </div>
+
+                            <div class="estimate-divider"></div>
+
+                            <div class="estimate-row total-row">
+                                <span class="label" data-i18n="calculator.total">Jumlah Anggaran:</span>
+                                <span class="value" id="est-total">RM 0</span>
+                            </div>
+
+                            <div class="estimate-timeline">
+                                <i class="fas fa-clock"></i>
+                                <span>Estimated Timeline: <strong id="est-timeline">-</strong></span>
+                            </div>
+                        </div>
+
+                        <a href="#" id="calc-whatsapp-btn" class="btn btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Get Detailed Quote via WhatsApp
+                        </a>
+
+                        <p class="estimate-note" data-i18n="calculator.note">* Harga akhir mungkin berbeza bergantung
+                            kepada keperluan khusus</p>
+                    </div>
+
+                    <div class="calc-actions">
+                        <button class="btn-link calc-back"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn-link calc-reset"><i class="fas fa-redo"></i> Start Over</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <!-- FAQ Section -->
@@ -726,11 +1024,51 @@
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20your%20services" class="floating-wa"
-        target="_blank" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Live Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <!-- Chat Toggle Button -->
+        <button class="chat-toggle" id="chat-toggle" aria-label="Open Chat">
+            <i class="fas fa-comments" id="chat-icon"></i>
+            <span class="chat-badge" id="chat-badge">1</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-header-text">
+                        <h4>JomBina Assistant</h4>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <button class="chat-close" id="chat-close" aria-label="Close Chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages will be inserted here -->
+            </div>
+
+            <div class="chat-quick-replies" id="chat-quick-replies">
+                <button class="quick-reply-btn" data-message="Berapa harga website?">Harga</button>
+                <button class="quick-reply-btn" data-message="Berapa lama siap?">Timeline</button>
+                <button class="quick-reply-btn" data-message="Apa services yang ada?">Services</button>
+                <button class="quick-reply-btn" data-message="Boleh tengok portfolio?">Portfolio</button>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chat-input" placeholder="Taip soalan anda..."
+                    autocomplete="off">
+                <button class="chat-send" id="chat-send" aria-label="Send Message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Lightbox Gallery Modal -->
     <div id="lightbox-modal" class="lightbox-modal">
@@ -740,6 +1078,95 @@
             <a class="lightbox-prev" onclick="changeSlide(-1)">&#10094;</a>
             <a class="lightbox-next" onclick="changeSlide(1)">&#10095;</a>
             <div class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Case Study Modal -->
+    <div id="case-study-modal" class="case-study-modal">
+        <div class="case-study-overlay" id="case-study-overlay"></div>
+        <div class="case-study-content">
+            <button class="case-study-close" id="case-study-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Hero Image -->
+            <div class="case-study-hero">
+                <img id="cs-hero-image" src="" alt="Project Screenshot">
+            </div>
+
+            <!-- Header -->
+            <div class="case-study-header">
+                <h2 id="cs-title">Project Title</h2>
+                <div class="case-study-meta">
+                    <span class="cs-category" id="cs-category">Landing Page</span>
+                    <span class="cs-divider">•</span>
+                    <span class="cs-client" id="cs-client">Health & Wellness</span>
+                </div>
+            </div>
+
+            <!-- Content Sections -->
+            <div class="case-study-body">
+                <div class="cs-section">
+                    <div class="cs-section-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="cs-section-content">
+                        <h3>Overview</h3>
+                        <p id="cs-overview">Project description goes here.</p>
+                    </div>
+                </div>
+
+                <div class="cs-section">
+                    <div class="cs-section-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="cs-section-content">
+                        <h3>Challenge</h3>
+                        <p id="cs-challenge">What problems needed to be solved.</p>
+                    </div>
+                </div>
+
+                <div class="cs-section">
+                    <div class="cs-section-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="cs-section-content">
+                        <h3>Solution</h3>
+                        <p id="cs-solution">How we approached and solved the challenges.</p>
+                    </div>
+                </div>
+
+                <div class="cs-section">
+                    <div class="cs-section-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="cs-section-content">
+                        <h3>Results</h3>
+                        <p id="cs-results">Outcomes and metrics.</p>
+                    </div>
+                </div>
+
+                <!-- Tech Stack -->
+                <div class="cs-section">
+                    <div class="cs-section-icon"><i class="fas fa-code"></i></div>
+                    <div class="cs-section-content">
+                        <h3>Tech Stack</h3>
+                        <div class="cs-tech-stack" id="cs-tech-stack">
+                            <!-- Tech badges will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery -->
+                <div class="cs-section cs-gallery-section" id="cs-gallery-section">
+                    <div class="cs-section-icon"><i class="fas fa-images"></i></div>
+                    <div class="cs-section-content">
+                        <h3>Gallery</h3>
+                        <div class="cs-gallery" id="cs-gallery">
+                            <!-- Gallery images will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="case-study-footer">
+                <a href="#" id="cs-live-url" class="btn btn-primary btn-lg" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit Live Site
+                </a>
+            </div>
         </div>
     </div>
 

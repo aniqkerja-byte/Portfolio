@@ -1,0 +1,27 @@
+{
+    "name": "JomBina.site",
+    "short_name": "JomBina",
+    "description": "Professional Web Development Services - Build Your Digital Success",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0A66C2",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "jombinasquare.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "jombinasquare.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["business", "productivity"],
+    "lang": "ms",
+    "dir": "ltr"
+}

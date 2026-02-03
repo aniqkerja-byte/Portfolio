@@ -3,6 +3,19 @@
  * Professional portfolio website functionality
  */
 
+// === SERVICE WORKER REGISTRATION (PWA) ===
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+                console.log('ServiceWorker registered:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('ServiceWorker registration failed:', error);
+            });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // --- LANGUAGE SWITCHER ---
     const translations = {
@@ -167,6 +180,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 a3: 'The first year of maintenance is included. After year 1, there is a renewal fee (Domain + Hosting + Maintenance) starting from RM350/year depending on the package.',
                 q4: 'Can I update the website content myself?',
                 a4: 'Yes! I build websites using user-friendly CMS platforms. I provide a video tutorial on how to edit text and images easily.'
+            },
+            blog: {
+                title: 'Blog & Insights',
+                subtitle: 'Tips, tutorials, and insights about web development',
+                readMore: 'Read More',
+                article1: {
+                    title: '5 Reasons Why Your Business Needs a Website',
+                    excerpt: 'In this digital era, a website is no longer an option but a necessity. Learn why your business needs a website to stay relevant...'
+                },
+                article2: {
+                    title: 'Landing Page vs Website: Which One is Right?',
+                    excerpt: 'Many are confused between landing pages and websites. This article will help you choose the best for your business...'
+                },
+                article3: {
+                    title: 'How Much Does a Website Cost in Malaysia? (2026)',
+                    excerpt: 'A complete guide on website development costs in Malaysia. From landing pages to e-commerce, know the budget needed...'
+                }
+            },
+            calculator: {
+                title: 'Project Calculator',
+                subtitle: 'Get an instant estimate for your project',
+                step1: 'Project Type',
+                step2: 'Add-ons',
+                step3: 'Estimate',
+                selectType: 'What type of project do you need?',
+                selectAddons: 'Select additional features:',
+                summary: 'Your Estimate',
+                projectType: 'Project Type:',
+                basePrice: 'Base Price:',
+                total: 'Estimated Total:',
+                timeline: 'Estimated Timeline:',
+                getQuote: 'Get Detailed Quote via WhatsApp',
+                note: '* Final price may vary based on specific requirements',
+                back: 'Back',
+                next: 'Next',
+                reset: 'Start Over',
+                landing: 'Landing Page',
+                business: 'Business Website',
+                ecommerce: 'E-Commerce',
+                webapp: 'Web Application',
+                seo: 'SEO Optimization',
+                admin: 'Admin Dashboard',
+                payment: 'Payment Gateway',
+                hosting: 'Hosting & Domain'
             }
         },
         ms: {
@@ -330,13 +387,57 @@ document.addEventListener('DOMContentLoaded', function () {
                 a3: 'Tahun pertama penyelenggaraan adalah percuma. Selepas tahun 1, terdapat yuran pembaharuan (Domain + Hosting + Penyelenggaraan) bermula dari RM350/tahun bergantung kepada pakej.',
                 q4: 'Bolehkah saya mengemaskini kandungan laman web sendiri?',
                 a4: 'Ya! Saya membina laman web menggunakan platform CMS yang mesra pengguna. Saya sediakan video tutorial tentang cara mengedit teks dan gambar dengan mudah.'
+            },
+            blog: {
+                title: 'Blog & Insights',
+                subtitle: 'Tips, tutorial, dan insight tentang pembangunan web',
+                readMore: 'Baca Lagi',
+                article1: {
+                    title: '5 Sebab Kenapa Bisnes Anda Perlu Website',
+                    excerpt: 'Dalam era digital ini, website bukan lagi pilihan tetapi keperluan. Ketahui kenapa bisnes anda perlu website untuk terus relevan...'
+                },
+                article2: {
+                    title: 'Landing Page vs Website: Mana Satu Yang Sesuai?',
+                    excerpt: 'Ramai yang keliru antara landing page dan website. Artikel ini akan membantu anda memilih yang terbaik untuk bisnes anda...'
+                },
+                article3: {
+                    title: 'Berapa Kos Buat Website di Malaysia? (2026)',
+                    excerpt: 'Panduan lengkap tentang kos membuat website di Malaysia. Dari landing page hingga e-commerce, ketahui budget yang diperlukan...'
+                }
+            },
+            calculator: {
+                title: 'Kalkulator Projek',
+                subtitle: 'Dapatkan anggaran segera untuk projek anda',
+                step1: 'Jenis Projek',
+                step2: 'Tambahan',
+                step3: 'Anggaran',
+                selectType: 'Jenis projek apa yang anda perlukan?',
+                selectAddons: 'Pilih ciri tambahan:',
+                summary: 'Anggaran Anda',
+                projectType: 'Jenis Projek:',
+                basePrice: 'Harga Asas:',
+                total: 'Jumlah Anggaran:',
+                timeline: 'Jangka Masa:',
+                getQuote: 'Dapatkan Sebut Harga via WhatsApp',
+                note: '* Harga akhir mungkin berbeza bergantung kepada keperluan khusus',
+                back: 'Kembali',
+                next: 'Seterusnya',
+                reset: 'Mula Semula',
+                landing: 'Landing Page',
+                business: 'Website Bisnes',
+                ecommerce: 'E-Commerce',
+                webapp: 'Aplikasi Web',
+                seo: 'Pengoptimuman SEO',
+                admin: 'Panel Admin',
+                payment: 'Gerbang Pembayaran',
+                hosting: 'Hosting & Domain'
             }
         }
     };
 
     const langBtn = document.getElementById('lang-toggle');
     const langText = langBtn ? langBtn.querySelector('.lang-text') : null;
-    let currentLang = localStorage.getItem('site_lang') || 'en';
+    let currentLang = localStorage.getItem('site_lang') || 'ms'; // Default to Malay
 
     function setLanguage(lang) {
         currentLang = lang;
@@ -753,6 +854,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
+
+    // === SKELETON IMAGE LOADER ===
+    const skeletonImages = document.querySelectorAll('.portfolio-image img, .blog-image img');
+    skeletonImages.forEach(img => {
+        // If already loaded (cached)
+        if (img.complete) {
+            img.classList.add('loaded');
+            img.parentElement.classList.add('image-loaded');
+        } else {
+            img.addEventListener('load', function () {
+                img.classList.add('loaded');
+                img.parentElement.classList.add('image-loaded');
+            });
+        }
+    });
 });
 
 /* ===== TYPEWRITER EFFECT ===== */
@@ -817,7 +933,7 @@ if (backToTopBtn) {
         } else {
             backToTopBtn.classList.remove('visible');
         }
-    });
+    }, { passive: true });
 
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
@@ -1060,3 +1176,972 @@ window.addEventListener('load', () => {
         }, 800);
     }
 });
+
+/* ===== LIVE CHAT WIDGET ===== */
+(function () {
+    // FAQ Knowledge Base
+    const faqResponses = [
+        {
+            keywords: ['harga', 'price', 'cost', 'berapa', 'rm', 'budget', 'pakej', 'package'],
+            response: `Berikut adalah harga pakej kami:
+
+• <strong>Landing Page:</strong> RM490 - RM890
+• <strong>Business Website:</strong> Dari RM990
+• <strong>E-Commerce:</strong> Dari RM1,890
+
+Semua pakej termasuk domain, hosting & maintenance 1 tahun!`
+        },
+        {
+            keywords: ['lama', 'long', 'timeline', 'duration', 'masa', 'siap', 'ready', 'bila'],
+            response: `Timeline projek bergantung kepada jenis:
+
+• <strong>Landing Page:</strong> 3-5 hari bekerja
+• <strong>Business Website:</strong> 2-3 minggu
+• <strong>E-Commerce/Sistem:</strong> 3-4 minggu
+
+Kami akan bagi timeline tepat selepas perbincangan requirement!`
+        },
+        {
+            keywords: ['services', 'perkhidmatan', 'servis', 'apa', 'what', 'buat', 'offer'],
+            response: `📋 Kami menawarkan:
+
+• Landing Page Development
+• Corporate/Business Website
+• E-Commerce (WooCommerce/Shopify)
+• Custom Web System & SaaS
+• Website Redesign & Optimization
+
+Tiap projek termasuk copywriting & design!`
+        },
+        {
+            keywords: ['portfolio', 'work', 'contoh', 'example', 'sample', 'kerja', 'projek'],
+            response: `Jom tengok portfolio kami!
+
+Kami dah bina 100+ landing pages dan 20+ sistem untuk pelbagai industri.
+
+<a href="#work" class="chat-scroll-link" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'});return false;">👉 Lihat Portfolio</a>`
+        },
+        {
+            keywords: ['bayar', 'payment', 'deposit', 'cara', 'installment', 'method'],
+            response: `💳 Cara pembayaran:
+
+• <strong>Deposit:</strong> 50% sebelum mula kerja
+• <strong>Baki:</strong> 50% selepas projek siap
+• <strong>Kaedah:</strong> Bank Transfer / Online Banking
+
+Boleh bayar secara installment untuk projek besar!`
+        },
+        {
+            keywords: ['hosting', 'domain', 'maintain', 'maintenance', 'server', 'renew'],
+            response: `🌐 Tentang hosting & domain:
+
+• <strong>Tahun 1:</strong> FREE (termasuk dalam pakej)
+• <strong>Selepas tahun 1:</strong> Dari RM350/tahun
+
+Kami uruskan semua maintenance & security update!`
+        },
+        {
+            keywords: ['contact', 'hubungi', 'whatsapp', 'call', 'email', 'reach'],
+            response: `Jom berhubung!
+
+Cara paling cepat adalah melalui WhatsApp. Kami akan respond dalam 24 jam.
+
+<a href="https://wa.me/601124187824?text=Hi,%20saya%20berminat%20dengan%20servis%20JomBina" target="_blank" class="chat-whatsapp-link"><i class="fab fa-whatsapp"></i> Chat di WhatsApp</a>`
+        },
+        {
+            keywords: ['hi', 'hello', 'hai', 'helo', 'hey', 'assalam', 'salam'],
+            response: `Hai! Selamat datang ke JomBina!
+
+Saya assistant virtual yang boleh bantu jawab soalan anda tentang servis website kami.
+
+Apa yang anda nak tahu? 😊`
+        }
+    ];
+
+    // Default fallback response
+    const fallbackResponse = `🤔 Maaf, saya kurang pasti jawapan untuk soalan ini.
+
+Jom bincang terus dengan team kami untuk info lebih lanjut!
+
+<a href="https://wa.me/601124187824?text=Hi,%20saya%20ada%20soalan%20tentang%20servis%20JomBina" target="_blank" class="chat-whatsapp-link"><i class="fab fa-whatsapp"></i> Chat di WhatsApp</a>`;
+
+    // Welcome message
+    const welcomeMessage = `Hai! Saya JomBina Assistant.
+
+Saya boleh bantu jawab soalan tentang:
+• Harga pakej website
+• Timeline projek
+• Services yang kami tawarkan
+• Portfolio kerja
+
+Cuba klik butang di bawah atau taip soalan anda!`;
+
+    // DOM Elements
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const chatClose = document.getElementById('chat-close');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatBadge = document.getElementById('chat-badge');
+    const chatIcon = document.getElementById('chat-icon');
+    const quickReplyBtns = document.querySelectorAll('.quick-reply-btn');
+
+    let isOpen = false;
+    let hasShownWelcome = false;
+
+    // Toggle chat window
+    function toggleChat() {
+        isOpen = !isOpen;
+        chatWindow.classList.toggle('active', isOpen);
+
+        // Change icon
+        if (isOpen) {
+            chatIcon.classList.remove('fa-comments');
+            chatIcon.classList.add('fa-times');
+            chatBadge.classList.add('hidden');
+
+            // Show welcome message on first open
+            if (!hasShownWelcome) {
+                addBotMessage(welcomeMessage);
+                hasShownWelcome = true;
+            }
+
+            // Focus input
+            setTimeout(() => chatInput.focus(), 300);
+        } else {
+            chatIcon.classList.remove('fa-times');
+            chatIcon.classList.add('fa-comments');
+        }
+    }
+
+    // Add bot message
+    function addBotMessage(text) {
+        const msg = document.createElement('div');
+        msg.className = 'chat-message bot';
+        msg.innerHTML = text;
+        chatMessages.appendChild(msg);
+        scrollToBottom();
+    }
+
+    // Add user message
+    function addUserMessage(text) {
+        const msg = document.createElement('div');
+        msg.className = 'chat-message user';
+        msg.textContent = text;
+        chatMessages.appendChild(msg);
+        scrollToBottom();
+    }
+
+    // Show typing indicator
+    function showTyping() {
+        const typing = document.createElement('div');
+        typing.className = 'typing-indicator';
+        typing.id = 'typing-indicator';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(typing);
+        scrollToBottom();
+    }
+
+    // Hide typing indicator
+    function hideTyping() {
+        const typing = document.getElementById('typing-indicator');
+        if (typing) typing.remove();
+    }
+
+    // Scroll to bottom
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Find matching response
+    function findResponse(query) {
+        const lowerQuery = query.toLowerCase();
+
+        for (const faq of faqResponses) {
+            for (const keyword of faq.keywords) {
+                if (lowerQuery.includes(keyword)) {
+                    return faq.response;
+                }
+            }
+        }
+
+        return fallbackResponse;
+    }
+
+    // Handle send message
+    function sendMessage(text) {
+        if (!text || !text.trim()) return;
+
+        // Add user message
+        addUserMessage(text.trim());
+
+        // Clear input
+        chatInput.value = '';
+
+        // Show typing indicator
+        showTyping();
+
+        // Simulate typing delay (500-1500ms)
+        const delay = 500 + Math.random() * 1000;
+
+        setTimeout(() => {
+            hideTyping();
+            const response = findResponse(text);
+            addBotMessage(response);
+        }, delay);
+    }
+
+    // Event Listeners
+    if (chatToggle) {
+        chatToggle.addEventListener('click', toggleChat);
+    }
+
+    if (chatClose) {
+        chatClose.addEventListener('click', toggleChat);
+    }
+
+    if (chatSend) {
+        chatSend.addEventListener('click', () => {
+            sendMessage(chatInput.value);
+        });
+    }
+
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage(chatInput.value);
+            }
+        });
+    }
+
+    // Quick reply buttons
+    quickReplyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const message = btn.getAttribute('data-message');
+            sendMessage(message);
+        });
+    });
+
+    // Close on outside click (optional)
+    document.addEventListener('click', (e) => {
+        if (isOpen && !chatWindow.contains(e.target) && !chatToggle.contains(e.target)) {
+            // Uncomment below to enable close on outside click
+            // toggleChat();
+        }
+    });
+})();
+
+/* ===== PROJECT CALCULATOR ===== */
+(function () {
+    const steps = document.querySelectorAll('.calc-step');
+    const panels = document.querySelectorAll('.calc-panel');
+    const nextBtns = document.querySelectorAll('.calc-next');
+    const backBtns = document.querySelectorAll('.calc-back');
+    const resetBtns = document.querySelectorAll('.calc-reset');
+    const projectTypeInputs = document.querySelectorAll('input[name="projectType"]');
+    const addonInputs = document.querySelectorAll('input[name="addon"]');
+    const whatsappBtn = document.getElementById('calc-whatsapp-btn');
+
+    // State
+    let currentStep = 1;
+    let selectedProject = null;
+    let selectedAddons = [];
+
+    // Project type names for display
+    const projectNames = {
+        'landing': 'Landing Page',
+        'business': 'Business Website',
+        'ecommerce': 'E-Commerce Store',
+        'webapp': 'Web Application'
+    };
+
+    // Addon names for display
+    const addonNames = {
+        'design': 'Premium Design',
+        'seo': 'SEO Optimization',
+        'copywriting': 'Copywriting',
+        'whatsapp': 'WhatsApp Integration',
+        'payment': 'Payment Gateway',
+        'admin': 'Admin Dashboard',
+        'hosting': 'Hosting & Domain'
+    };
+
+    // Go to step
+    function goToStep(stepNum) {
+        currentStep = stepNum;
+
+        // Update step indicators
+        steps.forEach((step, index) => {
+            const num = index + 1;
+            step.classList.remove('active', 'completed');
+            if (num < stepNum) {
+                step.classList.add('completed');
+            } else if (num === stepNum) {
+                step.classList.add('active');
+            }
+        });
+
+        // Update panels
+        panels.forEach((panel, index) => {
+            panel.classList.remove('active');
+            if (index + 1 === stepNum) {
+                panel.classList.add('active');
+            }
+        });
+
+        // Update estimate on step 3
+        if (stepNum === 3) {
+            updateEstimate();
+        }
+    }
+
+    // Update step 1 next button state
+    function updateStep1NextBtn() {
+        const nextBtn = document.querySelector('#calc-step-1 .calc-next');
+        if (nextBtn) {
+            nextBtn.disabled = !selectedProject;
+        }
+    }
+
+    // Calculate total
+    function calculateTotal() {
+        let total = 0;
+
+        if (selectedProject) {
+            total += parseInt(selectedProject.dataset.price);
+        }
+
+        selectedAddons.forEach(addon => {
+            total += parseInt(addon.dataset.price);
+        });
+
+        return total;
+    }
+
+    // Update estimate display
+    function updateEstimate() {
+        if (!selectedProject) return;
+
+        // Project type
+        const projectType = selectedProject.value;
+        const projectName = projectNames[projectType] || projectType;
+        const basePrice = parseInt(selectedProject.dataset.price);
+        const timeline = selectedProject.dataset.timeline;
+
+        document.getElementById('est-project-type').textContent = projectName;
+        document.getElementById('est-base-price').textContent = `RM ${basePrice.toLocaleString()}`;
+        document.getElementById('est-timeline').textContent = timeline;
+
+        // Add-ons list
+        const addonsContainer = document.getElementById('est-addons-list');
+        addonsContainer.innerHTML = '';
+
+        if (selectedAddons.length > 0) {
+            const title = document.createElement('div');
+            title.className = 'estimate-row';
+            title.innerHTML = '<span class="label">Add-ons:</span><span></span>';
+            addonsContainer.appendChild(title);
+
+            selectedAddons.forEach(addon => {
+                const addonName = addonNames[addon.value] || addon.value;
+                const addonPrice = parseInt(addon.dataset.price);
+                const item = document.createElement('div');
+                item.className = 'estimate-addon-item';
+                item.innerHTML = `<span>• ${addonName}</span><span>+RM ${addonPrice}</span>`;
+                addonsContainer.appendChild(item);
+            });
+        }
+
+        // Total
+        const total = calculateTotal();
+        document.getElementById('est-total').textContent = `RM ${total.toLocaleString()}`;
+
+        // Update WhatsApp link
+        updateWhatsAppLink(projectName, basePrice, timeline, total);
+    }
+
+    // Generate WhatsApp message
+    function updateWhatsAppLink(projectName, basePrice, timeline, total) {
+        let message = `Hi JomBina!\n\nSaya berminat dengan quote berikut:\n\n`;
+        message += `Jenis Projek: ${projectName}\n`;
+        message += `Base Price: RM${basePrice.toLocaleString()}\n`;
+
+        if (selectedAddons.length > 0) {
+            message += `\nAdd-ons:\n`;
+            selectedAddons.forEach(addon => {
+                const addonName = addonNames[addon.value] || addon.value;
+                const addonPrice = parseInt(addon.dataset.price);
+                message += `• ${addonName} (RM${addonPrice})\n`;
+            });
+        }
+
+        message += `\nAnggaran Total: RM${total.toLocaleString()}\n`;
+        message += `Timeline: ${timeline}\n\n`;
+        message += `Boleh bincang lebih lanjut?`;
+
+        const encodedMessage = encodeURIComponent(message);
+        if (whatsappBtn) {
+            whatsappBtn.href = `https://wa.me/601124187824?text=${encodedMessage}`;
+        }
+    }
+
+    // Event: Project type selection
+    projectTypeInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            selectedProject = input;
+            updateStep1NextBtn();
+        });
+    });
+
+    // Event: Addon selection
+    addonInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            if (input.checked) {
+                selectedAddons.push(input);
+            } else {
+                selectedAddons = selectedAddons.filter(a => a !== input);
+            }
+        });
+    });
+
+    // Event: Next buttons
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentStep < 3) {
+                goToStep(currentStep + 1);
+            }
+        });
+    });
+
+    // Event: Back buttons
+    backBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                goToStep(currentStep - 1);
+            }
+        });
+    });
+
+    // Event: Reset buttons
+    resetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Reset selections
+            selectedProject = null;
+            selectedAddons = [];
+
+            // Uncheck all inputs
+            projectTypeInputs.forEach(input => input.checked = false);
+            addonInputs.forEach(input => input.checked = false);
+
+            // Go to step 1
+            goToStep(1);
+            updateStep1NextBtn();
+        });
+    });
+
+    // Initialize
+    updateStep1NextBtn();
+})();
+
+/* ===== CASE STUDY MODAL ===== */
+(function () {
+    // Case study data
+    const caseStudies = {
+        'buku-panduan-sihat': {
+            title: 'Buku Panduan Sihat',
+            category: 'Landing Page',
+            client: 'Health & Wellness',
+            heroImage: 'bukupanduansihat.png',
+            overview: 'Landing page yang menarik untuk eBook panduan kesihatan. Direka untuk menarik pembeli dengan copywriting yang meyakinkan dan visual yang profesional.',
+            challenge: 'Klien perlukan landing page yang mampu convert visitors kepada pembeli dalam masa singkat dengan trust elements yang kuat.',
+            solution: 'Menggunakan struktur AIDA (Attention, Interest, Desire, Action) dengan testimonial, countdown timer, dan CTA yang jelas.',
+            results: 'Landing page berjaya meningkatkan conversion rate dan memudahkan proses jualan melalui WhatsApp.',
+            techStack: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
+            gallery: [],
+            liveUrl: 'https://bosta.com.my/bukupanduansihat/'
+        },
+        'probiozen': {
+            title: 'Probiozen',
+            category: 'Landing Page',
+            client: 'Health Supplement',
+            heroImage: 'probiozen.png',
+            overview: 'High-converting landing page untuk suplemen probiotik yang mensasarkan pengguna yang prihatin tentang kesihatan usus.',
+            challenge: 'Perlu menyampaikan maklumat saintifik dengan cara yang mudah difahami sambil membina kepercayaan.',
+            solution: 'Design yang bersih dengan infografik, testimonial video, dan proses pembelian yang mudah.',
+            results: 'Peningkatan ketara dalam engagement dan conversion. Page load dalam masa kurang dari 2 saat.',
+            techStack: ['HTML', 'CSS', 'JavaScript', 'WhatsApp API'],
+            gallery: [],
+            liveUrl: 'https://bosta.com.my/probiozen/'
+        },
+        'formula-turun-10kg': {
+            title: 'Modul Formula Turun 10 KG',
+            category: 'Landing Page',
+            client: 'Fitness & Health',
+            heroImage: 'formulaturun10kg.png',
+            overview: 'Landing page untuk program penurunan berat badan dengan modul pembelajaran step-by-step.',
+            challenge: 'Meyakinkan pengunjung bahawa program ini berbeza dari program diet lain yang gagal.',
+            solution: 'Showcase hasil sebenar dengan before-after photos, testimonial pengguna, dan jaminan wang dikembalikan.',
+            results: 'Meningkatkan kepercayaan pengguna dan mempermudah proses enrollment.',
+            techStack: ['HTML', 'CSS', 'JavaScript', 'Mobile-First Design'],
+            gallery: [],
+            liveUrl: 'https://bosta.com.my/formula-turun-10kg/'
+        },
+        'ells-cafe': {
+            title: 'Ells Cafe',
+            category: 'Landing Page',
+            client: 'Food & Beverage',
+            heroImage: 'ellscafe.png',
+            overview: 'Landing page untuk kafe dengan menu digital dan sistem tempahan meja.',
+            challenge: 'Mempamerkan suasana dan menu kafe secara menarik untuk menarik pengunjung.',
+            solution: 'Gallery photos yang menarik, menu interaktif, dan integrasi dengan Google Maps untuk directions.',
+            results: 'Meningkatkan visibility kafe dan memudahkan tempahan meja melalui WhatsApp.',
+            techStack: ['HTML', 'CSS', 'JavaScript', 'Google Maps API'],
+            gallery: [],
+            liveUrl: 'https://bosta.com.my/ellscafe/'
+        },
+        'missgolden-hair': {
+            title: 'MissGolden Hair',
+            category: 'Landing Page',
+            client: 'Beauty & Cosmetics',
+            heroImage: 'missgoldenhair.png',
+            overview: 'Landing page premium untuk produk penjagaan rambut dengan aesthetic yang mewah.',
+            challenge: 'Menyampaikan imej premium dan kualiti tinggi produk kecantikan.',
+            solution: 'Design minimalis dengan color palette yang elegant, product showcase, dan testimonial bergambar.',
+            results: 'Berjaya mencipta imej brand yang premium dan meningkatkan perceived value produk.',
+            techStack: ['HTML', 'CSS', 'JavaScript', 'Vercel'],
+            gallery: [],
+            liveUrl: 'https://missgoldenhair-eptwyw197-zaniquaffles-projects.vercel.app/'
+        },
+        'rawat-hormon': {
+            title: 'Webinar Rawat Hormon',
+            category: 'Landing Page',
+            client: 'Health Education',
+            heroImage: 'rawathotmon.png',
+            overview: 'Landing page untuk pendaftaran webinar kesihatan hormon dengan countdown dan limited seats.',
+            challenge: 'Mencipta urgency untuk pendaftaran webinar dengan limited seats.',
+            solution: 'Countdown timer, remaining seats indicator, dan early bird pricing untuk mencipta FOMO.',
+            results: 'Seats penuh dalam masa singkat dengan conversion rate yang tinggi.',
+            techStack: ['HTML', 'CSS', 'JavaScript', 'Form Integration'],
+            gallery: [],
+            liveUrl: 'https://bosta.com.my/RawatHormon/'
+        },
+        'logistik': {
+            title: 'Sistem Logistik',
+            category: 'Web System',
+            client: 'Logistics & Delivery',
+            heroImage: 'LOGISTIK/1.png',
+            overview: 'Sistem pengurusan logistik lengkap dengan tracking, inventory, dan reporting.',
+            challenge: 'Menguruskan fleet delivery, tracking real-time, dan inventory management dalam satu platform.',
+            solution: 'Dashboard admin yang comprehensive, mobile-friendly driver app, dan real-time tracking system.',
+            results: 'Meningkatkan efficiency operasi dan mengurangkan masa untuk reporting.',
+            techStack: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'REST API'],
+            gallery: ['LOGISTIK/1.png', 'LOGISTIK/2.png', 'LOGISTIK/3.png'],
+            liveUrl: null
+        }
+    };
+
+    // DOM Elements
+    const modal = document.getElementById('case-study-modal');
+    const overlay = document.getElementById('case-study-overlay');
+    const closeBtn = document.getElementById('case-study-close');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    // Populate modal with data
+    function populateModal(data) {
+        document.getElementById('cs-hero-image').src = data.heroImage;
+        document.getElementById('cs-title').textContent = data.title;
+        document.getElementById('cs-category').textContent = data.category;
+        document.getElementById('cs-client').textContent = data.client;
+        document.getElementById('cs-overview').textContent = data.overview;
+        document.getElementById('cs-challenge').textContent = data.challenge;
+        document.getElementById('cs-solution').textContent = data.solution;
+        document.getElementById('cs-results').textContent = data.results;
+
+        // Tech Stack
+        const techContainer = document.getElementById('cs-tech-stack');
+        techContainer.innerHTML = data.techStack.map(tech =>
+            `<span class="cs-tech-badge">${tech}</span>`
+        ).join('');
+
+        // Gallery
+        const gallerySection = document.getElementById('cs-gallery-section');
+        const galleryContainer = document.getElementById('cs-gallery');
+
+        if (data.gallery && data.gallery.length > 0) {
+            gallerySection.classList.add('has-gallery');
+            galleryContainer.innerHTML = data.gallery.map(img =>
+                `<img src="${img}" alt="Gallery" onclick="event.stopPropagation();">`
+            ).join('');
+        } else {
+            gallerySection.classList.remove('has-gallery');
+            galleryContainer.innerHTML = '';
+        }
+
+        // Live URL
+        const liveBtn = document.getElementById('cs-live-url');
+        if (data.liveUrl) {
+            liveBtn.href = data.liveUrl;
+            liveBtn.style.display = 'inline-flex';
+        } else {
+            liveBtn.style.display = 'none';
+        }
+    }
+
+    // Open modal
+    function openCaseStudy(projectId) {
+        const data = caseStudies[projectId];
+        if (!data) return;
+
+        populateModal(data);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeCaseStudy() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Get project ID from portfolio item
+    function getProjectId(item) {
+        // Get text content from link or h3
+        let title = item.querySelector('.portfolio-link')?.textContent ||
+            item.querySelector('h3')?.textContent || '';
+
+        // Normalize whitespace (collapse multiple spaces/newlines into single space)
+        title = title.replace(/\s+/g, ' ').trim();
+
+        // Map titles to IDs (using partial matches)
+        const titlePatterns = [
+            { pattern: 'Buku', id: 'buku-panduan-sihat' },
+            { pattern: 'Panduan Sihat', id: 'buku-panduan-sihat' },
+            { pattern: 'Probiozen', id: 'probiozen' },
+            { pattern: 'Modul Formula', id: 'formula-turun-10kg' },
+            { pattern: 'Turun 10', id: 'formula-turun-10kg' },
+            { pattern: 'Ells Cafe', id: 'ells-cafe' },
+            { pattern: 'MissGolden', id: 'missgolden-hair' },
+            { pattern: 'Webinar', id: 'rawat-hormon' },
+            { pattern: 'Rawat Hormon', id: 'rawat-hormon' },
+            { pattern: 'Logistik', id: 'logistik' }
+        ];
+
+        for (const { pattern, id } of titlePatterns) {
+            if (title.includes(pattern)) {
+                return id;
+            }
+        }
+
+        return null;
+    }
+
+    // Add click handlers to portfolio items
+    portfolioItems.forEach(item => {
+        // Check if it's not a gallery item (logistik has its own handler)
+        const hasGalleryOverlay = item.querySelector('.gallery-overlay');
+
+        if (!hasGalleryOverlay) {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', (e) => {
+                // Don't open if clicking external link
+                if (e.target.closest('.portfolio-link')) {
+                    e.preventDefault();
+                }
+
+                const projectId = getProjectId(item);
+                if (projectId) {
+                    openCaseStudy(projectId);
+                }
+            });
+        } else {
+            // For gallery items, add a case study button
+            const info = item.querySelector('.portfolio-info');
+            if (info) {
+                const projectId = getProjectId(item);
+                if (projectId) {
+                    const csBtn = document.createElement('button');
+                    csBtn.className = 'btn-case-study';
+                    csBtn.innerHTML = '<i class="fas fa-info-circle"></i> Case Study';
+                    csBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        openCaseStudy(projectId);
+                    };
+                    info.appendChild(csBtn);
+                }
+            }
+        }
+    });
+
+    // Close handlers
+    if (closeBtn) closeBtn.addEventListener('click', closeCaseStudy);
+    if (overlay) overlay.addEventListener('click', closeCaseStudy);
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeCaseStudy();
+        }
+    });
+})();
+
+/* ===== BLOG MODAL ===== */
+(function () {
+    // Blog articles data with bilingual content
+    const blogArticles = {
+        'bisnes-perlu-website': {
+            category: 'Business',
+            date: 'Jan 2026',
+            readTime: { ms: '5 minit', en: '5 min read' },
+            title: {
+                ms: '5 Sebab Kenapa Bisnes Anda Perlu Website',
+                en: '5 Reasons Why Your Business Needs a Website'
+            },
+            content: {
+                ms: `
+                    <p>Dalam era digital yang semakin pesat ini, memiliki website bukan lagi sekadar pilihan - ia adalah <strong>keperluan mutlak</strong> untuk setiap bisnes yang mahu kekal relevan dan berdaya saing.</p>
+
+                    <h2>1. Kredibiliti dan Kepercayaan</h2>
+                    <p>Pelanggan hari ini akan mencari bisnes anda di Google sebelum membuat keputusan pembelian. Tanpa website, bisnes anda kelihatan kurang profesional berbanding pesaing yang memiliki kehadiran online.</p>
+
+                    <h2>2. Pemasaran 24/7</h2>
+                    <p>Website anda bekerja untuk anda walaupun ketika anda tidur. Ia memaparkan produk dan servis anda kepada bakal pelanggan pada bila-bila masa, tanpa had waktu operasi.</p>
+
+                    <h2>3. Jangkauan Lebih Luas</h2>
+                    <p>Dengan website, anda tidak lagi terhad kepada pelanggan di kawasan sekitar sahaja. Bisnes anda boleh dijumpai oleh sesiapa sahaja di seluruh Malaysia, malah seluruh dunia.</p>
+
+                    <h2>4. Kos Pemasaran Lebih Rendah</h2>
+                    <p>Berbanding dengan iklan tradisional seperti billboard atau flyer, website memberikan ROI yang jauh lebih baik. Kos maintenance website adalah minima berbanding dengan hasil yang diperoleh.</p>
+
+                    <h2>5. Data dan Analytics</h2>
+                    <p>Dengan website, anda boleh track berapa ramai pengunjung, dari mana mereka datang, dan apa yang mereka cari. Data ini sangat berharga untuk membuat keputusan perniagaan.</p>
+
+                    <h2>Kesimpulan</h2>
+                    <p>Jangan biarkan bisnes anda ketinggalan. <strong>Website adalah pelaburan</strong>, bukan kos. Mulakan langkah pertama anda hari ini!</p>
+                `,
+                en: `
+                    <p>In today's rapidly evolving digital era, having a website is no longer just an option - it's an <strong>absolute necessity</strong> for every business that wants to stay relevant and competitive.</p>
+
+                    <h2>1. Credibility and Trust</h2>
+                    <p>Today's customers will search for your business on Google before making a purchase decision. Without a website, your business appears less professional compared to competitors who have an online presence.</p>
+
+                    <h2>2. 24/7 Marketing</h2>
+                    <p>Your website works for you even while you sleep. It showcases your products and services to potential customers at any time, without operating hour limitations.</p>
+
+                    <h2>3. Wider Reach</h2>
+                    <p>With a website, you're no longer limited to customers in your surrounding area. Your business can be found by anyone across Malaysia, even worldwide.</p>
+
+                    <h2>4. Lower Marketing Costs</h2>
+                    <p>Compared to traditional advertising like billboards or flyers, websites provide much better ROI. Website maintenance costs are minimal compared to the results obtained.</p>
+
+                    <h2>5. Data and Analytics</h2>
+                    <p>With a website, you can track how many visitors you have, where they come from, and what they're looking for. This data is invaluable for making business decisions.</p>
+
+                    <h2>Conclusion</h2>
+                    <p>Don't let your business fall behind. <strong>A website is an investment</strong>, not a cost. Take your first step today!</p>
+                `
+            }
+        },
+        'landing-vs-website': {
+            category: 'Guide',
+            date: 'Jan 2026',
+            readTime: { ms: '4 minit', en: '4 min read' },
+            title: {
+                ms: 'Landing Page vs Website: Mana Satu Yang Sesuai?',
+                en: 'Landing Page vs Website: Which One is Right?'
+            },
+            content: {
+                ms: `
+                    <p>Ramai pemilik bisnes keliru antara <strong>landing page</strong> dan <strong>website penuh</strong>. Artikel ini akan menjelaskan perbezaan dan membantu anda memilih yang terbaik.</p>
+
+                    <h2>Apa Itu Landing Page?</h2>
+                    <p>Landing page adalah satu halaman yang direka khusus untuk satu tujuan - biasanya untuk menjual produk tertentu atau mengumpul leads. Ia fokus, ringkas, dan mempunyai satu CTA (Call-to-Action) yang jelas.</p>
+
+                    <h2>Apa Itu Website?</h2>
+                    <p>Website adalah koleksi beberapa halaman yang merangkumi maklumat lengkap tentang bisnes anda - profil syarikat, servis, portfolio, blog, dan sebagainya.</p>
+
+                    <h2>Bila Perlu Landing Page?</h2>
+                    <ul>
+                        <li>Promosi produk atau servis tertentu</li>
+                        <li>Kempen iklan Facebook/Google Ads</li>
+                        <li>Launch produk baru</li>
+                        <li>Webinar atau event registration</li>
+                    </ul>
+
+                    <h2>Bila Perlu Website Penuh?</h2>
+                    <ul>
+                        <li>Mahu membina kredibiliti jangka panjang</li>
+                        <li>Ada pelbagai produk/servis</li>
+                        <li>Perlukan SEO untuk organic traffic</li>
+                        <li>Mahu berkongsi content/blog</li>
+                    </ul>
+
+                    <h2>Kesimpulan</h2>
+                    <p>Untuk bisnes baru dengan satu produk utama, <strong>landing page adalah pilihan terbaik</strong>. Untuk bisnes yang sudah established dan mahu jangkauan lebih luas, <strong>website penuh adalah pelaburan bijak</strong>.</p>
+                `,
+                en: `
+                    <p>Many business owners are confused between a <strong>landing page</strong> and a <strong>full website</strong>. This article will explain the differences and help you choose the best option.</p>
+
+                    <h2>What Is a Landing Page?</h2>
+                    <p>A landing page is a single page designed specifically for one purpose - usually to sell a specific product or collect leads. It's focused, concise, and has one clear CTA (Call-to-Action).</p>
+
+                    <h2>What Is a Website?</h2>
+                    <p>A website is a collection of multiple pages containing complete information about your business - company profile, services, portfolio, blog, and more.</p>
+
+                    <h2>When Do You Need a Landing Page?</h2>
+                    <ul>
+                        <li>Promoting a specific product or service</li>
+                        <li>Facebook/Google Ads campaigns</li>
+                        <li>New product launches</li>
+                        <li>Webinar or event registration</li>
+                    </ul>
+
+                    <h2>When Do You Need a Full Website?</h2>
+                    <ul>
+                        <li>Building long-term credibility</li>
+                        <li>Multiple products/services</li>
+                        <li>Need SEO for organic traffic</li>
+                        <li>Want to share content/blog</li>
+                    </ul>
+
+                    <h2>Conclusion</h2>
+                    <p>For new businesses with one main product, a <strong>landing page is the best choice</strong>. For established businesses wanting wider reach, a <strong>full website is a wise investment</strong>.</p>
+                `
+            }
+        },
+        'kos-buat-website': {
+            category: 'Pricing',
+            date: 'Feb 2026',
+            readTime: { ms: '6 minit', en: '6 min read' },
+            title: {
+                ms: 'Berapa Kos Buat Website di Malaysia? (2026)',
+                en: 'How Much Does a Website Cost in Malaysia? (2026)'
+            },
+            content: {
+                ms: `
+                    <p>Soalan paling popular: "Berapa kos nak buat website?" Berikut adalah <strong>panduan lengkap kos pembangunan website</strong> di Malaysia untuk tahun 2026.</p>
+
+                    <h2>Faktor Yang Mempengaruhi Kos</h2>
+                    <ul>
+                        <li><strong>Jenis website</strong> - Landing page vs website penuh</li>
+                        <li><strong>Bilangan halaman</strong> - Lebih banyak halaman, lebih tinggi kos</li>
+                        <li><strong>Fungsi khas</strong> - E-commerce, booking system, portal ahli</li>
+                        <li><strong>Design complexity</strong> - Custom design vs template</li>
+                    </ul>
+
+                    <h2>Anggaran Kos 2026</h2>
+                    <p><strong>Landing Page:</strong> RM 390 - RM 590</p>
+                    <p>Sesuai untuk promosi produk tertentu atau kempen iklan.</p>
+
+                    <p><strong>Website Bisnes (5-10 halaman):</strong> RM 990 - RM 2,500</p>
+                    <p>Termasuk profil syarikat, servis, portfolio, dan borang contact.</p>
+
+                    <p><strong>E-Commerce:</strong> RM 1,890 - RM 5,000+</p>
+                    <p>Full online store dengan payment gateway dan inventory management.</p>
+
+                    <h2>Kos Tersembunyi Yang Perlu Diperhatikan</h2>
+                    <ul>
+                        <li><strong>Domain:</strong> RM 50-150/tahun untuk .com.my atau .my</li>
+                        <li><strong>Hosting:</strong> RM 100-500/tahun bergantung pada traffic</li>
+                        <li><strong>Maintenance:</strong> RM 50-200/bulan untuk update dan backup</li>
+                        <li><strong>SSL Certificate:</strong> Biasanya percuma dengan hosting</li>
+                    </ul>
+
+                    <h2>Tips Jimat Kos</h2>
+                    <p>Mulakan dengan yang penting sahaja, kemudian upgrade secara berperingkat. Jangan terus buat e-commerce jika bisnes masih baru - mulakan dengan landing page dulu!</p>
+                `,
+                en: `
+                    <p>The most popular question: "How much does it cost to build a website?" Here's a <strong>complete guide to website development costs</strong> in Malaysia for 2026.</p>
+
+                    <h2>Factors Affecting Cost</h2>
+                    <ul>
+                        <li><strong>Type of website</strong> - Landing page vs full website</li>
+                        <li><strong>Number of pages</strong> - More pages, higher cost</li>
+                        <li><strong>Special features</strong> - E-commerce, booking system, member portal</li>
+                        <li><strong>Design complexity</strong> - Custom design vs template</li>
+                    </ul>
+
+                    <h2>2026 Cost Estimates</h2>
+                    <p><strong>Landing Page:</strong> RM 390 - RM 590</p>
+                    <p>Suitable for specific product promotions or ad campaigns.</p>
+
+                    <p><strong>Business Website (5-10 pages):</strong> RM 990 - RM 2,500</p>
+                    <p>Includes company profile, services, portfolio, and contact form.</p>
+
+                    <p><strong>E-Commerce:</strong> RM 1,890 - RM 5,000+</p>
+                    <p>Full online store with payment gateway and inventory management.</p>
+
+                    <h2>Hidden Costs to Watch For</h2>
+                    <ul>
+                        <li><strong>Domain:</strong> RM 50-150/year for .com.my or .my</li>
+                        <li><strong>Hosting:</strong> RM 100-500/year depending on traffic</li>
+                        <li><strong>Maintenance:</strong> RM 50-200/month for updates and backups</li>
+                        <li><strong>SSL Certificate:</strong> Usually free with hosting</li>
+                    </ul>
+
+                    <h2>Cost-Saving Tips</h2>
+                    <p>Start with only what's essential, then upgrade gradually. Don't jump straight to e-commerce if your business is still new - start with a landing page first!</p>
+                `
+            }
+        }
+    };
+
+    // Get current language
+    function getCurrentLang() {
+        return localStorage.getItem('site_lang') || 'ms';
+    }
+
+    // DOM Elements
+    const blogModal = document.getElementById('blog-modal');
+    const blogOverlay = document.getElementById('blog-modal-overlay');
+    const blogCloseBtn = document.getElementById('blog-modal-close');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    // Populate modal with article content based on current language
+    function populateBlogModal(articleId) {
+        const article = blogArticles[articleId];
+        if (!article) return;
+
+        const lang = getCurrentLang();
+
+        document.getElementById('blog-article-category').textContent = article.category;
+        document.getElementById('blog-article-title').textContent = article.title[lang] || article.title.ms;
+        document.getElementById('blog-article-date').textContent = article.date;
+        document.getElementById('blog-article-read-time').textContent = article.readTime[lang] || article.readTime.ms;
+        document.getElementById('blog-article-body').innerHTML = article.content[lang] || article.content.ms;
+    }
+
+    // Open modal - globally accessible
+    window.openBlogModal = function (articleId) {
+        populateBlogModal(articleId);
+        blogModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    // Close modal - globally accessible
+    window.closeBlogModal = function () {
+        blogModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    // Click handlers for blog cards
+    blogCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const articleId = card.getAttribute('data-article');
+            if (articleId) {
+                openBlogModal(articleId);
+            }
+        });
+    });
+
+    // Close handlers
+    if (blogCloseBtn) blogCloseBtn.addEventListener('click', closeBlogModal);
+    if (blogOverlay) blogOverlay.addEventListener('click', closeBlogModal);
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && blogModal && blogModal.classList.contains('active')) {
+            closeBlogModal();
+        }
+    });
+})();
