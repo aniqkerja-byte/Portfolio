@@ -994,9 +994,8 @@ const darkModeIcon = document.getElementById('dark-mode-icon');
 // Check for saved preference or system preference
 function initDarkMode() {
     const savedMode = localStorage.getItem('darkMode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+    if (savedMode === 'true') {
         document.body.classList.add('dark-mode');
         if (darkModeIcon) {
             darkModeIcon.classList.remove('fa-moon');
