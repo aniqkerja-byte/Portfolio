@@ -100,17 +100,39 @@
     }
     </script>
 
+    <!-- Preload critical fonts for faster FCP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS loaded first -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Font Awesome - deferred loading -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="jombinasquare.png">
 </head>
 
 <body>
+    <!-- Loading Progress Bar -->
+    <div class="page-progress loading" id="page-progress">
+        <div class="progress-bar"></div>
+    </div>
+
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
@@ -238,144 +260,65 @@
         </div>
     </section>
 
-    <!-- Services -->
-    <section class="services" id="services">
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
         <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="services.title">Business Solutions</h2>
-                <p class="section-subtitle" data-i18n="services.subtitle">Specialized services designed to meet
-                    commercial objectives</p>
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="testimonials.title">Client Success Stories</h2>
+                <p class="section-subtitle" data-i18n="testimonials.subtitle">What business owners say about working
+                    with me</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll delay-100">
-                    <div class="service-icon">
-                        <i class="fas fa-window-maximize"></i>
+            <div class="testimonial-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card animate-on-scroll delay-100">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <h3 data-i18n="services.card1.title">Landing Page Development</h3>
-                    <p data-i18n="services.card1.desc">High-converting pages for campaigns, product launches, and lead
-                        generation. Built for performance
-                        and clarity.</p>
-                </div>
-                <div class="service-card animate-on-scroll delay-200">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
+                    <p class="testimonial-quote" data-i18n="testimonials.q1">"The system Aniq built completely
+                        transformed how we manage our
+                        logistics. It's fast, reliable, and exactly what we needed. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar-placeholder">AZ</div>
+                        <div class="author-info">
+                            <h4>Azman Zulkifli</h4>
+                            <p data-i18n="testimonials.a1.role">Operations Manager, Logistik Maju</p>
+                        </div>
                     </div>
-                    <h3>Corporate Website Development</h3>
-                    <p>Authoritative, brand-aligned websites that establish credibility and facilitate stakeholder
-                        engagement.</p>
                 </div>
-                <div class="service-card animate-on-scroll delay-300">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
+                <!-- Review 2 -->
+                <div class="testimonial-card animate-on-scroll delay-200">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <h3>Internal System & SaaS Development</h3>
-                    <p>Streamline operations with custom-built web applications, admin panels, and management tools.</p>
-                </div>
-                <div class="service-card animate-on-scroll delay-100">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                    <p class="testimonial-quote" data-i18n="testimonials.q2">"Professional delivery and excellent
+                        communication. He understood our
+                        brand vision and delivered a landing page that converts."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar-placeholder">SL</div>
+                        <div class="author-info">
+                            <h4>Sarah Lee</h4>
+                            <p data-i18n="testimonials.a2.role">Founder, Glow Beauty</p>
+                        </div>
                     </div>
-                    <h3>Website Redesign & Optimization</h3>
-                    <p>Modernize existing sites for better user experience, speed, and alignment with current business
-                        goals.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section class="process" id="process">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="process.title">Structured Delivery</h2>
-                <p class="section-subtitle" data-i18n="process.subtitle">A proven workflow ensuring quality and timeline
-                    adherence</p>
-            </div>
-            <div class="process-timeline">
-                <div class="process-step animate-on-scroll delay-100">
-                    <div class="step-number">1</div>
-                    <h3 data-i18n="process.step1.title">Requirement & Strategy</h3>
-                    <p data-i18n="process.step1.desc">Business objective alignment, scope definition, and detailed
-                        planning phase.</p>
-                </div>
-                <div class="process-step animate-on-scroll delay-200">
-                    <div class="step-number">2</div>
-                    <h3>Design & Structure</h3>
-                    <p>Wireframing, UI/UX design focused on user flows and brand representation.</p>
-                </div>
-                <div class="process-step animate-on-scroll delay-300">
-                    <div class="step-number">3</div>
-                    <h3>Development & Testing</h3>
-                    <p>Build, integrate, and rigorously test for performance, security, and reliability.</p>
-                </div>
-                <div class="process-step animate-on-scroll delay-100">
-                    <div class="step-number">4</div>
-                    <h3>Delivery & Support</h3>
-                    <p>Launch, handover, documentation, and provision of ongoing support options.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="pricing.title">Pricing</h2>
-                <p class="section-subtitle" data-i18n="pricing.subtitle">Choose the package that fits your business
-                    needs. All packages include domain, hosting, and full technical maintenance for 1 year.</p>
-            </div>
-            <div class="pricing-grid">
-                <!-- Card 1 -->
-                <div class="pricing-card animate-on-scroll delay-100">
-                    <h3 data-i18n="pricing.landing.title">Landing Page / 1-Page Website</h3>
-                    <div class="price" data-i18n="pricing.landing.price">RM490 – RM890</div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.landing.f1">1-page premium landing design</li>
-                        <li data-i18n="pricing.landing.f2">Optional payment gateway / OnPay (+RM200)</li>
-                        <li data-i18n="pricing.landing.f3">1 year domain & hosting</li>
-                        <li data-i18n="pricing.landing.f4">1 year technical maintenance</li>
-                        <li data-i18n="pricing.landing.f5">Professional copywriting</li>
-                        <li data-i18n="pricing.landing.f6">Mobile & speed optimized</li>
-                        <li data-i18n="pricing.landing.f7">WhatsApp integration</li>
-                    </ul>
-                    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20Landing%20Page%20package."
-                        class="btn btn-primary btn-full" data-i18n="pricing.landing.cta">Contact to Start</a>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="pricing-card popular animate-on-scroll delay-200">
-                    <div class="badge" data-i18n="pricing.corporate.badge">Most Popular</div>
-                    <h3 data-i18n="pricing.corporate.title">Business / Corporate Website</h3>
-                    <div class="price" data-i18n="pricing.corporate.price">Starts from RM990</div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.corporate.f1">Up to 10 structured pages</li>
-                        <li data-i18n="pricing.corporate.f2">Profile, services, forms</li>
-                        <li data-i18n="pricing.corporate.f3">1 year domain & hosting</li>
-                        <li data-i18n="pricing.corporate.f4">1 year technical maintenance</li>
-                        <li data-i18n="pricing.corporate.f5">Full design & copywriting</li>
-                        <li data-i18n="pricing.corporate.f6">SEO-ready structure</li>
-                        <li data-i18n="pricing.corporate.f7">Branding-consistent visuals</li>
-                    </ul>
-                    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20Business%2FCorporate%20Website%20package."
-                        class="btn btn-primary btn-full" data-i18n="pricing.corporate.cta">Contact for Quotation</a>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="pricing-card animate-on-scroll delay-300">
-                    <h3 data-i18n="pricing.ecommerce.title">E-Commerce Website</h3>
-                    <div class="price" data-i18n="pricing.ecommerce.price">Starts from RM1,890</div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.ecommerce.f1">WooCommerce / Shopify</li>
-                        <li data-i18n="pricing.ecommerce.f2">Full store setup & checkout</li>
-                        <li data-i18n="pricing.ecommerce.f3">Payment gateway integration</li>
-                        <li data-i18n="pricing.ecommerce.f4">Product & category setup</li>
-                        <li data-i18n="pricing.ecommerce.f5">Speed & security optimized</li>
-                        <li data-i18n="pricing.ecommerce.f6">1 year maintenance included</li>
-                        <li data-i18n="pricing.ecommerce.f7">Basic ads tracking setup</li>
-                    </ul>
-                    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20E-Commerce%20Website%20package."
-                        class="btn btn-primary btn-full" data-i18n="pricing.ecommerce.cta">Discuss Your Store</a>
+                <!-- Review 3 -->
+                <div class="testimonial-card animate-on-scroll delay-300">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote" data-i18n="testimonials.q3">"Technical maintenance is top-notch.
+                        Whenever we have an issue, it's
+                        resolved within hours. A true technical partner."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar-placeholder">DK</div>
+                        <div class="author-info">
+                            <h4>David Khoo</h4>
+                            <p data-i18n="testimonials.a3.role">Director, TechStart Solutions</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -401,7 +344,7 @@
                     <div class="portfolio-image">
                         <div class="skeleton-image skeleton"></div>
                         <img src="bukupanduansihat.webp" alt="Buku Panduan Sihat Landing Page" loading="lazy"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                            width="400" height="300" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
                         <h3><a href="https://bosta.com.my/bukupanduansihat/" target="_blank" class="portfolio-link">Buku
@@ -412,7 +355,7 @@
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
                         <div class="skeleton-image skeleton"></div>
-                        <img src="probiozen.webp" alt="Probiozen Landing Page" loading="lazy"
+                        <img src="probiozen.webp" alt="Probiozen Landing Page" loading="lazy" width="400" height="300"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -425,7 +368,7 @@
                     <div class="portfolio-image">
                         <div class="skeleton-image skeleton"></div>
                         <img src="formulaturun10kg.webp" alt="Modul Formula Turun 10KG Landing Page" loading="lazy"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                            width="400" height="300" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
                         <h3><a href="https://bosta.com.my/formula-turun-10kg/" target="_blank"
@@ -437,7 +380,7 @@
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
                         <div class="skeleton-image skeleton"></div>
-                        <img src="ellscafe.webp" alt="Ells Cafe Landing Page" loading="lazy"
+                        <img src="ellscafe.webp" alt="Ells Cafe Landing Page" loading="lazy" width="400" height="300"
                             style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
@@ -449,8 +392,8 @@
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
                         <div class="skeleton-image skeleton"></div>
-                        <img src="missgoldenhair.webp" alt="MissGolden Hair Landing Page" loading="lazy"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="missgoldenhair.webp" alt="MissGolden Hair Landing Page" loading="lazy" width="400"
+                            height="300" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
                         <h3><a href="https://missgoldenhair-eptwyw197-zaniquaffles-projects.vercel.app/" target="_blank"
@@ -461,8 +404,8 @@
                 <div class="portfolio-item animate-on-scroll" data-category="landing">
                     <div class="portfolio-image">
                         <div class="skeleton-image skeleton"></div>
-                        <img src="rawathotmon.webp" alt="Webinar Rawat Hormon Landing Page" loading="lazy"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="rawathotmon.webp" alt="Webinar Rawat Hormon Landing Page" loading="lazy" width="400"
+                            height="300" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="portfolio-info">
                         <h3><a href="https://bosta.com.my/RawatHormon/" target="_blank" class="portfolio-link">Webinar
@@ -549,13 +492,156 @@
         </div>
     </section>
 
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="services.title">Business Solutions</h2>
+                <p class="section-subtitle" data-i18n="services.subtitle">Specialized services designed to meet
+                    commercial objectives</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll delay-100">
+                    <div class="service-icon">
+                        <i class="fas fa-window-maximize"></i>
+                    </div>
+                    <h3 data-i18n="services.card1.title">Landing Page Development</h3>
+                    <p data-i18n="services.card1.desc">High-converting pages for campaigns, product launches, and lead
+                        generation. Built for performance
+                        and clarity.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-200">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Corporate Website Development</h3>
+                    <p>Authoritative, brand-aligned websites that establish credibility and facilitate stakeholder
+                        engagement.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-300">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Internal System & SaaS Development</h3>
+                    <p>Streamline operations with custom-built web applications, admin panels, and management tools.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-100">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Website Redesign & Optimization</h3>
+                    <p>Modernize existing sites for better user experience, speed, and alignment with current business
+                        goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="pricing.title">Pricing</h2>
+                <p class="section-subtitle" data-i18n="pricing.subtitle">Choose the package that fits your business
+                    needs. All packages include domain, hosting, and full technical maintenance for 1 year.</p>
+            </div>
+            <div class="pricing-grid">
+                <!-- Card 1 -->
+                <div class="pricing-card animate-on-scroll delay-100">
+                    <h3 data-i18n="pricing.landing.title">Landing Page / 1-Page Website</h3>
+                    <div class="price" data-i18n="pricing.landing.price">RM490 – RM890</div>
+                    <ul class="features-list">
+                        <li data-i18n="pricing.landing.f1">1-page premium landing design</li>
+                        <li data-i18n="pricing.landing.f2">Optional payment gateway / OnPay (+RM200)</li>
+                        <li data-i18n="pricing.landing.f3">1 year domain & hosting</li>
+                        <li data-i18n="pricing.landing.f4">1 year technical maintenance</li>
+                        <li data-i18n="pricing.landing.f5">Professional copywriting</li>
+                        <li data-i18n="pricing.landing.f6">Mobile & speed optimized</li>
+                        <li data-i18n="pricing.landing.f7">WhatsApp integration</li>
+                    </ul>
+                    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20Landing%20Page%20package."
+                        class="btn btn-primary btn-full" data-i18n="pricing.landing.cta">Contact to Start</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pricing-card popular animate-on-scroll delay-200">
+                    <div class="badge" data-i18n="pricing.corporate.badge">Most Popular</div>
+                    <h3 data-i18n="pricing.corporate.title">Business / Corporate Website</h3>
+                    <div class="price" data-i18n="pricing.corporate.price">Starts from RM990</div>
+                    <ul class="features-list">
+                        <li data-i18n="pricing.corporate.f1">Up to 10 structured pages</li>
+                        <li data-i18n="pricing.corporate.f2">Profile, services, forms</li>
+                        <li data-i18n="pricing.corporate.f3">1 year domain & hosting</li>
+                        <li data-i18n="pricing.corporate.f4">1 year technical maintenance</li>
+                        <li data-i18n="pricing.corporate.f5">Full design & copywriting</li>
+                        <li data-i18n="pricing.corporate.f6">SEO-ready structure</li>
+                        <li data-i18n="pricing.corporate.f7">Branding-consistent visuals</li>
+                    </ul>
+                    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20Business%2FCorporate%20Website%20package."
+                        class="btn btn-primary btn-full" data-i18n="pricing.corporate.cta">Contact for Quotation</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="pricing-card animate-on-scroll delay-300">
+                    <h3 data-i18n="pricing.ecommerce.title">E-Commerce Website</h3>
+                    <div class="price" data-i18n="pricing.ecommerce.price">Starts from RM1,890</div>
+                    <ul class="features-list">
+                        <li data-i18n="pricing.ecommerce.f1">WooCommerce / Shopify</li>
+                        <li data-i18n="pricing.ecommerce.f2">Full store setup & checkout</li>
+                        <li data-i18n="pricing.ecommerce.f3">Payment gateway integration</li>
+                        <li data-i18n="pricing.ecommerce.f4">Product & category setup</li>
+                        <li data-i18n="pricing.ecommerce.f5">Speed & security optimized</li>
+                        <li data-i18n="pricing.ecommerce.f6">1 year maintenance included</li>
+                        <li data-i18n="pricing.ecommerce.f7">Basic ads tracking setup</li>
+                    </ul>
+                    <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20E-Commerce%20Website%20package."
+                        class="btn btn-primary btn-full" data-i18n="pricing.ecommerce.cta">Discuss Your Store</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="process.title">Structured Delivery</h2>
+                <p class="section-subtitle" data-i18n="process.subtitle">A proven workflow ensuring quality and timeline
+                    adherence</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step animate-on-scroll delay-100">
+                    <div class="step-number">1</div>
+                    <h3 data-i18n="process.step1.title">Requirement & Strategy</h3>
+                    <p data-i18n="process.step1.desc">Business objective alignment, scope definition, and detailed
+                        planning phase.</p>
+                </div>
+                <div class="process-step animate-on-scroll delay-200">
+                    <div class="step-number">2</div>
+                    <h3>Design & Structure</h3>
+                    <p>Wireframing, UI/UX design focused on user flows and brand representation.</p>
+                </div>
+                <div class="process-step animate-on-scroll delay-300">
+                    <div class="step-number">3</div>
+                    <h3>Development & Testing</h3>
+                    <p>Build, integrate, and rigorously test for performance, security, and reliability.</p>
+                </div>
+                <div class="process-step animate-on-scroll delay-100">
+                    <div class="step-number">4</div>
+                    <h3>Delivery & Support</h3>
+                    <p>Launch, handover, documentation, and provision of ongoing support options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-image animate-on-scroll delay-100">
                     <img src="my.jpg" alt="Professional Web Developer - Jombina.site Founder" class="about-avatar"
-                        loading="lazy">
+                        loading="lazy" width="300" height="300">
                 </div>
                 <div class="about-content animate-on-scroll delay-200">
                     <h2 data-i18n="about.title">Professional Digital Builder</h2>
@@ -587,6 +673,65 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+                <p class="section-subtitle" data-i18n="faq.subtitle">Common questions about my services</p>
+            </div>
+            <div class="faq-grid animate-on-scroll delay-100">
+                <!-- item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q1">How long does it take to build a website?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a1">For a standard Landing Page, it takes 3-5 days. For a Corporate Website
+                            (up to 10 pages), it
+                            takes about 2-3 weeks. Complex systems depend on requirements.</p>
+                    </div>
+                </div>
+                <!-- item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q2">Do you provide hosting and domain?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a2">Yes, all my packages include FREE domain (.com/.my) and high-speed hosting
+                            for the first year. I handle all the technical setup.</p>
+                    </div>
+                </div>
+                <!-- item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q3">Is there any maintenance fee?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a3">The first year of maintenance is included. After year 1, there is a
+                            renewal fee (Domain +
+                            Hosting + Maintenance) starting from RM350/year depending on the package.</p>
+                    </div>
+                </div>
+                <!-- item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q4">Can I update the website content myself?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a4">Yes! I build websites using user-friendly CMS platforms. I provide a video
+                            tutorial on how to
+                            edit text and images easily.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Blog Section -->
     <section class="blog" id="blog">
         <div class="container">
@@ -601,7 +746,7 @@
                 <article class="blog-card" data-article="bisnes-perlu-website">
                     <div class="blog-image">
                         <div class="skeleton-image skeleton"></div>
-                        <img src="Blog1.webp" alt="Bisnes Perlu Website" loading="lazy">
+                        <img src="Blog1.webp" alt="Bisnes Perlu Website" loading="lazy" width="400" height="250">
                         <span class="blog-category">Business</span>
                     </div>
                     <div class="blog-content">
@@ -621,7 +766,7 @@
                 <article class="blog-card" data-article="landing-vs-website">
                     <div class="blog-image">
                         <div class="skeleton-image skeleton"></div>
-                        <img src="Blog2.webp" alt="Landing Page vs Website" loading="lazy">
+                        <img src="Blog2.webp" alt="Landing Page vs Website" loading="lazy" width="400" height="250">
                         <span class="blog-category">Guide</span>
                     </div>
                     <div class="blog-content">
@@ -687,314 +832,6 @@
             </article>
         </div>
     </div>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 data-i18n="testimonials.title">Client Success Stories</h2>
-                <p class="section-subtitle" data-i18n="testimonials.subtitle">What business owners say about working
-                    with me</p>
-            </div>
-            <div class="testimonial-grid">
-                <!-- Review 1 -->
-                <div class="testimonial-card animate-on-scroll delay-100">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-quote" data-i18n="testimonials.q1">"The system Aniq built completely
-                        transformed how we manage our
-                        logistics. It's fast, reliable, and exactly what we needed. Highly recommended!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar-placeholder">AZ</div>
-                        <div class="author-info">
-                            <h4>Azman Zulkifli</h4>
-                            <p data-i18n="testimonials.a1.role">Operations Manager, Logistik Maju</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Review 2 -->
-                <div class="testimonial-card animate-on-scroll delay-200">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-quote" data-i18n="testimonials.q2">"Professional delivery and excellent
-                        communication. He understood our
-                        brand vision and delivered a landing page that converts."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar-placeholder">SL</div>
-                        <div class="author-info">
-                            <h4>Sarah Lee</h4>
-                            <p data-i18n="testimonials.a2.role">Founder, Glow Beauty</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Review 3 -->
-                <div class="testimonial-card animate-on-scroll delay-300">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-quote" data-i18n="testimonials.q3">"Technical maintenance is top-notch.
-                        Whenever we have an issue, it's
-                        resolved within hours. A true technical partner."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar-placeholder">DK</div>
-                        <div class="author-info">
-                            <h4>David Khoo</h4>
-                            <p data-i18n="testimonials.a3.role">Director, TechStart Solutions</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Calculator Section -->
-    <section class="calculator" id="calculator">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 data-i18n="calculator.title">Project Cost Calculator</h2>
-                <p class="section-subtitle" data-i18n="calculator.subtitle">Get an instant estimate for your project</p>
-            </div>
-
-            <div class="calculator-container animate-on-scroll delay-100">
-                <!-- Progress Bar -->
-                <div class="calc-progress">
-                    <div class="calc-step active" data-step="1">
-                        <span class="step-number">1</span>
-                        <span class="step-label" data-i18n="calculator.step1">Jenis Projek</span>
-                    </div>
-                    <div class="calc-step" data-step="2">
-                        <span class="step-number">2</span>
-                        <span class="step-label" data-i18n="calculator.step2">Tambahan</span>
-                    </div>
-                    <div class="calc-step" data-step="3">
-                        <span class="step-number">3</span>
-                        <span class="step-label" data-i18n="calculator.step3">Anggaran</span>
-                    </div>
-                </div>
-
-                <!-- Step 1: Project Type -->
-                <div class="calc-panel active" id="calc-step-1">
-                    <h3 data-i18n="calculator.selectType">Jenis projek apa yang anda perlukan?</h3>
-                    <div class="project-types">
-                        <label class="project-type-card">
-                            <input type="radio" name="projectType" value="landing" data-price="490"
-                                data-timeline="3-5 days">
-                            <div class="card-content">
-                                <i class="fas fa-file-alt"></i>
-                                <h4>Landing Page</h4>
-                                <p class="price">From RM 490</p>
-                                <span class="timeline">3-5 days</span>
-                            </div>
-                        </label>
-                        <label class="project-type-card">
-                            <input type="radio" name="projectType" value="business" data-price="990"
-                                data-timeline="1-2 weeks">
-                            <div class="card-content">
-                                <i class="fas fa-building"></i>
-                                <h4>Business Website</h4>
-                                <p class="price">From RM 990</p>
-                                <span class="timeline">1-2 weeks</span>
-                            </div>
-                        </label>
-                        <label class="project-type-card">
-                            <input type="radio" name="projectType" value="ecommerce" data-price="1890"
-                                data-timeline="2-3 weeks">
-                            <div class="card-content">
-                                <i class="fas fa-shopping-cart"></i>
-                                <h4>E-Commerce Store</h4>
-                                <p class="price">From RM 1,890</p>
-                                <span class="timeline">2-3 weeks</span>
-                            </div>
-                        </label>
-                        <label class="project-type-card">
-                            <input type="radio" name="projectType" value="webapp" data-price="2500"
-                                data-timeline="3-4 weeks">
-                            <div class="card-content">
-                                <i class="fas fa-laptop-code"></i>
-                                <h4>Web Application</h4>
-                                <p class="price">From RM 2,500</p>
-                                <span class="timeline">3-4 weeks</span>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="calc-actions">
-                        <button class="btn btn-primary calc-next" disabled>Next <i
-                                class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Add-ons -->
-                <div class="calc-panel" id="calc-step-2">
-                    <h3 data-i18n="calculator.selectAddons">Pilih ciri tambahan:</h3>
-                    <div class="addons-grid">
-                        <label class="addon-item">
-                            <input type="checkbox" name="addon" value="seo" data-price="100">
-                            <div class="addon-content">
-                                <i class="fas fa-search"></i>
-                                <div class="addon-info">
-                                    <h4>SEO Optimization</h4>
-                                    <p>On-page SEO setup</p>
-                                </div>
-                                <span class="addon-price">+RM 100</span>
-                            </div>
-                        </label>
-                        <label class="addon-item">
-                            <input type="checkbox" name="addon" value="admin" data-price="100">
-                            <div class="addon-content">
-                                <i class="fas fa-cogs"></i>
-                                <div class="addon-info">
-                                    <h4>Admin Dashboard</h4>
-                                    <p>Content management</p>
-                                </div>
-                                <span class="addon-price">+RM 100</span>
-                            </div>
-                        </label>
-                        <label class="addon-item">
-                            <input type="checkbox" name="addon" value="payment" data-price="100">
-                            <div class="addon-content">
-                                <i class="fas fa-credit-card"></i>
-                                <div class="addon-info">
-                                    <h4>Payment Gateway</h4>
-                                    <p>Online payment setup</p>
-                                </div>
-                                <span class="addon-price">+RM 100</span>
-                            </div>
-                        </label>
-                        <label class="addon-item">
-                            <input type="checkbox" name="addon" value="hosting" data-price="150">
-                            <div class="addon-content">
-                                <i class="fas fa-server"></i>
-                                <div class="addon-info">
-                                    <h4>Hosting & Domain</h4>
-                                    <p>1 year included</p>
-                                </div>
-                                <span class="addon-price">+RM 150</span>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="calc-actions">
-                        <button class="btn-link calc-back"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button class="btn btn-primary calc-next">See Estimate <i
-                                class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Estimate -->
-                <div class="calc-panel" id="calc-step-3">
-                    <div class="estimate-container">
-                        <div class="estimate-header">
-                            <i class="fas fa-calculator"></i>
-                            <h3 data-i18n="calculator.summary">Anggaran Anda</h3>
-                        </div>
-
-                        <div class="estimate-details">
-                            <div class="estimate-row project-row">
-                                <span class="label" data-i18n="calculator.projectType">Jenis Projek:</span>
-                                <span class="value" id="est-project-type">-</span>
-                            </div>
-                            <div class="estimate-row">
-                                <span class="label" data-i18n="calculator.basePrice">Harga Asas:</span>
-                                <span class="value" id="est-base-price">RM 0</span>
-                            </div>
-
-                            <div class="estimate-addons" id="est-addons-list">
-                                <!-- Add-ons will be inserted here -->
-                            </div>
-
-                            <div class="estimate-divider"></div>
-
-                            <div class="estimate-row total-row">
-                                <span class="label" data-i18n="calculator.total">Jumlah Anggaran:</span>
-                                <span class="value" id="est-total">RM 0</span>
-                            </div>
-
-                            <div class="estimate-timeline">
-                                <i class="fas fa-clock"></i>
-                                <span>Estimated Timeline: <strong id="est-timeline">-</strong></span>
-                            </div>
-                        </div>
-
-                        <a href="#" id="calc-whatsapp-btn" class="btn btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Get Detailed Quote via WhatsApp
-                        </a>
-
-                        <p class="estimate-note" data-i18n="calculator.note">* Harga akhir mungkin berbeza bergantung
-                            kepada keperluan khusus</p>
-                    </div>
-
-                    <div class="calc-actions">
-                        <button class="btn-link calc-back"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button class="btn-link calc-reset"><i class="fas fa-redo"></i> Start Over</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
-                <p class="section-subtitle" data-i18n="faq.subtitle">Common questions about my services</p>
-            </div>
-            <div class="faq-grid animate-on-scroll delay-100">
-                <!-- item 1 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q1">How long does it take to build a website?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p data-i18n="faq.a1">For a standard Landing Page, it takes 3-5 days. For a Corporate Website
-                            (up to 10 pages), it
-                            takes about 2-3 weeks. Complex systems depend on requirements.</p>
-                    </div>
-                </div>
-                <!-- item 2 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q2">Do you provide hosting and domain?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p data-i18n="faq.a2">Yes, all my packages include FREE domain (.com/.my) and high-speed hosting
-                            for the first year. I handle all the technical setup.</p>
-                    </div>
-                </div>
-                <!-- item 3 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q3">Is there any maintenance fee?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p data-i18n="faq.a3">The first year of maintenance is included. After year 1, there is a
-                            renewal fee (Domain +
-                            Hosting + Maintenance) starting from RM350/year depending on the package.</p>
-                    </div>
-                </div>
-                <!-- item 4 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q4">Can I update the website content myself?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p data-i18n="faq.a4">Yes! I build websites using user-friendly CMS platforms. I provide a video
-                            tutorial on how to
-                            edit text and images easily.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact CTA -->
     <section class="contact" id="contact">
@@ -1221,7 +1058,7 @@
 
 
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>

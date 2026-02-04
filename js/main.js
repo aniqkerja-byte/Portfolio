@@ -2132,3 +2132,107 @@ Cuba klik butang di bawah atau taip soalan anda!`;
         }
     });
 })();
+
+// =================================================================
+// UX IMPROVEMENTS - Sticky Header, Exit Popup, Progress Bar
+// =================================================================
+
+(function () {
+    // === 1. STICKY HEADER ===
+    const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero');
+
+    if (navbar && hero) {
+        const heroHeight = hero.offsetHeight;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > heroHeight - 100) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+        });
+    }
+
+    // === 2. LOADING PROGRESS BAR ===
+    const progressBar = document.getElementById('page-progress');
+
+    if (progressBar) {
+        // Mark as complete when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                progressBar.classList.remove('loading');
+                progressBar.classList.add('complete');
+            }, 500);
+        });
+    }
+
+    // === 3. EXIT-INTENT POPUP ===
+    const exitPopup = document.getElementById('exit-popup');
+    const exitPopupClose = document.getElementById('exit-popup-close');
+    const exitPopupOverlay = document.getElementById('exit-popup-overlay');
+
+    if (exitPopup) {
+        let hasShownPopup = sessionStorage.getItem('exitPopupShown');
+        let mouseLeftViewport = false;
+
+        // Show popup when mouse leaves viewport (desktop)
+        document.addEventListener('mouseout', (e) => {
+            // Check if mouse left from top of viewport
+            if (e.clientY < 10 && !hasShownPopup && !mouseLeftViewport) {
+                mouseLeftViewport = true;
+
+                // Small delay to avoid accidental triggers
+                setTimeout(() => {
+                    if (mouseLeftViewport && !hasShownPopup) {
+                        exitPopup.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        sessionStorage.setItem('exitPopupShown', 'true');
+                        hasShownPopup = true;
+                    }
+                }, 100);
+            }
+        });
+
+        // Reset flag when mouse enters viewport
+        document.addEventListener('mouseenter', () => {
+            mouseLeftViewport = false;
+        });
+
+        // Close popup handlers
+        const closeExitPopup = () => {
+            exitPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        if (exitPopupClose) exitPopupClose.addEventListener('click', closeExitPopup);
+        if (exitPopupOverlay) exitPopupOverlay.addEventListener('click', closeExitPopup);
+
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && exitPopup.classList.contains('active')) {
+                closeExitPopup();
+            }
+        });
+    }
+
+    // === 4. ENHANCED SCROLL ANIMATIONS ===
+    // The existing Intersection Observer in the code handles .animate-on-scroll
+    // This adds support for additional animation classes
+    const animatedElements = document.querySelectorAll('.fade-up, .fade-down, .fade-left, .fade-right, .scale-up, .bounce-in, .zoom-on-scroll');
+
+    if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animatedElements.forEach(el => animationObserver.observe(el));
+    }
+})();

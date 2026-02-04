@@ -198,6 +198,7 @@ p {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     z-index: 1000;
     padding: 1rem 0;
+    transition: all 0.3s ease;
 }
 
 .nav-container {
@@ -3344,4 +3345,302 @@ body.dark-mode .skeleton {
 .footer-social a:hover {
     transform: translateY(-3px) scale(1.15);
     color: var(--color-accent);
+}
+
+/* =================================================================
+   UX IMPROVEMENTS - Sticky Header, Exit Popup, Progress Bar, Animations
+   ================================================================= */
+
+/* === 1. STICKY HEADER === */
+/* Note: Original .navbar styles are at line ~192. These are additions only. */
+
+.navbar.sticky {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    padding: 0.5rem 0;
+}
+
+body.dark-mode .navbar.sticky {
+    background: rgba(13, 13, 13, 0.95);
+}
+
+.navbar.sticky .logo img {
+    height: 35px;
+    transition: height 0.3s ease;
+}
+
+/* Sticky CTA Button */
+.sticky-cta {
+    display: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    margin-left: 1rem;
+    background: var(--color-accent);
+    color: white;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.3s ease;
+}
+
+.navbar.sticky .sticky-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sticky-cta:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-2px);
+}
+
+/* === 2. LOADING PROGRESS BAR === */
+.page-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.page-progress .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-whatsapp), var(--color-accent));
+    background-size: 200% 100%;
+    animation: progressShimmer 1s ease infinite;
+    transition: width 0.3s ease;
+}
+
+.page-progress.loading .progress-bar {
+    animation: progressLoad 1.5s ease forwards, progressShimmer 1s ease infinite;
+}
+
+.page-progress.complete {
+    opacity: 0;
+    transition: opacity 0.3s ease 0.3s;
+}
+
+@keyframes progressLoad {
+    0% {
+        width: 0%;
+    }
+
+    20% {
+        width: 25%;
+    }
+
+    50% {
+        width: 60%;
+    }
+
+    80% {
+        width: 85%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes progressShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* === 3. EXIT-INTENT POPUP === */
+.exit-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.exit-popup.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.exit-popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.exit-popup-content {
+    position: relative;
+    background: var(--color-white);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+}
+
+.exit-popup.active .exit-popup-content {
+    transform: scale(1) translateY(0);
+}
+
+.exit-popup-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.exit-popup h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-charcoal);
+}
+
+.exit-popup p {
+    color: var(--color-gray);
+    margin-bottom: 1.5rem;
+}
+
+.exit-popup .btn {
+    width: 100%;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.exit-popup-close {
+    background: none;
+    border: none;
+    color: var(--color-light-gray);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.exit-popup-close:hover {
+    color: var(--color-charcoal);
+}
+
+/* === 4. ENHANCED SCROLL ANIMATIONS === */
+/* Note: Base .animate-on-scroll is handled by existing JS. Only add new animation types here. */
+
+/* Directional Animations */
+.fade-up {
+    transform: translateY(40px);
+}
+
+.fade-down {
+    transform: translateY(-40px);
+}
+
+.fade-left {
+    transform: translateX(-40px);
+}
+
+.fade-right {
+    transform: translateX(40px);
+}
+
+.scale-up {
+    transform: scale(0.9);
+}
+
+.fade-up.visible,
+.fade-down.visible,
+.fade-left.visible,
+.fade-right.visible,
+.scale-up.visible {
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Stagger Delays */
+.delay-50 {
+    transition-delay: 50ms;
+}
+
+.delay-100 {
+    transition-delay: 100ms;
+}
+
+.delay-150 {
+    transition-delay: 150ms;
+}
+
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-250 {
+    transition-delay: 250ms;
+}
+
+.delay-300 {
+    transition-delay: 300ms;
+}
+
+.delay-400 {
+    transition-delay: 400ms;
+}
+
+.delay-500 {
+    transition-delay: 500ms;
+}
+
+/* Zoom effect for images */
+.zoom-on-scroll {
+    overflow: hidden;
+}
+
+.zoom-on-scroll img {
+    transition: transform 0.6s ease;
+}
+
+.zoom-on-scroll.visible img {
+    transform: scale(1.05);
+}
+
+/* Parallax effect */
+.parallax-on-scroll {
+    transition: transform 0.1s linear;
+}
+
+/* Bounce animation for attention */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.bounce-in.visible {
+    animation: bounceIn 0.6s ease forwards;
 }
