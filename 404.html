@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | JomBina.site</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="jombinasquare.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLKR50121F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-JLKR50121F');
+    </script>
+    <style>
+        .error-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+        }
+
+        .error-content {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--color-charcoal);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--color-charcoal);
+        }
+
+        .error-text {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <div class="error-icon">🤔</div>
+            <div class="error-code">404</div>
+            <h1 class="error-title">Alamak! Sesat ke?</h1>
+            <p class="error-text">Halaman yang anda cari tidak dijumpai atau telah dipindahkan.</p>
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Balik ke Home
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

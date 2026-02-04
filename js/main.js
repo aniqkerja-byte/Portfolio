@@ -2236,3 +2236,11 @@ Cuba klik butang di bawah atau taip soalan anda!`;
         animatedElements.forEach(el => animationObserver.observe(el));
     }
 })();
+
+// === 5. AUTO-UPDATE COPYRIGHT YEAR ===
+(function () {
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+})();
