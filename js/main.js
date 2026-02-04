@@ -582,20 +582,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add scroll effect to navbar
     let lastScrollTop = 0;
     const navbar = document.querySelector('.navbar');
+    let scrollTicking = false;
 
     if (navbar) {
         window.addEventListener('scroll', function () {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (!scrollTicking) {
+                window.requestAnimationFrame(function () {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            if (scrollTop > 100) {
-                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-                navbar.style.padding = '0.75rem 0';
-            } else {
-                navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
-                navbar.style.padding = '1rem 0';
+                    if (scrollTop > 100) {
+                        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                        navbar.style.padding = '0.75rem 0';
+                    } else {
+                        navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+                        navbar.style.padding = '1rem 0';
+                    }
+
+                    lastScrollTop = scrollTop;
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
             }
-
-            lastScrollTop = scrollTop;
         }, { passive: true });
     }
 
@@ -1029,8 +1036,8 @@ if (canvas) {
     // Initialize particles
     function initParticles() {
         particles = [];
-        // Reduce particle count on mobile
-        const particleCount = window.innerWidth < 768 ? 30 : 60;
+        // Reduce particle count on mobile (Optimization)
+        const particleCount = window.innerWidth < 768 ? 20 : 50;
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
@@ -1074,7 +1081,7 @@ if (canvas) {
     // Start animation
     resizeCanvas();
     initParticles();
-    animateParticles();
+    // animateParticles(); // Removed immediate start
 
     // Handle resize
     window.addEventListener('resize', () => {
@@ -1082,12 +1089,41 @@ if (canvas) {
         initParticles();
     });
 
-    // Pause animation when not visible (performance)
+    // OPTIMIZATION: Intersection Observer to pause animation when not visible
+    const heroSection = document.querySelector('.hero');
+    let isHeroVisible = true;
+
+    if (heroSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    isHeroVisible = true;
+                    if (!animationId) {
+                        animateParticles();
+                    }
+                } else {
+                    isHeroVisible = false;
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+            });
+        }, { threshold: 0 }); // Trigger as soon as any part is visible/hidden
+
+        observer.observe(heroSection);
+    } else {
+        // Fallback if hero section not found
+        animateParticles();
+    }
+
+    // Pause animation when tab is not visible (performance)
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             cancelAnimationFrame(animationId);
+            animationId = null;
         } else {
-            animateParticles();
+            if (isHeroVisible && !animationId) {
+                animateParticles();
+            }
         }
     });
 }
