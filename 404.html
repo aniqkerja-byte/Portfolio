@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | JomBina.site</title>
+    <title>Halaman Tidak Dijumpai | JomBina.site</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="jombinasquare.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLKR50121F"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -16,76 +17,236 @@
         gtag('config', 'G-JLKR50121F');
     </script>
     <style>
-        .error-page {
+        :root {
+            --mesh-color-1: hsla(210, 100%, 6%, 1);
+            --mesh-color-2: hsla(210, 80%, 15%, 1);
+            --mesh-color-3: hsla(215, 60%, 25%, 1);
+            --mesh-color-4: hsla(220, 40%, 35%, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .error-content {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            max-width: 500px;
+        /* Ambient Mesh Background */
+        .mesh-background {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #030712;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(210, 100%, 15%, 0.3) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(215, 100%, 20%, 0.3) 0, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(220, 100%, 15%, 0.3) 0, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(210, 100%, 20%, 0.3) 0, transparent 50%);
+            filter: blur(80px);
+            animation: backgroundFlow 20s ease infinite alternate;
         }
 
-        .error-code {
-            font-size: 6rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        .error-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--color-charcoal);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .error-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--color-charcoal);
-        }
-
-        .error-text {
-            color: #6c757d;
-            margin-bottom: 30px;
-        }
-
-        @keyframes float {
+        @keyframes backgroundFlow {
             0% {
-                transform: translateY(0px);
+                transform: scale(1) translate(0, 0);
             }
 
             50% {
-                transform: translateY(-15px);
+                transform: scale(1.1) translate(20px, -20px);
             }
 
             100% {
-                transform: translateY(0px);
+                transform: scale(1) translate(-20px, 20px);
+            }
+        }
+
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-num {
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to bottom, #f8fafc, #64748b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.05em;
+            position: relative;
+        }
+
+        .error-num::after {
+            content: "404";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.1) 50%, transparent 55%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s infinite linear;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: -100% -100%;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        .error-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .error-text {
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-premium {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: #f8fafc;
+            color: #030712;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(248, 250, 252, 0.3);
+            background: #ffffff;
+        }
+
+        .quick-links {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .link-item {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .link-item i {
+            font-size: 1.25rem;
+        }
+
+        .link-item:hover {
+            color: #f8fafc;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="error-page">
-        <div class="error-content">
-            <div class="error-icon">🤔</div>
-            <div class="error-code">404</div>
-            <h1 class="error-title">Alamak! Sesat ke?</h1>
-            <p class="error-text">Halaman yang anda cari tidak dijumpai atau telah dipindahkan.</p>
-            <a href="index.html" class="btn btn-primary">
-                <i class="fas fa-home"></i> Balik ke Home
+    <div class="mesh-background"></div>
+
+    <div class="error-container">
+        <div class="error-num">404</div>
+        <h1 class="error-title">Alamak! Sesat ke?</h1>
+        <p class="error-text">Halaman yang anda cari tidak dijumpai.<br>Mungkin ia telah dipindahkan atau dialihkan.</p>
+
+        <div class="actions">
+            <a href="index.html" class="btn-premium">
+                <i class="fas fa-arrow-left"></i> Balik ke Home
+            </a>
+        </div>
+
+        <div class="quick-links">
+            <a href="index.html#portfolio" class="link-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="index.html#services" class="link-item">
+                <i class="fas fa-gears"></i>
+                <span>Servis</span>
+            </a>
+            <a href="index.html#contact" class="link-item">
+                <i class="fas fa-envelope"></i>
+                <span>Hubungi</span>
             </a>
         </div>
     </div>
