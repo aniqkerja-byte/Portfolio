@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             lastScrollTop = scrollTop;
-        });
+        }, { passive: true });
     }
 
     // Lazy loading for future image implementation
@@ -945,7 +945,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-        });
+        }, { passive: true });
 
         // Smooth cursor animation
         function animateCursor() {
