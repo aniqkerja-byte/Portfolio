@@ -1278,51 +1278,7 @@ p {
     text-transform: uppercase;
 }
 
-/* ===== CUSTOM CURSOR ===== */
-.cursor-main {
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--color-accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-    mix-blend-mode: difference;
-}
 
-.cursor-follower {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10001;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-}
-
-.cursor-main.hover {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(10, 102, 194, 0.1);
-    border-color: var(--color-accent);
-}
-
-.cursor-main.click {
-    transform: translate(-50%, -50%) scale(0.8);
-}
-
-/* Hide custom cursor on touch devices */
-@media (hover: none) and (pointer: coarse) {
-
-    .cursor-main,
-    .cursor-follower {
-        display: none !important;
-    }
-}
 
 /* ===== DARK MODE TOGGLE BUTTON ===== */
 .dark-mode-btn {

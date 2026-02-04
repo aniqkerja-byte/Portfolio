@@ -930,62 +930,6 @@ if (backToTopBtn) {
     });
 }
 
-/* ===== CUSTOM CURSOR ===== */
-// Only activate on desktop with fine pointer
-if (window.matchMedia('(pointer: fine)').matches) {
-    const cursorMain = document.getElementById('cursor-main');
-    const cursorFollower = document.getElementById('cursor-follower');
-
-    if (cursorMain && cursorFollower) {
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let followerX = 0, followerY = 0;
-
-        // Track mouse position
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        }, { passive: true });
-
-        // Smooth cursor animation
-        function animateCursor() {
-            // Main cursor follows with slight delay
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            cursorMain.style.left = cursorX + 'px';
-            cursorMain.style.top = cursorY + 'px';
-
-            // Follower with more delay
-            followerX += (mouseX - followerX) * 0.25;
-            followerY += (mouseY - followerY) * 0.25;
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Hover effect for interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .faq-question, .service-card, .pricing-card, .portfolio-item, .filter-btn');
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorMain.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorMain.classList.remove('hover');
-            });
-        });
-
-        // Click effect
-        document.addEventListener('mousedown', () => {
-            cursorMain.classList.add('click');
-        });
-        document.addEventListener('mouseup', () => {
-            cursorMain.classList.remove('click');
-        });
-    }
-}
 
 /* ===== DARK MODE TOGGLE ===== */
 const darkModeToggle = document.getElementById('dark-mode-toggle');
