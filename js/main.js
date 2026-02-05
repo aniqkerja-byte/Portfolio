@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Process Steps (Staggered)
         gsap.from('.process-step', {
             scrollTrigger: {
-                trigger: '.process-steps',
+                trigger: '.process-timeline',
                 start: 'top 75%'
             },
             y: 30,
@@ -1398,6 +1398,153 @@ Cuba klik butang di bawah atau taip soalan anda!`;
     });
 })();
 
+/* ===== BLOG MODAL SYSTEM ===== */
+(function () {
+    // Blog Data
+    const blogArticles = {
+        'bisnes-perlu-website': {
+            category: 'Business Strategy',
+            title: '5 Sebab Kenapa Bisnes Anda Perlu Website',
+            date: 'Jan 2026',
+            readTime: '5 min read',
+            body: `
+                <p>Dalam era digital yang pesat ini, memiliki website bukan lagi satu kemewahan, tetapi satu keperluan kritikal untuk mana-mana perniagaan yang ingin kekal relevan dan bersaing. Berikut adalah 5 sebab utama:</p>
+                
+                <h4>1. Kredibiliti & Profesionalisme</h4>
+                <p>Pelanggan hari ini akan "Google" dahulu sebelum membeli. Jika bisnes anda tiada website, anda kehilangan *First Impression*. Website memberikan imej bahawa bisnes anda sah, stabil, dan profesional.</p>
+
+                <h4>2. Kedai Buka 24/7 Tanpa Cuti</h4>
+                <p>Kedai fizikal ada waktu operasi. Website anda bekerja untuk anda 24 jam sehari, 7 hari seminggu. Pelanggan boleh mendapatkan info produk, melihat testimoni, dan membuat tempahan walaupun anda sedang tidur.</p>
+
+                <h4>3. Kawalan Penuh Terhadap Brand Anda</h4>
+                <p>Di media sosial, anda menumpang platform orang lain. Algorithm boleh berubah, akaun boleh disekat. Di website sendiri, anda berkuasa penuh ke atas content, database pelanggan, dan cara anda menjual.</p>
+
+                <h4>4. Pemasaran Kos Efektif (SEO)</h4>
+                <p>Dengan strategi SEO yang betul, website anda boleh muncul di carian Google apabila pelanggan mencari servis anda. Ini adalah trafik percuma berbanding iklan berbayar (Ads) yang semakin mahal.</p>
+
+                <h4>5. Pusat Pengumpulan Data Pelanggan</h4>
+                <p>Website membolehkan anda memasang *Pixel* dan *Analytics*. Anda boleh tahu siapa pengunjung anda, dari mana mereka datang, dan apa yang mereka minat. Data ini sangat mahal harganya untuk strategi pemasaran akan datang.</p>
+
+                <div class="blog-callout">
+                    <p><strong>Kesimpulan:</strong> Jangan tunggu lagi. Bina aset digital anda hari ini sebelum pesaing anda mengambil alih pasaran online.</p>
+                </div>
+            `
+        },
+        'landing-vs-website': {
+            category: 'Web Guide',
+            title: 'Landing Page vs Website: Mana Satu Sesuai?',
+            date: 'Jan 2026',
+            readTime: '4 min read',
+            body: `
+                <p>Ramai usahawan keliru sama ada mereka perlukan Landing Page atau Website Korporat penuh. Jawapannya bergantung kepada <strong>OBJEKTIF</strong> anda.</p>
+
+                <h4>Apa itu Landing Page?</h4>
+                <p>Halaman tunggal (1 muka) yang fokus kepada SATU tindakan sahaja (CTO - Call to Action). Tiada menu navigasi yang serabut.</p>
+                <ul>
+                    <li><strong>Fokus:</strong> Jualan produk spesifik atau kumpul leads.</li>
+                    <li><strong>Sesuai untuk:</strong> Iklan FB/TikTok, pelancaran produk baru, promosi bermusim.</li>
+                    <li><strong>Kelebihan:</strong> Conversion rate lebih tinggi kerana kurang gangguan.</li>
+                </ul>
+
+                <h4>Apa itu Website Korporat?</h4>
+                <p>Laman web lengkap dengan pelbagai halaman (Home, About, Services, Contact, Blog).</p>
+                <ul>
+                    <li><strong>Fokus:</strong> Branding, info syarikat, dan katalog servis lengkap.</li>
+                    <li><strong>Sesuai untuk:</strong> Syarikat servis, kontraktor, profesional, agensi.</li>
+                    <li><strong>Kelebihan:</strong> Membina autoriti jangka masa panjang dan SEO.</p>
+                </ul>
+
+                <h4>Mana Satu Pilihan Anda?</h4>
+                <p>Jika anda nak buat jualan cepat menggunakan Iklan Berbayar -> Pilih <strong>Landing Page</strong>.</p>
+                <p>Jika anda nak bina jenama jangka panjang dan kepercayaan -> Pilih <strong>Website Korporat</strong>.</p>
+            `
+        },
+        'kos-buat-website': {
+            category: 'Pricing Guide',
+            title: 'Berapa Kos Buat Website di Malaysia? (2026)',
+            date: 'Feb 2026',
+            readTime: '6 min read',
+            body: `
+                <p>Soalan paling popular: "Berapa harga website?". Ini panduan kasar harga pasaran di Malaysia untuk tahun 2026 mengikut kualiti dan fungsi.</p>
+
+                <h4>1. DIY (Buat Sendiri) - RM200 - RM500</h4>
+                <p>Gunakan Wix, Squarespace atau hosting murah. Anda perlu beli domain dan hosting sendiri. Kos murah tapi perlukan masa dan kemahiran teknikal anda sendiri.</p>
+
+                <h4>2. Freelancer (Bajet) - RM800 - RM2,500</h4>
+                <p>Dapatkan freelancer untuk bina website. Kualiti bergantung kepada pengalaman. Pastikan ada perjanjian tentang maintenance selepas siap.</p>
+
+                <h4>3. Agensi Profesional - RM3,000 - RM15,000+</h4>
+                <p>Untuk syarikat yang perlukan sistem kustom, design premium, dan jaminan support. Sesuai untuk syarikat sederhana dan besar.</p>
+
+                <h4>Harga Pakej JomBina.site?</h4>
+                <p>Kami memposisikan diri sebagai "Premium Freelance" - Kualiti Agensi pada harga mampu milik.</p>
+                <ul>
+                    <li><strong>Landing Page:</strong> Bermula RM490</li>
+                    <li><strong>Corporate Website:</strong> Bermula RM990</li>
+                </ul>
+                <p>Kenapa berbaloi? Sebab kami bagi <strong>Support & Maintenance PERCUMA</strong> untuk setahun pertama. Tiada pening kepala teknikal.</p>
+            `
+        }
+    };
+
+    // Elements
+    const blogCards = document.querySelectorAll('.blog-card');
+    const modal = document.getElementById('blog-modal');
+    const modalOverlay = document.getElementById('blog-modal-overlay');
+    const modalClose = document.getElementById('blog-modal-close');
+
+    // Modal Content Elements
+    const mCategory = document.getElementById('blog-article-category');
+    const mTitle = document.getElementById('blog-article-title');
+    const mDate = document.getElementById('blog-article-date');
+    const mTime = document.getElementById('blog-article-read-time');
+    const mBody = document.getElementById('blog-article-body');
+
+    // Open Modal Function
+    function openModal(articleId) {
+        const data = blogArticles[articleId];
+        if (!data) return;
+
+        // Populate Data
+        mCategory.textContent = data.category;
+        mTitle.textContent = data.title;
+        mDate.textContent = data.date;
+        mTime.textContent = data.readTime;
+        mBody.innerHTML = data.body;
+
+        // Show Modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    // Close Modal Function
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Event Listeners
+    if (blogCards.length > 0) {
+        blogCards.forEach(card => {
+            card.addEventListener('click', function () {
+                const articleId = this.getAttribute('data-article');
+                openModal(articleId);
+            });
+        });
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+})();
+
 /* ===== PROJECT CALCULATOR ===== */
 (function () {
     const steps = document.querySelectorAll('.calc-step');
@@ -1618,7 +1765,7 @@ Cuba klik butang di bawah atau taip soalan anda!`;
             title: 'Buku Panduan Sihat',
             category: 'Landing Page',
             client: 'Health & Wellness',
-            heroImage: 'bukupanduansihat.png',
+            heroImage: 'bukupanduansihat.webp',
             overview: 'Landing page yang menarik untuk eBook panduan kesihatan. Direka untuk menarik pembeli dengan copywriting yang meyakinkan dan visual yang profesional.',
             challenge: 'Klien perlukan landing page yang mampu convert visitors kepada pembeli dalam masa singkat dengan trust elements yang kuat.',
             solution: 'Menggunakan struktur AIDA (Attention, Interest, Desire, Action) dengan testimonial, countdown timer, dan CTA yang jelas.',
@@ -1631,7 +1778,7 @@ Cuba klik butang di bawah atau taip soalan anda!`;
             title: 'Probiozen',
             category: 'Landing Page',
             client: 'Health Supplement',
-            heroImage: 'probiozen.png',
+            heroImage: 'probiozen.webp',
             overview: 'High-converting landing page untuk suplemen probiotik yang mensasarkan pengguna yang prihatin tentang kesihatan usus.',
             challenge: 'Perlu menyampaikan maklumat saintifik dengan cara yang mudah difahami sambil membina kepercayaan.',
             solution: 'Design yang bersih dengan infografik, testimonial video, dan proses pembelian yang mudah.',
@@ -1644,7 +1791,7 @@ Cuba klik butang di bawah atau taip soalan anda!`;
             title: 'Modul Formula Turun 10 KG',
             category: 'Landing Page',
             client: 'Fitness & Health',
-            heroImage: 'formulaturun10kg.png',
+            heroImage: 'formulaturun10kg.webp',
             overview: 'Landing page untuk program penurunan berat badan dengan modul pembelajaran step-by-step.',
             challenge: 'Meyakinkan pengunjung bahawa program ini berbeza dari program diet lain yang gagal.',
             solution: 'Showcase hasil sebenar dengan before-after photos, testimonial pengguna, dan jaminan wang dikembalikan.',
@@ -1657,7 +1804,7 @@ Cuba klik butang di bawah atau taip soalan anda!`;
             title: 'Ells Cafe',
             category: 'Landing Page',
             client: 'Food & Beverage',
-            heroImage: 'ellscafe.png',
+            heroImage: 'ellscafe.webp',
             overview: 'Landing page untuk kafe dengan menu digital dan sistem tempahan meja.',
             challenge: 'Mempamerkan suasana dan menu kafe secara menarik untuk menarik pengunjung.',
             solution: 'Gallery photos yang menarik, menu interaktif, dan integrasi dengan Google Maps untuk directions.',
@@ -1670,7 +1817,7 @@ Cuba klik butang di bawah atau taip soalan anda!`;
             title: 'MissGolden Hair',
             category: 'Landing Page',
             client: 'Beauty & Cosmetics',
-            heroImage: 'missgoldenhair.png',
+            heroImage: 'missgoldenhair.webp',
             overview: 'Landing page premium untuk produk penjagaan rambut dengan aesthetic yang mewah.',
             challenge: 'Menyampaikan imej premium dan kualiti tinggi produk kecantikan.',
             solution: 'Design minimalis dengan color palette yang elegant, product showcase, dan testimonial bergambar.',
@@ -1683,7 +1830,7 @@ Cuba klik butang di bawah atau taip soalan anda!`;
             title: 'Webinar Rawat Hormon',
             category: 'Landing Page',
             client: 'Health Education',
-            heroImage: 'rawathotmon.png',
+            heroImage: 'rawathotmon.webp',
             overview: 'Landing page untuk pendaftaran webinar kesihatan hormon dengan countdown dan limited seats.',
             challenge: 'Mencipta urgency untuk pendaftaran webinar dengan limited seats.',
             solution: 'Countdown timer, remaining seats indicator, dan early bird pricing untuk mencipta FOMO.',
