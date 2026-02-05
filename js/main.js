@@ -754,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Wait for DOM content to be loaded
-    initAnimations();
+    // initAnimations();
 });
 /* ===== LIGHTBOX GALLERY FUNCTIONALITY ===== */
 let currentSlideIndex = 0;
@@ -846,8 +846,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, observerOptions);
 
+    /*
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
+    */
 
     // === SKELETON IMAGE LOADER ===
     const skeletonImages = document.querySelectorAll('.portfolio-image img, .blog-image img');

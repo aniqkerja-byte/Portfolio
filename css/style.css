@@ -921,10 +921,9 @@ p {
 
 /* ===== SCROLL ANIMATIONS ===== */
 .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform;
+    opacity: 1;
+    transform: none;
+    transition: none;
 }
 
 .animate-visible {
