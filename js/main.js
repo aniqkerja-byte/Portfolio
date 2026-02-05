@@ -760,12 +760,12 @@ document.addEventListener('DOMContentLoaded', function () {
 let currentSlideIndex = 0;
 const galleryImages = {
     'logistik': [
-        'LOGISTIK/1.png',
-        'LOGISTIK/2.png',
-        'LOGISTIK/3.png',
-        'LOGISTIK/4.png',
-        'LOGISTIK/5.png',
-        'LOGISTIK/6.png'
+        'assets/img/LOGISTIK/1.png',
+        'assets/img/LOGISTIK/2.png',
+        'assets/img/LOGISTIK/3.png',
+        'assets/img/LOGISTIK/4.png',
+        'assets/img/LOGISTIK/5.png',
+        'assets/img/LOGISTIK/6.png'
     ]
 };
 let currentGallery = [];

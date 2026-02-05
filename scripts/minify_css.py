@@ -34,7 +34,7 @@ def minify_css(input_file, output_file):
         print(f"Error minifying {input_file}: {e}")
 
 # Minify style.css
-minify_css('css/style.css', 'css/style.min.css')
+minify_css('../css/style.css', '../css/style.min.css')
 
 # Minify responsive.css
-minify_css('css/responsive.css', 'css/responsive.min.css')
+minify_css('../css/responsive.css', '../css/responsive.min.css')

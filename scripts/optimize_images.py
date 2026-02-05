@@ -27,17 +27,17 @@ def optimize_image(filename, output_filename, max_width, max_height=None):
 
 # Optimize jombinasquare.png (Preloader)
 # Original is large, displayed ~140x140. Resize to 200x200 for safety.
-optimize_image('jombinasquare.png', 'jombinasquare.webp', 200, 200)
+optimize_image('../assets/img/jombinasquare.png', '../assets/img/jombinasquare.webp', 200, 200)
 
 # Generate small favicon.png from jombinasquare.png
 try:
-    with Image.open('jombinasquare.png') as img:
+    with Image.open('../assets/img/jombinasquare.png') as img:
         img.thumbnail((64, 64))
-        img.save('favicon.png', 'PNG')
+        img.save('../assets/img/favicon.png', 'PNG')
         print("Saved favicon.png")
 except Exception as e:
     print(f"Error creating favicon: {e}")
 
 # Optimize JomBina.png (Logo)
 # Displayed ~241x56. Resize to 241 width for perfect match.
-optimize_image('JomBina.png', 'JomBina.webp', 241)
+optimize_image('../assets/img/JomBina.png', '../assets/img/JomBina.webp', 241)
