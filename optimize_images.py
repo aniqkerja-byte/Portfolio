@@ -39,5 +39,5 @@ except Exception as e:
     print(f"Error creating favicon: {e}")
 
 # Optimize JomBina.png (Logo)
-# Displayed ~240 width. Resize to 400 width for safety.
-optimize_image('JomBina.png', 'JomBina.webp', 400)
+# Displayed ~241x56. Resize to 241 width for perfect match.
+optimize_image('JomBina.png', 'JomBina.webp', 241)
