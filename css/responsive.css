@@ -109,6 +109,11 @@
 @media (max-width: 480px) {
     :root {
         --container-padding: 1.5rem;
+        --floating-right: 15px;
+        --floating-bottom: 20px;
+        --floating-gap: 20px;
+        --floating-chat-size: 50px;
+        --floating-btt-size: 45px;
         /* Balanced padding */
     }
 
@@ -257,17 +262,22 @@
     }
 
     /* === CHAT WIDGET MOBILE === */
+    .chat-widget {
+        right: var(--floating-right);
+        bottom: var(--floating-bottom);
+    }
+
     .chat-toggle {
-        width: 50px;
-        height: 50px;
-        bottom: 80px;
-        right: 15px;
+        width: var(--floating-chat-size);
+        height: var(--floating-chat-size);
+        bottom: 0;
+        right: 0;
     }
 
     .chat-window {
         width: calc(100vw - 30px);
         height: 70vh;
-        right: 15px;
+        right: 0;
         bottom: 140px;
         max-width: none;
     }
@@ -311,15 +321,20 @@
 
     /* === FLOATING BUTTONS MOBILE === */
     .floating-buttons {
-        right: 15px;
-        bottom: 15px;
+        right: var(--floating-right);
+        bottom: var(--floating-bottom);
         gap: var(--space-sm);
     }
 
     .back-to-top,
     .whatsapp-float {
-        width: 45px;
-        height: 45px;
+        width: var(--floating-btt-size);
+        height: var(--floating-btt-size);
+    }
+
+    .back-to-top {
+        right: var(--floating-right);
+        bottom: calc(var(--floating-bottom) + var(--floating-chat-size) + var(--floating-gap));
     }
 
     /* === TESTIMONIALS MOBILE === */
