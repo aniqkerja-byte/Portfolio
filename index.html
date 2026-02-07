@@ -157,37 +157,45 @@
     <!-- Navigation -->
     <nav
         class="navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/95 dark:bg-charcoal/95 backdrop-blur-md border-b border-pale-gray dark:border-dark-gray">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center relative">
             <a href="#"
-                class="logo text-2xl font-bold text-charcoal dark:text-white no-underline flex items-center gap-2">
+                class="logo text-2xl font-bold text-charcoal dark:text-white no-underline flex items-center gap-2 relative z-[51]">
                 <img src="assets/img/JomBina.webp" alt="Jombina.site Logo" width="179" height="42"
                     class="h-8 w-auto object-contain dark:brightness-0 dark:invert">
             </a>
 
             <div class="flex items-center gap-4">
-                <button class="mobile-menu-btn md:hidden" aria-label="Open Menu" aria-expanded="false"
-                    aria-controls="primary-navigation">
-                    <i class="fas fa-bars"></i>
+                <button
+                    class="mobile-menu-btn md:hidden relative z-[51] text-charcoal dark:text-white focus:outline-none"
+                    aria-label="Open Menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <i class="fas fa-bars text-2xl"></i>
                 </button>
 
-                <ul id="primary-navigation" class="nav-menu flex gap-8 list-none m-0 p-0">
+                <!-- 
+                  Mobile Menu Update: 
+                  - Absolute positioning for mobile overlay
+                  - Hidden by default on mobile
+                  - Flex column on mobile, row on desktop
+                -->
+                <ul id="primary-navigation"
+                    class="nav-menu hidden md:flex flex-col md:flex-row absolute md:static top-0 left-0 w-full md:w-auto h-screen md:h-auto bg-white dark:bg-charcoal md:bg-transparent shadow-lg md:shadow-none p-8 md:p-0 gap-8 md:gap-8 items-center justify-center md:justify-start z-50 transition-all duration-300">
                     <li><a href="#services"
-                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            class="nav-link text-xl md:text-base text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
                             data-i18n="nav.services">Services</a></li>
                     <li><a href="#process"
-                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            class="nav-link text-xl md:text-base text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
                             data-i18n="nav.process">Process</a></li>
                     <li><a href="#pricing"
-                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            class="nav-link text-xl md:text-base text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
                             data-i18n="nav.pricing">Pricing</a></li>
                     <li><a href="#work"
-                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            class="nav-link text-xl md:text-base text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
                             data-i18n="nav.work">Work</a></li>
                     <li><a href="#about"
-                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            class="nav-link text-xl md:text-base text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
                             data-i18n="nav.about">About</a></li>
-                    <li class="md:hidden"><a href="#contact"
-                            class="nav-cta bg-charcoal text-white px-6 py-3 rounded hover:bg-dark-gray transition-colors"
+                    <li class="md:hidden mt-4"><a href="#contact"
+                            class="nav-cta bg-charcoal text-white px-8 py-4 rounded hover:bg-dark-gray transition-colors text-lg"
                             data-i18n="nav.contact">Get Started</a></li>
                 </ul>
 
@@ -207,6 +215,20 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Inline style to handle the .active class toggle since we aren't rebuilding Tailwind CSS immediately -->
+            <style>
+                @media (max-width: 768px) {
+                    .nav-menu.active {
+                        display: flex !important;
+                    }
+
+                    /* Lock scroll when menu is open */
+                    body.menu-open {
+                        overflow: hidden;
+                    }
+                }
+            </style>
         </div>
     </nav>
 
@@ -214,52 +236,59 @@
     <section
         class="hero relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-white dark:bg-charcoal -mt-20 pt-20">
         <canvas id="hero-particles" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
-        <div class="container relative z-10 text-center">
+        <div class="container relative z-10 text-center px-4">
             <div class="hero-content animate-on-scroll max-w-[800px] mx-auto">
-                <h1 class="hero-title mb-8 text-5xl font-bold leading-tight dark:text-white" data-i18n="hero.title">
+                <h1 class="hero-title mb-6 md:mb-8 text-3xl md:text-5xl font-bold leading-tight dark:text-white"
+                    data-i18n="hero.title">
                     Let's Build Your
                     Digital Success with JomBina</h1>
-                <p class="hero-subtitle" data-i18n="hero.subtitle">
+                <p class="hero-subtitle text-base md:text-lg mb-8 md:mb-10 px-2" data-i18n="hero.subtitle">
                     Partner with JomBina to build high-conversion websites and scalable internal systems.
                     Production-ready solutions, not prototypes.
                 </p>
-                <div class="hero-actions flex flex-col items-center gap-6">
+                <div class="hero-actions flex flex-col items-center gap-4 md:gap-6">
                     <a href="#contact"
-                        class="inline-flex items-center justify-center px-8 py-4 font-medium leading-none text-white transition-all bg-charcoal rounded-md hover:bg-dark-gray gap-2"
+                        class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-medium leading-none text-white transition-all bg-charcoal rounded-md hover:bg-dark-gray gap-2 w-full md:w-auto text-base hover:-translate-y-1 shadow-lg shadow-charcoal/20"
                         data-i18n="hero.cta_primary">Start Building with
                         JomBina</a>
                     <a href="#work"
-                        class="btn-link text-inherit no-underline transition-colors hover:text-accent font-inherit cursor-pointer p-0 border-0 bg-transparent inline-flex items-center gap-2"><span
+                        class="btn-link text-inherit no-underline transition-colors hover:text-accent font-inherit cursor-pointer p-0 border-0 bg-transparent inline-flex items-center gap-2 mt-2 md:mt-0"><span
                             data-i18n="hero.cta_secondary">See portfolio of work</span>
                         <i class="fas fa-arrow-right"></i></a>
                 </div>
 
-                <div class="tech-stack-container fade-in-section animate-on-scroll delay-200">
-                    <p class="tech-stack-label dark:text-gray" data-i18n="hero.tech_stack">Powering solutions with
+                <div class="tech-stack-container fade-in-section animate-on-scroll delay-200 mt-12 md:mt-16">
+                    <p class="tech-stack-label dark:text-gray text-sm md:text-base mb-4" data-i18n="hero.tech_stack">
+                        Powering solutions with
                         modern technology:
                     </p>
-                    <div class="tech-marquee">
+                    <div class="tech-marquee overflow-hidden whitespace-nowrap relative mask-linear-gradient">
                         <!-- Original Set -->
-                        <i class="fab fa-react tech-item" title="React"></i>
-                        <i class="fab fa-node-js tech-item" title="Node.js"></i>
-                        <i class="fab fa-laravel tech-item" title="Laravel"></i>
-                        <i class="fab fa-wordpress tech-item" title="WordPress"></i>
-                        <i class="fab fa-aws tech-item" title="AWS"></i>
-                        <i class="fab fa-google tech-item" title="Google Cloud"></i>
+                        <i class="fab fa-react tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#61DAFB] transition-colors"
+                            title="React"></i>
+                        <i class="fab fa-node-js tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#339933] transition-colors"
+                            title="Node.js"></i>
+                        <i class="fab fa-laravel tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#FF2D20] transition-colors"
+                            title="Laravel"></i>
+                        <i class="fab fa-wordpress tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#21759B] transition-colors"
+                            title="WordPress"></i>
+                        <i class="fab fa-aws tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#FF9900] transition-colors"
+                            title="AWS"></i>
+                        <i class="fab fa-google tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#4285F4] transition-colors"
+                            title="Google Cloud"></i>
                         <!-- Duplicate Set for Loop -->
-                        <i class="fab fa-react tech-item" title="React"></i>
-                        <i class="fab fa-node-js tech-item" title="Node.js"></i>
-                        <i class="fab fa-laravel tech-item" title="Laravel"></i>
-                        <i class="fab fa-wordpress tech-item" title="WordPress"></i>
-                        <i class="fab fa-aws tech-item" title="AWS"></i>
-                        <i class="fab fa-google tech-item" title="Google Cloud"></i>
-                        <!-- Duplicate Set for Loop (Extra Smoothness) -->
-                        <i class="fab fa-react tech-item" title="React"></i>
-                        <i class="fab fa-node-js tech-item" title="Node.js"></i>
-                        <i class="fab fa-laravel tech-item" title="Laravel"></i>
-                        <i class="fab fa-wordpress tech-item" title="WordPress"></i>
-                        <i class="fab fa-aws tech-item" title="AWS"></i>
-                        <i class="fab fa-google tech-item" title="Google Cloud"></i>
+                        <i class="fab fa-react tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#61DAFB] transition-colors"
+                            title="React"></i>
+                        <i class="fab fa-node-js tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#339933] transition-colors"
+                            title="Node.js"></i>
+                        <i class="fab fa-laravel tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#FF2D20] transition-colors"
+                            title="Laravel"></i>
+                        <i class="fab fa-wordpress tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#21759B] transition-colors"
+                            title="WordPress"></i>
+                        <i class="fab fa-aws tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#FF9900] transition-colors"
+                            title="AWS"></i>
+                        <i class="fab fa-google tech-item text-2xl md:text-3xl mx-3 md:mx-6 text-gray/50 hover:text-[#4285F4] transition-colors"
+                            title="Google Cloud"></i>
                     </div>
                 </div>
             </div>
@@ -267,45 +296,52 @@
     </section>
 
     <!-- Trust Metrics -->
-    <section class="metrics py-24 bg-pale-gray dark:bg-dark-gray">
+    <section class="metrics py-12 md:py-24 bg-pale-gray dark:bg-dark-gray">
         <div class="container mx-auto px-6">
-            <div class="section-header text-center mb-12 animate-on-scroll">
-                <h2 data-i18n="metrics.title" class="text-4xl font-semibold mb-6 dark:text-white">Proven Delivery Scale
+            <div class="section-header text-center mb-8 md:mb-12 animate-on-scroll">
+                <h2 data-i18n="metrics.title" class="text-3xl md:text-4xl font-semibold mb-4 md:mb-6 dark:text-white">
+                    Proven Delivery Scale
                 </h2>
-                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+                <p class="section-subtitle text-base md:text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
                     data-i18n="metrics.subtitle">
                     Measurable results delivered to real businesses
                 </p>
             </div>
-            <div class="metrics-grid grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+            <div class="metrics-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mb-8">
                 <div
-                    class="metric-card animate-on-scroll delay-100 text-center p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
-                    <div class="metric-value text-5xl font-bold text-charcoal dark:text-white mb-4">100+</div>
-                    <div class="metric-title text-lg font-semibold text-dark-gray dark:text-light-gray mb-4"
+                    class="metric-card animate-on-scroll delay-100 text-center p-6 md:p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
+                    <div class="metric-value text-4xl md:text-5xl font-bold text-charcoal dark:text-white mb-2 md:mb-4">
+                        100+</div>
+                    <div class="metric-title text-base md:text-lg font-semibold text-dark-gray dark:text-light-gray mb-2 md:mb-4"
                         data-i18n="metrics.card1.title">
                         Landing Pages Delivered</div>
-                    <p class="metric-description text-base text-gray dark:text-gray m-0" data-i18n="metrics.card1.desc">
+                    <p class="metric-description text-sm md:text-base text-gray dark:text-gray m-0"
+                        data-i18n="metrics.card1.desc">
                         Conversion-focused, A/B tested pages
                         driving business results</p>
                 </div>
                 <div
-                    class="metric-card animate-on-scroll delay-200 text-center p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
-                    <div class="metric-value text-5xl font-bold text-charcoal dark:text-white mb-4">20+</div>
-                    <div class="metric-title text-lg font-semibold text-dark-gray dark:text-light-gray mb-4"
+                    class="metric-card animate-on-scroll delay-200 text-center p-6 md:p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
+                    <div class="metric-value text-4xl md:text-5xl font-bold text-charcoal dark:text-white mb-2 md:mb-4">
+                        20+</div>
+                    <div class="metric-title text-base md:text-lg font-semibold text-dark-gray dark:text-light-gray mb-2 md:mb-4"
                         data-i18n="metrics.card2.title">
                         Internal SaaS Systems Built</div>
-                    <p class="metric-description text-base text-gray dark:text-gray m-0" data-i18n="metrics.card2.desc">
+                    <p class="metric-description text-sm md:text-base text-gray dark:text-gray m-0"
+                        data-i18n="metrics.card2.desc">
                         Used daily by
                         operational teams in
                         production environments</p>
                 </div>
                 <div
-                    class="metric-card animate-on-scroll delay-300 text-center p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
-                    <div class="metric-value text-5xl font-bold text-charcoal dark:text-white mb-4">Full-Stack</div>
-                    <div class="metric-title text-lg font-semibold text-dark-gray dark:text-light-gray mb-4"
+                    class="metric-card animate-on-scroll delay-300 text-center p-6 md:p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
+                    <div class="metric-value text-4xl md:text-5xl font-bold text-charcoal dark:text-white mb-2 md:mb-4">
+                        Full-Stack</div>
+                    <div class="metric-title text-base md:text-lg font-semibold text-dark-gray dark:text-light-gray mb-2 md:mb-4"
                         data-i18n="metrics.card3.title">
                         Production Experience</div>
-                    <p class="metric-description text-base text-gray dark:text-gray m-0" data-i18n="metrics.card3.desc">
+                    <p class="metric-description text-sm md:text-base text-gray dark:text-gray m-0"
+                        data-i18n="metrics.card3.desc">
                         From concept to
                         deployment & ongoing
                         maintenance</p>
@@ -318,64 +354,68 @@
     </section>
 
     <!-- Benefits / Why Choose Us Section -->
-    <section class="benefits py-24 bg-white dark:bg-charcoal" id="benefits">
+    <section class="benefits py-12 md:py-24 bg-white dark:bg-charcoal" id="benefits">
         <div class="container mx-auto px-6">
-            <div class="section-header text-center mb-16 animate-on-scroll">
+            <div class="section-header text-center mb-8 md:mb-16 animate-on-scroll">
                 <h2 data-i18n="benefits.title"
                     class="text-3xl md:text-4xl font-bold mb-4 text-charcoal dark:text-white">Why Choose
                     JomBina?</h2>
                 <div class="w-20 h-1 bg-accent mx-auto mb-6 rounded-full"></div>
-                <p class="section-subtitle text-lg text-gray max-w-2xl mx-auto" data-i18n="benefits.subtitle">We focus
+                <p class="section-subtitle text-base md:text-lg text-gray max-w-2xl mx-auto"
+                    data-i18n="benefits.subtitle">We focus
                     on Speed, ROI, and Support to ensure your business growth.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Benefit 1: Speed -->
                 <div
-                    class="benefit-card group animate-on-scroll delay-100 bg-white dark:bg-dark-gray p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
+                    class="benefit-card group animate-on-scroll delay-100 bg-white dark:bg-dark-gray p-6 md:p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
                     <div
-                        class="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        class="w-16 h-16 md:w-20 md:h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
                         <i class="fas fa-bolt"></i>
                     </div>
 
-                    <h3 data-i18n="benefits.card1.title" class="text-xl font-bold mb-4 text-charcoal dark:text-white">
+                    <h3 data-i18n="benefits.card1.title"
+                        class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-charcoal dark:text-white">
                         Fast Delivery</h3>
                     <p data-i18n="benefits.card1.desc"
-                        class="text-gray dark:text-light-gray leading-relaxed text-sm lg:text-base">Ready in
+                        class="text-gray dark:text-light-gray leading-relaxed text-sm md:text-base">Ready in
                         7-14 working days. No technical jargon headaches. We handle hosting, domain, and full technical
                         setup.</p>
                 </div>
 
                 <!-- Benefit 2: ROI -->
                 <div
-                    class="benefit-card group animate-on-scroll delay-200 bg-white dark:bg-dark-gray p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
+                    class="benefit-card group animate-on-scroll delay-200 bg-white dark:bg-dark-gray p-6 md:p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
                     <div
-                        class="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        class="w-16 h-16 md:w-20 md:h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
                         <i class="fas fa-chart-line"></i>
                     </div>
 
-                    <h3 data-i18n="benefits.card2.title" class="text-xl font-bold mb-4 text-charcoal dark:text-white">
+                    <h3 data-i18n="benefits.card2.title"
+                        class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-charcoal dark:text-white">
                         High-Converting
                         Design</h3>
                     <p data-i18n="benefits.card2.desc"
-                        class="text-gray dark:text-light-gray leading-relaxed text-sm lg:text-base">We use
+                        class="text-gray dark:text-light-gray leading-relaxed text-sm md:text-base">We use
                         sales psychology structure (AIDA) in every design. Every button and layout is strategic to drive
                         action.</p>
                 </div>
 
                 <!-- Benefit 3: Support -->
                 <div
-                    class="benefit-card group animate-on-scroll delay-300 bg-white dark:bg-dark-gray p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
+                    class="benefit-card group animate-on-scroll delay-300 bg-white dark:bg-dark-gray p-6 md:p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
                     <div
-                        class="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        class="w-16 h-16 md:w-20 md:h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-2xl md:text-3xl mb-4 md:mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
                         <i class="fas fa-headset"></i>
                     </div>
 
-                    <h3 data-i18n="benefits.card3.title" class="text-xl font-bold mb-4 text-charcoal dark:text-white">
+                    <h3 data-i18n="benefits.card3.title"
+                        class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-charcoal dark:text-white">
                         Reliable Support
                     </h3>
                     <p data-i18n="benefits.card3.desc"
-                        class="text-gray dark:text-light-gray leading-relaxed text-sm lg:text-base">Free
+                        class="text-gray dark:text-light-gray leading-relaxed text-sm md:text-base">Free
                         1-year technical maintenance. Have an issue? We resolve it within 24 hours. You focus on
                         business, we handle the tech.</p>
                 </div>
@@ -384,24 +424,25 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials py-24 bg-pale-gray dark:bg-dark-gray" id="testimonials">
+    <section class="testimonials py-12 md:py-24 bg-pale-gray dark:bg-dark-gray" id="testimonials">
         <div class="container mx-auto px-6">
-            <div class="section-header animate-on-scroll text-center mb-12">
-                <h2 data-i18n="testimonials.title" class="text-4xl font-semibold mb-6 dark:text-white">Client Success
+            <div class="section-header animate-on-scroll text-center mb-8 md:mb-12">
+                <h2 data-i18n="testimonials.title"
+                    class="text-3xl md:text-4xl font-semibold mb-4 md:mb-6 dark:text-white">Client Success
                     Stories</h2>
-                <p class="section-subtitle text-lg text-light-gray max-w-[600px] mx-auto"
+                <p class="section-subtitle text-base md:text-lg text-light-gray max-w-[600px] mx-auto"
                     data-i18n="testimonials.subtitle">What business owners say about working
                     with me</p>
             </div>
             <div class="testimonial-grid grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Review 1 -->
                 <div
-                    class="testimonial-card animate-on-scroll delay-100 bg-pale-gray dark:bg-charcoal p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    class="testimonial-card animate-on-scroll delay-100 bg-pale-gray dark:bg-charcoal p-6 md:p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                     <div class="stars mb-4 text-yellow-400 text-sm">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10"
+                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10 text-sm md:text-base"
                         data-i18n="testimonials.q1">"The system Aniq built completely
                         transformed how we manage our
                         logistics. It's fast, reliable, and exactly what we needed. Highly recommended!"</p>
@@ -419,12 +460,12 @@
                 </div>
                 <!-- Review 2 -->
                 <div
-                    class="testimonial-card animate-on-scroll delay-200 bg-pale-gray dark:bg-charcoal p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    class="testimonial-card animate-on-scroll delay-200 bg-pale-gray dark:bg-charcoal p-6 md:p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                     <div class="stars mb-4 text-yellow-400 text-sm">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10"
+                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10 text-sm md:text-base"
                         data-i18n="testimonials.q2">"Professional delivery and excellent
                         communication. He understood our
                         brand vision and delivered a landing page that converts."</p>
@@ -441,12 +482,12 @@
                 </div>
                 <!-- Review 3 -->
                 <div
-                    class="testimonial-card animate-on-scroll delay-300 bg-pale-gray dark:bg-charcoal p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    class="testimonial-card animate-on-scroll delay-300 bg-pale-gray dark:bg-charcoal p-6 md:p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                     <div class="stars mb-4 text-yellow-400 text-sm">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10"
+                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10 text-sm md:text-base"
                         data-i18n="testimonials.q3">"Technical maintenance is top-notch.
                         Whenever we have an issue, it's
                         resolved within hours. A true technical partner."</p>
@@ -467,29 +508,30 @@
     </section>
 
     <!-- Portfolio -->
-    <section class="portfolio py-24 bg-white dark:bg-charcoal" id="work">
+    <section class="portfolio py-12 md:py-24 bg-white dark:bg-charcoal" id="work">
         <div class="container mx-auto px-6">
-            <div class="section-header text-center mb-12">
-                <h2 data-i18n="portfolio.title" class="text-4xl font-semibold mb-6 dark:text-white">Selected Work</h2>
-                <p class="section-subtitle text-lg text-light-gray max-w-[600px] mx-auto"
+            <div class="section-header text-center mb-8 md:mb-12">
+                <h2 data-i18n="portfolio.title" class="text-3xl md:text-4xl font-semibold mb-4 md:mb-6 dark:text-white">
+                    Selected Work</h2>
+                <p class="section-subtitle text-base md:text-lg text-light-gray max-w-[600px] mx-auto"
                     data-i18n="portfolio.subtitle">Examples of business-focused digital
                     solutions</p>
             </div>
-            <div class="portfolio-filters flex justify-center gap-4 mb-12 flex-wrap">
+            <div class="portfolio-filters flex justify-center gap-2 md:gap-4 mb-8 md:mb-12 flex-wrap">
                 <button
-                    class="filter-btn active px-6 py-2 rounded-full border border-light-gray text-gray dark:text-light-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    class="filter-btn active px-4 py-2 md:px-6 rounded-full border border-light-gray text-gray dark:text-light-gray text-xs md:text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
                     data-filter="all" data-i18n="filters.all">All</button>
                 <button
-                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    class="filter-btn px-4 py-2 md:px-6 rounded-full border border-light-gray text-gray text-xs md:text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
                     data-filter="landing" data-i18n="filters.landing">Landing Page</button>
                 <button
-                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    class="filter-btn px-4 py-2 md:px-6 rounded-full border border-light-gray text-gray text-xs md:text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
                     data-filter="system" data-i18n="filters.system">Web System</button>
                 <button
-                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    class="filter-btn px-4 py-2 md:px-6 rounded-full border border-light-gray text-gray text-xs md:text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
                     data-filter="apps" data-i18n="filters.apps">Apps</button>
                 <button
-                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    class="filter-btn px-4 py-2 md:px-6 rounded-full border border-light-gray text-gray text-xs md:text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
                     data-filter="project" data-i18n="filters.project">Project</button>
             </div>
             <div class="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -522,8 +564,8 @@
                     </div>
                     <div
                         class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
-                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/probiozen/"
-                                target="_blank" rel="noopener noreferrer"
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/probiozen/" target="_blank"
+                                rel="noopener noreferrer"
                                 class="portfolio-link hover:text-accent transition-colors dark:text-white">Probiozen
                                 <i class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
                         <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
@@ -558,8 +600,8 @@
                     </div>
                     <div
                         class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
-                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/ellscafe/"
-                                target="_blank" rel="noopener noreferrer"
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/ellscafe/" target="_blank"
+                                rel="noopener noreferrer"
                                 class="portfolio-link hover:text-accent transition-colors dark:text-white">Ells Cafe <i
                                     class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
                         <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
@@ -683,19 +725,20 @@
     </section>
 
     <!-- Services -->
-    <section class="services py-24 bg-pale-gray dark:bg-black" id="services">
+    <section class="services py-12 md:py-24 bg-pale-gray dark:bg-black" id="services">
         <div class="container mx-auto px-6">
-            <div class="section-header text-center mb-12">
-                <h2 data-i18n="services.title" class="text-4xl font-semibold mb-6 dark:text-white">Business Solutions
+            <div class="section-header text-center mb-8 md:mb-12">
+                <h2 data-i18n="services.title" class="text-3xl md:text-4xl font-semibold mb-4 md:mb-6 dark:text-white">
+                    Business Solutions
                 </h2>
-                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+                <p class="section-subtitle text-base md:text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
                     data-i18n="services.subtitle">
                     Specialized services designed to meet
                     commercial objectives</p>
             </div>
-            <div class="services-grid grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="services-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                 <div
-                    class="service-card animate-on-scroll delay-100 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    class="service-card animate-on-scroll delay-100 p-6 md:p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
                     <div
                         class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-window-maximize"></i>
@@ -703,13 +746,14 @@
                     <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white" data-i18n="services.card1.title">
                         Landing Page Development
                     </h3>
-                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card1.desc">
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed text-sm md:text-base"
+                        data-i18n="services.card1.desc">
                         High-converting pages for
                         campaigns, product
                         launches, and lead generation. Built for performance and clarity.</p>
                 </div>
                 <div
-                    class="service-card animate-on-scroll delay-200 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    class="service-card animate-on-scroll delay-200 p-6 md:p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
                     <div
                         class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-building"></i>
@@ -717,13 +761,14 @@
                     <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white" data-i18n="services.card2.title">
                         Corporate Website
                         Development</h3>
-                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card2.desc">
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed text-sm md:text-base"
+                        data-i18n="services.card2.desc">
                         Authoritative,
                         brand-aligned websites
                         that establish credibility and facilitate stakeholder engagement.</p>
                 </div>
                 <div
-                    class="service-card animate-on-scroll delay-300 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    class="service-card animate-on-scroll delay-300 p-6 md:p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
                     <div
                         class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-cogs"></i>
@@ -732,24 +777,26 @@
                         Internal System &
                         SaaS Development
                     </h3>
-                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card3.desc">
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed text-sm md:text-base"
+                        data-i18n="services.card3.desc">
                         Streamline operations
                         with custom-built
                         web applications, admin panels, and management tools.</p>
                 </div>
                 <div
-                    class="service-card animate-on-scroll delay-100 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    class="service-card animate-on-scroll delay-100 p-6 md:p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
                     <div
                         class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white">MVP Development</h3>
-                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed">Rapidly build and launch Minimum
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed text-sm md:text-base">Rapidly build
+                        and launch Minimum
                         Viable Products to validate your business
                         ideas.</p>
                 </div>
                 <div
-                    class="service-card animate-on-scroll delay-200 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    class="service-card animate-on-scroll delay-200 p-6 md:p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
                     <div
                         class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-chart-line"></i>
@@ -758,7 +805,8 @@
                         Website Redesign &
                         Optimization
                     </h3>
-                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card4.desc">
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed text-sm md:text-base"
+                        data-i18n="services.card4.desc">
                         Modernize existing
                         sites for better user
                         experience, speed, and alignment with current business goals.</p>
@@ -768,19 +816,20 @@
     </section>
 
     <!-- Pricing -->
-    <section class="pricing py-24 bg-white dark:bg-charcoal" id="pricing">
+    <section class="pricing py-12 md:py-24 bg-white dark:bg-charcoal" id="pricing">
         <div class="container mx-auto px-6">
-            <div class="section-header text-center mb-12">
-                <h2 data-i18n="pricing.title" class="text-4xl font-semibold mb-6 dark:text-white">Pricing</h2>
-                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+            <div class="section-header text-center mb-8 md:mb-12">
+                <h2 data-i18n="pricing.title" class="text-3xl md:text-4xl font-semibold mb-4 md:mb-6 dark:text-white">
+                    Pricing</h2>
+                <p class="section-subtitle text-base md:text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
                     data-i18n="pricing.subtitle">
                     Choose the package that fits your business
                     needs. All packages include domain, hosting, and full technical maintenance for 1 year.</p>
             </div>
-            <div class="pricing-grid flex justify-center gap-8 flex-wrap max-w-[1200px] mx-auto">
+            <div class="pricing-grid flex justify-center gap-6 md:gap-8 flex-wrap max-w-[1200px] mx-auto">
                 <!-- Card 1 -->
                 <div
-                    class="pricing-card animate-on-scroll delay-100 flex-1 min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-8 text-center shadow-lg border border-pale-gray dark:border-gray-800 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    class="pricing-card animate-on-scroll delay-100 flex-1 w-full md:w-auto min-w-full md:min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-6 md:p-8 text-center shadow-lg border border-pale-gray dark:border-gray-800 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
                     <h3 data-i18n="pricing.landing.title" class="text-xl text-charcoal dark:text-white mb-4">Landing
                         Page / 1-Page
                         Website</h3>
@@ -816,7 +865,7 @@
 
                 <!-- Card 2 -->
                 <div
-                    class="pricing-card popular animate-on-scroll delay-200 flex-1 min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-8 text-center shadow-lg border-2 border-accent flex flex-col relative transform scale-105 z-10 transition-all duration-300 hover:scale-[1.05] hover:-translate-y-2 hover:shadow-2xl">
+                    class="pricing-card popular animate-on-scroll delay-200 flex-1 w-full md:w-auto min-w-full md:min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-6 md:p-8 text-center shadow-lg border-2 border-accent flex flex-col relative transform scale-100 md:scale-105 z-10 transition-all duration-300 hover:scale-[1.02] md:hover:scale-[1.05] hover:-translate-y-2 hover:shadow-2xl mt-4 md:mt-0">
                     <div class="badge absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold uppercase"
                         data-i18n="pricing.corporate.badge">Most Popular</div>
                     <h3 data-i18n="pricing.corporate.title" class="text-xl text-charcoal dark:text-white mb-4">Business
@@ -854,7 +903,7 @@
 
                 <!-- Card 3 -->
                 <div
-                    class="pricing-card animate-on-scroll delay-300 flex-1 min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-8 text-center shadow-lg border border-pale-gray dark:border-gray-800 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    class="pricing-card animate-on-scroll delay-300 flex-1 w-full md:w-auto min-w-full md:min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-6 md:p-8 text-center shadow-lg border border-pale-gray dark:border-gray-800 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
                     <h3 data-i18n="pricing.ecommerce.title" class="text-xl text-charcoal dark:text-white mb-4">
                         E-Commerce Website</h3>
                     <div class="price text-2xl font-bold text-accent mb-8 min-h-[3rem] flex items-center justify-center"
@@ -891,7 +940,7 @@
     </section>
 
     <!-- Process -->
-    <section class="process py-24 bg-pale-gray dark:bg-black" id="process">
+    <section class="process py-12 md:py-24 bg-pale-gray dark:bg-black" id="process">
         <div class="container mx-auto px-6">
             <div class="section-header text-center mb-12">
                 <h2 data-i18n="process.title" class="text-4xl font-semibold mb-6 dark:text-white">Structured Delivery
@@ -956,7 +1005,7 @@
     </section>
 
     <!-- About -->
-    <section class="about py-24 bg-white dark:bg-charcoal" id="about">
+    <section class="about py-12 md:py-24 bg-white dark:bg-charcoal" id="about">
         <div class="container mx-auto px-6">
             <div class="about-grid grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 items-start">
                 <div class="about-image animate-on-scroll delay-100 relative">
@@ -999,7 +1048,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq py-24 bg-pale-gray dark:bg-black" id="faq">
+    <section class="faq py-12 md:py-24 bg-pale-gray dark:bg-black" id="faq">
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <h2 data-i18n="faq.title" class="dark:text-white">Frequently Asked Questions</h2>
@@ -1067,7 +1116,7 @@
     </section>
 
     <!-- Blog Section -->
-    <section class="blog py-24 bg-white dark:bg-charcoal" id="blog">
+    <section class="blog py-12 md:py-24 bg-white dark:bg-charcoal" id="blog">
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <h2 data-i18n="blog.title" class="dark:text-white">Blog & Insights</h2>
@@ -1180,7 +1229,7 @@
     </div>
 
     <!-- Contact CTA -->
-    <section class="contact py-24 bg-pale-gray dark:bg-black text-center" id="contact">
+    <section class="contact py-12 md:py-24 bg-pale-gray dark:bg-black text-center" id="contact">
         <div class="container mx-auto px-6">
             <div class="contact-content max-w-[700px] mx-auto animate-on-scroll">
                 <h2 data-i18n="contact.title" class="text-4xl font-semibold mb-6 dark:text-white">Ready to Build Your
@@ -1243,14 +1292,14 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-12 bg-charcoal text-white">
+    <footer class="footer py-8 md:py-12 bg-charcoal text-white">
         <div class="container mx-auto px-6">
             <div
                 class="footer-content flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
                 <div class="footer-brand">
                     <a href="#" class="logo text-white no-underline flex items-center">
-                        <img src="assets/img/JomBina.webp" alt="Jombina.site Logo" width="241" height="56" loading="lazy"
-                            class="h-10 w-auto object-contain">
+                        <img src="assets/img/JomBina.webp" alt="Jombina.site Logo" width="241" height="56"
+                            loading="lazy" class="h-10 w-auto object-contain">
                     </a>
                     <p class="footer-tagline text-light-gray text-sm mt-2 mb-0" data-i18n="footer.tagline">Professional
                         web development for business
