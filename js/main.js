@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     excerpt: 'A complete guide on website development costs in Malaysia. From landing pages to e-commerce, know the budget needed...'
                 }
             },
- 
+
         },
         ms: {
             nav: {
@@ -454,12 +454,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     excerpt: 'Panduan lengkap tentang kos membuat website di Malaysia. Dari landing page hingga e-commerce, ketahui budget yang diperlukan...'
                 }
             },
- 
+
         }
     };
 
-    const langBtn = document.getElementById('lang-toggle');
-    const langText = langBtn ? langBtn.querySelector('.lang-text') : null;
+    // --- LANGUAGE SWITCHER ---
+    // Use classes to support multiple buttons (mobile & desktop)
+    const langBtns = document.querySelectorAll('.lang-btn, #lang-toggle');
     let currentLang = localStorage.getItem('site_lang') || 'ms'; // Default to Malay
 
     function setLanguage(lang) {
@@ -469,10 +470,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update HTML lang attribute
         document.documentElement.lang = lang;
 
-        // Update toggle button text
-        if (langText) {
-            langText.textContent = lang === 'en' ? 'EN' : 'MS';
-        }
+        // Update ALL toggle button texts
+        document.querySelectorAll('.lang-text').forEach(el => {
+            el.textContent = lang === 'en' ? 'EN' : 'MS';
+        });
 
         // Update text content
         document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -500,19 +501,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    if (langBtn) {
-        langBtn.addEventListener('click', () => {
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
             const newLang = currentLang === 'en' ? 'ms' : 'en';
             setLanguage(newLang);
         });
-    }
+    });
 
     // Initialize Language
     setLanguage(currentLang);
 
     // --- THEME SWITCHER ---
-    const themeBtn = document.getElementById('theme-toggle');
-    const themeIcon = themeBtn ? themeBtn.querySelector('i') : null;
+    const themeBtns = document.querySelectorAll('.theme-btn, #theme-toggle');
 
     // Check for saved theme preference or system preference
     const savedTheme = localStorage.getItem('site_theme');
@@ -526,26 +526,30 @@ document.addEventListener('DOMContentLoaded', function () {
         if (theme === 'dark') {
             document.documentElement.classList.add('dark');
             document.body.classList.add('dark-mode');
-            if (themeIcon) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            }
+
+            // Update ALL theme icons
+            document.querySelectorAll('.theme-btn i, #theme-toggle i').forEach(icon => {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            });
         } else {
             document.documentElement.classList.remove('dark');
             document.body.classList.remove('dark-mode');
-            if (themeIcon) {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
+
+            // Update ALL theme icons
+            document.querySelectorAll('.theme-btn i, #theme-toggle i').forEach(icon => {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            });
         }
     }
 
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             setTheme(newTheme);
         });
-    }
+    });
 
     // Initialize Theme
     setTheme(currentTheme);
