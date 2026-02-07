@@ -242,6 +242,30 @@
                         overflow: hidden;
                     }
                 }
+
+                /* FAST FIX: Enforce desktop styles if Tailwind classes are missing from build */
+                @media (min-width: 768px) {
+                    .nav-menu {
+                        position: static !important;
+                        display: flex !important;
+                        flex-direction: row !important;
+                        width: auto !important;
+                        height: auto !important;
+                        background-color: transparent !important;
+                        box-shadow: none !important;
+                        padding: 0 !important;
+                        top: auto !important;
+                        left: auto !important;
+                    }
+
+                    .nav-actions {
+                        display: flex !important;
+                    }
+
+                    .mobile-menu-btn {
+                        display: none !important;
+                    }
+                }
             </style>
         </div>
     </nav>

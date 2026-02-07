@@ -1029,276 +1029,118 @@ if (backToTopBtn) {
 }
 
 
-/* ===== HERO BACKGROUND ANIMATION (DIGITAL GRID) ===== */
+/* ===== HERO BACKGROUND ANIMATION (DIGITAL AURORA) ===== */
 const canvas = document.getElementById('hero-background');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
-    let gridOffset = 0;
-    const speed = 1; // Speed of forward movement
-    const gridSize = 40; // Base grid size
-    const contentWidth = 1000; // Max width for perspective
 
-    // Mouse interaction
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetMouseX = 0;
-    let targetMouseY = 0;
+    // Aurora Orbs
+    const orbs = [];
+    const numOrbs = 5; // Number of floating color blobs
 
-    // Resize canvas to match hero
+    class Orb {
+        constructor() {
+            this.init();
+        }
+
+        init() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            // Large smooth blobs
+            this.radius = Math.random() * (Math.min(width, height) * 0.4) + 100;
+            this.vx = (Math.random() - 0.5) * 0.5; // Very slow movement
+            this.vy = (Math.random() - 0.5) * 0.5;
+
+            // Brand Colors (Blue/Cyan/Purple/Dark schemes)
+            const colors = [
+                { r: 10, g: 102, b: 194 },  // Brand Blue
+                { r: 0, g: 191, b: 255 },   // Deep Sky Blue
+                { r: 100, g: 116, b: 139 }, // Slate (Darker)
+                { r: 15, g: 23, b: 42 }     // Dark Slate (Base)
+            ];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.alpha = Math.random() * 0.1 + 0.05; // Low opacity for blending
+
+            // Pulse effect
+            this.pulseSpeed = 0.01 + Math.random() * 0.02;
+            this.pulseAngle = Math.random() * Math.PI * 2;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce smoothly
+            if (this.x < -this.radius) this.vx *= -1;
+            if (this.x > width + this.radius) this.vx *= -1;
+            if (this.y < -this.radius) this.vy *= -1;
+            if (this.y > height + this.radius) this.vy *= -1;
+
+            // Pulse logic
+            this.pulseAngle += this.pulseSpeed;
+        }
+
+        draw() {
+            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+
+            // Dynamic alpha pulse
+            const currentAlpha = this.alpha + Math.sin(this.pulseAngle) * 0.02;
+
+            gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${Math.max(0, currentAlpha)})`);
+            gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
     function resizeCanvas() {
+        // Find hero section to match its size
         const hero = document.querySelector('.hero');
         if (hero) {
             width = canvas.width = hero.offsetWidth;
             height = canvas.height = hero.offsetHeight;
+            orbs.length = 0; // Clear existing
+            for (let i = 0; i < numOrbs; i++) orbs.push(new Orb());
         }
     }
 
-    // Handle mouse movement for parallax
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth) - 0.5;
-        const y = (e.clientY / window.innerHeight) - 0.5;
-        targetMouseX = x * 100; // Max tilt X
-        targetMouseY = y * 50;  // Max tilt Y
-    });
-
-    // Lerp function for smooth movement
-    function lerp(start, end, factor) {
-        return start + (end - start) * factor;
-    }
-
-    // Draw the 3D Grid
-    function drawGrid() {
-        // Smoothly interpolate mouse values
-        mouseX = lerp(mouseX, targetMouseX, 0.05);
-        mouseY = lerp(mouseY, targetMouseY, 0.05);
-
+    function animateAurora() {
         ctx.clearRect(0, 0, width, height);
 
-        // Gradient Background
-        const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
-        // Use brand colors: Dark layout
-        // Get CSS variables or hardcode based on tailwind config
-        // Using dark charcoal/slate tones
-        bgGradient.addColorStop(0, '#1E293B'); // slate-800
-        bgGradient.addColorStop(1, '#0F172A'); // slate-900
-
-        ctx.fillStyle = bgGradient;
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.save();
-
-        // Perspective settings
-        const horizon = height * 0.4; // Horizon line position
-        const fov = 250;
-
-        ctx.translate(width / 2 + mouseX, horizon + mouseY);
-
-        // Grid styling
-        ctx.strokeStyle = 'rgba(10, 102, 194, 0.15)'; // Brand Blue with low opacity
-        ctx.lineWidth = 1;
-
-        // Draw Vertical Lines
-        // We draw lines from the vanishing point extending outwards
-        // Only draw lines that would be visible within the FOV
-        const cols = 40;
-        for (let i = -cols; i <= cols; i++) {
-            const x = i * gridSize;
-
-            ctx.beginPath();
-            // Start from vanishing point (0,0 relative to translation)
-            // But we can start a bit lower to hide the singularity
-            ctx.moveTo(x * 0.1, 0);
-            // End point (projected)
-            // We project simply by drawing lines downwards
-            // To make them "fanned out" in 3D, we just draw them straight in this specific perspective hack
-            // or we can do true 3D projection. 
-            // Let's stick to a simpler "retro floor" perspective
-
-            // True 3D projection logic for a floor plane:
-            // x2d = x3d * (fov / (fov + z3d))
-            // y2d = y3d * (fov / (fov + z3d))
-
-            // Let's just draw radiating lines from the vanishing point
-            ctx.moveTo(0, 0);
-            ctx.lineTo(x * 10, height);
-            ctx.stroke();
-        }
-
-        // Draw Horizontal Lines (Moving forward)
-        // These lines move "down" the screen
-        gridOffset = (gridOffset + speed) % gridSize;
-
-        // We need to draw lines at increasing Z depths, then project them
-        // Z goes from 0 (viewer) to infinity (horizon)
-        // But in screen space, y goes from height to horizon.
-
-        for (let i = 0; i < 40; i++) {
-            // Logarithmic spacing to simulate depth
-            // y = horizon + (distance / z)
-
-            // Easier approach: standard retro grid loop
-            // Calculate a 'y' on the screen based on 'z' depth
-            let z = i * gridSize - gridOffset;
-            if (z < 0) z += gridSize * 40; // Loop
-
-            // Perspective projection for Y
-            // As Z gets larger (further away), Y approaches 0 (horizon) relative to bottom?
-            // Actually let's use a simpler exponential distribution for the horizontal lines
-
-            // Let's just draw horizontal lines that get closer together as they go up
-            const perspectiveFactor = i / 20;
-            const y = height - (Math.pow(1.5, i) * (gridOffset + 5)) + horizon;
-
-            if (y < horizon) continue;
-            if (y > height) continue;
-
-            const alpha = 1 - ((horizon - y) / (horizon - height)); // Fade out near horizon?
-
-            // Simple horizontal lines
-            ctx.beginPath();
-            // Vary width based on depth?
-            ctx.moveTo(-width, y - horizon); // Relative to center
-            ctx.lineTo(width, y - horizon);
-            ctx.stroke();
-        }
-
-        ctx.restore();
-
-        // Add a vignette effect for focus
-        const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
-        gradient.addColorStop(0, 'rgba(0,0,0,0)');
-        gradient.addColorStop(0.8, 'rgba(0,0,0,0.5)');
-        gradient.addColorStop(1, 'rgba(0,0,0,0.8)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, width, height);
-
-        requestAnimationFrame(drawGrid);
-    }
-
-    // Better 3D Grid Implementation
-    function initGrid() {
-        resizeCanvas();
-        requestAnimationFrame(animate3DGrid);
-    }
-
-    function animate3DGrid() {
-        // Clear
-        ctx.clearRect(0, 0, width, height);
-
-        // Background
-        const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
-        bgGradient.addColorStop(0, '#ffffff'); // Light mode base
-        bgGradient.addColorStop(1, '#f3f4f6');
-
-        // Check for dark mode
+        // Base Background Color
         const isDark = document.documentElement.classList.contains('dark');
         if (isDark) {
-            const darkGradient = ctx.createLinearGradient(0, 0, 0, height);
-            darkGradient.addColorStop(0, '#1a1a1a');
-            darkGradient.addColorStop(1, '#0f0f0f');
-            ctx.fillStyle = darkGradient;
+            ctx.fillStyle = '#1e293b'; // Slate-800
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'screen'; // Blending mode for glow
         } else {
-            ctx.fillStyle = bgGradient;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'source-over';
         }
 
-        ctx.fillRect(0, 0, width, height);
+        orbs.forEach(orb => {
+            orb.update();
+            orb.draw();
+        });
 
-        // Mouse/Camera influence
-        mouseX = lerp(mouseX, targetMouseX, 0.05);
-        mouseY = lerp(mouseY, targetMouseY, 0.05);
+        // Reset composite
+        ctx.globalCompositeOperation = 'source-over';
 
-        const time = Date.now() * 0.0005; // Time for movement
-
-        const horizon = height * 0.5;
-        const fov = 300;
-
-        ctx.save();
-        ctx.translate(width / 2 + mouseX, horizon + mouseY + 50);
-
-        // Grid Settings
-        const gridSize = 60;
-        const gridExtent = 2000; // How far grid extends
-        const moveSpeed = 100;
-        const zOffset = (time * moveSpeed) % gridSize;
-
-        // Grid Color
-        if (isDark) {
-            ctx.strokeStyle = 'rgba(100, 200, 255, 0.15)'; // Cyan/Blue in dark
-            ctx.shadowBlur = 5;
-            ctx.shadowColor = 'rgba(100, 200, 255, 0.5)';
-        } else {
-            ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)'; // Gray in light
-            ctx.shadowBlur = 0;
-        }
-        ctx.lineWidth = 1;
-
-        // Draw Vertical Lines (Z-axis)
-        for (let x = -gridExtent; x <= gridExtent; x += gridSize) {
-            // Project start (close) and end (far) points
-            // x3d is x, y3d is 0 (floor), z3d goes from near to far
-
-            // Point 1 (Near)
-            const x1 = x;
-            const y1 = 200; // Floor height relative to horizon
-            const z1 = -fov + 10; // Clip plane
-
-            // Point 2 (Far)
-            const x2 = x;
-            const y2 = 200;
-            const z2 = gridExtent;
-
-            // Projection Logic
-            // x2d = x3d * (fov / (fov + z3d))
-            // y2d = y3d * (fov / (fov + z3d))
-
-            // Simplified drawing for visual effect
-            // Draw lines radiating from vanishing point
-
-            const scaleFar = fov / (fov + z2);
-            const x2dFar = x2 * scaleFar;
-            const y2dFar = y2 * scaleFar;
-
-            const scaleNear = fov / (fov + 100); // Start drawing a bit in front
-            const x2dNear = x1 * scaleNear;
-            const y2dNear = y1 * scaleNear;
-
-            ctx.beginPath();
-            ctx.moveTo(x2dNear, y2dNear);
-            ctx.lineTo(x2dFar, y2dFar);
-            ctx.stroke();
-        }
-
-        // Draw Horizontal Lines (X-axis) moving towards camera
-        for (let z = 0; z < gridExtent; z += gridSize) {
-            const currentZ = z - zOffset;
-            if (currentZ < 100) continue; // Clip near
-
-            const scale = fov / (fov + currentZ);
-            const xLeft = -gridExtent * scale;
-            const xRight = gridExtent * scale;
-            const y = 200 * scale;
-
-            // Fade out distantly
-            const alpha = 1 - (currentZ / gridExtent);
-            if (alpha < 0) continue;
-
-            ctx.globalAlpha = alpha;
-            ctx.beginPath();
-            ctx.moveTo(xLeft, y);
-            ctx.lineTo(xRight, y);
-            ctx.stroke();
-            ctx.globalAlpha = 1.0;
-        }
-
-        ctx.restore();
-
-        requestAnimationFrame(animate3DGrid);
+        requestAnimationFrame(animateAurora);
     }
 
     // Start
-    initGrid();
     window.addEventListener('resize', resizeCanvas);
+    // Initial delay to ensure DOM is ready
+    setTimeout(() => {
+        resizeCanvas();
+        requestAnimationFrame(animateAurora);
+    }, 100);
 
     // OPTIMIZATION: Intersection Observer
     const heroSection = document.querySelector('.hero');
