@@ -1311,37 +1311,7 @@ if (canvas) {
         observer.observe(heroSection);
     }
 }
-if (entry.isIntersecting) {
-    isHeroVisible = true;
-    if (!animationId) {
-        animateParticles();
-    }
-} else {
-    isHeroVisible = false;
-    cancelAnimationFrame(animationId);
-    animationId = null;
-}
-            });
-        }, { threshold: 0 }); // Trigger as soon as any part is visible/hidden
 
-observer.observe(heroSection);
-    } else {
-    // Fallback if hero section not found
-    animateParticles();
-}
-
-// Pause animation when tab is not visible (performance)
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-    } else {
-        if (isHeroVisible && !animationId) {
-            animateParticles();
-        }
-    }
-});
-}
 
 /* ===== PRELOADER ===== */
 window.addEventListener('load', () => {
