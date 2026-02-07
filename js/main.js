@@ -1029,40 +1029,166 @@ if (backToTopBtn) {
 }
 
 
-/* ===== HERO BACKGROUND ANIMATION (3D WIREFRAME TERRAIN) ===== */
+/* ===== HERO BACKGROUND ANIMATION (FLOATING DIGITAL STRUCTURES) ===== */
 const canvas = document.getElementById('hero-background');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
 
-    // Terrain Config
-    const stripWidth = 40;  // Gap between lines
-    const stripGap = 40;    // Z-gap
-    let offset = 0;         // Animation speed
-    const speed = 2;        // Flight speed
+    // Config
+    const shapes = [];
+    const numShapes = 12; // Number of floating blueprints
 
-    // Perlin-ish noise approximation for terrain height
-    // We want a valley in the middle for text readability
-    function getTerrainHeight(x, z) {
-        // Normalized X from -1 to 1
-        const nx = (x / width) * 2 - 1;
-
-        // Valley factor: 0 in center, 1 at edges. Power to make valley wide.
-        const valley = Math.pow(Math.abs(nx), 2.5);
-
-        // Simple distinct waves
-        const wave1 = Math.sin((x * 0.01) + (z * 0.01)) * 20;
-        const wave2 = Math.cos((x * 0.03) - (z * 0.02)) * 10;
-        const rolling = Math.sin(z * 0.005) * 50;
-
-        // Combine: Base height + (Mountain height * valley factor)
-        // This keeps center flat(-ish) and edges high
-        return 100 + wave1 + wave2 + rolling + (valley * 200);
+    // 3D Math Helper
+    function rotateX(point, theta) {
+        const y = point.y * Math.cos(theta) - point.z * Math.sin(theta);
+        const z = point.y * Math.sin(theta) + point.z * Math.cos(theta);
+        return { x: point.x, y: y, z: z };
+    }
+    function rotateY(point, theta) {
+        const x = point.x * Math.cos(theta) + point.z * Math.sin(theta);
+        const z = -point.x * Math.sin(theta) + point.z * Math.cos(theta);
+        return { x: x, y: point.y, z: z };
+    }
+    function rotateZ(point, theta) {
+        const x = point.x * Math.cos(theta) - point.y * Math.sin(theta);
+        const y = point.x * Math.sin(theta) + point.y * Math.cos(theta);
+        return { x: x, y: y, z: point.z };
+    }
+    function project(point, width, height) {
+        const fov = 400;
+        const scale = fov / (fov + point.z);
+        const x2d = point.x * scale + width / 2;
+        const y2d = point.y * scale + height / 2;
+        return { x: x2d, y: y2d, scale: scale };
     }
 
-    function initTerrain() {
+    // Geometry Definitions
+    const geometries = {
+        cube: {
+            vertices: [
+                { x: -1, y: -1, z: -1 }, { x: 1, y: -1, z: -1 }, { x: 1, y: 1, z: -1 }, { x: -1, y: 1, z: -1 },
+                { x: -1, y: -1, z: 1 }, { x: 1, y: -1, z: 1 }, { x: 1, y: 1, z: 1 }, { x: -1, y: 1, z: 1 }
+            ],
+            edges: [
+                [0, 1], [1, 2], [2, 3], [3, 0], // Back face
+                [4, 5], [5, 6], [6, 7], [7, 4], // Front face
+                [0, 4], [1, 5], [2, 6], [3, 7]  // Connecting lines
+            ]
+        },
+        pyramid: {
+            vertices: [
+                { x: 0, y: -1, z: 0 }, // Top
+                { x: -1, y: 1, z: -1 }, { x: 1, y: 1, z: -1 }, { x: 1, y: 1, z: 1 }, { x: -1, y: 1, z: 1 } // Base
+            ],
+            edges: [
+                [0, 1], [0, 2], [0, 3], [0, 4], // Sides
+                [1, 2], [2, 3], [3, 4], [4, 1]  // Base
+            ]
+        }
+    };
+
+    class Shape {
+        constructor() {
+            this.init();
+        }
+
+        init() {
+            // Position: Spread out, avoid absolute center (text area)
+            this.x = (Math.random() - 0.5) * width * 1.5;
+            this.y = (Math.random() - 0.5) * height * 1.5;
+            this.z = Math.random() * 500 + 100; // Depth
+
+            // Type
+            const types = ['cube', 'pyramid'];
+            this.type = types[Math.floor(Math.random() * types.length)];
+            this.geometry = geometries[this.type];
+
+            // Scale
+            this.size = Math.random() * 40 + 20;
+
+            // Rotation Speed
+            this.rx = Math.random() * Math.PI * 2;
+            this.ry = Math.random() * Math.PI * 2;
+            this.rz = Math.random() * Math.PI * 2;
+
+            this.vrx = (Math.random() - 0.5) * 0.01;
+            this.vry = (Math.random() - 0.5) * 0.01;
+            this.vrz = (Math.random() - 0.5) * 0.01;
+
+            // Movement
+            this.vx = (Math.random() - 0.5) * 0.2;
+            this.vy = (Math.random() - 0.5) * 0.2;
+        }
+
+        update() {
+            this.rx += this.vrx;
+            this.ry += this.vry;
+            this.rz += this.vrz;
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounds check - wrap around
+            if (this.x < -width) this.x = width;
+            if (this.x > width) this.x = -width;
+            if (this.y < -height) this.y = height;
+            if (this.y > height) this.y = -height;
+        }
+
+        draw(ctx, width, height, isDark) {
+            ctx.beginPath();
+
+            const verts = this.geometry.vertices.map(v => {
+                // Resize
+                let p = { x: v.x * this.size, y: v.y * this.size, z: v.z * this.size };
+                // Rotate
+                p = rotateX(p, this.rx);
+                p = rotateY(p, this.ry);
+                p = rotateZ(p, this.rz);
+                // Translate
+                p.x += this.x;
+                p.y += this.y;
+                p.z += this.z;
+                return p;
+            });
+
+            // Project and Draw Edges
+            this.geometry.edges.forEach(edge => {
+                const p1 = project(verts[edge[0]], width, height);
+                const p2 = project(verts[edge[1]], width, height);
+
+                // Opacity based on Z depth
+                const alpha = 1 - (verts[edge[0]].z / 1000);
+
+                // Color Logic
+                if (isDark) {
+                    ctx.strokeStyle = `rgba(56, 189, 248, ${Math.max(0, alpha * 0.6)})`; // Cyan/Blue
+                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = `rgba(56, 189, 248, ${alpha * 0.5})`;
+                } else {
+                    ctx.strokeStyle = `rgba(30, 41, 59, ${Math.max(0, alpha * 0.2)})`; // Dark Slate
+                    ctx.shadowBlur = 0;
+                }
+
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+            });
+
+            ctx.stroke();
+
+            // Fill Logic (Optional - Wireframe + slight fill looks more "solid")
+            // Omitted to keep it purely "Blueprint" style
+        }
+    }
+
+    function initShapes() {
         width = canvas.width;
         height = canvas.height;
+        shapes.length = 0;
+        for (let i = 0; i < numShapes; i++) {
+            shapes.push(new Shape());
+        }
     }
 
     function resizeCanvas() {
@@ -1070,134 +1196,50 @@ if (canvas) {
         if (hero) {
             canvas.width = hero.offsetWidth;
             canvas.height = hero.offsetHeight;
-            initTerrain();
+            initShapes();
         }
     }
 
-    function project(x, y, z) {
-        // Simple perspective projection
-        const fov = 300;
-        const scale = fov / (fov + z);
-        const x2d = (x * scale) + (width / 2);
-        // Horizon handling: shift down so horizon is lower/middle
-        // 0 is top of screen, height is bottom. 
-        // We want horizon around 1/3 or 1/2 down?
-        // Let's render "below" the horizon.
-        const horizonY = height * 0.4;
-        const y2d = (y * scale) + horizonY;
-
-        return { x: x2d, y: y2d, scale: scale };
-    }
-
-    function animateTerrain() {
-        // Clear
-        // Create a deep fade effect for the "sky"
+    function animateStructures() {
         const isDark = document.documentElement.classList.contains('dark');
 
+        ctx.clearRect(0, 0, width, height);
+
+        // Background
         if (isDark) {
-            // Dark Gradient Sky
             const gradient = ctx.createLinearGradient(0, 0, 0, height);
-            gradient.addColorStop(0, '#0f172a'); // Deep slate
-            gradient.addColorStop(0.5, '#1e293b'); // Horizon
-            gradient.addColorStop(1, '#0f172a'); // Bottom
+            gradient.addColorStop(0, '#0f172a');
+            gradient.addColorStop(1, '#1e293b');
             ctx.fillStyle = gradient;
         } else {
             ctx.fillStyle = '#ffffff';
         }
         ctx.fillRect(0, 0, width, height);
 
-        // Move forward
-        offset -= speed;
-        if (offset <= -stripGap) offset += stripGap;
+        // Grid Floor (Optional - faint blueprint grid)
+        // Helps ground the scene
+        // Omitted to focus on floating shapes
 
-        // Colors
-        let strokeColor;
-        if (isDark) {
-            strokeColor = 'rgba(56, 189, 248, 0.4)'; // Cyan low opacity
-            ctx.shadowColor = '#0ea5e9';
-            ctx.shadowBlur = 10;
-        } else {
-            strokeColor = 'rgba(15, 23, 42, 0.15)'; // Slate
-            ctx.shadowBlur = 0;
-        }
+        ctx.lineWidth = 1.5;
 
-        ctx.strokeStyle = strokeColor;
-        ctx.lineWidth = 1;
+        shapes.forEach(shape => {
+            shape.update();
+            shape.draw(ctx, width, height, isDark);
+        });
 
-        // Render Grid
-        // We render horizontal lines (strips) moving towards us
-        // And vertical lines connecting them
-
-        const horizonDepth = 800; // How far we see
-        const terrainWidth = width * 2; // Wider than screen to allow turning/fov
-
-        ctx.beginPath();
-
-        // Z-loop (Distance)
-        for (let z = 100; z < horizonDepth; z += stripGap) {
-            let zCurrent = z + offset;
-            let zNext = zCurrent + stripGap;
-
-            // X-loop (Width)
-            for (let x = -terrainWidth / 2; x < terrainWidth / 2; x += stripWidth) {
-                // Determine heights
-                const y1 = getTerrainHeight(x, zCurrent + offset * 0.1); // add global movement
-                const y2 = getTerrainHeight(x, zNext + offset * 0.1);
-                const y3 = getTerrainHeight(x + stripWidth, y1, zCurrent); // Right neighbor
-
-                // Project points
-                const p1 = project(x, y1, zCurrent);
-                const p2 = project(x, y2, zNext);
-                const p3 = project(x + stripWidth, y1, zCurrent); // Right neighbor
-
-                // Culling: Don't draw if clearly off-screen
-                if (p1.y < 0 || p1.y > height) continue;
-
-                // Draw Horizontal Segment
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p3.x, p3.y);
-
-                // Draw Vertical Segment (Connection to further Z)
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p2.x, p2.y);
-            }
-        }
-        ctx.stroke();
-
-        // Fog / Fade at Horizon
-        // We draw a gradient box at the top/horizon to mask the "pop in" of lines
-        const horizonY = height * 0.4;
-        const fog = ctx.createLinearGradient(0, 0, 0, height);
-
-        if (isDark) {
-            fog.addColorStop(0, '#0f172a'); // Sky color
-            fog.addColorStop(0.35, '#0f172a'); // Solid until near horizon
-            fog.addColorStop(0.5, 'rgba(15, 23, 42, 0)'); // Fade out
-            fog.addColorStop(1, 'rgba(15, 23, 42, 0)');
-        } else {
-            fog.addColorStop(0, '#ffffff');
-            fog.addColorStop(0.35, '#ffffff');
-            fog.addColorStop(0.5, 'rgba(255,255,255,0)');
-            fog.addColorStop(1, 'rgba(255,255,255,0)');
-        }
-
-        ctx.fillStyle = fog;
-        ctx.fillRect(0, 0, width, height);
-
-        requestAnimationFrame(animateTerrain);
+        requestAnimationFrame(animateStructures);
     }
 
-    // Interaction: Tilt
+    // Interaction: Mouse repels shapes slightly?
     document.addEventListener('mousemove', (e) => {
-        // Optional: slight camera banking could be added here
-        // by modifying the project() function based on mouseX
+        // Could implement subtle interaction
     });
 
     // Init
     window.addEventListener('resize', resizeCanvas);
     setTimeout(() => {
         resizeCanvas();
-        requestAnimationFrame(animateTerrain);
+        requestAnimationFrame(animateStructures);
     }, 100);
 
     // OPTIMIZATION
