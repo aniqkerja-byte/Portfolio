@@ -1029,202 +1029,135 @@ if (backToTopBtn) {
 }
 
 
-/* ===== HERO BACKGROUND ANIMATION (ADVANCED 3D NETWORK) ===== */
+/* ===== HERO BACKGROUND ANIMATION (CYBERPUNK DATA RAIN) ===== */
 const canvas = document.getElementById('hero-background');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
 
-    // Configuration
-    const config = {
-        particleCount: 80, // High density for "complex" look
-        connectionDistance: 120,
-        mouseDistance: 200,
-        depth: 300, // Z-depth simulation
-        colors: {
-            light: ['#1E293B', '#0F172A', '#334155'], // Slate tokens
-            dark: ['#38bdf8', '#818cf8', '#22d3ee']    // Cyan/Indigo/Teal glow
-        }
-    };
+    // Config
+    const fontSize = 16;
+    let columns = 0;
+    const drops = []; // y-position of drops
 
-    let particles = [];
+    // Charset: Katakana + Latin + Numbers
+    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+    const charset = katakana + latin + nums;
 
-    // Mouse State
-    const mouse = { x: -1000, y: -1000 };
+    function initRain() {
+        width = canvas.width;
+        height = canvas.height;
+        columns = Math.floor(width / fontSize);
 
-    class Particle {
-        constructor() {
-            this.init();
-        }
-
-        init() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.z = Math.random() * config.depth; // 0 (front) to 300 (back)
-
-            // Velocity
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-
-            // Size depends on Z (perspective)
-            this.baseSize = Math.random() * 2 + 1;
-        }
-
-        update() {
-            // Move standard
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Mouse Interaction (Repulsion/Attraction)
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            // "Magnetic" effect within range
-            if (distance < config.mouseDistance) {
-                const forceDirectionX = dx / distance;
-                const forceDirectionY = dy / distance;
-                const force = (config.mouseDistance - distance) / config.mouseDistance;
-
-                // Repel: move away from mouse
-                // Multiply by a factor for strength
-                const repulsionStrength = 2;
-                this.vx -= forceDirectionX * force * 0.05 * repulsionStrength;
-                this.vy -= forceDirectionY * force * 0.05 * repulsionStrength;
-            }
-
-            // Friction to stabilize speed
-            this.vx *= 0.99;
-            this.vy *= 0.99;
-
-            // Bounce off walls
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-        }
-
-        draw(isDark) {
-            // Perspective Projection
-            // Simple: size scales with Z. 
-            // Closer (low Z) = bigger. Further (high Z) = smaller.
-            const scale = 1 - (this.z / config.depth); // 1.0 down to 0.0
-            const opacity = scale * 0.8; // Fade out at distance
-            const radius = this.baseSize * scale;
-
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, Math.max(0, radius), 0, Math.PI * 2);
-
-            if (isDark) {
-                // Glowing cyan/blue
-                ctx.fillStyle = `rgba(56, 189, 248, ${opacity})`;
-                ctx.shadowBlur = 10 * scale;
-                ctx.shadowColor = `rgba(56, 189, 248, ${opacity})`;
-            } else {
-                // Dark nodes for light mode
-                ctx.fillStyle = `rgba(30, 41, 59, ${opacity})`;
-                ctx.shadowBlur = 0;
-            }
-            ctx.fill();
-
-            return { x: this.x, y: this.y, scale: scale, opacity: opacity };
-        }
-    }
-
-    function initNetwork() {
-        particles = [];
-        // Adjust count based on screen size
-        const count = width < 768 ? 40 : config.particleCount;
-        for (let i = 0; i < count; i++) {
-            particles.push(new Particle());
+        drops.length = 0;
+        for (let i = 0; i < columns; i++) {
+            // Random start Y to avoid "wall of text" effect at start
+            drops[i] = Math.random() * -(height / fontSize);
         }
     }
 
     function resizeCanvas() {
         const hero = document.querySelector('.hero');
         if (hero) {
-            width = canvas.width = hero.offsetWidth;
-            height = canvas.height = hero.offsetHeight;
-            initNetwork();
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+            initRain();
         }
     }
 
-    document.addEventListener('mousemove', (e) => {
-        // Adjust for canvas position relative to viewport (since Hero is usually top)
-        // Or simply use clientX/Y if canvas covers full top
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-    });
-
-    function animateNetwork() {
-        ctx.clearRect(0, 0, width, height);
-
+    function animateRain() {
+        // Trail Effect: slightly transparent black repaint
+        // Varies by theme
         const isDark = document.documentElement.classList.contains('dark');
 
-        // Background
         if (isDark) {
-            const gradient = ctx.createLinearGradient(0, 0, 0, height);
-            gradient.addColorStop(0, '#0f172a'); // Slate 900
-            gradient.addColorStop(1, '#1e293b'); // Slate 800
-            ctx.fillStyle = gradient;
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.1)'; // Dark Slate with trail
+            ctx.shadowColor = '#38bdf8'; // Cyan Glow
         } else {
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; // White with trail
+            ctx.shadowColor = '#0f172a'; // Dark Slate Glow
         }
+
         ctx.fillRect(0, 0, width, height);
 
-        // Update and Draw Particles
-        // We act on particles then draw connections
-        // To draw connections efficiently, we need positions
+        // Text Style
+        ctx.font = 'bold ' + fontSize + 'px monospace';
 
-        // Optimization: Standard N^2 loop is fine for < 100 particles
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            const p1 = particles[i].draw(isDark);
+        for (let i = 0; i < drops.length; i++) {
+            // Random Character
+            const text = charset.charAt(Math.floor(Math.random() * charset.length));
 
-            // Connect to others
-            for (let j = i + 1; j < particles.length; j++) {
-                const p2 = particles[j]; // Just access object for position
-                // We use raw x/y for distance, but could incorporate Z
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+            // X position: column index * font size
+            const x = i * fontSize;
+            // Y position: drop value * font size
+            const y = drops[i] * fontSize;
 
-                if (dist < config.connectionDistance) {
-                    // Opacity based on distance AND average Z-scale of both particles
-                    // This creates depth in connections too
-                    const zScaleAvg = (p1.scale + (1 - particles[j].z / config.depth)) / 2;
-                    const alpha = (1 - dist / config.connectionDistance) * zScaleAvg * 0.5;
+            // Color Logic
+            // Randomly make some characters "bright" / "white" for glitch effect
+            const isBright = Math.random() > 0.95;
 
-                    ctx.beginPath();
+            if (isDark) {
+                if (isBright) {
+                    ctx.fillStyle = '#ffffff'; // Flash white
+                    ctx.shadowBlur = 15;
+                } else {
+                    ctx.fillStyle = '#0EA5E9'; // Sky 500 (Cyan-ish)
+                    ctx.shadowBlur = 2; // Subtle glow
+                }
+            } else {
+                if (isBright) {
+                    ctx.fillStyle = '#38bdf8'; // Flash Cyan in light mode
+                    ctx.shadowBlur = 5;
+                } else {
+                    ctx.fillStyle = '#334155'; // Slate 700
+                    ctx.shadowBlur = 0;
+                }
+            }
 
-                    if (isDark) {
-                        ctx.strokeStyle = `rgba(129, 140, 248, ${alpha})`; // Indigo glow
-                    } else {
-                        ctx.strokeStyle = `rgba(15, 23, 42, ${alpha})`; // Dark slate
-                    }
+            ctx.fillText(text, x, y);
 
-                    ctx.lineWidth = 1 * zScaleAvg; // Lines get thinner in back
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
+            // Reset drop to top randomly after it has crossed screen
+            // Adding randomness to the reset to keeps drops scattered
+            if (y > height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+
+            // Increment Y
+            drops[i]++;
+        }
+
+        requestAnimationFrame(animateRain);
+    }
+
+    // Mouse Interaction: "Cyber Glitch"
+    // When mouse moves, randomize drops near cursor to create "disturbance"
+    document.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const col = Math.floor(mouseX / fontSize);
+
+        // Glitch nearby columns
+        const range = 2;
+        for (let i = col - range; i <= col + range; i++) {
+            if (i >= 0 && i < drops.length) {
+                // Randomly reset or speed up
+                if (Math.random() > 0.5) {
+                    // "Magnetic disruption" - push text down instantly
+                    drops[i] += 2;
                 }
             }
         }
-
-        // Draw Vignette for "Premium" feel
-        const vignette = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
-        vignette.addColorStop(0, 'rgba(0,0,0,0)');
-        vignette.addColorStop(1, 'rgba(0,0,0,0.3)');
-        ctx.fillStyle = vignette;
-        ctx.fillRect(0, 0, width, height);
-
-        requestAnimationFrame(animateNetwork);
-    }
+    });
 
     // Init
     window.addEventListener('resize', resizeCanvas);
     setTimeout(() => {
         resizeCanvas();
-        requestAnimationFrame(animateNetwork);
+        requestAnimationFrame(animateRain);
     }, 100);
 
     // OPTIMIZATION
