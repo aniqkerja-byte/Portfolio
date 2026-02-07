@@ -1029,155 +1029,318 @@ if (backToTopBtn) {
 }
 
 
-/* ===== HERO PARTICLES ANIMATION ===== */
-const canvas = document.getElementById('hero-particles');
+/* ===== HERO BACKGROUND ANIMATION (DIGITAL GRID) ===== */
+const canvas = document.getElementById('hero-background');
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animationId;
+    let width, height;
+    let gridOffset = 0;
+    const speed = 1; // Speed of forward movement
+    const gridSize = 40; // Base grid size
+    const contentWidth = 1000; // Max width for perspective
+
+    // Mouse interaction
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
 
     // Resize canvas to match hero
     function resizeCanvas() {
         const hero = document.querySelector('.hero');
         if (hero) {
-            canvas.width = hero.offsetWidth;
-            canvas.height = hero.offsetHeight;
+            width = canvas.width = hero.offsetWidth;
+            height = canvas.height = hero.offsetHeight;
         }
     }
 
-    // Particle class
-    class Particle {
-        constructor() {
-            this.reset();
-        }
-
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 4 + 1;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
-            this.opacity = Math.random() * 0.5 + 0.1;
-
-            // Color variations
-            const colors = [
-                'rgba(10, 102, 194, ', // Accent blue
-                'rgba(77, 159, 236, ', // Light blue
-                'rgba(100, 100, 100, ', // Gray
-            ];
-            this.color = colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            // Bounce off edges
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.color + this.opacity + ')';
-            ctx.fill();
-        }
-    }
-
-    // Initialize particles
-    function initParticles() {
-        particles = [];
-        // Reduce particle count on mobile (Optimization)
-        const particleCount = window.innerWidth < 768 ? 20 : 50;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-    }
-
-    // Connect nearby particles with lines
-    function connectParticles() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 120) {
-                    const opacity = (1 - distance / 120) * 0.15;
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(10, 102, 194, ${opacity})`;
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    // Animation loop
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-
-        connectParticles();
-
-        animationId = requestAnimationFrame(animateParticles);
-    }
-
-    // Start animation
-    resizeCanvas();
-    initParticles();
-    // animateParticles(); // Removed immediate start
-
-    // Handle resize
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initParticles();
+    // Handle mouse movement for parallax
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) - 0.5;
+        const y = (e.clientY / window.innerHeight) - 0.5;
+        targetMouseX = x * 100; // Max tilt X
+        targetMouseY = y * 50;  // Max tilt Y
     });
 
-    // OPTIMIZATION: Intersection Observer to pause animation when not visible
-    const heroSection = document.querySelector('.hero');
-    let isHeroVisible = true;
+    // Lerp function for smooth movement
+    function lerp(start, end, factor) {
+        return start + (end - start) * factor;
+    }
 
+    // Draw the 3D Grid
+    function drawGrid() {
+        // Smoothly interpolate mouse values
+        mouseX = lerp(mouseX, targetMouseX, 0.05);
+        mouseY = lerp(mouseY, targetMouseY, 0.05);
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Gradient Background
+        const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+        // Use brand colors: Dark layout
+        // Get CSS variables or hardcode based on tailwind config
+        // Using dark charcoal/slate tones
+        bgGradient.addColorStop(0, '#1E293B'); // slate-800
+        bgGradient.addColorStop(1, '#0F172A'); // slate-900
+
+        ctx.fillStyle = bgGradient;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.save();
+
+        // Perspective settings
+        const horizon = height * 0.4; // Horizon line position
+        const fov = 250;
+
+        ctx.translate(width / 2 + mouseX, horizon + mouseY);
+
+        // Grid styling
+        ctx.strokeStyle = 'rgba(10, 102, 194, 0.15)'; // Brand Blue with low opacity
+        ctx.lineWidth = 1;
+
+        // Draw Vertical Lines
+        // We draw lines from the vanishing point extending outwards
+        // Only draw lines that would be visible within the FOV
+        const cols = 40;
+        for (let i = -cols; i <= cols; i++) {
+            const x = i * gridSize;
+
+            ctx.beginPath();
+            // Start from vanishing point (0,0 relative to translation)
+            // But we can start a bit lower to hide the singularity
+            ctx.moveTo(x * 0.1, 0);
+            // End point (projected)
+            // We project simply by drawing lines downwards
+            // To make them "fanned out" in 3D, we just draw them straight in this specific perspective hack
+            // or we can do true 3D projection. 
+            // Let's stick to a simpler "retro floor" perspective
+
+            // True 3D projection logic for a floor plane:
+            // x2d = x3d * (fov / (fov + z3d))
+            // y2d = y3d * (fov / (fov + z3d))
+
+            // Let's just draw radiating lines from the vanishing point
+            ctx.moveTo(0, 0);
+            ctx.lineTo(x * 10, height);
+            ctx.stroke();
+        }
+
+        // Draw Horizontal Lines (Moving forward)
+        // These lines move "down" the screen
+        gridOffset = (gridOffset + speed) % gridSize;
+
+        // We need to draw lines at increasing Z depths, then project them
+        // Z goes from 0 (viewer) to infinity (horizon)
+        // But in screen space, y goes from height to horizon.
+
+        for (let i = 0; i < 40; i++) {
+            // Logarithmic spacing to simulate depth
+            // y = horizon + (distance / z)
+
+            // Easier approach: standard retro grid loop
+            // Calculate a 'y' on the screen based on 'z' depth
+            let z = i * gridSize - gridOffset;
+            if (z < 0) z += gridSize * 40; // Loop
+
+            // Perspective projection for Y
+            // As Z gets larger (further away), Y approaches 0 (horizon) relative to bottom?
+            // Actually let's use a simpler exponential distribution for the horizontal lines
+
+            // Let's just draw horizontal lines that get closer together as they go up
+            const perspectiveFactor = i / 20;
+            const y = height - (Math.pow(1.5, i) * (gridOffset + 5)) + horizon;
+
+            if (y < horizon) continue;
+            if (y > height) continue;
+
+            const alpha = 1 - ((horizon - y) / (horizon - height)); // Fade out near horizon?
+
+            // Simple horizontal lines
+            ctx.beginPath();
+            // Vary width based on depth?
+            ctx.moveTo(-width, y - horizon); // Relative to center
+            ctx.lineTo(width, y - horizon);
+            ctx.stroke();
+        }
+
+        ctx.restore();
+
+        // Add a vignette effect for focus
+        const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
+        gradient.addColorStop(0, 'rgba(0,0,0,0)');
+        gradient.addColorStop(0.8, 'rgba(0,0,0,0.5)');
+        gradient.addColorStop(1, 'rgba(0,0,0,0.8)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+
+        requestAnimationFrame(drawGrid);
+    }
+
+    // Better 3D Grid Implementation
+    function initGrid() {
+        resizeCanvas();
+        requestAnimationFrame(animate3DGrid);
+    }
+
+    function animate3DGrid() {
+        // Clear
+        ctx.clearRect(0, 0, width, height);
+
+        // Background
+        const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+        bgGradient.addColorStop(0, '#ffffff'); // Light mode base
+        bgGradient.addColorStop(1, '#f3f4f6');
+
+        // Check for dark mode
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+            const darkGradient = ctx.createLinearGradient(0, 0, 0, height);
+            darkGradient.addColorStop(0, '#1a1a1a');
+            darkGradient.addColorStop(1, '#0f0f0f');
+            ctx.fillStyle = darkGradient;
+        } else {
+            ctx.fillStyle = bgGradient;
+        }
+
+        ctx.fillRect(0, 0, width, height);
+
+        // Mouse/Camera influence
+        mouseX = lerp(mouseX, targetMouseX, 0.05);
+        mouseY = lerp(mouseY, targetMouseY, 0.05);
+
+        const time = Date.now() * 0.0005; // Time for movement
+
+        const horizon = height * 0.5;
+        const fov = 300;
+
+        ctx.save();
+        ctx.translate(width / 2 + mouseX, horizon + mouseY + 50);
+
+        // Grid Settings
+        const gridSize = 60;
+        const gridExtent = 2000; // How far grid extends
+        const moveSpeed = 100;
+        const zOffset = (time * moveSpeed) % gridSize;
+
+        // Grid Color
+        if (isDark) {
+            ctx.strokeStyle = 'rgba(100, 200, 255, 0.15)'; // Cyan/Blue in dark
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = 'rgba(100, 200, 255, 0.5)';
+        } else {
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)'; // Gray in light
+            ctx.shadowBlur = 0;
+        }
+        ctx.lineWidth = 1;
+
+        // Draw Vertical Lines (Z-axis)
+        for (let x = -gridExtent; x <= gridExtent; x += gridSize) {
+            // Project start (close) and end (far) points
+            // x3d is x, y3d is 0 (floor), z3d goes from near to far
+
+            // Point 1 (Near)
+            const x1 = x;
+            const y1 = 200; // Floor height relative to horizon
+            const z1 = -fov + 10; // Clip plane
+
+            // Point 2 (Far)
+            const x2 = x;
+            const y2 = 200;
+            const z2 = gridExtent;
+
+            // Projection Logic
+            // x2d = x3d * (fov / (fov + z3d))
+            // y2d = y3d * (fov / (fov + z3d))
+
+            // Simplified drawing for visual effect
+            // Draw lines radiating from vanishing point
+
+            const scaleFar = fov / (fov + z2);
+            const x2dFar = x2 * scaleFar;
+            const y2dFar = y2 * scaleFar;
+
+            const scaleNear = fov / (fov + 100); // Start drawing a bit in front
+            const x2dNear = x1 * scaleNear;
+            const y2dNear = y1 * scaleNear;
+
+            ctx.beginPath();
+            ctx.moveTo(x2dNear, y2dNear);
+            ctx.lineTo(x2dFar, y2dFar);
+            ctx.stroke();
+        }
+
+        // Draw Horizontal Lines (X-axis) moving towards camera
+        for (let z = 0; z < gridExtent; z += gridSize) {
+            const currentZ = z - zOffset;
+            if (currentZ < 100) continue; // Clip near
+
+            const scale = fov / (fov + currentZ);
+            const xLeft = -gridExtent * scale;
+            const xRight = gridExtent * scale;
+            const y = 200 * scale;
+
+            // Fade out distantly
+            const alpha = 1 - (currentZ / gridExtent);
+            if (alpha < 0) continue;
+
+            ctx.globalAlpha = alpha;
+            ctx.beginPath();
+            ctx.moveTo(xLeft, y);
+            ctx.lineTo(xRight, y);
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+        }
+
+        ctx.restore();
+
+        requestAnimationFrame(animate3DGrid);
+    }
+
+    // Start
+    initGrid();
+    window.addEventListener('resize', resizeCanvas);
+
+    // OPTIMIZATION: Intersection Observer
+    const heroSection = document.querySelector('.hero');
     if (heroSection) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    isHeroVisible = true;
-                    if (!animationId) {
-                        animateParticles();
-                    }
-                } else {
-                    isHeroVisible = false;
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
+                // We could pause animation here if needed
+            });
+        }, { threshold: 0.1 });
+        observer.observe(heroSection);
+    }
+}
+if (entry.isIntersecting) {
+    isHeroVisible = true;
+    if (!animationId) {
+        animateParticles();
+    }
+} else {
+    isHeroVisible = false;
+    cancelAnimationFrame(animationId);
+    animationId = null;
+}
             });
         }, { threshold: 0 }); // Trigger as soon as any part is visible/hidden
 
-        observer.observe(heroSection);
+observer.observe(heroSection);
     } else {
-        // Fallback if hero section not found
-        animateParticles();
-    }
+    // Fallback if hero section not found
+    animateParticles();
+}
 
-    // Pause animation when tab is not visible (performance)
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            cancelAnimationFrame(animationId);
-            animationId = null;
-        } else {
-            if (isHeroVisible && !animationId) {
-                animateParticles();
-            }
+// Pause animation when tab is not visible (performance)
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    } else {
+        if (isHeroVisible && !animationId) {
+            animateParticles();
         }
-    });
+    }
+});
 }
 
 /* ===== PRELOADER ===== */
