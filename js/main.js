@@ -1029,17 +1029,30 @@ if (backToTopBtn) {
 }
 
 
-/* ===== HERO BACKGROUND ANIMATION (DIGITAL AURORA) ===== */
+/* ===== HERO BACKGROUND ANIMATION (ADVANCED 3D NETWORK) ===== */
 const canvas = document.getElementById('hero-background');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
 
-    // Aurora Orbs
-    const orbs = [];
-    const numOrbs = 5; // Number of floating color blobs
+    // Configuration
+    const config = {
+        particleCount: 80, // High density for "complex" look
+        connectionDistance: 120,
+        mouseDistance: 200,
+        depth: 300, // Z-depth simulation
+        colors: {
+            light: ['#1E293B', '#0F172A', '#334155'], // Slate tokens
+            dark: ['#38bdf8', '#818cf8', '#22d3ee']    // Cyan/Indigo/Teal glow
+        }
+    };
 
-    class Orb {
+    let particles = [];
+
+    // Mouse State
+    const mouse = { x: -1000, y: -1000 };
+
+    class Particle {
         constructor() {
             this.init();
         }
@@ -1047,108 +1060,178 @@ if (canvas) {
         init() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            // Large smooth blobs
-            this.radius = Math.random() * (Math.min(width, height) * 0.4) + 100;
-            this.vx = (Math.random() - 0.5) * 0.5; // Very slow movement
+            this.z = Math.random() * config.depth; // 0 (front) to 300 (back)
+
+            // Velocity
+            this.vx = (Math.random() - 0.5) * 0.5;
             this.vy = (Math.random() - 0.5) * 0.5;
 
-            // Brand Colors (Blue/Cyan/Purple/Dark schemes)
-            const colors = [
-                { r: 10, g: 102, b: 194 },  // Brand Blue
-                { r: 0, g: 191, b: 255 },   // Deep Sky Blue
-                { r: 100, g: 116, b: 139 }, // Slate (Darker)
-                { r: 15, g: 23, b: 42 }     // Dark Slate (Base)
-            ];
-            this.color = colors[Math.floor(Math.random() * colors.length)];
-            this.alpha = Math.random() * 0.1 + 0.05; // Low opacity for blending
-
-            // Pulse effect
-            this.pulseSpeed = 0.01 + Math.random() * 0.02;
-            this.pulseAngle = Math.random() * Math.PI * 2;
+            // Size depends on Z (perspective)
+            this.baseSize = Math.random() * 2 + 1;
         }
 
         update() {
+            // Move standard
             this.x += this.vx;
             this.y += this.vy;
 
-            // Bounce smoothly
-            if (this.x < -this.radius) this.vx *= -1;
-            if (this.x > width + this.radius) this.vx *= -1;
-            if (this.y < -this.radius) this.vy *= -1;
-            if (this.y > height + this.radius) this.vy *= -1;
+            // Mouse Interaction (Repulsion/Attraction)
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // Pulse logic
-            this.pulseAngle += this.pulseSpeed;
+            // "Magnetic" effect within range
+            if (distance < config.mouseDistance) {
+                const forceDirectionX = dx / distance;
+                const forceDirectionY = dy / distance;
+                const force = (config.mouseDistance - distance) / config.mouseDistance;
+
+                // Repel: move away from mouse
+                // Multiply by a factor for strength
+                const repulsionStrength = 2;
+                this.vx -= forceDirectionX * force * 0.05 * repulsionStrength;
+                this.vy -= forceDirectionY * force * 0.05 * repulsionStrength;
+            }
+
+            // Friction to stabilize speed
+            this.vx *= 0.99;
+            this.vy *= 0.99;
+
+            // Bounce off walls
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
         }
 
-        draw() {
-            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        draw(isDark) {
+            // Perspective Projection
+            // Simple: size scales with Z. 
+            // Closer (low Z) = bigger. Further (high Z) = smaller.
+            const scale = 1 - (this.z / config.depth); // 1.0 down to 0.0
+            const opacity = scale * 0.8; // Fade out at distance
+            const radius = this.baseSize * scale;
 
-            // Dynamic alpha pulse
-            const currentAlpha = this.alpha + Math.sin(this.pulseAngle) * 0.02;
-
-            gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${Math.max(0, currentAlpha)})`);
-            gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
-
-            ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.arc(this.x, this.y, Math.max(0, radius), 0, Math.PI * 2);
+
+            if (isDark) {
+                // Glowing cyan/blue
+                ctx.fillStyle = `rgba(56, 189, 248, ${opacity})`;
+                ctx.shadowBlur = 10 * scale;
+                ctx.shadowColor = `rgba(56, 189, 248, ${opacity})`;
+            } else {
+                // Dark nodes for light mode
+                ctx.fillStyle = `rgba(30, 41, 59, ${opacity})`;
+                ctx.shadowBlur = 0;
+            }
             ctx.fill();
+
+            return { x: this.x, y: this.y, scale: scale, opacity: opacity };
+        }
+    }
+
+    function initNetwork() {
+        particles = [];
+        // Adjust count based on screen size
+        const count = width < 768 ? 40 : config.particleCount;
+        for (let i = 0; i < count; i++) {
+            particles.push(new Particle());
         }
     }
 
     function resizeCanvas() {
-        // Find hero section to match its size
         const hero = document.querySelector('.hero');
         if (hero) {
             width = canvas.width = hero.offsetWidth;
             height = canvas.height = hero.offsetHeight;
-            orbs.length = 0; // Clear existing
-            for (let i = 0; i < numOrbs; i++) orbs.push(new Orb());
+            initNetwork();
         }
     }
 
-    function animateAurora() {
+    document.addEventListener('mousemove', (e) => {
+        // Adjust for canvas position relative to viewport (since Hero is usually top)
+        // Or simply use clientX/Y if canvas covers full top
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    function animateNetwork() {
         ctx.clearRect(0, 0, width, height);
 
-        // Base Background Color
         const isDark = document.documentElement.classList.contains('dark');
+
+        // Background
         if (isDark) {
-            ctx.fillStyle = '#1e293b'; // Slate-800
-            ctx.fillRect(0, 0, width, height);
-            ctx.globalCompositeOperation = 'screen'; // Blending mode for glow
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#0f172a'); // Slate 900
+            gradient.addColorStop(1, '#1e293b'); // Slate 800
+            ctx.fillStyle = gradient;
         } else {
             ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, width, height);
-            ctx.globalCompositeOperation = 'source-over';
+        }
+        ctx.fillRect(0, 0, width, height);
+
+        // Update and Draw Particles
+        // We act on particles then draw connections
+        // To draw connections efficiently, we need positions
+
+        // Optimization: Standard N^2 loop is fine for < 100 particles
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            const p1 = particles[i].draw(isDark);
+
+            // Connect to others
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j]; // Just access object for position
+                // We use raw x/y for distance, but could incorporate Z
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < config.connectionDistance) {
+                    // Opacity based on distance AND average Z-scale of both particles
+                    // This creates depth in connections too
+                    const zScaleAvg = (p1.scale + (1 - particles[j].z / config.depth)) / 2;
+                    const alpha = (1 - dist / config.connectionDistance) * zScaleAvg * 0.5;
+
+                    ctx.beginPath();
+
+                    if (isDark) {
+                        ctx.strokeStyle = `rgba(129, 140, 248, ${alpha})`; // Indigo glow
+                    } else {
+                        ctx.strokeStyle = `rgba(15, 23, 42, ${alpha})`; // Dark slate
+                    }
+
+                    ctx.lineWidth = 1 * zScaleAvg; // Lines get thinner in back
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
         }
 
-        orbs.forEach(orb => {
-            orb.update();
-            orb.draw();
-        });
+        // Draw Vignette for "Premium" feel
+        const vignette = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
+        vignette.addColorStop(0, 'rgba(0,0,0,0)');
+        vignette.addColorStop(1, 'rgba(0,0,0,0.3)');
+        ctx.fillStyle = vignette;
+        ctx.fillRect(0, 0, width, height);
 
-        // Reset composite
-        ctx.globalCompositeOperation = 'source-over';
-
-        requestAnimationFrame(animateAurora);
+        requestAnimationFrame(animateNetwork);
     }
 
-    // Start
+    // Init
     window.addEventListener('resize', resizeCanvas);
-    // Initial delay to ensure DOM is ready
     setTimeout(() => {
         resizeCanvas();
-        requestAnimationFrame(animateAurora);
+        requestAnimationFrame(animateNetwork);
     }, 100);
 
-    // OPTIMIZATION: Intersection Observer
+    // OPTIMIZATION
     const heroSection = document.querySelector('.hero');
     if (heroSection) {
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // We could pause animation here if needed
-            });
+            // Pause logic could go here
         }, { threshold: 0.1 });
         observer.observe(heroSection);
     }
