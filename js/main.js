@@ -29,6 +29,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 cta_secondary: 'See portfolio of work',
                 tech_stack: 'Powering solutions with modern technology:'
             },
+            benefits: {
+                title: 'Why Choose JomBina?',
+                subtitle: 'We focus on Speed, ROI, and Support',
+                card1: {
+                    title: 'Fast Delivery',
+                    desc: 'Ready in 7-14 working days. No technical jargon headaches. We handle hosting, domain, and full technical setup.'
+                },
+                card2: {
+                    title: 'High-Converting Design',
+                    desc: 'We use sales psychology structure (AIDA) in every design. Every button and layout is capable of driving action.'
+                },
+                card3: {
+                    title: 'Reliable Support',
+                    desc: 'Free 1-year technical maintenance. Have an issue? We resolve it within 24 hours. You focus on business, we handle the tech.'
+                }
+            },
             metrics: {
                 title: 'Proven Delivery Scale',
                 subtitle: 'Measurable results delivered to real businesses',
@@ -45,6 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     desc: 'From concept to deployment & ongoing maintenance'
                 },
                 note: 'Work utilized by companies in retail, logistics, and professional services'
+            },
+            portfolio: {
+                title: 'Selected Work',
+                subtitle: 'Examples of business-focused digital solutions'
             },
             services: {
                 title: 'Business Solutions',
@@ -146,6 +166,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 tagline: 'Professional web development for business growth',
                 location: 'Based in Batu Pahat, Johor | Serving clients nationwide'
             },
+            seo: {
+                title: 'JomBina.site - Malaysia\'s Preferred Digital Partner',
+                desc: 'We offer <strong>professional website building services</strong> and system development for entrepreneurs across Malaysia. Whether you are in <strong>Kuala Lumpur, Selangor, Johor Bahru, Batu Pahat, Penang, or Sabah & Sarawak</strong>, our team is ready to help you digitize your business.',
+                services: {
+                    intro: 'Our services include:',
+                    landing: 'Sales Landing Page',
+                    corporate: 'SME Corporate Website',
+                    ecommerce: 'Online Store System (E-Commerce)',
+                    db: 'Database Management System',
+                    custom: 'Custom Web Design'
+                }
+            },
+            seo: {
+                title: 'JomBina.site - Malaysia\'s Preferred Digital Partner',
+                desc: 'We offer <strong>professional website building services</strong> and system development for entrepreneurs across Malaysia. Whether you are in <strong>Kuala Lumpur, Selangor, Johor Bahru, Batu Pahat, Penang, or Sabah & Sarawak</strong>, our team is ready to help you digitize your business.',
+                services: {
+                    intro: 'Our services include:',
+                    landing: 'Sales Landing Page',
+                    corporate: 'SME Corporate Website',
+                    ecommerce: 'Online Store System (E-Commerce)',
+                    db: 'Database Management System',
+                    custom: 'Custom Web Design'
+                }
+            },
             testimonials: {
                 title: 'Client Success Stories',
                 subtitle: 'What business owners say about working with me',
@@ -185,33 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     excerpt: 'A complete guide on website development costs in Malaysia. From landing pages to e-commerce, know the budget needed...'
                 }
             },
-            calculator: {
-                title: 'Project Calculator',
-                subtitle: 'Get an instant estimate for your project',
-                step1: 'Project Type',
-                step2: 'Add-ons',
-                step3: 'Estimate',
-                selectType: 'What type of project do you need?',
-                selectAddons: 'Select additional features:',
-                summary: 'Your Estimate',
-                projectType: 'Project Type:',
-                basePrice: 'Base Price:',
-                total: 'Estimated Total:',
-                timeline: 'Estimated Timeline:',
-                getQuote: 'Get Detailed Quote via WhatsApp',
-                note: '* Final price may vary based on specific requirements',
-                back: 'Back',
-                next: 'Next',
-                reset: 'Start Over',
-                landing: 'Landing Page',
-                business: 'Business Website',
-                ecommerce: 'E-Commerce',
-                webapp: 'Web Application',
-                seo: 'SEO Optimization',
-                admin: 'Admin Dashboard',
-                payment: 'Payment Gateway',
-                hosting: 'Hosting & Domain'
-            }
+ 
         },
         ms: {
             nav: {
@@ -223,11 +241,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 contact: 'Mula Sekarang'
             },
             hero: {
-                title: 'Jom Bina Website & Sistem Digital Untuk Bisnes Anda',
-                subtitle: 'Bersama JomBina, kami realisasikan laman web penukaran tinggi dan sistem dalaman berskala. Penyelesaian sedia produksi, bukan prototaip.',
+                title: 'Bina Website & Sistem Yang <strong>Menjana Jualan</strong>',
+                subtitle: 'Bukan sekadar website cantik. Kami bina aset digital yang menukar pelawat menjadi pelanggan dan mengautomasikan bisnes anda.',
                 cta_primary: 'Jom Bina Sekarang',
                 cta_secondary: 'Lihat portfolio kerja',
                 tech_stack: 'Memperkasakan solusi dengan teknologi moden:'
+            },
+            benefits: {
+                title: 'Kenapa Pilih JomBina?',
+                subtitle: 'Fokus kami pada Kepantasan, ROI, dan Sokongan',
+                card1: {
+                    title: 'Siap Pantas',
+                    desc: 'Siap dalam masa 7-14 hari bekerja. Tiada jargon teknikal yang pening. Kami uruskan hosting, domain, dan setup teknikal sepenuhnya.'
+                },
+                card2: {
+                    title: 'Design Yang Menjual',
+                    desc: 'Kami guna struktur psikologi jualan (AIDA) dalam setiap design. Setiap butang dan susun atur direka untuk memaksa pelawat bertindak.'
+                },
+                card3: {
+                    title: 'Tech Support Padu',
+                    desc: 'Percuma penyelenggaraan teknikal 1 tahun. Ada masalah? Kami selesaikan dalam 24 jam. Anda fokus bisnes, kami jaga website.'
+                }
             },
             metrics: {
                 title: 'Skala Penghantaran Terbukti',
@@ -245,6 +279,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     desc: 'Dari konsep hingga penggunaan & penyelenggaraan berterusan'
                 },
                 note: 'Kerja digunakan oleh syarikat dalam peruncitan, logistik, dan perkhidmatan profesional'
+            },
+            portfolio: {
+                title: 'Pilihan Karya',
+                subtitle: 'Contoh penyelesaian digital berfokuskan perniagaan'
             },
             services: {
                 title: 'Penyelesaian Perniagaan',
@@ -349,6 +387,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 apps: 'Aplikasi',
                 project: 'Projek'
             },
+            seo: {
+                title: 'JomBina.site - Rakan Digital Pilihan Malaysia',
+                desc: 'Kami menawarkan <strong>servis bina website profesional</strong> dan pembangunan sistem untuk usahawan di seluruh Malaysia. Sama ada anda berada di <strong>Kuala Lumpur, Selangor, Johor Bahru, Batu Pahat, Pulau Pinang, atau Sabah & Sarawak</strong>, pasukan kami sedia membantu anda mendigitalkan perniagaan.',
+                services: {
+                    intro: 'Perkhidmatan kami termasuk:',
+                    landing: 'Landing Page Jualan',
+                    corporate: 'Website Korporat SME',
+                    ecommerce: 'Sistem Kedai Online (E-Commerce)',
+                    db: 'Sistem Pengurusan Database',
+                    custom: 'Web Design Custom'
+                }
+            },
+            seo: {
+                title: 'JomBina.site - Rakan Digital Pilihan Malaysia',
+                desc: 'Kami menawarkan <strong>servis bina website profesional</strong> dan pembangunan sistem untuk usahawan di seluruh Malaysia. Sama ada anda berada di <strong>Kuala Lumpur, Selangor, Johor Bahru, Batu Pahat, Pulau Pinang, atau Sabah & Sarawak</strong>, pasukan kami sedia membantu anda mendigitalkan perniagaan.',
+                services: {
+                    intro: 'Perkhidmatan kami termasuk:',
+                    landing: 'Landing Page Jualan',
+                    corporate: 'Website Korporat SME',
+                    ecommerce: 'Sistem Kedai Online (E-Commerce)',
+                    db: 'Sistem Pengurusan Database',
+                    custom: 'Web Design Custom'
+                }
+            },
             footer: {
                 tagline: 'Pembangunan web profesional untuk pertumbuhan perniagaan',
                 location: 'Berpusat di Batu Pahat, Johor | Melayani pelanggan seluruh negara'
@@ -392,33 +454,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     excerpt: 'Panduan lengkap tentang kos membuat website di Malaysia. Dari landing page hingga e-commerce, ketahui budget yang diperlukan...'
                 }
             },
-            calculator: {
-                title: 'Kalkulator Projek',
-                subtitle: 'Dapatkan anggaran segera untuk projek anda',
-                step1: 'Jenis Projek',
-                step2: 'Tambahan',
-                step3: 'Anggaran',
-                selectType: 'Jenis projek apa yang anda perlukan?',
-                selectAddons: 'Pilih ciri tambahan:',
-                summary: 'Anggaran Anda',
-                projectType: 'Jenis Projek:',
-                basePrice: 'Harga Asas:',
-                total: 'Jumlah Anggaran:',
-                timeline: 'Jangka Masa:',
-                getQuote: 'Dapatkan Sebut Harga via WhatsApp',
-                note: '* Harga akhir mungkin berbeza bergantung kepada keperluan khusus',
-                back: 'Kembali',
-                next: 'Seterusnya',
-                reset: 'Mula Semula',
-                landing: 'Landing Page',
-                business: 'Website Bisnes',
-                ecommerce: 'E-Commerce',
-                webapp: 'Aplikasi Web',
-                seo: 'Pengoptimuman SEO',
-                admin: 'Panel Admin',
-                payment: 'Gerbang Pembayaran',
-                hosting: 'Hosting & Domain'
-            }
+ 
         }
     };
 
@@ -454,7 +490,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (value) {
-                element.textContent = value;
+                // Check if value contains HTML tags
+                if (value.includes('<')) {
+                    element.innerHTML = value;
+                } else {
+                    element.textContent = value;
+                }
             }
         });
     }
@@ -468,6 +509,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize Language
     setLanguage(currentLang);
+
+    // --- THEME SWITCHER ---
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeBtn ? themeBtn.querySelector('i') : null;
+
+    // Check for saved theme preference or system preference
+    const savedTheme = localStorage.getItem('site_theme');
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    let currentTheme = savedTheme || systemTheme;
+
+    function setTheme(theme) {
+        currentTheme = theme;
+        localStorage.setItem('site_theme', theme);
+
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark-mode');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.body.classList.remove('dark-mode');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    }
+
+    // Initialize Theme
+    setTheme(currentTheme);
 
 
     // Mobile Navigation Toggle
@@ -813,7 +894,11 @@ function showSlide(n) {
     }
 
     imgElement.src = currentGallery[currentSlideIndex];
-    captionText.innerHTML = 'Image ' + (currentSlideIndex + 1) + ' / ' + currentGallery.length;
+
+    const lang = localStorage.getItem('site_lang') || 'ms';
+    const imageText = lang === 'en' ? 'Image' : 'Imej';
+
+    captionText.innerHTML = `${imageText} ${currentSlideIndex + 1} / ${currentGallery.length}`;
 }
 
 // Keyboard navigation
@@ -939,45 +1024,6 @@ if (backToTopBtn) {
     });
 }
 
-
-/* ===== DARK MODE TOGGLE ===== */
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-const darkModeIcon = document.getElementById('dark-mode-icon');
-
-// Check for saved preference or system preference
-function initDarkMode() {
-    const savedMode = localStorage.getItem('darkMode');
-
-    if (savedMode === 'true') {
-        document.body.classList.add('dark-mode');
-        if (darkModeIcon) {
-            darkModeIcon.classList.remove('fa-moon');
-            darkModeIcon.classList.add('fa-sun');
-        }
-    }
-}
-
-// Toggle dark mode
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDark);
-
-        if (darkModeIcon) {
-            if (isDark) {
-                darkModeIcon.classList.remove('fa-moon');
-                darkModeIcon.classList.add('fa-sun');
-            } else {
-                darkModeIcon.classList.remove('fa-sun');
-                darkModeIcon.classList.add('fa-moon');
-            }
-        }
-    });
-}
-
-// Initialize on load
-initDarkMode();
 
 /* ===== HERO PARTICLES ANIMATION ===== */
 const canvas = document.getElementById('hero-particles');
@@ -1547,309 +1593,181 @@ Cuba klik butang di bawah atau taip soalan anda!`;
 
 })();
 
-/* ===== PROJECT CALCULATOR ===== */
-(function () {
-    const steps = document.querySelectorAll('.calc-step');
-    const panels = document.querySelectorAll('.calc-panel');
-    const nextBtns = document.querySelectorAll('.calc-next');
-    const backBtns = document.querySelectorAll('.calc-back');
-    const resetBtns = document.querySelectorAll('.calc-reset');
-    const projectTypeInputs = document.querySelectorAll('input[name="projectType"]');
-    const addonInputs = document.querySelectorAll('input[name="addon"]');
-    const whatsappBtn = document.getElementById('calc-whatsapp-btn');
-
-    // State
-    let currentStep = 1;
-    let selectedProject = null;
-    let selectedAddons = [];
-
-    // Project type names for display
-    const projectNames = {
-        'landing': 'Landing Page',
-        'business': 'Business Website',
-        'ecommerce': 'E-Commerce Store',
-        'webapp': 'Web Application'
-    };
-
-    // Addon names for display
-    const addonNames = {
-        'design': 'Premium Design',
-        'seo': 'SEO Optimization',
-        'copywriting': 'Copywriting',
-        'whatsapp': 'WhatsApp Integration',
-        'payment': 'Payment Gateway',
-        'admin': 'Admin Dashboard',
-        'hosting': 'Hosting & Domain'
-    };
-
-    // Go to step
-    function goToStep(stepNum) {
-        currentStep = stepNum;
-
-        // Update step indicators
-        steps.forEach((step, index) => {
-            const num = index + 1;
-            step.classList.remove('active', 'completed');
-            if (num < stepNum) {
-                step.classList.add('completed');
-            } else if (num === stepNum) {
-                step.classList.add('active');
-            }
-        });
-
-        // Update panels
-        panels.forEach((panel, index) => {
-            panel.classList.remove('active');
-            if (index + 1 === stepNum) {
-                panel.classList.add('active');
-            }
-        });
-
-        // Update estimate on step 3
-        if (stepNum === 3) {
-            updateEstimate();
-        }
-    }
-
-    // Update step 1 next button state
-    function updateStep1NextBtn() {
-        const nextBtn = document.querySelector('#calc-step-1 .calc-next');
-        if (nextBtn) {
-            nextBtn.disabled = !selectedProject;
-        }
-    }
-
-    // Calculate total
-    function calculateTotal() {
-        let total = 0;
-
-        if (selectedProject) {
-            total += parseInt(selectedProject.dataset.price);
-        }
-
-        selectedAddons.forEach(addon => {
-            total += parseInt(addon.dataset.price);
-        });
-
-        return total;
-    }
-
-    // Update estimate display
-    function updateEstimate() {
-        if (!selectedProject) return;
-
-        // Project type
-        const projectType = selectedProject.value;
-        const projectName = projectNames[projectType] || projectType;
-        const basePrice = parseInt(selectedProject.dataset.price);
-        const timeline = selectedProject.dataset.timeline;
-
-        document.getElementById('est-project-type').textContent = projectName;
-        document.getElementById('est-base-price').textContent = `RM ${basePrice.toLocaleString()}`;
-        document.getElementById('est-timeline').textContent = timeline;
-
-        // Add-ons list
-        const addonsContainer = document.getElementById('est-addons-list');
-        addonsContainer.innerHTML = '';
-
-        if (selectedAddons.length > 0) {
-            const title = document.createElement('div');
-            title.className = 'estimate-row';
-            title.innerHTML = '<span class="label">Add-ons:</span><span></span>';
-            addonsContainer.appendChild(title);
-
-            selectedAddons.forEach(addon => {
-                const addonName = addonNames[addon.value] || addon.value;
-                const addonPrice = parseInt(addon.dataset.price);
-                const item = document.createElement('div');
-                item.className = 'estimate-addon-item';
-                item.innerHTML = `<span>• ${addonName}</span><span>+RM ${addonPrice}</span>`;
-                addonsContainer.appendChild(item);
-            });
-        }
-
-        // Total
-        const total = calculateTotal();
-        document.getElementById('est-total').textContent = `RM ${total.toLocaleString()}`;
-
-        // Update WhatsApp link
-        updateWhatsAppLink(projectName, basePrice, timeline, total);
-    }
-
-    // Generate WhatsApp message
-    function updateWhatsAppLink(projectName, basePrice, timeline, total) {
-        let message = `Hi JomBina!\n\nSaya berminat dengan quote berikut:\n\n`;
-        message += `Jenis Projek: ${projectName}\n`;
-        message += `Base Price: RM${basePrice.toLocaleString()}\n`;
-
-        if (selectedAddons.length > 0) {
-            message += `\nAdd-ons:\n`;
-            selectedAddons.forEach(addon => {
-                const addonName = addonNames[addon.value] || addon.value;
-                const addonPrice = parseInt(addon.dataset.price);
-                message += `• ${addonName} (RM${addonPrice})\n`;
-            });
-        }
-
-        message += `\nAnggaran Total: RM${total.toLocaleString()}\n`;
-        message += `Timeline: ${timeline}\n\n`;
-        message += `Boleh bincang lebih lanjut?`;
-
-        const encodedMessage = encodeURIComponent(message);
-        if (whatsappBtn) {
-            whatsappBtn.href = `https://wa.me/601124187824?text=${encodedMessage}`;
-        }
-    }
-
-    // Event: Project type selection
-    projectTypeInputs.forEach(input => {
-        input.addEventListener('change', () => {
-            selectedProject = input;
-            updateStep1NextBtn();
-        });
-    });
-
-    // Event: Addon selection
-    addonInputs.forEach(input => {
-        input.addEventListener('change', () => {
-            if (input.checked) {
-                selectedAddons.push(input);
-            } else {
-                selectedAddons = selectedAddons.filter(a => a !== input);
-            }
-        });
-    });
-
-    // Event: Next buttons
-    nextBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentStep < 3) {
-                goToStep(currentStep + 1);
-            }
-        });
-    });
-
-    // Event: Back buttons
-    backBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentStep > 1) {
-                goToStep(currentStep - 1);
-            }
-        });
-    });
-
-    // Event: Reset buttons
-    resetBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Reset selections
-            selectedProject = null;
-            selectedAddons = [];
-
-            // Uncheck all inputs
-            projectTypeInputs.forEach(input => input.checked = false);
-            addonInputs.forEach(input => input.checked = false);
-
-            // Go to step 1
-            goToStep(1);
-            updateStep1NextBtn();
-        });
-    });
-
-    // Initialize
-    updateStep1NextBtn();
-})();
-
 /* ===== CASE STUDY MODAL ===== */
 (function () {
     // Case study data
     const caseStudies = {
         'buku-panduan-sihat': {
-            title: 'Buku Panduan Sihat',
+            title: { ms: 'Buku Panduan Sihat', en: 'Buku Panduan Sihat' },
             category: 'Landing Page',
             client: 'Health & Wellness',
             heroImage: 'bukupanduansihat.webp',
-            overview: 'Landing page yang menarik untuk eBook panduan kesihatan. Direka untuk menarik pembeli dengan copywriting yang meyakinkan dan visual yang profesional.',
-            challenge: 'Klien perlukan landing page yang mampu convert visitors kepada pembeli dalam masa singkat dengan trust elements yang kuat.',
-            solution: 'Menggunakan struktur AIDA (Attention, Interest, Desire, Action) dengan testimonial, countdown timer, dan CTA yang jelas.',
-            results: 'Landing page berjaya meningkatkan conversion rate dan memudahkan proses jualan melalui WhatsApp.',
+            overview: {
+                ms: 'Landing page yang menarik untuk eBook panduan kesihatan. Direka untuk menarik pembeli dengan copywriting yang meyakinkan dan visual yang profesional.',
+                en: 'Attractive landing page for health guide eBook. Designed to attract buyers with convincing copywriting and professional visuals.'
+            },
+            challenge: {
+                ms: 'Klien perlukan landing page yang mampu convert visitors kepada pembeli dalam masa singkat dengan trust elements yang kuat.',
+                en: 'Client needed a landing page capable of converting visitors to buyers in a short time with strong trust elements.'
+            },
+            solution: {
+                ms: 'Menggunakan struktur AIDA (Attention, Interest, Desire, Action) dengan testimonial, countdown timer, dan CTA yang jelas.',
+                en: 'Using AIDA structure (Attention, Interest, Desire, Action) with testimonials, countdown timer, and clear CTA.'
+            },
+            results: {
+                ms: 'Landing page berjaya meningkatkan conversion rate dan memudahkan proses jualan melalui WhatsApp.',
+                en: 'Landing page successfully increased conversion rate and simplified sales process via WhatsApp.'
+            },
             techStack: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
             gallery: [],
             liveUrl: 'https://bosta.com.my/bukupanduansihat/'
         },
         'probiozen': {
-            title: 'Probiozen',
+            title: { ms: 'Probiozen', en: 'Probiozen' },
             category: 'Landing Page',
             client: 'Health Supplement',
             heroImage: 'probiozen.webp',
-            overview: 'High-converting landing page untuk suplemen probiotik yang mensasarkan pengguna yang prihatin tentang kesihatan usus.',
-            challenge: 'Perlu menyampaikan maklumat saintifik dengan cara yang mudah difahami sambil membina kepercayaan.',
-            solution: 'Design yang bersih dengan infografik, testimonial video, dan proses pembelian yang mudah.',
-            results: 'Peningkatan ketara dalam engagement dan conversion. Page load dalam masa kurang dari 2 saat.',
+            overview: {
+                ms: 'High-converting landing page untuk suplemen probiotik yang mensasarkan pengguna yang prihatin tentang kesihatan usus.',
+                en: 'High-converting landing page for probiotic supplements targeting gut health conscious consumers.'
+            },
+            challenge: {
+                ms: 'Perlu menyampaikan maklumat saintifik dengan cara yang mudah difahami sambil membina kepercayaan.',
+                en: 'Need to convey scientific information in an easy-to-understand way while building trust.'
+            },
+            solution: {
+                ms: 'Design yang bersih dengan infografik, testimonial video, dan proses pembelian yang mudah.',
+                en: 'Clean design with infographics, video testimonials, and easy purchase process.'
+            },
+            results: {
+                ms: 'Peningkatan ketara dalam engagement dan conversion. Page load dalam masa kurang dari 2 saat.',
+                en: 'Significant increase in engagement and conversion. Page load under 2 seconds.'
+            },
             techStack: ['HTML', 'CSS', 'JavaScript', 'WhatsApp API'],
             gallery: [],
             liveUrl: 'https://bosta.com.my/probiozen/'
         },
         'formula-turun-10kg': {
-            title: 'Modul Formula Turun 10 KG',
+            title: { ms: 'Modul Formula Turun 10 KG', en: '10KG Weight Loss Formula Module' },
             category: 'Landing Page',
             client: 'Fitness & Health',
             heroImage: 'formulaturun10kg.webp',
-            overview: 'Landing page untuk program penurunan berat badan dengan modul pembelajaran step-by-step.',
-            challenge: 'Meyakinkan pengunjung bahawa program ini berbeza dari program diet lain yang gagal.',
-            solution: 'Showcase hasil sebenar dengan before-after photos, testimonial pengguna, dan jaminan wang dikembalikan.',
-            results: 'Meningkatkan kepercayaan pengguna dan mempermudah proses enrollment.',
+            overview: {
+                ms: 'Landing page untuk program penurunan berat badan dengan modul pembelajaran step-by-step.',
+                en: 'Landing page for weight loss program with step-by-step learning modules.'
+            },
+            challenge: {
+                ms: 'Meyakinkan pengunjung bahawa program ini berbeza dari program diet lain yang gagal.',
+                en: 'Convincing visitors that this program is different from other failed diet programs.'
+            },
+            solution: {
+                ms: 'Showcase hasil sebenar dengan before-after photos, testimonial pengguna, dan jaminan wang dikembalikan.',
+                en: 'Showcase real results with before-after photos, user testimonials, and money-back guarantee.'
+            },
+            results: {
+                ms: 'Meningkatkan kepercayaan pengguna dan mempermudah proses enrollment.',
+                en: 'Increased user trust and simplified enrollment process.'
+            },
             techStack: ['HTML', 'CSS', 'JavaScript', 'Mobile-First Design'],
             gallery: [],
             liveUrl: 'https://bosta.com.my/formula-turun-10kg/'
         },
         'ells-cafe': {
-            title: 'Ells Cafe',
+            title: { ms: 'Ells Cafe', en: 'Ells Cafe' },
             category: 'Landing Page',
             client: 'Food & Beverage',
             heroImage: 'ellscafe.webp',
-            overview: 'Landing page untuk kafe dengan menu digital dan sistem tempahan meja.',
-            challenge: 'Mempamerkan suasana dan menu kafe secara menarik untuk menarik pengunjung.',
-            solution: 'Gallery photos yang menarik, menu interaktif, dan integrasi dengan Google Maps untuk directions.',
-            results: 'Meningkatkan visibility kafe dan memudahkan tempahan meja melalui WhatsApp.',
+            overview: {
+                ms: 'Landing page untuk kafe dengan menu digital dan sistem tempahan meja.',
+                en: 'Landing page for cafe with digital menu and table reservation system.'
+            },
+            challenge: {
+                ms: 'Mempamerkan suasana dan menu kafe secara menarik untuk menarik pengunjung.',
+                en: 'Showcasing cafe ambience and menu attractively to draw visitors.'
+            },
+            solution: {
+                ms: 'Gallery photos yang menarik, menu interaktif, dan integrasi dengan Google Maps untuk directions.',
+                en: 'Attractive gallery photos, interactive menu, and Google Maps integration for directions.'
+            },
+            results: {
+                ms: 'Meningkatkan visibility kafe dan memudahkan tempahan meja melalui WhatsApp.',
+                en: 'Increased cafe visibility and simplified table reservations via WhatsApp.'
+            },
             techStack: ['HTML', 'CSS', 'JavaScript', 'Google Maps API'],
             gallery: [],
             liveUrl: 'https://bosta.com.my/ellscafe/'
         },
         'missgolden-hair': {
-            title: 'MissGolden Hair',
+            title: { ms: 'MissGolden Hair', en: 'MissGolden Hair' },
             category: 'Landing Page',
             client: 'Beauty & Cosmetics',
             heroImage: 'missgoldenhair.webp',
-            overview: 'Landing page premium untuk produk penjagaan rambut dengan aesthetic yang mewah.',
-            challenge: 'Menyampaikan imej premium dan kualiti tinggi produk kecantikan.',
-            solution: 'Design minimalis dengan color palette yang elegant, product showcase, dan testimonial bergambar.',
-            results: 'Berjaya mencipta imej brand yang premium dan meningkatkan perceived value produk.',
+            overview: {
+                ms: 'Landing page premium untuk produk penjagaan rambut dengan aesthetic yang mewah.',
+                en: 'Premium landing page for hair care products with luxurious aesthetic.'
+            },
+            challenge: {
+                ms: 'Menyampaikan imej premium dan kualiti tinggi produk kecantikan.',
+                en: 'Conveying premium image and high quality of beauty products.'
+            },
+            solution: {
+                ms: 'Design minimalis dengan color palette yang elegant, product showcase, dan testimonial bergambar.',
+                en: 'Minimalist design with elegant color palette, product showcase, and pictorial testimonials.'
+            },
+            results: {
+                ms: 'Berjaya mencipta imej brand yang premium dan meningkatkan perceived value produk.',
+                en: 'Successfully created premium brand image and increased product perceived value.'
+            },
             techStack: ['HTML', 'CSS', 'JavaScript', 'Vercel'],
             gallery: [],
             liveUrl: 'https://missgoldenhair-eptwyw197-zaniquaffles-projects.vercel.app/'
         },
         'rawat-hormon': {
-            title: 'Webinar Rawat Hormon',
+            title: { ms: 'Webinar Rawat Hormon', en: 'Hormone Treatment Webinar' },
             category: 'Landing Page',
             client: 'Health Education',
             heroImage: 'rawathotmon.webp',
-            overview: 'Landing page untuk pendaftaran webinar kesihatan hormon dengan countdown dan limited seats.',
-            challenge: 'Mencipta urgency untuk pendaftaran webinar dengan limited seats.',
-            solution: 'Countdown timer, remaining seats indicator, dan early bird pricing untuk mencipta FOMO.',
-            results: 'Seats penuh dalam masa singkat dengan conversion rate yang tinggi.',
+            overview: {
+                ms: 'Landing page untuk pendaftaran webinar kesihatan hormon dengan countdown dan limited seats.',
+                en: 'Landing page for hormone health webinar registration with countdown and limited seats.'
+            },
+            challenge: {
+                ms: 'Mencipta urgency untuk pendaftaran webinar dengan limited seats.',
+                en: 'Creating urgency for webinar registration with limited seats.'
+            },
+            solution: {
+                ms: 'Countdown timer, remaining seats indicator, dan early bird pricing untuk mencipta FOMO.',
+                en: 'Countdown timer, remaining seats indicator, and early bird pricing to create FOMO.'
+            },
+            results: {
+                ms: 'Seats penuh dalam masa singkat dengan conversion rate yang tinggi.',
+                en: 'Seats filled in short time with high conversion rate.'
+            },
             techStack: ['HTML', 'CSS', 'JavaScript', 'Form Integration'],
             gallery: [],
             liveUrl: 'https://bosta.com.my/RawatHormon/'
         },
         'logistik': {
-            title: 'Sistem Logistik',
+            title: { ms: 'Sistem Logistik', en: 'Logistics System' },
             category: 'Web System',
             client: 'Logistics & Delivery',
             heroImage: 'LOGISTIK/1.png',
-            overview: 'Sistem pengurusan logistik lengkap dengan tracking, inventory, dan reporting.',
-            challenge: 'Menguruskan fleet delivery, tracking real-time, dan inventory management dalam satu platform.',
-            solution: 'Dashboard admin yang comprehensive, mobile-friendly driver app, dan real-time tracking system.',
-            results: 'Meningkatkan efficiency operasi dan mengurangkan masa untuk reporting.',
+            overview: {
+                ms: 'Sistem pengurusan logistik lengkap dengan tracking, inventory, dan reporting.',
+                en: 'Complete logistics management system with tracking, inventory, and reporting.'
+            },
+            challenge: {
+                ms: 'Menguruskan fleet delivery, tracking real-time, dan inventory management dalam satu platform.',
+                en: 'Managing fleet delivery, real-time tracking, and inventory management in one platform.'
+            },
+            solution: {
+                ms: 'Dashboard admin yang comprehensive, mobile-friendly driver app, dan real-time tracking system.',
+                en: 'Comprehensive admin dashboard, mobile-friendly driver app, and real-time tracking system.'
+            },
+            results: {
+                ms: 'Meningkatkan efficiency operasi dan mengurangkan masa untuk reporting.',
+                en: 'Increased operational efficiency and reduced reporting time.'
+            },
             techStack: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'REST API'],
             gallery: ['LOGISTIK/1.png', 'LOGISTIK/2.png', 'LOGISTIK/3.png'],
             liveUrl: null
@@ -1864,14 +1782,16 @@ Cuba klik butang di bawah atau taip soalan anda!`;
 
     // Populate modal with data
     function populateModal(data) {
+        const lang = localStorage.getItem('site_lang') || 'ms';
+
         document.getElementById('cs-hero-image').src = data.heroImage;
-        document.getElementById('cs-title').textContent = data.title;
+        document.getElementById('cs-title').textContent = data.title[lang] || data.title.ms;
         document.getElementById('cs-category').textContent = data.category;
         document.getElementById('cs-client').textContent = data.client;
-        document.getElementById('cs-overview').textContent = data.overview;
-        document.getElementById('cs-challenge').textContent = data.challenge;
-        document.getElementById('cs-solution').textContent = data.solution;
-        document.getElementById('cs-results').textContent = data.results;
+        document.getElementById('cs-overview').textContent = data.overview[lang] || data.overview.ms;
+        document.getElementById('cs-challenge').textContent = data.challenge[lang] || data.challenge.ms;
+        document.getElementById('cs-solution').textContent = data.solution[lang] || data.solution.ms;
+        document.getElementById('cs-results').textContent = data.results[lang] || data.results.ms;
 
         // Tech Stack
         const techContainer = document.getElementById('cs-tech-stack');
@@ -2372,3 +2292,4 @@ Cuba klik butang di bawah atau taip soalan anda!`;
         yearSpan.textContent = new Date().getFullYear();
     }
 })();
+

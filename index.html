@@ -125,8 +125,7 @@
     </noscript>
 
     <!-- Critical CSS loaded first -->
-    <link rel="stylesheet" href="css/style.min.css">
-    <link rel="stylesheet" href="css/responsive.min.css">
+    <link rel="stylesheet" href="css/output.css">
 
     <!-- Font Awesome - deferred loading -->
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -140,7 +139,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
 </head>
 
-<body>
+<body class="font-sans text-charcoal bg-white antialiased overflow-x-hidden leading-relaxed">
     <!-- Loading Progress Bar -->
     <div class="page-progress loading" id="page-progress">
         <div class="progress-bar"></div>
@@ -155,61 +154,89 @@
         </div>
     </div>
 
-    <!-- Custom Cursor -->
-
-
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <a href="#" class="logo">
-                    <img src="assets/img/JomBina.webp" alt="Jombina.site - Professional Web Development Logo"
-                        width="241" height="56" fetchpriority="high">
-                </a>
-                <button class="mobile-menu-btn" aria-label="Toggle menu">
+    <nav
+        class="navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/95 dark:bg-charcoal/95 backdrop-blur-md border-b border-pale-gray dark:border-dark-gray">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#"
+                class="logo text-2xl font-bold text-charcoal dark:text-white no-underline flex items-center gap-2">
+                <img src="assets/img/JomBina.webp" alt="Jombina.site Logo" width="179" height="42"
+                    class="h-8 w-auto object-contain dark:brightness-0 dark:invert">
+            </a>
+
+            <div class="flex items-center gap-4">
+                <button class="mobile-menu-btn md:hidden" aria-label="Open Menu" aria-expanded="false"
+                    aria-controls="primary-navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-menu">
-                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                    <li><a href="#process" data-i18n="nav.process">Process</a></li>
-                    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
-                    <li><a href="#work" data-i18n="nav.work">Work</a></li>
-                    <li><a href="#about" data-i18n="nav.about">About</a></li>
-                    <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Get Started</a></li>
-                    <li>
-                        <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
-                            <i class="fas fa-moon" id="dark-mode-icon"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <button id="lang-toggle" class="lang-btn" aria-label="Switch Language">
-                            <span class="lang-text">EN</span>
-                        </button>
-                    </li>
+
+                <ul id="primary-navigation" class="nav-menu flex gap-8 list-none m-0 p-0">
+                    <li><a href="#services"
+                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            data-i18n="nav.services">Services</a></li>
+                    <li><a href="#process"
+                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            data-i18n="nav.process">Process</a></li>
+                    <li><a href="#pricing"
+                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            data-i18n="nav.pricing">Pricing</a></li>
+                    <li><a href="#work"
+                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            data-i18n="nav.work">Work</a></li>
+                    <li><a href="#about"
+                            class="nav-link text-charcoal dark:text-white font-medium hover:text-accent transition-colors"
+                            data-i18n="nav.about">About</a></li>
+                    <li class="md:hidden"><a href="#contact"
+                            class="nav-cta bg-charcoal text-white px-6 py-3 rounded hover:bg-dark-gray transition-colors"
+                            data-i18n="nav.contact">Get Started</a></li>
                 </ul>
+
+                <div class="nav-actions hidden md:flex items-center gap-3">
+                    <a href="#contact"
+                        class="nav-cta bg-charcoal text-white px-6 py-3 rounded hover:bg-dark-gray transition-colors"
+                        data-i18n="nav.contact">Get Started</a>
+                    <button id="lang-toggle"
+                        class="lang-btn bg-transparent border border-light-gray text-charcoal px-3 py-1 rounded text-sm font-medium cursor-pointer transition-all hover:border-charcoal hover:bg-pale-gray dark:text-white dark:border-gray dark:hover:border-white dark:hover:bg-dark-gray"
+                        aria-label="Switch Language">
+                        <span class="lang-text">MS</span>
+                    </button>
+                    <button id="theme-toggle"
+                        class="theme-btn bg-transparent border border-light-gray text-charcoal px-3 py-1 rounded text-sm font-medium cursor-pointer transition-all hover:border-charcoal hover:bg-pale-gray dark:text-white dark:border-gray dark:hover:border-white dark:hover:bg-dark-gray"
+                        aria-label="Switch Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <canvas id="hero-particles"></canvas>
-        <div class="container">
-            <div class="hero-content animate-on-scroll">
-                <h1 class="hero-title" data-i18n="hero.title">Let's Build Your Digital Success with JomBina</h1>
+    <section
+        class="hero relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-white dark:bg-charcoal -mt-20 pt-20">
+        <canvas id="hero-particles" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+        <div class="container relative z-10 text-center">
+            <div class="hero-content animate-on-scroll max-w-[800px] mx-auto">
+                <h1 class="hero-title mb-8 text-5xl font-bold leading-tight dark:text-white" data-i18n="hero.title">
+                    Let's Build Your
+                    Digital Success with JomBina</h1>
                 <p class="hero-subtitle" data-i18n="hero.subtitle">
                     Partner with JomBina to build high-conversion websites and scalable internal systems.
                     Production-ready solutions, not prototypes.
                 </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary" data-i18n="hero.cta_primary">Start Building with
+                <div class="hero-actions flex flex-col items-center gap-6">
+                    <a href="#contact"
+                        class="inline-flex items-center justify-center px-8 py-4 font-medium leading-none text-white transition-all bg-charcoal rounded-md hover:bg-dark-gray gap-2"
+                        data-i18n="hero.cta_primary">Start Building with
                         JomBina</a>
-                    <a href="#work" class="btn-link"><span data-i18n="hero.cta_secondary">See portfolio of work</span>
+                    <a href="#work"
+                        class="btn-link text-inherit no-underline transition-colors hover:text-accent font-inherit cursor-pointer p-0 border-0 bg-transparent inline-flex items-center gap-2"><span
+                            data-i18n="hero.cta_secondary">See portfolio of work</span>
                         <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="tech-stack-container fade-in-section animate-on-scroll delay-200">
-                    <p class="tech-stack-label" data-i18n="hero.tech_stack">Powering solutions with modern technology:
+                    <p class="tech-stack-label dark:text-gray" data-i18n="hero.tech_stack">Powering solutions with
+                        modern technology:
                     </p>
                     <div class="tech-marquee">
                         <!-- Original Set -->
@@ -240,95 +267,198 @@
     </section>
 
     <!-- Trust Metrics -->
-    <section class="metrics">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="metrics.title">Proven Delivery Scale</h2>
-                <p class="section-subtitle" data-i18n="metrics.subtitle">Measurable results delivered to real businesses
+    <section class="metrics py-24 bg-pale-gray dark:bg-dark-gray">
+        <div class="container mx-auto px-6">
+            <div class="section-header text-center mb-12 animate-on-scroll">
+                <h2 data-i18n="metrics.title" class="text-4xl font-semibold mb-6 dark:text-white">Proven Delivery Scale
+                </h2>
+                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+                    data-i18n="metrics.subtitle">
+                    Measurable results delivered to real businesses
                 </p>
             </div>
-            <div class="metrics-grid">
-                <div class="metric-card animate-on-scroll delay-100">
-                    <div class="metric-value">100+</div>
-                    <div class="metric-title" data-i18n="metrics.card1.title">Landing Pages Delivered</div>
-                    <p class="metric-description" data-i18n="metrics.card1.desc">Conversion-focused, A/B tested pages
+            <div class="metrics-grid grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+                <div
+                    class="metric-card animate-on-scroll delay-100 text-center p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
+                    <div class="metric-value text-5xl font-bold text-charcoal dark:text-white mb-4">100+</div>
+                    <div class="metric-title text-lg font-semibold text-dark-gray dark:text-light-gray mb-4"
+                        data-i18n="metrics.card1.title">
+                        Landing Pages Delivered</div>
+                    <p class="metric-description text-base text-gray dark:text-gray m-0" data-i18n="metrics.card1.desc">
+                        Conversion-focused, A/B tested pages
                         driving business results</p>
                 </div>
-                <div class="metric-card animate-on-scroll delay-200">
-                    <div class="metric-value">20+</div>
-                    <div class="metric-title" data-i18n="metrics.card2.title">Internal SaaS Systems Built</div>
-                    <p class="metric-description" data-i18n="metrics.card2.desc">Used daily by operational teams in
+                <div
+                    class="metric-card animate-on-scroll delay-200 text-center p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
+                    <div class="metric-value text-5xl font-bold text-charcoal dark:text-white mb-4">20+</div>
+                    <div class="metric-title text-lg font-semibold text-dark-gray dark:text-light-gray mb-4"
+                        data-i18n="metrics.card2.title">
+                        Internal SaaS Systems Built</div>
+                    <p class="metric-description text-base text-gray dark:text-gray m-0" data-i18n="metrics.card2.desc">
+                        Used daily by
+                        operational teams in
                         production environments</p>
                 </div>
-                <div class="metric-card animate-on-scroll delay-300">
-                    <div class="metric-value">Full-Stack</div>
-                    <div class="metric-title" data-i18n="metrics.card3.title">Production Experience</div>
-                    <p class="metric-description" data-i18n="metrics.card3.desc">From concept to deployment & ongoing
+                <div
+                    class="metric-card animate-on-scroll delay-300 text-center p-12 bg-white dark:bg-charcoal rounded-lg shadow-sm border border-black/5 dark:border-white/5">
+                    <div class="metric-value text-5xl font-bold text-charcoal dark:text-white mb-4">Full-Stack</div>
+                    <div class="metric-title text-lg font-semibold text-dark-gray dark:text-light-gray mb-4"
+                        data-i18n="metrics.card3.title">
+                        Production Experience</div>
+                    <p class="metric-description text-base text-gray dark:text-gray m-0" data-i18n="metrics.card3.desc">
+                        From concept to
+                        deployment & ongoing
                         maintenance</p>
                 </div>
             </div>
-            <p class="metrics-note" data-i18n="metrics.note">Work utilized by companies in retail, logistics, and
+            <p class="metrics-note text-center text-sm text-light-gray italic m-0" data-i18n="metrics.note">Work
+                utilized by companies in retail, logistics, and
                 professional services</p>
         </div>
     </section>
 
+    <!-- Benefits / Why Choose Us Section -->
+    <section class="benefits py-24 bg-white dark:bg-charcoal" id="benefits">
+        <div class="container mx-auto px-6">
+            <div class="section-header text-center mb-16 animate-on-scroll">
+                <h2 data-i18n="benefits.title"
+                    class="text-3xl md:text-4xl font-bold mb-4 text-charcoal dark:text-white">Why Choose
+                    JomBina?</h2>
+                <div class="w-20 h-1 bg-accent mx-auto mb-6 rounded-full"></div>
+                <p class="section-subtitle text-lg text-gray max-w-2xl mx-auto" data-i18n="benefits.subtitle">We focus
+                    on Speed, ROI, and Support to ensure your business growth.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1: Speed -->
+                <div
+                    class="benefit-card group animate-on-scroll delay-100 bg-white dark:bg-dark-gray p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
+                    <div
+                        class="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+
+                    <h3 data-i18n="benefits.card1.title" class="text-xl font-bold mb-4 text-charcoal dark:text-white">
+                        Fast Delivery</h3>
+                    <p data-i18n="benefits.card1.desc"
+                        class="text-gray dark:text-light-gray leading-relaxed text-sm lg:text-base">Ready in
+                        7-14 working days. No technical jargon headaches. We handle hosting, domain, and full technical
+                        setup.</p>
+                </div>
+
+                <!-- Benefit 2: ROI -->
+                <div
+                    class="benefit-card group animate-on-scroll delay-200 bg-white dark:bg-dark-gray p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
+                    <div
+                        class="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+
+                    <h3 data-i18n="benefits.card2.title" class="text-xl font-bold mb-4 text-charcoal dark:text-white">
+                        High-Converting
+                        Design</h3>
+                    <p data-i18n="benefits.card2.desc"
+                        class="text-gray dark:text-light-gray leading-relaxed text-sm lg:text-base">We use
+                        sales psychology structure (AIDA) in every design. Every button and layout is strategic to drive
+                        action.</p>
+                </div>
+
+                <!-- Benefit 3: Support -->
+                <div
+                    class="benefit-card group animate-on-scroll delay-300 bg-white dark:bg-dark-gray p-10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 text-center border border-gray-100 dark:border-gray-800">
+                    <div
+                        class="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-headset"></i>
+                    </div>
+
+                    <h3 data-i18n="benefits.card3.title" class="text-xl font-bold mb-4 text-charcoal dark:text-white">
+                        Reliable Support
+                    </h3>
+                    <p data-i18n="benefits.card3.desc"
+                        class="text-gray dark:text-light-gray leading-relaxed text-sm lg:text-base">Free
+                        1-year technical maintenance. Have an issue? We resolve it within 24 hours. You focus on
+                        business, we handle the tech.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 data-i18n="testimonials.title">Client Success Stories</h2>
-                <p class="section-subtitle" data-i18n="testimonials.subtitle">What business owners say about working
+    <section class="testimonials py-24 bg-pale-gray dark:bg-dark-gray" id="testimonials">
+        <div class="container mx-auto px-6">
+            <div class="section-header animate-on-scroll text-center mb-12">
+                <h2 data-i18n="testimonials.title" class="text-4xl font-semibold mb-6 dark:text-white">Client Success
+                    Stories</h2>
+                <p class="section-subtitle text-lg text-light-gray max-w-[600px] mx-auto"
+                    data-i18n="testimonials.subtitle">What business owners say about working
                     with me</p>
             </div>
-            <div class="testimonial-grid">
+            <div class="testimonial-grid grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Review 1 -->
-                <div class="testimonial-card animate-on-scroll delay-100">
-                    <div class="stars">
+                <div
+                    class="testimonial-card animate-on-scroll delay-100 bg-pale-gray dark:bg-charcoal p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <div class="stars mb-4 text-yellow-400 text-sm">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-quote" data-i18n="testimonials.q1">"The system Aniq built completely
+                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10"
+                        data-i18n="testimonials.q1">"The system Aniq built completely
                         transformed how we manage our
                         logistics. It's fast, reliable, and exactly what we needed. Highly recommended!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar-placeholder">AZ</div>
-                        <div class="author-info">
-                            <h4>Azman Zulkifli</h4>
-                            <p data-i18n="testimonials.a1.role">Operations Manager, Logistik Maju</p>
+                    <div class="testimonial-author flex items-center gap-4 mt-auto">
+                        <div
+                            class="author-avatar-placeholder w-10 h-10 rounded-full bg-light-gray text-white flex items-center justify-center font-bold text-sm">
+                            AZ</div>
+                        <div class="author-info flex-1">
+                            <h4 class="text-sm font-bold text-charcoal dark:text-white mb-0">Azman Zulkifli</h4>
+                            <p class="text-xs text-gray dark:text-gray mb-0" data-i18n="testimonials.a1.role">Operations
+                                Manager,
+                                Logistik Maju</p>
                         </div>
                     </div>
                 </div>
                 <!-- Review 2 -->
-                <div class="testimonial-card animate-on-scroll delay-200">
-                    <div class="stars">
+                <div
+                    class="testimonial-card animate-on-scroll delay-200 bg-pale-gray dark:bg-charcoal p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <div class="stars mb-4 text-yellow-400 text-sm">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-quote" data-i18n="testimonials.q2">"Professional delivery and excellent
+                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10"
+                        data-i18n="testimonials.q2">"Professional delivery and excellent
                         communication. He understood our
                         brand vision and delivered a landing page that converts."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar-placeholder">SL</div>
-                        <div class="author-info">
-                            <h4>Sarah Lee</h4>
-                            <p data-i18n="testimonials.a2.role">Founder, Glow Beauty</p>
+                    <div class="testimonial-author flex items-center gap-4 mt-auto">
+                        <div
+                            class="author-avatar-placeholder w-10 h-10 rounded-full bg-light-gray text-white flex items-center justify-center font-bold text-sm">
+                            SL</div>
+                        <div class="author-info flex-1">
+                            <h4 class="text-sm font-bold text-charcoal dark:text-white mb-0">Sarah Lee</h4>
+                            <p class="text-xs text-gray dark:text-gray mb-0" data-i18n="testimonials.a2.role">Founder,
+                                Glow Beauty</p>
                         </div>
                     </div>
                 </div>
                 <!-- Review 3 -->
-                <div class="testimonial-card animate-on-scroll delay-300">
-                    <div class="stars">
+                <div
+                    class="testimonial-card animate-on-scroll delay-300 bg-pale-gray dark:bg-charcoal p-8 rounded-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <div class="stars mb-4 text-yellow-400 text-sm">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-quote" data-i18n="testimonials.q3">"Technical maintenance is top-notch.
+                    <p class="testimonial-quote text-charcoal dark:text-light-gray italic mb-6 leading-relaxed relative z-10"
+                        data-i18n="testimonials.q3">"Technical maintenance is top-notch.
                         Whenever we have an issue, it's
                         resolved within hours. A true technical partner."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar-placeholder">DK</div>
-                        <div class="author-info">
-                            <h4>David Khoo</h4>
-                            <p data-i18n="testimonials.a3.role">Director, TechStart Solutions</p>
+                    <div class="testimonial-author flex items-center gap-4 mt-auto">
+                        <div
+                            class="author-avatar-placeholder w-10 h-10 rounded-full bg-light-gray text-white flex items-center justify-center font-bold text-sm">
+                            DK</div>
+                        <div class="author-info flex-1">
+                            <h4 class="text-sm font-bold text-charcoal dark:text-white mb-0">David Khoo</h4>
+                            <p class="text-xs text-gray dark:text-gray mb-0" data-i18n="testimonials.a3.role">Director,
+                                TechStart
+                                Solutions</p>
                         </div>
                     </div>
                 </div>
@@ -337,124 +467,168 @@
     </section>
 
     <!-- Portfolio -->
-    <section class="portfolio" id="work">
-        <div class="container">
-            <div class="section-header">
-                <h2>Selected Work</h2>
-                <p class="section-subtitle">Examples of business-focused digital solutions</p>
+    <section class="portfolio py-24 bg-white dark:bg-charcoal" id="work">
+        <div class="container mx-auto px-6">
+            <div class="section-header text-center mb-12">
+                <h2 data-i18n="portfolio.title" class="text-4xl font-semibold mb-6 dark:text-white">Selected Work</h2>
+                <p class="section-subtitle text-lg text-light-gray max-w-[600px] mx-auto"
+                    data-i18n="portfolio.subtitle">Examples of business-focused digital
+                    solutions</p>
             </div>
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all" data-i18n="filters.all">All</button>
-                <button class="filter-btn" data-filter="landing" data-i18n="filters.landing">Landing Page</button>
-                <button class="filter-btn" data-filter="system" data-i18n="filters.system">Web System</button>
-                <button class="filter-btn" data-filter="apps" data-i18n="filters.apps">Apps</button>
-                <button class="filter-btn" data-filter="project" data-i18n="filters.project">Project</button>
+            <div class="portfolio-filters flex justify-center gap-4 mb-12 flex-wrap">
+                <button
+                    class="filter-btn active px-6 py-2 rounded-full border border-light-gray text-gray dark:text-light-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    data-filter="all" data-i18n="filters.all">All</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    data-filter="landing" data-i18n="filters.landing">Landing Page</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    data-filter="system" data-i18n="filters.system">Web System</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    data-filter="apps" data-i18n="filters.apps">Apps</button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full border border-light-gray text-gray text-sm font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:border-charcoal [&.active]:bg-accent [&.active]:text-white [&.active]:border-accent"
+                    data-filter="project" data-i18n="filters.project">Project</button>
             </div>
-            <div class="portfolio-grid">
+            <div class="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Landing Pages -->
-                <div class="portfolio-item animate-on-scroll" data-category="landing">
-                    <div class="portfolio-image">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="landing">
+                    <div class="portfolio-image h-[200px] bg-pale-gray relative overflow-hidden rounded-t-lg">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/bukupanduansihat.webp" alt="Buku Panduan Sihat Landing Page" loading="lazy"
                             width="400" height="300" fetchpriority="low"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="portfolio-info">
-                        <h3><a href="https://bosta.com.my/bukupanduansihat/" target="_blank" class="portfolio-link">Buku
-                                Panduan Sihat <i class="fas fa-external-link-alt"></i></a></h3>
-                        <p class="portfolio-category">Landing Page</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/bukupanduansihat/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="portfolio-link hover:text-accent transition-colors dark:text-white">Buku
+                                Panduan Sihat <i class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.landing">Landing Page</p>
                     </div>
                 </div>
-                <div class="portfolio-item animate-on-scroll" data-category="landing">
-                    <div class="portfolio-image">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="landing">
+                    <div class="portfolio-image h-[200px] bg-pale-gray relative overflow-hidden rounded-t-lg">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/probiozen.webp" alt="Probiozen Landing Page" loading="lazy" width="400"
-                            height="300" fetchpriority="low" style="width: 100%; height: 100%; object-fit: cover;">
+                            height="300" fetchpriority="low"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="portfolio-info">
-                        <h3><a href="https://bosta.com.my/probiozen/" target="_blank" class="portfolio-link">Probiozen
-                                <i class="fas fa-external-link-alt"></i></a></h3>
-                        <p class="portfolio-category">Landing Page</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/probiozen/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="portfolio-link hover:text-accent transition-colors dark:text-white">Probiozen
+                                <i class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.landing">Landing Page</p>
                     </div>
                 </div>
-                <div class="portfolio-item animate-on-scroll" data-category="landing">
-                    <div class="portfolio-image">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="landing">
+                    <div class="portfolio-image h-[200px] bg-pale-gray relative overflow-hidden rounded-t-lg">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/formulaturun10kg.webp" alt="Modul Formula Turun 10KG Landing Page"
                             loading="lazy" width="400" height="300" fetchpriority="low"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="portfolio-info">
-                        <h3><a href="https://bosta.com.my/formula-turun-10kg/" target="_blank"
-                                class="portfolio-link">Modul Formula Turun 10 KG <i
-                                    class="fas fa-external-link-alt"></i></a></h3>
-                        <p class="portfolio-category">Landing Page</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/formula-turun-10kg/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="portfolio-link hover:text-accent transition-colors dark:text-white">Modul Formula
+                                Turun 10 KG <i class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.landing">Landing Page</p>
                     </div>
                 </div>
-                <div class="portfolio-item animate-on-scroll" data-category="landing">
-                    <div class="portfolio-image">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="landing">
+                    <div class="portfolio-image h-[200px] bg-pale-gray relative overflow-hidden rounded-t-lg">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/ellscafe.webp" alt="Ells Cafe Landing Page" loading="lazy" width="400"
-                            height="300" fetchpriority="low" style="width: 100%; height: 100%; object-fit: cover;">
+                            height="300" fetchpriority="low"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="portfolio-info">
-                        <h3><a href="https://bosta.com.my/ellscafe/" target="_blank" class="portfolio-link">Ells Cafe <i
-                                    class="fas fa-external-link-alt"></i></a></h3>
-                        <p class="portfolio-category">Landing Page</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/ellscafe/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="portfolio-link hover:text-accent transition-colors dark:text-white">Ells Cafe <i
+                                    class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.landing">Landing Page</p>
                     </div>
                 </div>
-                <div class="portfolio-item animate-on-scroll" data-category="landing">
-                    <div class="portfolio-image">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="landing">
+                    <div class="portfolio-image h-[200px] bg-pale-gray relative overflow-hidden rounded-t-lg">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/missgoldenhair.webp" alt="MissGolden Hair Landing Page" loading="lazy"
                             width="400" height="300" fetchpriority="low"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="portfolio-info">
-                        <h3><a href="https://missgoldenhair-eptwyw197-zaniquaffles-projects.vercel.app/" target="_blank"
-                                class="portfolio-link">MissGolden Hair <i class="fas fa-external-link-alt"></i></a></h3>
-                        <p class="portfolio-category">Landing Page</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2"><a
+                                href="https://missgoldenhair-eptwyw197-zaniquaffles-projects.vercel.app/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="portfolio-link hover:text-accent transition-colors dark:text-white">MissGolden
+                                Hair <i class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.landing">Landing Page</p>
                     </div>
                 </div>
-                <div class="portfolio-item animate-on-scroll" data-category="landing">
-                    <div class="portfolio-image">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="landing">
+                    <div class="portfolio-image h-[200px] bg-pale-gray relative overflow-hidden rounded-t-lg">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/rawathotmon.webp" alt="Webinar Rawat Hormon Landing Page" loading="lazy"
                             width="400" height="300" fetchpriority="low"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="portfolio-info">
-                        <h3><a href="https://bosta.com.my/RawatHormon/" target="_blank" class="portfolio-link">Webinar
-                                Rawat Hormon <i class="fas fa-external-link-alt"></i></a></h3>
-                        <p class="portfolio-category">Landing Page</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2"><a href="https://bosta.com.my/RawatHormon/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="portfolio-link hover:text-accent transition-colors dark:text-white">Webinar
+                                Rawat Hormon <i class="fas fa-external-link-alt text-sm ml-1"></i></a></h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.landing">Landing Page</p>
                     </div>
                 </div>
-
                 <!-- Web Systems -->
-                <div class="portfolio-item animate-on-scroll" data-category="system">
-                    <div class="portfolio-image" onclick="openGallery('logistik')" style="cursor: pointer;">
-                        <div class="skeleton-image skeleton"></div>
+                <div class="portfolio-item animate-on-scroll group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-category="system">
+                    <div class="portfolio-image h-[200px] bg-pale-gray dark:bg-dark-gray relative overflow-hidden rounded-t-lg cursor-pointer"
+                        onclick="openGallery('logistik')">
+                        <div class="skeleton-image skeleton absolute inset-0 bg-gray-200 animate-pulse"></div>
                         <img src="assets/img/LOGISTIK/1.png" alt="Sistem Logistik" loading="lazy" width="400"
-                            height="300" fetchpriority="low" style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-images"></i>
+                            height="300" fetchpriority="low"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div
+                            class="gallery-overlay absolute inset-0 bg-charcoal/50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <i class="fas fa-images text-white text-3xl"></i>
                         </div>
                     </div>
-                    <div class="portfolio-info">
-                        <h3><button type="button" onclick="openGallery('logistik')" class="portfolio-link">Logistik <i
-                                    class="fas fa-images"></i></button></h3>
-                        <p class="portfolio-category">Web System</p>
+                    <div
+                        class="portfolio-info p-6 border border-t-0 border-pale-gray dark:border-dark-gray rounded-b-lg bg-white dark:bg-dark-gray">
+                        <h3 class="text-xl font-semibold mb-2">
+                            <button type="button" onclick="openGallery('logistik')"
+                                class="portfolio-link hover:text-accent transition-colors text-left w-full dark:text-white">
+                                Logistik <i class="fas fa-images text-sm ml-1"></i>
+                            </button>
+                        </h3>
+                        <p class="portfolio-category inline-block text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full"
+                            data-i18n="filters.system">Web System</p>
                     </div>
                 </div>
-                <!-- <div class="portfolio-item" data-category="system">
-                    <div class="portfolio-image">
-                        <div class="image-placeholder"></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Staff Training</h3>
-                        <p class="portfolio-category">Web System</p>
-                    </div>
-                </div> -->
                 <!-- <div class="portfolio-item" data-category="system">
                     <div class="portfolio-image">
                         <div class="image-placeholder"></div>
@@ -509,239 +683,383 @@
     </section>
 
     <!-- Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="services.title">Business Solutions</h2>
-                <p class="section-subtitle" data-i18n="services.subtitle">Specialized services designed to meet
+    <section class="services py-24 bg-pale-gray dark:bg-black" id="services">
+        <div class="container mx-auto px-6">
+            <div class="section-header text-center mb-12">
+                <h2 data-i18n="services.title" class="text-4xl font-semibold mb-6 dark:text-white">Business Solutions
+                </h2>
+                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+                    data-i18n="services.subtitle">
+                    Specialized services designed to meet
                     commercial objectives</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll delay-100">
-                    <div class="service-icon">
+            <div class="services-grid grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div
+                    class="service-card animate-on-scroll delay-100 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    <div
+                        class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-window-maximize"></i>
                     </div>
-                    <h3 data-i18n="services.card1.title">Landing Page Development</h3>
-                    <p data-i18n="services.card1.desc">High-converting pages for campaigns, product launches, and lead
-                        generation. Built for performance
-                        and clarity.</p>
+                    <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white" data-i18n="services.card1.title">
+                        Landing Page Development
+                    </h3>
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card1.desc">
+                        High-converting pages for
+                        campaigns, product
+                        launches, and lead generation. Built for performance and clarity.</p>
                 </div>
-                <div class="service-card animate-on-scroll delay-200">
-                    <div class="service-icon">
+                <div
+                    class="service-card animate-on-scroll delay-200 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    <div
+                        class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-building"></i>
                     </div>
-                    <h3>Corporate Website Development</h3>
-                    <p>Authoritative, brand-aligned websites that establish credibility and facilitate stakeholder
-                        engagement.</p>
+                    <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white" data-i18n="services.card2.title">
+                        Corporate Website
+                        Development</h3>
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card2.desc">
+                        Authoritative,
+                        brand-aligned websites
+                        that establish credibility and facilitate stakeholder engagement.</p>
                 </div>
-                <div class="service-card animate-on-scroll delay-300">
-                    <div class="service-icon">
+                <div
+                    class="service-card animate-on-scroll delay-300 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    <div
+                        class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <h3>Internal System & SaaS Development</h3>
-                    <p>Streamline operations with custom-built web applications, admin panels, and management tools.</p>
+                    <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white" data-i18n="services.card3.title">
+                        Internal System &
+                        SaaS Development
+                    </h3>
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card3.desc">
+                        Streamline operations
+                        with custom-built
+                        web applications, admin panels, and management tools.</p>
                 </div>
-                <div class="service-card animate-on-scroll delay-100">
-                    <div class="service-icon">
+                <div
+                    class="service-card animate-on-scroll delay-100 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    <div
+                        class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white">MVP Development</h3>
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed">Rapidly build and launch Minimum
+                        Viable Products to validate your business
+                        ideas.</p>
+                </div>
+                <div
+                    class="service-card animate-on-scroll delay-200 p-12 bg-white dark:bg-dark-gray rounded-lg border border-pale-gray dark:border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                    <div
+                        class="service-icon w-12 h-12 bg-pale-gray rounded flex items-center justify-center mb-6 text-accent text-xl">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Website Redesign & Optimization</h3>
-                    <p>Modernize existing sites for better user experience, speed, and alignment with current business
-                        goals.</p>
+                    <h3 class="text-xl font-bold mb-3 text-charcoal dark:text-white" data-i18n="services.card4.title">
+                        Website Redesign &
+                        Optimization
+                    </h3>
+                    <p class="text-gray dark:text-light-gray mb-0 leading-relaxed" data-i18n="services.card4.desc">
+                        Modernize existing
+                        sites for better user
+                        experience, speed, and alignment with current business goals.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="pricing.title">Pricing</h2>
-                <p class="section-subtitle" data-i18n="pricing.subtitle">Choose the package that fits your business
+    <section class="pricing py-24 bg-white dark:bg-charcoal" id="pricing">
+        <div class="container mx-auto px-6">
+            <div class="section-header text-center mb-12">
+                <h2 data-i18n="pricing.title" class="text-4xl font-semibold mb-6 dark:text-white">Pricing</h2>
+                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+                    data-i18n="pricing.subtitle">
+                    Choose the package that fits your business
                     needs. All packages include domain, hosting, and full technical maintenance for 1 year.</p>
             </div>
-            <div class="pricing-grid">
+            <div class="pricing-grid flex justify-center gap-8 flex-wrap max-w-[1200px] mx-auto">
                 <!-- Card 1 -->
-                <div class="pricing-card animate-on-scroll delay-100">
-                    <h3 data-i18n="pricing.landing.title">Landing Page / 1-Page Website</h3>
-                    <div class="price" data-i18n="pricing.landing.price">RM490 – RM890</div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.landing.f1">1-page premium landing design</li>
-                        <li data-i18n="pricing.landing.f2">Optional payment gateway / OnPay (+RM200)</li>
-                        <li data-i18n="pricing.landing.f3">1 year domain & hosting</li>
-                        <li data-i18n="pricing.landing.f4">1 year technical maintenance</li>
-                        <li data-i18n="pricing.landing.f5">Professional copywriting</li>
-                        <li data-i18n="pricing.landing.f6">Mobile & speed optimized</li>
-                        <li data-i18n="pricing.landing.f7">WhatsApp integration</li>
+                <div
+                    class="pricing-card animate-on-scroll delay-100 flex-1 min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-8 text-center shadow-lg border border-pale-gray dark:border-gray-800 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <h3 data-i18n="pricing.landing.title" class="text-xl text-charcoal dark:text-white mb-4">Landing
+                        Page / 1-Page
+                        Website</h3>
+                    <div class="price text-2xl font-bold text-accent mb-8 min-h-[3rem] flex items-center justify-center"
+                        data-i18n="pricing.landing.price">RM490 – RM890</div>
+                    <ul class="features-list list-none text-left mb-8 flex-grow">
+                        <li data-i18n="pricing.landing.f1"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            1-page premium landing design</li>
+                        <li data-i18n="pricing.landing.f2"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Optional payment gateway / OnPay (+RM200)</li>
+                        <li data-i18n="pricing.landing.f3"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            1 year domain & hosting</li>
+                        <li data-i18n="pricing.landing.f4"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            1 year technical maintenance</li>
+                        <li data-i18n="pricing.landing.f5"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Professional copywriting</li>
+                        <li data-i18n="pricing.landing.f6"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Mobile & speed optimized</li>
+                        <li data-i18n="pricing.landing.f7"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            WhatsApp integration</li>
                     </ul>
                     <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20Landing%20Page%20package."
-                        class="btn btn-primary btn-full" data-i18n="pricing.landing.cta">Contact to Start</a>
+                        class="btn btn-primary w-full bg-charcoal text-white hover:bg-dark-gray px-6 py-3 rounded-md font-medium transition-colors"
+                        data-i18n="pricing.landing.cta">Contact to Start</a>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="pricing-card popular animate-on-scroll delay-200">
-                    <div class="badge" data-i18n="pricing.corporate.badge">Most Popular</div>
-                    <h3 data-i18n="pricing.corporate.title">Business / Corporate Website</h3>
-                    <div class="price" data-i18n="pricing.corporate.price">Starts from RM990</div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.corporate.f1">Up to 10 structured pages</li>
-                        <li data-i18n="pricing.corporate.f2">Profile, services, forms</li>
-                        <li data-i18n="pricing.corporate.f3">1 year domain & hosting</li>
-                        <li data-i18n="pricing.corporate.f4">1 year technical maintenance</li>
-                        <li data-i18n="pricing.corporate.f5">Full design & copywriting</li>
-                        <li data-i18n="pricing.corporate.f6">SEO-ready structure</li>
-                        <li data-i18n="pricing.corporate.f7">Branding-consistent visuals</li>
+                <div
+                    class="pricing-card popular animate-on-scroll delay-200 flex-1 min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-8 text-center shadow-lg border-2 border-accent flex flex-col relative transform scale-105 z-10 transition-all duration-300 hover:scale-[1.05] hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="badge absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold uppercase"
+                        data-i18n="pricing.corporate.badge">Most Popular</div>
+                    <h3 data-i18n="pricing.corporate.title" class="text-xl text-charcoal dark:text-white mb-4">Business
+                        / Corporate
+                        Website</h3>
+                    <div class="price text-2xl font-bold text-accent mb-8 min-h-[3rem] flex items-center justify-center"
+                        data-i18n="pricing.corporate.price">Starts from RM990</div>
+                    <ul class="features-list list-none text-left mb-8 flex-grow">
+                        <li data-i18n="pricing.corporate.f1"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Up to 10 structured pages</li>
+                        <li data-i18n="pricing.corporate.f2"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Profile, services, forms</li>
+                        <li data-i18n="pricing.corporate.f3"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            1 year domain & hosting</li>
+                        <li data-i18n="pricing.corporate.f4"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            1 year technical maintenance</li>
+                        <li data-i18n="pricing.corporate.f5"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Full design & copywriting</li>
+                        <li data-i18n="pricing.corporate.f6"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            SEO-ready structure</li>
+                        <li data-i18n="pricing.corporate.f7"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Branding-consistent visuals</li>
                     </ul>
                     <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20Business%2FCorporate%20Website%20package."
-                        class="btn btn-primary btn-full" data-i18n="pricing.corporate.cta">Contact for Quotation</a>
+                        class="btn btn-primary w-full bg-charcoal text-white hover:bg-dark-gray px-6 py-3 rounded-md font-medium transition-colors"
+                        data-i18n="pricing.corporate.cta">Contact for Quotation</a>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="pricing-card animate-on-scroll delay-300">
-                    <h3 data-i18n="pricing.ecommerce.title">E-Commerce Website</h3>
-                    <div class="price" data-i18n="pricing.ecommerce.price">Starts from RM1,890</div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.ecommerce.f1">WooCommerce / Shopify</li>
-                        <li data-i18n="pricing.ecommerce.f2">Full store setup & checkout</li>
-                        <li data-i18n="pricing.ecommerce.f3">Payment gateway integration</li>
-                        <li data-i18n="pricing.ecommerce.f4">Product & category setup</li>
-                        <li data-i18n="pricing.ecommerce.f5">Speed & security optimized</li>
-                        <li data-i18n="pricing.ecommerce.f6">1 year maintenance included</li>
-                        <li data-i18n="pricing.ecommerce.f7">Basic ads tracking setup</li>
+                <div
+                    class="pricing-card animate-on-scroll delay-300 flex-1 min-w-[300px] bg-white dark:bg-dark-gray rounded-xl p-8 text-center shadow-lg border border-pale-gray dark:border-gray-800 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <h3 data-i18n="pricing.ecommerce.title" class="text-xl text-charcoal dark:text-white mb-4">
+                        E-Commerce Website</h3>
+                    <div class="price text-2xl font-bold text-accent mb-8 min-h-[3rem] flex items-center justify-center"
+                        data-i18n="pricing.ecommerce.price">Starts from RM1,890</div>
+                    <ul class="features-list list-none text-left mb-8 flex-grow">
+                        <li data-i18n="pricing.ecommerce.f1"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            WooCommerce / Shopify</li>
+                        <li data-i18n="pricing.ecommerce.f2"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Full store setup & checkout</li>
+                        <li data-i18n="pricing.ecommerce.f3"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Payment gateway integration</li>
+                        <li data-i18n="pricing.ecommerce.f4"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Product & category setup</li>
+                        <li data-i18n="pricing.ecommerce.f5"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Speed & security optimized</li>
+                        <li data-i18n="pricing.ecommerce.f6"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            1 year maintenance included</li>
+                        <li data-i18n="pricing.ecommerce.f7"
+                            class="mb-2 relative pl-6 text-[0.95rem] text-gray dark:text-light-gray before:content-['•'] before:absolute before:left-0 before:text-accent before:text-2xl before:-top-0.5">
+                            Basic ads tracking setup</li>
                     </ul>
                     <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20the%20E-Commerce%20Website%20package."
-                        class="btn btn-primary btn-full" data-i18n="pricing.ecommerce.cta">Discuss Your Store</a>
+                        class="btn btn-primary w-full bg-charcoal text-white hover:bg-dark-gray px-6 py-3 rounded-md font-medium transition-colors"
+                        data-i18n="pricing.ecommerce.cta">Discuss Your Store</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Process -->
-    <section class="process" id="process">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-i18n="process.title">Structured Delivery</h2>
-                <p class="section-subtitle" data-i18n="process.subtitle">A proven workflow ensuring quality and timeline
+    <section class="process py-24 bg-pale-gray dark:bg-black" id="process">
+        <div class="container mx-auto px-6">
+            <div class="section-header text-center mb-12">
+                <h2 data-i18n="process.title" class="text-4xl font-semibold mb-6 dark:text-white">Structured Delivery
+                </h2>
+                <p class="section-subtitle text-lg text-light-gray dark:text-gray max-w-[600px] mx-auto"
+                    data-i18n="process.subtitle">A
+                    proven workflow ensuring quality and timeline
                     adherence</p>
             </div>
-            <div class="process-timeline">
-                <div class="process-step animate-on-scroll delay-100">
-                    <div class="step-number">1</div>
-                    <h3 data-i18n="process.step1.title">Requirement & Strategy</h3>
-                    <p data-i18n="process.step1.desc">Business objective alignment, scope definition, and detailed
+            <div
+                class="process-timeline grid grid-cols-1 md:grid-cols-4 gap-8 relative before:content-[''] before:absolute before:top-[40px] before:left-[50px] before:right-[50px] before:h-[2px] before:bg-light-gray before:opacity-30 before:z-[1] before:hidden md:before:block">
+                <div
+                    class="process-step animate-on-scroll delay-100 text-center relative z-[2] bg-white dark:bg-dark-gray p-6 rounded-lg shadow-sm border border-transparent dark:border-gray-800">
+                    <div
+                        class="step-number w-20 h-20 bg-white border-2 border-accent rounded-full flex items-center justify-center text-2xl font-bold text-accent mx-auto mb-8">
+                        1</div>
+                    <h3 data-i18n="process.step1.title" class="text-xl font-semibold mb-4 dark:text-white">Requirement &
+                        Strategy</h3>
+                    <p data-i18n="process.step1.desc" class="text-gray dark:text-light-gray mb-0">Business objective
+                        alignment, scope
+                        definition, and detailed
                         planning phase.</p>
                 </div>
-                <div class="process-step animate-on-scroll delay-200">
-                    <div class="step-number">2</div>
-                    <h3>Design & Structure</h3>
-                    <p>Wireframing, UI/UX design focused on user flows and brand representation.</p>
+                <div
+                    class="process-step animate-on-scroll delay-200 text-center relative z-[2] bg-white dark:bg-dark-gray p-6 rounded-lg shadow-sm border border-transparent dark:border-gray-800">
+                    <div
+                        class="step-number w-20 h-20 bg-white border-2 border-accent rounded-full flex items-center justify-center text-2xl font-bold text-accent mx-auto mb-8">
+                        2</div>
+                    <h3 data-i18n="process.step2.title" class="text-xl font-semibold mb-4 dark:text-white">Design &
+                        Structure</h3>
+                    <p data-i18n="process.step2.desc" class="text-gray dark:text-light-gray mb-0">Wireframing, UI/UX
+                        design focused on user
+                        flows and brand
+                        representation.</p>
                 </div>
-                <div class="process-step animate-on-scroll delay-300">
-                    <div class="step-number">3</div>
-                    <h3>Development & Testing</h3>
-                    <p>Build, integrate, and rigorously test for performance, security, and reliability.</p>
+                <div
+                    class="process-step animate-on-scroll delay-300 text-center relative z-[2] bg-white dark:bg-dark-gray p-6 rounded-lg shadow-sm border border-transparent dark:border-gray-800">
+                    <div
+                        class="step-number w-20 h-20 bg-white border-2 border-accent rounded-full flex items-center justify-center text-2xl font-bold text-accent mx-auto mb-8">
+                        3</div>
+                    <h3 data-i18n="process.step3.title" class="text-xl font-semibold mb-4 dark:text-white">Development &
+                        Testing</h3>
+                    <p data-i18n="process.step3.desc" class="text-gray dark:text-light-gray mb-0">Build, integrate, and
+                        rigorously test for
+                        performance, security,
+                        and reliability.</p>
                 </div>
-                <div class="process-step animate-on-scroll delay-100">
-                    <div class="step-number">4</div>
-                    <h3>Delivery & Support</h3>
-                    <p>Launch, handover, documentation, and provision of ongoing support options.</p>
+                <div
+                    class="process-step animate-on-scroll delay-100 text-center relative z-[2] bg-white dark:bg-dark-gray p-6 rounded-lg shadow-sm border border-transparent dark:border-gray-800">
+                    <div
+                        class="step-number w-20 h-20 bg-white border-2 border-accent rounded-full flex items-center justify-center text-2xl font-bold text-accent mx-auto mb-8">
+                        4</div>
+                    <h3 data-i18n="process.step4.title" class="text-xl font-semibold mb-4 dark:text-white">Delivery &
+                        Support</h3>
+                    <p data-i18n="process.step4.desc" class="text-gray dark:text-light-gray mb-0">Launch, handover,
+                        documentation, and
+                        provision of ongoing support
+                        options.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image animate-on-scroll delay-100">
-                    <img src="assets/img/myself.webp?v=1" alt="Professional Web Developer - Jombina.site Founder"
-                        class="about-avatar" loading="lazy" width="300" height="300" fetchpriority="low">
+    <section class="about py-24 bg-white dark:bg-charcoal" id="about">
+        <div class="container mx-auto px-6">
+            <div class="about-grid grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 items-start">
+                <div class="about-image animate-on-scroll delay-100 relative">
+                    <img src="assets/img/myself.webp" alt="Professional Web Developer - Jombina.site Founder"
+                        class="about-avatar w-[300px] h-[300px] rounded-lg bg-gradient-to-br from-pale-gray to-[#E0E0E0] border-8 border-white shadow-md object-cover"
+                        loading="lazy" width="300" height="300" fetchpriority="low">
                 </div>
                 <div class="about-content animate-on-scroll delay-200">
-                    <h2 data-i18n="about.title">Professional Digital Builder</h2>
-                    <p data-i18n="about.desc1">
-                        A Diploma in Information Technology graduate from KPTM Batu Pahat, equipped with hands-on,
-                        production-level experience building digital solutions for real business use cases.
-                    </p>
-                    <p data-i18n="about.desc2">
-                        My approach is pragmatic and results-oriented: understanding commercial objectives first,
-                        then applying robust technical execution to deliver websites and systems that perform reliably
-                        at scale.
-                    </p>
-                    <p data-i18n="about.desc3">
-                        I work directly with business owners, managers, and marketing teams to translate requirements
-                        into effective digital assets that drive growth and operational efficiency.
-                    </p>
-                    <div class="about-credentials">
-                        <div class="credential">
-                            <i class="fas fa-graduation-cap"></i>
+                    <h2 class="text-3xl font-bold mb-6 text-charcoal dark:text-white" data-i18n="about.title">
+                        Professional Digital Builder
+                    </h2>
+                    <p class="text-gray dark:text-light-gray mb-6 leading-relaxed" data-i18n="about.desc1">A Diploma in
+                        Information
+                        Technology graduate
+                        from KPTM Batu Pahat, equipped with hands-on, production-level experience building digital
+                        solutions for real business use cases.</p>
+                    <p class="text-gray dark:text-light-gray mb-6 leading-relaxed" data-i18n="about.desc2">My approach
+                        is pragmatic and
+                        results-oriented: understanding commercial objectives first, then applying robust technical
+                        execution to deliver websites and systems that perform reliably at scale.</p>
+                    <p class="text-gray dark:text-light-gray mb-6 leading-relaxed" data-i18n="about.desc3">I work
+                        directly with business
+                        owners, managers,
+                        and marketing teams to translate requirements into effective digital assets that drive growth
+                        and operational efficiency.</p>
+
+                    <ul class="about-credentials list-none p-0 mt-8 space-y-3">
+                        <li class="flex items-center gap-3 text-charcoal dark:text-white font-medium">
+                            <i class="fas fa-check-circle text-accent"></i>
                             <span data-i18n="about.cred1">Diploma in Information Technology (KPTM Batu Pahat)</span>
-                        </div>
-                        <div class="credential">
-                            <i class="fas fa-briefcase"></i>
+                        </li>
+                        <li class="flex items-center gap-3 text-charcoal dark:text-white font-medium">
+                            <i class="fas fa-check-circle text-accent"></i>
                             <span data-i18n="about.cred2">Production-level business system development</span>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq" id="faq">
+    <section class="faq py-24 bg-pale-gray dark:bg-black" id="faq">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
-                <p class="section-subtitle" data-i18n="faq.subtitle">Common questions about my services</p>
+                <h2 data-i18n="faq.title" class="dark:text-white">Frequently Asked Questions</h2>
+                <p data-i18n="faq.subtitle" class="dark:text-gray">Common questions about my services</p>
             </div>
-            <div class="faq-grid animate-on-scroll delay-100">
-                <!-- item 1 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q1">How long does it take to build a website?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
+
+            <div class="faq-container max-w-[800px] mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white dark:bg-dark-gray dark:text-white animate-on-scroll delay-100">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q1">How long does it take to build a website?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
                     <div class="faq-answer">
-                        <p data-i18n="faq.a1">For a standard Landing Page, it takes 3-5 days. For a Corporate Website
-                            (up to 10 pages), it
-                            takes about 2-3 weeks. Complex systems depend on requirements.</p>
+                        <p data-i18n="faq.a1" class="text-gray dark:text-light-gray">For a standard Landing Page, it
+                            takes 3-5 days. For a Corporate Website
+                            (up to 10
+                            pages), it takes about 2-3 weeks. Complex systems depend on requirements.</p>
                     </div>
                 </div>
-                <!-- item 2 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q2">Do you provide hosting and domain?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white dark:bg-dark-gray dark:text-white animate-on-scroll delay-200">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q2">Do you provide hosting and domain?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
                     <div class="faq-answer">
-                        <p data-i18n="faq.a2">Yes, all my packages include FREE domain (.com/.my) and high-speed hosting
-                            for the first year. I handle all the technical setup.</p>
+                        <p data-i18n="faq.a2" class="text-gray dark:text-light-gray">Yes, all my packages include FREE
+                            domain (.com/.my) and high-speed hosting
+                            for the
+                            first year. I handle all the technical setup.</p>
                     </div>
                 </div>
-                <!-- item 3 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q3">Is there any maintenance fee?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white dark:bg-dark-gray dark:text-white animate-on-scroll delay-300">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q3">Is there any maintenance fee?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
                     <div class="faq-answer">
-                        <p data-i18n="faq.a3">The first year of maintenance is included. After year 1, there is a
-                            renewal fee (Domain +
-                            Hosting + Maintenance) starting from RM350/year depending on the package.</p>
+                        <p data-i18n="faq.a3" class="text-gray dark:text-light-gray">The first year of maintenance is
+                            included. After year 1, there is a
+                            renewal fee
+                            (Domain + Hosting + Maintenance) starting from RM350/year depending on the package.</p>
                     </div>
                 </div>
-                <!-- item 4 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span data-i18n="faq.q4">Can I update the website content myself?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </button>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white dark:bg-dark-gray dark:text-white animate-on-scroll delay-400">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q4">Can I update the website content myself?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
                     <div class="faq-answer">
-                        <p data-i18n="faq.a4">Yes! I build websites using user-friendly CMS platforms. I provide a video
-                            tutorial on how to
-                            edit text and images easily.</p>
+                        <p data-i18n="faq.a4" class="text-gray dark:text-light-gray">Yes! I build websites using
+                            user-friendly CMS platforms. I provide a
+                            video
+                            tutorial on how to edit text and images easily.</p>
                     </div>
                 </div>
             </div>
@@ -749,17 +1067,18 @@
     </section>
 
     <!-- Blog Section -->
-    <section class="blog" id="blog">
+    <section class="blog py-24 bg-white dark:bg-charcoal" id="blog">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <h2 data-i18n="blog.title">Blog & Insights</h2>
-                <p class="section-subtitle" data-i18n="blog.subtitle">Tips, tutorials, and insights about web
+                <h2 data-i18n="blog.title" class="dark:text-white">Blog & Insights</h2>
+                <p data-i18n="blog.subtitle" class="dark:text-gray">Tips, tutorials, and insights about web
                     development</p>
             </div>
 
             <div class="blog-grid animate-on-scroll delay-100">
                 <!-- Article 1 -->
-                <article class="blog-card" data-article="bisnes-perlu-website">
+                <article class="blog-card bg-white dark:bg-dark-gray dark:border-white/5"
+                    data-article="bisnes-perlu-website">
                     <div class="blog-image">
                         <div class="skeleton-image skeleton"></div>
                         <img src="assets/img/Blog1.webp" alt="Bisnes Perlu Website" loading="lazy" width="400"
@@ -767,20 +1086,23 @@
                         <span class="blog-category">Business</span>
                     </div>
                     <div class="blog-content">
-                        <div class="blog-meta">
+                        <div class="blog-meta text-gray dark:text-gray">
                             <span class="blog-date"><i class="fas fa-calendar-alt"></i> Jan 2026</span>
                             <span class="blog-read-time"><i class="fas fa-clock"></i> 5 min</span>
                         </div>
-                        <h3 data-i18n="blog.article1.title">5 Sebab Kenapa Bisnes Anda Perlu Website</h3>
-                        <p data-i18n="blog.article1.excerpt">Dalam era digital ini, website bukan lagi pilihan tetapi
+                        <h3 data-i18n="blog.article1.title" class="text-charcoal dark:text-white">5 Sebab Kenapa Bisnes
+                            Anda Perlu Website</h3>
+                        <p data-i18n="blog.article1.excerpt" class="text-gray dark:text-light-gray">Dalam era digital
+                            ini, website bukan lagi pilihan tetapi
                             keperluan. Ketahui kenapa bisnes anda perlu website untuk terus relevan...</p>
-                        <button class="btn-read-more"><span data-i18n="blog.readMore">Baca Lagi</span> <i
-                                class="fas fa-arrow-right"></i></button>
+                        <button class="btn-read-more text-accent hover:text-accent-dark"><span
+                                data-i18n="blog.readMore">Baca Lagi</span> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </article>
 
                 <!-- Article 2 -->
-                <article class="blog-card" data-article="landing-vs-website">
+                <article class="blog-card bg-white dark:bg-dark-gray dark:border-white/5"
+                    data-article="landing-vs-website">
                     <div class="blog-image">
                         <div class="skeleton-image skeleton"></div>
                         <img src="assets/img/Blog2.webp" alt="Landing Page vs Website" loading="lazy" width="400"
@@ -788,20 +1110,23 @@
                         <span class="blog-category">Guide</span>
                     </div>
                     <div class="blog-content">
-                        <div class="blog-meta">
+                        <div class="blog-meta text-gray dark:text-gray">
                             <span class="blog-date"><i class="fas fa-calendar-alt"></i> Jan 2026</span>
                             <span class="blog-read-time"><i class="fas fa-clock"></i> 4 min</span>
                         </div>
-                        <h3 data-i18n="blog.article2.title">Landing Page vs Website: Mana Satu Yang Sesuai?</h3>
-                        <p data-i18n="blog.article2.excerpt">Ramai yang keliru antara landing page dan website. Artikel
+                        <h3 data-i18n="blog.article2.title" class="text-charcoal dark:text-white">Landing Page vs
+                            Website: Mana Satu Yang Sesuai?</h3>
+                        <p data-i18n="blog.article2.excerpt" class="text-gray dark:text-light-gray">Ramai yang keliru
+                            antara landing page dan website. Artikel
                             ini akan membantu anda memilih yang terbaik untuk bisnes anda...</p>
-                        <button class="btn-read-more"><span data-i18n="blog.readMore">Baca Lagi</span> <i
-                                class="fas fa-arrow-right"></i></button>
+                        <button class="btn-read-more text-accent hover:text-accent-dark"><span
+                                data-i18n="blog.readMore">Baca Lagi</span> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </article>
 
                 <!-- Article 3 -->
-                <article class="blog-card" data-article="kos-buat-website">
+                <article class="blog-card bg-white dark:bg-dark-gray dark:border-white/5"
+                    data-article="kos-buat-website">
                     <div class="blog-image">
                         <div class="skeleton-image skeleton"></div>
                         <img src="assets/img/Blog3.webp" alt="Kos Buat Website" loading="lazy" width="400" height="250"
@@ -809,15 +1134,17 @@
                         <span class="blog-category">Pricing</span>
                     </div>
                     <div class="blog-content">
-                        <div class="blog-meta">
+                        <div class="blog-meta text-gray dark:text-gray">
                             <span class="blog-date"><i class="fas fa-calendar-alt"></i> Feb 2026</span>
                             <span class="blog-read-time"><i class="fas fa-clock"></i> 6 min</span>
                         </div>
-                        <h3 data-i18n="blog.article3.title">Berapa Kos Buat Website di Malaysia? (2026)</h3>
-                        <p data-i18n="blog.article3.excerpt">Panduan lengkap tentang kos membuat website di Malaysia.
+                        <h3 data-i18n="blog.article3.title" class="text-charcoal dark:text-white">Berapa Kos Buat
+                            Website di Malaysia? (2026)</h3>
+                        <p data-i18n="blog.article3.excerpt" class="text-gray dark:text-light-gray">Panduan lengkap
+                            tentang kos membuat website di Malaysia.
                             Dari landing page hingga e-commerce, ketahui budget yang diperlukan...</p>
-                        <button class="btn-read-more"><span data-i18n="blog.readMore">Baca Lagi</span> <i
-                                class="fas fa-arrow-right"></i></button>
+                        <button class="btn-read-more text-accent hover:text-accent-dark"><span
+                                data-i18n="blog.readMore">Baca Lagi</span> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </article>
             </div>
@@ -853,38 +1180,45 @@
     </div>
 
     <!-- Contact CTA -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content animate-on-scroll">
-                <h2 data-i18n="contact.title">Ready to Build Your Digital Presence?</h2>
-                <p class="contact-subtitle" data-i18n="contact.subtitle">
+    <section class="contact py-24 bg-pale-gray dark:bg-black text-center" id="contact">
+        <div class="container mx-auto px-6">
+            <div class="contact-content max-w-[700px] mx-auto animate-on-scroll">
+                <h2 data-i18n="contact.title" class="text-4xl font-semibold mb-6 dark:text-white">Ready to Build Your
+                    Digital Presence?
+                </h2>
+                <p class="contact-subtitle text-lg text-light-gray dark:text-gray mb-8" data-i18n="contact.subtitle">
                     Let's discuss your project requirements. I provide clear proposals,
                     transparent timelines, and professional delivery.
                 </p>
-                <div class="contact-actions">
+                <div class="contact-actions flex flex-col gap-4 max-w-[400px] mx-auto mb-8">
                     <a href="https://wa.me/601124187824?text=Hi,%20I'm%20interested%20in%20website%20development%20services"
-                        target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> <span data-i18n="contact.whatsapp">Start a Conversation on
+                        target="_blank" rel="noopener noreferrer"
+                        class="btn btn-whatsapp bg-whatsapp text-white hover:bg-whatsapp-dark hover:-translate-y-0.5 hover:shadow-lg px-6 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-lg"></i> <span data-i18n="contact.whatsapp">Start a Conversation
+                            on
                             WhatsApp</span>
                     </a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aniqkerja@gmail.com" target="_blank"
-                        class="btn btn-outline">
+                    <a href="mailto:aniqkerja@gmail.com?subject=Website%20Inquiry"
+                        class="btn btn-outline border border-charcoal text-charcoal hover:bg-charcoal hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-charcoal px-6 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center gap-2">
                         <i class="fas fa-envelope"></i> <span data-i18n="contact.email">Send an Email Inquiry</span>
                     </a>
                 </div>
-                <p class="contact-note" data-i18n="contact.note">Response time: Within 24 hours during business days</p>
+                <p class="contact-note text-sm text-light-gray dark:text-gray mb-0" data-i18n="contact.note">Response
+                    time: Within 24
+                    hours during business days</p>
             </div>
         </div>
     </section>
 
     <!-- SEO Keywords Section (Geo-Targeting) -->
-    <section class="seo-keywords"
-        style="background-color: #f8f9fa; padding: 40px 0; font-size: 0.9rem; color: #6c757d;">
+    <section class="seo-keywords py-12 bg-white dark:bg-charcoal text-sm text-gray dark:text-gray" id="seo">
         <div class="container">
             <div class="seo-content" style="text-align: center; max-width: 900px; margin: 0 auto;">
-                <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #495057;">JomBina.site - Rakan Digital Pilihan
+                <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #495057;" class="dark:text-light-gray"
+                    data-i18n="seo.title">JomBina.site -
+                    Rakan Digital Pilihan
                     Malaysia</h3>
-                <p style="margin-bottom: 15px;">
+                <p style="margin-bottom: 15px;" data-i18n="seo.desc" class="dark:text-gray">
                     Kami menawarkan <strong>servis bina website profesional</strong> dan pembangunan sistem untuk
                     usahawan di seluruh Malaysia.
                     Sama ada anda berada di <strong>Kuala Lumpur, Selangor, Johor Bahru, Batu Pahat, Pulau Pinang, atau
@@ -892,35 +1226,47 @@
                     pasukan kami sedia membantu anda mendigitalkan perniagaan.
                 </p>
                 <p>
-                    Perkhidmatan kami termasuk:
-                    <span style="display: inline-block; margin: 0 5px;">• Landing Page Jualan</span>
-                    <span style="display: inline-block; margin: 0 5px;">• Website Korporat SME</span>
-                    <span style="display: inline-block; margin: 0 5px;">• Sistem Kedai Online (E-Commerce)</span>
-                    <span style="display: inline-block; margin: 0 5px;">• Sistem Pengurusan Database</span>
-                    <span style="display: inline-block; margin: 0 5px;">• Web Design Custom</span>
+                    <span data-i18n="seo.services.intro">Perkhidmatan kami termasuk:</span>
+                    <span style="display: inline-block; margin: 0 5px;" data-i18n="seo.services.landing">• Landing Page
+                        Jualan</span>
+                    <span style="display: inline-block; margin: 0 5px;" data-i18n="seo.services.corporate">• Website
+                        Korporat SME</span>
+                    <span style="display: inline-block; margin: 0 5px;" data-i18n="seo.services.ecommerce">• Sistem
+                        Kedai Online (E-Commerce)</span>
+                    <span style="display: inline-block; margin: 0 5px;" data-i18n="seo.services.db">• Sistem Pengurusan
+                        Database</span>
+                    <span style="display: inline-block; margin: 0 5px;" data-i18n="seo.services.custom">• Web Design
+                        Custom</span>
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+    <footer class="footer py-12 bg-charcoal text-white">
+        <div class="container mx-auto px-6">
+            <div
+                class="footer-content flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <img src="JomBina.webp" alt="Jombina.site Logo" width="241" height="56" loading="lazy">
+                    <a href="#" class="logo text-white no-underline flex items-center">
+                        <img src="assets/img/JomBina.webp" alt="Jombina.site Logo" width="241" height="56" loading="lazy"
+                            class="h-10 w-auto object-contain">
                     </a>
-                    <p class="footer-tagline" data-i18n="footer.tagline">Professional web development for business
+                    <p class="footer-tagline text-light-gray text-sm mt-2 mb-0" data-i18n="footer.tagline">Professional
+                        web development for business
                         growth</p>
                 </div>
-                <div class="footer-info">
-                    <p>© <span id="current-year">2026</span> Elevate Digital Solutions. All rights reserved.</p>
-                    <p class="footer-links" style="margin: 10px 0; font-size: 0.9rem;">
-                        <a href="privacy.html" style="color: inherit; margin-right: 15px;">Privacy Policy</a>
-                        <a href="terms.html" style="color: inherit;">Terms of Service</a>
+                <div class="footer-info text-right md:text-right text-center w-full md:w-auto">
+                    <p class="text-light-gray text-sm mb-2">© <span id="current-year">2026</span> Elevate Digital
+                        Solutions. All rights reserved.</p>
+                    <p class="footer-links text-sm my-2 text-light-gray">
+                        <a href="privacy.html" class="text-inherit mr-4 hover:text-white transition-colors">Privacy
+                            Policy</a>
+                        <a href="terms.html" class="text-inherit hover:text-white transition-colors">Terms of
+                            Service</a>
                     </p>
-                    <p class="footer-location" data-i18n="footer.location">Based in Batu Pahat, Johor | Serving clients
+                    <p class="footer-location italic text-light-gray text-sm mb-0" data-i18n="footer.location">Based in
+                        Batu Pahat, Johor | Serving clients
                         nationwide</p>
                 </div>
             </div>
@@ -1066,7 +1412,7 @@
 
             <!-- CTA -->
             <div class="case-study-footer">
-                <a href="#" id="cs-live-url" class="btn btn-primary btn-lg" target="_blank">
+                <a href="#" id="cs-live-url" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-external-link-alt"></i> Visit Live Site
                 </a>
             </div>
