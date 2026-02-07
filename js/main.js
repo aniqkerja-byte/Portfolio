@@ -1029,33 +1029,40 @@ if (backToTopBtn) {
 }
 
 
-/* ===== HERO BACKGROUND ANIMATION (CYBERPUNK DATA RAIN) ===== */
+/* ===== HERO BACKGROUND ANIMATION (3D WIREFRAME TERRAIN) ===== */
 const canvas = document.getElementById('hero-background');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
 
-    // Config
-    const fontSize = 16;
-    let columns = 0;
-    const drops = []; // y-position of drops
+    // Terrain Config
+    const stripWidth = 40;  // Gap between lines
+    const stripGap = 40;    // Z-gap
+    let offset = 0;         // Animation speed
+    const speed = 2;        // Flight speed
 
-    // Charset: Katakana + Latin + Numbers
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-    const charset = katakana + latin + nums;
+    // Perlin-ish noise approximation for terrain height
+    // We want a valley in the middle for text readability
+    function getTerrainHeight(x, z) {
+        // Normalized X from -1 to 1
+        const nx = (x / width) * 2 - 1;
 
-    function initRain() {
+        // Valley factor: 0 in center, 1 at edges. Power to make valley wide.
+        const valley = Math.pow(Math.abs(nx), 2.5);
+
+        // Simple distinct waves
+        const wave1 = Math.sin((x * 0.01) + (z * 0.01)) * 20;
+        const wave2 = Math.cos((x * 0.03) - (z * 0.02)) * 10;
+        const rolling = Math.sin(z * 0.005) * 50;
+
+        // Combine: Base height + (Mountain height * valley factor)
+        // This keeps center flat(-ish) and edges high
+        return 100 + wave1 + wave2 + rolling + (valley * 200);
+    }
+
+    function initTerrain() {
         width = canvas.width;
         height = canvas.height;
-        columns = Math.floor(width / fontSize);
-
-        drops.length = 0;
-        for (let i = 0; i < columns; i++) {
-            // Random start Y to avoid "wall of text" effect at start
-            drops[i] = Math.random() * -(height / fontSize);
-        }
     }
 
     function resizeCanvas() {
@@ -1063,101 +1070,134 @@ if (canvas) {
         if (hero) {
             canvas.width = hero.offsetWidth;
             canvas.height = hero.offsetHeight;
-            initRain();
+            initTerrain();
         }
     }
 
-    function animateRain() {
-        // Trail Effect: slightly transparent black repaint
-        // Varies by theme
+    function project(x, y, z) {
+        // Simple perspective projection
+        const fov = 300;
+        const scale = fov / (fov + z);
+        const x2d = (x * scale) + (width / 2);
+        // Horizon handling: shift down so horizon is lower/middle
+        // 0 is top of screen, height is bottom. 
+        // We want horizon around 1/3 or 1/2 down?
+        // Let's render "below" the horizon.
+        const horizonY = height * 0.4;
+        const y2d = (y * scale) + horizonY;
+
+        return { x: x2d, y: y2d, scale: scale };
+    }
+
+    function animateTerrain() {
+        // Clear
+        // Create a deep fade effect for the "sky"
         const isDark = document.documentElement.classList.contains('dark');
 
         if (isDark) {
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.1)'; // Dark Slate with trail
-            ctx.shadowColor = '#38bdf8'; // Cyan Glow
+            // Dark Gradient Sky
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#0f172a'); // Deep slate
+            gradient.addColorStop(0.5, '#1e293b'); // Horizon
+            gradient.addColorStop(1, '#0f172a'); // Bottom
+            ctx.fillStyle = gradient;
         } else {
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; // White with trail
-            ctx.shadowColor = '#0f172a'; // Dark Slate Glow
+            ctx.fillStyle = '#ffffff';
         }
-
         ctx.fillRect(0, 0, width, height);
 
-        // Text Style
-        ctx.font = 'bold ' + fontSize + 'px monospace';
+        // Move forward
+        offset -= speed;
+        if (offset <= -stripGap) offset += stripGap;
 
-        for (let i = 0; i < drops.length; i++) {
-            // Random Character
-            const text = charset.charAt(Math.floor(Math.random() * charset.length));
-
-            // X position: column index * font size
-            const x = i * fontSize;
-            // Y position: drop value * font size
-            const y = drops[i] * fontSize;
-
-            // Color Logic
-            // Randomly make some characters "bright" / "white" for glitch effect
-            const isBright = Math.random() > 0.95;
-
-            if (isDark) {
-                if (isBright) {
-                    ctx.fillStyle = '#ffffff'; // Flash white
-                    ctx.shadowBlur = 15;
-                } else {
-                    ctx.fillStyle = '#0EA5E9'; // Sky 500 (Cyan-ish)
-                    ctx.shadowBlur = 2; // Subtle glow
-                }
-            } else {
-                if (isBright) {
-                    ctx.fillStyle = '#38bdf8'; // Flash Cyan in light mode
-                    ctx.shadowBlur = 5;
-                } else {
-                    ctx.fillStyle = '#334155'; // Slate 700
-                    ctx.shadowBlur = 0;
-                }
-            }
-
-            ctx.fillText(text, x, y);
-
-            // Reset drop to top randomly after it has crossed screen
-            // Adding randomness to the reset to keeps drops scattered
-            if (y > height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-
-            // Increment Y
-            drops[i]++;
+        // Colors
+        let strokeColor;
+        if (isDark) {
+            strokeColor = 'rgba(56, 189, 248, 0.4)'; // Cyan low opacity
+            ctx.shadowColor = '#0ea5e9';
+            ctx.shadowBlur = 10;
+        } else {
+            strokeColor = 'rgba(15, 23, 42, 0.15)'; // Slate
+            ctx.shadowBlur = 0;
         }
 
-        requestAnimationFrame(animateRain);
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = 1;
+
+        // Render Grid
+        // We render horizontal lines (strips) moving towards us
+        // And vertical lines connecting them
+
+        const horizonDepth = 800; // How far we see
+        const terrainWidth = width * 2; // Wider than screen to allow turning/fov
+
+        ctx.beginPath();
+
+        // Z-loop (Distance)
+        for (let z = 100; z < horizonDepth; z += stripGap) {
+            let zCurrent = z + offset;
+            let zNext = zCurrent + stripGap;
+
+            // X-loop (Width)
+            for (let x = -terrainWidth / 2; x < terrainWidth / 2; x += stripWidth) {
+                // Determine heights
+                const y1 = getTerrainHeight(x, zCurrent + offset * 0.1); // add global movement
+                const y2 = getTerrainHeight(x, zNext + offset * 0.1);
+                const y3 = getTerrainHeight(x + stripWidth, y1, zCurrent); // Right neighbor
+
+                // Project points
+                const p1 = project(x, y1, zCurrent);
+                const p2 = project(x, y2, zNext);
+                const p3 = project(x + stripWidth, y1, zCurrent); // Right neighbor
+
+                // Culling: Don't draw if clearly off-screen
+                if (p1.y < 0 || p1.y > height) continue;
+
+                // Draw Horizontal Segment
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p3.x, p3.y);
+
+                // Draw Vertical Segment (Connection to further Z)
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+            }
+        }
+        ctx.stroke();
+
+        // Fog / Fade at Horizon
+        // We draw a gradient box at the top/horizon to mask the "pop in" of lines
+        const horizonY = height * 0.4;
+        const fog = ctx.createLinearGradient(0, 0, 0, height);
+
+        if (isDark) {
+            fog.addColorStop(0, '#0f172a'); // Sky color
+            fog.addColorStop(0.35, '#0f172a'); // Solid until near horizon
+            fog.addColorStop(0.5, 'rgba(15, 23, 42, 0)'); // Fade out
+            fog.addColorStop(1, 'rgba(15, 23, 42, 0)');
+        } else {
+            fog.addColorStop(0, '#ffffff');
+            fog.addColorStop(0.35, '#ffffff');
+            fog.addColorStop(0.5, 'rgba(255,255,255,0)');
+            fog.addColorStop(1, 'rgba(255,255,255,0)');
+        }
+
+        ctx.fillStyle = fog;
+        ctx.fillRect(0, 0, width, height);
+
+        requestAnimationFrame(animateTerrain);
     }
 
-    // Mouse Interaction: "Cyber Glitch"
-    // When mouse moves, randomize drops near cursor to create "disturbance"
+    // Interaction: Tilt
     document.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const col = Math.floor(mouseX / fontSize);
-
-        // Glitch nearby columns
-        const range = 2;
-        for (let i = col - range; i <= col + range; i++) {
-            if (i >= 0 && i < drops.length) {
-                // Randomly reset or speed up
-                if (Math.random() > 0.5) {
-                    // "Magnetic disruption" - push text down instantly
-                    drops[i] += 2;
-                }
-            }
-        }
+        // Optional: slight camera banking could be added here
+        // by modifying the project() function based on mouseX
     });
 
     // Init
     window.addEventListener('resize', resizeCanvas);
     setTimeout(() => {
         resizeCanvas();
-        requestAnimationFrame(animateRain);
+        requestAnimationFrame(animateTerrain);
     }, 100);
 
     // OPTIMIZATION
