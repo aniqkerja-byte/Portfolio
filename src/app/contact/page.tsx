@@ -2,7 +2,6 @@
 
 import { useActionState } from "react";
 import { Mail, MapPin, Phone, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
-import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { sendContactEmail, type ContactState } from "./actions";
 
@@ -84,21 +83,6 @@ export default function Contact() {
                     </p>
                   </div>
                 </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="border border-zinc-100 bg-zinc-50 p-8">
-                <h3 className="mb-2 text-lg font-bold text-zinc-950">Need Technical Support?</h3>
-                <p className="mb-6 text-sm text-zinc-500">
-                  Existing clients can reach our hotline directly.
-                </p>
-                <Link
-                  href="mailto:jombina.site@gmail.com"
-                  className="border-b-2 border-orange-600 pb-1 font-bold text-zinc-950 transition-colors hover:text-orange-600"
-                >
-                  Contact Support Team &rarr;
-                </Link>
               </div>
             </FadeIn>
           </div>
