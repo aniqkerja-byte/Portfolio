@@ -1,3 +1,17 @@
+// Contact info — single source of truth.
+// Swap `whatsappNumber` to the real number (digits only, with country code,
+// no '+', no spaces, no dashes — wa.me format).
+export const contactInfo = {
+  email: "jombina.site@gmail.com",
+  phoneDisplay: "+60 12-345 6789",
+  phoneTel: "+60123456789", // tel: link format
+  whatsappNumber: "60123456789", // wa.me format (no '+', no spaces)
+  whatsappGreeting: "Hi JomBina, I'd like to discuss a project.",
+};
+
+export const whatsappUrl = () =>
+  `https://wa.me/${contactInfo.whatsappNumber}?text=${encodeURIComponent(contactInfo.whatsappGreeting)}`;
+
 export type Project = {
   slug: string;
   title: string;

@@ -1,9 +1,10 @@
 "use client";
 
 import { useActionState } from "react";
-import { Mail, MapPin, Phone, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, MapPin, MessageCircle, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { sendContactEmail, type ContactState } from "./actions";
+import { contactInfo, whatsappUrl } from "@/constants/data";
 
 const INITIAL_STATE: ContactState = { status: "idle", message: "" };
 
@@ -36,7 +37,7 @@ export default function Contact() {
           <div className="space-y-16">
             <FadeIn delay={0.2}>
               <div className="space-y-8">
-                <div className="group flex items-start gap-6">
+                <a href={`mailto:${contactInfo.email}`} className="group flex items-start gap-6">
                   <div className="border border-zinc-100 bg-zinc-50 p-4 transition-colors group-hover:border-orange-600">
                     <Mail className="h-6 w-6 text-zinc-950" />
                   </div>
@@ -44,31 +45,31 @@ export default function Contact() {
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
                       Official Email
                     </p>
-                    <a
-                      href="mailto:jombina.site@gmail.com"
-                      className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors hover:text-orange-600"
-                    >
-                      jombina.site@gmail.com
-                    </a>
+                    <span className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors group-hover:text-orange-600">
+                      {contactInfo.email}
+                    </span>
                   </div>
-                </div>
+                </a>
 
-                <div className="group flex items-start gap-6">
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-6"
+                >
                   <div className="border border-zinc-100 bg-zinc-50 p-4 transition-colors group-hover:border-orange-600">
-                    <Phone className="h-6 w-6 text-zinc-950" />
+                    <MessageCircle className="h-6 w-6 text-zinc-950" />
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
                       Phone / WhatsApp
                     </p>
-                    <a
-                      href="tel:+60123456789"
-                      className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors hover:text-orange-600"
-                    >
-                      +60 12-345 6789
-                    </a>
+                    <span className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors group-hover:text-orange-600">
+                      {contactInfo.phoneDisplay}
+                    </span>
+                    <p className="mt-1 text-xs text-zinc-400">Tap to chat on WhatsApp</p>
                   </div>
-                </div>
+                </a>
 
                 <div className="group flex items-start gap-6">
                   <div className="border border-zinc-100 bg-zinc-50 p-4 transition-colors group-hover:border-orange-600">
