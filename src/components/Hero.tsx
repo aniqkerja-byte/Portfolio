@@ -1,52 +1,58 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 
 const Hero = () => {
-    return (
-        <section className="min-h-screen flex flex-col justify-center pt-32 pb-20 px-6 md:px-12 bg-white relative overflow-hidden">
+  return (
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-white px-6 pt-32 pb-20 md:px-12">
+      {/* Background Graphic - Subtle Architectural Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-            {/* Background Graphic - Subtle Architectural Grid */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-                style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
-            />
+      <div className="z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-9">
+          <FadeIn delay={0.1}>
+            <h1 className="mb-12 text-6xl leading-[0.9] font-semibold tracking-tighter text-zinc-950 md:text-8xl lg:text-9xl">
+              WE BUILD <br />
+              <span className="text-zinc-400">DIGITAL</span> <br />
+              AUTHORITY.
+            </h1>
+          </FadeIn>
+        </div>
 
-            <div className="max-w-[1400px] mx-auto w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div className="lg:col-span-9">
-                    <FadeIn delay={0.1}>
-                        <h1 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-zinc-950 leading-[0.9] mb-12">
-                            WE BUILD <br />
-                            <span className="text-zinc-400">DIGITAL</span> <br />
-                            AUTHORITY.
-                        </h1>
-                    </FadeIn>
-                </div>
+        <div className="flex flex-col items-start justify-end lg:col-span-3 lg:items-end">
+          <FadeIn delay={0.4} className="space-y-8">
+            <p className="max-w-xs text-left text-lg leading-relaxed text-zinc-600 lg:text-right">
+              JomBina is a strategic design consultancy. We help global enterprises define their
+              digital future.
+            </p>
 
-                <div className="lg:col-span-3 flex flex-col justify-end items-start lg:items-end">
-                    <FadeIn delay={0.4} className="space-y-8">
-                        <p className="text-lg text-zinc-600 leading-relaxed max-w-xs text-left lg:text-right">
-                            JomBina is a strategic design consultancy. We help global enterprises define their digital future specifically.
-                        </p>
-
-                        <div className="flex flex-col items-start lg:items-end gap-4">
-                            <Link href="/contact" className="group flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-zinc-950">
-                                Start a Project
-                                <span className="w-12 h-[1px] bg-zinc-950 group-hover:w-20 transition-all duration-300" />
-                            </Link>
-                        </div>
-                    </FadeIn>
-                </div>
+            <div className="flex flex-col items-start gap-4 lg:items-end">
+              <Link
+                href="/contact"
+                className="group flex items-center gap-4 text-sm font-bold tracking-widest text-zinc-950 uppercase"
+              >
+                Start a Project
+                <span className="h-[1px] w-12 bg-zinc-950 transition-all duration-300 group-hover:w-20" />
+              </Link>
             </div>
+          </FadeIn>
+        </div>
+      </div>
 
-            <div className="absolute bottom-12 left-6 md:left-12 opacity-50 animate-bounce">
-                <ArrowDown className="w-6 h-6 text-zinc-400" />
-            </div>
-
-        </section>
-    );
+      <div className="absolute bottom-12 left-6 animate-bounce opacity-50 md:left-12">
+        <ArrowDown className="h-6 w-6 text-zinc-400" />
+      </div>
+    </section>
+  );
 };
 
 export default Hero;

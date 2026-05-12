@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JomBina Digital Solutions — Portfolio Site
 
-## Getting Started
+Marketing & portfolio site for JomBina Digital Solutions, a Malaysian web development consultancy.
 
-First, run the development server:
+## Stack
+
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **UI:** React 19, Tailwind CSS v4, Framer Motion
+- **Icons:** lucide-react
+- **Language:** TypeScript (strict)
+- **Tests:** Vitest + Testing Library (jsdom)
+- **Lint/Format:** ESLint (next/core-web-vitals + typescript) + Prettier
+- **Git hooks:** Husky + lint-staged
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script          | Purpose                      |
+| --------------- | ---------------------------- |
+| `npm run dev`   | Start dev server (Turbopack) |
+| `npm run build` | Production build             |
+| `npm start`     | Run production build         |
+| `npm run lint`  | Run ESLint                   |
+| `npm test`      | Run Vitest suite             |
 
-## Learn More
+## Project layout
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/                 App Router routes
+    page.tsx           Home (composes all marketing sections)
+    contact/           Contact page (form, info)
+    privacy/           Privacy policy
+    terms/             Terms of service
+    work/[slug]/       Case study pages (SSG via generateStaticParams)
+    not-found.tsx      404 page
+    opengraph-image.tsx  Edge-rendered OG image
+    layout.tsx         Root layout (Navbar + Footer + Inter font)
+    globals.css        Tailwind import + theme tokens
+  components/          Section + UI components (Hero, Work, FAQ, etc.)
+  constants/data.ts    Single source of truth for projects, services,
+                       pricing plans, FAQs, testimonials
+  lib/utils.ts         `cn()` helper (clsx + tailwind-merge)
+public/work/           Case-study cover images (.webp)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding a project case study
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Drop the cover image in `public/work/`.
+2. Add an entry to `projectsData` in [`src/constants/data.ts`](src/constants/data.ts).
+3. The home grid ([`Work.tsx`](src/components/Work.tsx)) and the static page at `/work/[slug]` are generated from the same source.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed to deploy to Vercel — no server runtime is required for the main site (`/opengraph-image` uses the edge runtime).
