@@ -12,19 +12,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://jombina.com'),
+  metadataBase: new URL("https://jombina.site"),
   title: {
     default: "JomBina Digital Solutions | Enterprise Software Development",
-    template: "%s | JomBina Digital"
+    template: "%s | JomBina Digital",
   },
-  description: "Strategic digital consultancy specializing in high-performance web applications, e-commerce, and enterprise software.",
-  keywords: ["Web Development", "Software Engineering", "Next.js", "React", "Enterprise Solutions", "Digital Transformation", "Malaysia"],
+  description:
+    "Strategic digital consultancy specializing in high-performance web applications, e-commerce, and enterprise software.",
+  keywords: [
+    "Web Development",
+    "Software Engineering",
+    "Next.js",
+    "React",
+    "Enterprise Solutions",
+    "Digital Transformation",
+    "Malaysia",
+  ],
   authors: [{ name: "JomBina Team" }],
   creator: "JomBina International",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://jombina.com",
+    url: "https://jombina.site",
     title: "JomBina Digital Solutions",
     description: "Building the digital infrastructure for tomorrow's market leaders.",
     siteName: "JomBina Digital",
@@ -58,11 +67,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans bg-background text-foreground selection:bg-orange-600 selection:text-white`}>
+      <body
+        className={`${inter.variable} bg-background text-foreground flex min-h-screen flex-col font-sans antialiased selection:bg-orange-600 selection:text-white`}
+      >
         <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

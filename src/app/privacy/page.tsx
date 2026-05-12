@@ -101,8 +101,8 @@ export default function PrivacyPage() {
             <p>
               If you have any questions about this privacy policy or our privacy practices, please
               contact us at:{" "}
-              <a href="mailto:hello@jombina.com" className="text-orange-600 hover:underline">
-                hello@jombina.com
+              <a href="mailto:jombina.site@gmail.com" className="text-orange-600 hover:underline">
+                jombina.site@gmail.com
               </a>
               .
             </p>

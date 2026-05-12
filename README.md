@@ -16,10 +16,24 @@ Marketing & portfolio site for JomBina Digital Solutions, a Malaysian web develo
 
 ```bash
 npm install
+cp .env.example .env.local   # then fill in RESEND_API_KEY
 npm run dev
 ```
 
 Open <http://localhost:3000>.
+
+## Environment variables
+
+| Variable         | Required               | Purpose                                                                                           |
+| ---------------- | ---------------------- | ------------------------------------------------------------------------------------------------- |
+| `RESEND_API_KEY` | Yes (for contact form) | Resend API key used by the `/contact` Server Action to send inquiries to `jombina.site@gmail.com` |
+
+### Resend setup
+
+1. Sign up at <https://resend.com> using `jombina.site@gmail.com` (this is required while we are still on the default `onboarding@resend.dev` sender — Resend only delivers to the inbox tied to the account until a custom domain is verified).
+2. Create an API key and paste it into `.env.local` as `RESEND_API_KEY`.
+3. Add the same `RESEND_API_KEY` to Vercel: Project → Settings → Environment Variables (Production + Preview).
+4. Optional, recommended later: verify `jombina.site` as a sending domain in Resend, then update the `from` address in [`src/app/contact/actions.ts`](src/app/contact/actions.ts) to e.g. `JomBina <contact@jombina.site>`. After this you can deliver to any inbox.
 
 ## Scripts
 

@@ -1,10 +1,16 @@
 "use client";
 
-import { Mail, MapPin, Phone, ArrowRight } from "lucide-react";
+import { useActionState } from "react";
+import { Mail, MapPin, Phone, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { sendContactEmail, type ContactState } from "./actions";
+
+const INITIAL_STATE: ContactState = { status: "idle", message: "" };
 
 export default function Contact() {
+  const [state, formAction, isPending] = useActionState(sendContactEmail, INITIAL_STATE);
+
   return (
     <div className="min-h-screen bg-white pt-32 pb-20">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
@@ -40,10 +46,10 @@ export default function Contact() {
                       Official Email
                     </p>
                     <a
-                      href="mailto:hello@jombina.com"
+                      href="mailto:jombina.site@gmail.com"
                       className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors hover:text-orange-600"
                     >
-                      hello@jombina.com
+                      jombina.site@gmail.com
                     </a>
                   </div>
                 </div>
@@ -56,9 +62,12 @@ export default function Contact() {
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
                       Phone / WhatsApp
                     </p>
-                    <p className="text-2xl font-medium tracking-tight text-zinc-950">
+                    <a
+                      href="tel:+60123456789"
+                      className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors hover:text-orange-600"
+                    >
                       +60 12-345 6789
-                    </p>
+                    </a>
                   </div>
                 </div>
 
@@ -85,7 +94,7 @@ export default function Contact() {
                   Existing clients can reach our hotline directly.
                 </p>
                 <Link
-                  href="mailto:support@jombina.com"
+                  href="mailto:jombina.site@gmail.com"
                   className="border-b-2 border-orange-600 pb-1 font-bold text-zinc-950 transition-colors hover:text-orange-600"
                 >
                   Contact Support Team &rarr;
@@ -97,77 +106,149 @@ export default function Contact() {
           {/* Right Column: Form */}
           <div className="bg-white">
             <FadeIn delay={0.4}>
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              {state.status === "success" ? (
+                <div
+                  role="status"
+                  className="flex flex-col items-start gap-4 border border-zinc-200 bg-zinc-50 p-8"
+                >
+                  <CheckCircle2 className="h-8 w-8 text-orange-600" />
+                  <h3 className="text-2xl font-bold tracking-tight text-zinc-950">Message sent.</h3>
+                  <p className="text-zinc-600">{state.message}</p>
+                </div>
+              ) : (
+                <form action={formAction} className="space-y-8" noValidate>
+                  <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="firstName"
+                        className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        required
+                        disabled={isPending}
+                        className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
+                        placeholder="John"
+                      />
+                      {state.fieldErrors?.firstName && (
+                        <p className="text-xs text-red-600">{state.fieldErrors.firstName}</p>
+                      )}
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="lastName"
+                        className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
+                      >
+                        Last Name
+                      </label>
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        required
+                        disabled={isPending}
+                        className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
+                        placeholder="Doe"
+                      />
+                      {state.fieldErrors?.lastName && (
+                        <p className="text-xs text-red-600">{state.fieldErrors.lastName}</p>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <label className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                      First Name
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
+                    >
+                      Work Email
                     </label>
                     <input
-                      type="text"
-                      className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600"
-                      placeholder="John"
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      disabled={isPending}
+                      className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
+                      placeholder="john@company.com"
                     />
+                    {state.fieldErrors?.email && (
+                      <p className="text-xs text-red-600">{state.fieldErrors.email}</p>
+                    )}
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                      Last Name
+                    <label
+                      htmlFor="projectType"
+                      className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
+                    >
+                      Project Type
                     </label>
-                    <input
-                      type="text"
-                      className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600"
-                      placeholder="Doe"
-                    />
+                    <select
+                      id="projectType"
+                      name="projectType"
+                      defaultValue="Corporate Website"
+                      disabled={isPending}
+                      className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
+                    >
+                      <option>Corporate Website</option>
+                      <option>E-Commerce</option>
+                      <option>Web System (SaaS)</option>
+                      <option>Landing Page</option>
+                      <option>Other</option>
+                    </select>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                    Work Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600"
-                    placeholder="john@company.com"
-                  />
-                </div>
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="message"
+                      className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
+                    >
+                      Your Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      disabled={isPending}
+                      className="w-full resize-none border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
+                      placeholder="Tell us a bit about your project goals..."
+                    />
+                    {state.fieldErrors?.message && (
+                      <p className="text-xs text-red-600">{state.fieldErrors.message}</p>
+                    )}
+                  </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                    Project Type
-                  </label>
-                  <select className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 transition-colors outline-none focus:border-orange-600">
-                    <option>Corporate Website</option>
-                    <option>E-Commerce</option>
-                    <option>Web System (SaaS)</option>
-                    <option>Landing Page</option>
-                    <option>Other</option>
-                  </select>
-                </div>
+                  {state.status === "error" && (
+                    <div
+                      role="alert"
+                      className="flex items-start gap-3 border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+                    >
+                      <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                      <span>{state.message}</span>
+                    </div>
+                  )}
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                    Your Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full resize-none border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600"
-                    placeholder="Tell us a bit about your project goals..."
-                  />
-                </div>
-
-                <div className="pt-8">
-                  <button
-                    type="submit"
-                    className="flex w-full items-center justify-center gap-4 bg-zinc-950 py-6 text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-600"
-                  >
-                    Send Message <ArrowRight className="h-5 w-5" />
-                  </button>
-                  <p className="mt-6 text-center text-xs text-zinc-400">
-                    We typically respond within 24 business hours.
-                  </p>
-                </div>
-              </form>
+                  <div className="pt-8">
+                    <button
+                      type="submit"
+                      disabled={isPending}
+                      className="flex w-full items-center justify-center gap-4 bg-zinc-950 py-6 text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {isPending ? "Sending..." : "Send Message"}
+                      {!isPending && <ArrowRight className="h-5 w-5" />}
+                    </button>
+                    <p className="mt-6 text-center text-xs text-zinc-400">
+                      We typically respond within 24 business hours.
+                    </p>
+                  </div>
+                </form>
+              )}
             </FadeIn>
           </div>
         </div>
