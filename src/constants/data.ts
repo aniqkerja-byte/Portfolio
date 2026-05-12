@@ -3,9 +3,9 @@
 // no '+', no spaces, no dashes — wa.me format).
 export const contactInfo = {
   email: "jombina.site@gmail.com",
-  phoneDisplay: "+60 12-345 6789",
-  phoneTel: "+60123456789", // tel: link format
-  whatsappNumber: "60123456789", // wa.me format (no '+', no spaces)
+  phoneDisplay: "+60 11-2418 7824",
+  phoneTel: "+601124187824", // tel: link format
+  whatsappNumber: "601124187824", // wa.me format (no '+', no spaces)
   whatsappGreeting: "Hi JomBina, I'd like to discuss a project.",
 };
 
