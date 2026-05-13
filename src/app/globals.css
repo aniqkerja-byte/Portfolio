@@ -6,22 +6,22 @@
 
 :root {
   /* International / Swiss Style Tokens */
-  --background: #FFFFFF;
+  --background: #ffffff;
   /* Pure White for stark contrast */
-  --foreground: #18181B;
+  --foreground: #18181b;
   /* Zinc-950 - Stark Black */
 
-  --primary: #18181B;
-  --secondary: #71717A;
+  --primary: #18181b;
+  --secondary: #71717a;
   /* Zinc-500 */
 
-  --accent: #EA580C;
+  --accent: #ea580c;
   /* International Orange - classic design accent */
-  --accent-foreground: #FFFFFF;
+  --accent-foreground: #ffffff;
 
-  --surface: #F4F4F5;
+  --surface: #f4f4f5;
   /* Zinc-100 - Very subtle warmth */
-  --border: #E4E4E7;
+  --border: #e4e4e7;
   /* Zinc-200 */
 
   --radius: 0px;
@@ -30,21 +30,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #09090B;
+    --background: #09090b;
     /* Zinc-950 */
-    --foreground: #FAFAFA;
+    --foreground: #fafafa;
     /* Zinc-50 */
-    --primary: #FAFAFA;
-    --secondary: #A1A1AA;
-    --accent: #F97316;
-    --surface: #18181B;
-    --border: #27272A;
+    --primary: #fafafa;
+    --secondary: #a1a1aa;
+    --accent: #f97316;
+    --surface: #18181b;
+    --border: #27272a;
   }
 }
 
 html {
   scroll-behavior: smooth;
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
   /* Optimize Inter legibility */
 }
 
@@ -71,4 +73,13 @@ h6 {
 ::selection {
   background-color: var(--accent);
   color: var(--accent-foreground);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
