@@ -5,6 +5,13 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  images: {
+    localPatterns: [
+      {
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

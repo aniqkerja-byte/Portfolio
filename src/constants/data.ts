@@ -28,6 +28,21 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
+    slug: "jomenvois",
+    title: "JomEnvois",
+    category: "Finance & SaaS",
+    year: "2025",
+    desc: "Minimal invoice generator with live PDF preview, multi-currency support, and local record keeping.",
+    challenge:
+      "To provide freelancers and small businesses with a frictionless, high-speed invoice generator that runs entirely in the client browser with absolute privacy.",
+    solution:
+      "Built a responsive, client-side application utilizing Tailwind CSS and Vite/React, featuring instant PDF rendering and offline local storage tracking.",
+    results: ["Instant PDF Export", "Zero Server Storage Privacy", "Multi-Currency Configuration"],
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    liveUrl: "https://jom-envois.vercel.app/",
+    image: "/work/jomenvois.png?v=3",
+  },
+  {
     slug: "probiozen",
     title: "Probiozen",
     category: "Health & Wellness",
@@ -40,7 +55,7 @@ export const projectsData: Project[] = [
     results: ["High Conversion Rate", "Fast Load Speed", "Mobile Optimized Analysis"],
     techStack: ["WordPress", "Elementor", "WooCommerce"],
     liveUrl: "https://bosta.com.my/probiozen/",
-    image: "/work/probiozen.webp",
+    image: "/work/probiozen.png?v=3",
   },
   {
     slug: "missgoldenhair",
@@ -55,7 +70,7 @@ export const projectsData: Project[] = [
     results: ["Premium Brand Identity", "Seamless Shopping Cart", "Interactive Product Gallery"],
     techStack: ["Next.js", "Tailwind CSS", "Stripe"],
     liveUrl: "https://missgoldenhair.vercel.app/",
-    image: "/work/missgoldenhair.webp",
+    image: "/work/missgoldenhair.png?v=3",
   },
   {
     slug: "ellscafe",
@@ -69,7 +84,7 @@ export const projectsData: Project[] = [
     results: ["Digital Menu Integration", "Local SEO Dominance", "Instagram Integration"],
     techStack: ["WordPress", "PHP", "MySQL"],
     liveUrl: "https://bosta.com.my/ellscafe/",
-    image: "/work/ellscafe.webp",
+    image: "/work/ells_cafe.png?v=3",
   },
   {
     slug: "bukupanduansihat",
@@ -84,7 +99,7 @@ export const projectsData: Project[] = [
     results: ["Automated Digital Delivery", "High Trust Signals", "Payment Gateway Integration"],
     techStack: ["HTML5", "Tailwind CSS", "ToyyibPay"],
     liveUrl: "https://bosta.com.my/bukupanduansihat/",
-    image: "/work/bukupanduansihat.webp",
+    image: "/work/buku_panduan_sihat.png?v=3",
   },
   {
     slug: "modul-formula-turun-10kg",
@@ -98,7 +113,7 @@ export const projectsData: Project[] = [
     results: ["Secure Member Area", "Recurring Revenue Model", "Community Features"],
     techStack: ["WordPress", "LearnDash", "Billplz"],
     liveUrl: "https://bosta.com.my/formula-turun-10kg/",
-    image: "/work/formulaturun10kg.webp",
+    image: "/work/modul_formula_turun_10kg.png?v=3",
   },
   {
     slug: "rawat-hormon",
@@ -112,7 +127,7 @@ export const projectsData: Project[] = [
     results: ["Scalable Infrastructure", "Automated Email Sequences", "QR Ticket Generation"],
     techStack: ["Next.js", "Serverless Functions", "SendGrid"],
     liveUrl: "https://bosta.com.my/RawatHormon/",
-    image: "/work/rawathotmon.webp",
+    image: "/work/rawat_hormon.png?v=3",
   },
 ];
 

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { projectsData } from "@/constants/data";
 
@@ -15,12 +14,6 @@ const Work = () => {
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
               Selected Work.
             </h2>
-            <Link
-              href="#archive"
-              className="hidden items-center gap-2 text-sm font-bold tracking-widest text-zinc-950 uppercase transition-colors hover:text-orange-600 md:flex"
-            >
-              View Archive <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
         </FadeIn>
 
@@ -53,15 +46,6 @@ const Work = () => {
             </FadeIn>
           ))}
         </div>
-
-        <FadeIn delay={0.2} className="mt-24 md:hidden">
-          <Link
-            href="#archive"
-            className="flex items-center gap-2 text-sm font-bold tracking-widest text-zinc-950 uppercase"
-          >
-            View Archive <ArrowRight className="h-4 w-4" />
-          </Link>
-        </FadeIn>
       </div>
     </section>
   );

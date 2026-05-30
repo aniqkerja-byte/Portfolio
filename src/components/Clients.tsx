@@ -1,4 +1,4 @@
-const TechStack = () => {
+const Clients = () => {
   const techNames = [
     "NEXT.JS",
     "REACT",
@@ -49,4 +49,4 @@ const TechStack = () => {
   );
 };
 
-export default TechStack;
+export default Clients;
