@@ -4,9 +4,10 @@ import { Resend } from "resend";
 import { z } from "zod";
 
 const ContactSchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required").max(80),
-  lastName: z.string().trim().min(1, "Last name is required").max(80),
-  email: z.string().trim().email("Please enter a valid email"),
+  firstName: z.string().trim().min(1, "Nama pertama diperlukan").max(80),
+  lastName: z.string().trim().min(1, "Nama akhir diperlukan").max(80),
+  email: z.string().trim().email("Sila masukkan e-mel yang sah"),
+  companyWebsite: z.string().trim().max(0),
   projectType: z.enum([
     "Corporate Website",
     "E-Commerce",
@@ -14,7 +15,7 @@ const ContactSchema = z.object({
     "Landing Page",
     "Other",
   ]),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(5000),
+  message: z.string().trim().min(10, "Mesej mestilah sekurang-kurangnya 10 aksara").max(5000),
 });
 
 export type ContactState = {
@@ -33,6 +34,7 @@ export async function sendContactEmail(
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
     email: formData.get("email"),
+    companyWebsite: formData.get("companyWebsite"),
     projectType: formData.get("projectType"),
     message: formData.get("message"),
   });
@@ -45,7 +47,7 @@ export async function sendContactEmail(
     }
     return {
       status: "error",
-      message: "Please fix the highlighted fields.",
+      message: "Sila betulkan medan yang ditandakan.",
       fieldErrors,
     };
   }
@@ -56,7 +58,7 @@ export async function sendContactEmail(
   if (!apiKey) {
     return {
       status: "error",
-      message: "Email service is not configured. Please contact us directly.",
+      message: "Perkhidmatan e-mel belum dikonfigurasikan. Sila hubungi kami secara terus.",
     };
   }
 
@@ -69,13 +71,13 @@ export async function sendContactEmail(
       subject: `[JomBina] ${projectType} — ${firstName} ${lastName}`,
       html: `
         <div style="font-family: -apple-system, system-ui, sans-serif; max-width: 560px; margin: 0 auto;">
-          <h2 style="margin:0 0 16px;">New inquiry from jombina.site</h2>
+          <h2 style="margin:0 0 16px;">Pertanyaan baru dari jombina.site</h2>
           <table style="border-collapse: collapse; width: 100%;">
-            <tr><td style="padding:6px 0; color:#71717a; width:140px;">Name</td><td>${escapeHtml(firstName)} ${escapeHtml(lastName)}</td></tr>
+            <tr><td style="padding:6px 0; color:#71717a; width:140px;">Nama</td><td>${escapeHtml(firstName)} ${escapeHtml(lastName)}</td></tr>
             <tr><td style="padding:6px 0; color:#71717a;">Email</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
-            <tr><td style="padding:6px 0; color:#71717a;">Project Type</td><td>${escapeHtml(projectType)}</td></tr>
+            <tr><td style="padding:6px 0; color:#71717a;">Jenis Projek</td><td>${escapeHtml(projectType)}</td></tr>
           </table>
-          <h3 style="margin:24px 0 8px;">Message</h3>
+          <h3 style="margin:24px 0 8px;">Mesej</h3>
           <p style="white-space: pre-wrap; line-height: 1.6;">${escapeHtml(message)}</p>
         </div>
       `,
@@ -85,20 +87,20 @@ export async function sendContactEmail(
       console.error("Resend error:", error);
       return {
         status: "error",
-        message: "Could not send your message right now. Please try again later.",
+        message: "Tidak dapat menghantar mesej anda sekarang. Sila cuba sebentar lagi.",
       };
     }
 
     return {
       status: "success",
       message:
-        "Thanks! Your message has been sent — we'll get back to you within 24 business hours.",
+        "Terima kasih! Mesej anda telah berjaya dihantar — kami akan menghubungi anda semula dalam masa 24 jam waktu bekerja.",
     };
   } catch (err) {
     console.error("Contact action error:", err);
     return {
       status: "error",
-      message: "Something went wrong. Please email us directly.",
+      message: "Sesuatu telah berlaku. Sila hantar e-mel terus kepada kami.",
     };
   }
 }

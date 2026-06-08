@@ -18,16 +18,16 @@ export default function Contact() {
         <FadeIn>
           <div className="mb-24 max-w-4xl">
             <p className="mb-6 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-              Contact Us
+              Hubungi Kami
             </p>
             <h1 className="mb-8 text-5xl leading-[0.9] font-semibold tracking-tighter text-zinc-950 md:text-7xl">
-              Let&apos;s Build the
+              Mari Bina
               <br />
-              <span className="text-zinc-300">Next Big Thing.</span>
+              <span className="text-zinc-300">Projek Impian Anda.</span>
             </h1>
             <p className="max-w-2xl text-xl leading-relaxed text-zinc-500">
-              Ready to turn your vision into digital reality? Schedule a free consultation with our
-              team.
+              Sedia untuk menukar visi anda menjadi kenyataan digital? Hubungi kami untuk sesi
+              konsultasi percuma.
             </p>
           </div>
         </FadeIn>
@@ -43,7 +43,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                      Official Email
+                      E-mel Rasmi
                     </p>
                     <span className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors group-hover:text-orange-600">
                       {contactInfo.email}
@@ -62,12 +62,12 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                      Phone / WhatsApp
+                      Telefon / WhatsApp
                     </p>
                     <span className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors group-hover:text-orange-600">
                       {contactInfo.phoneDisplay}
                     </span>
-                    <p className="mt-1 text-xs text-zinc-400">Tap to chat on WhatsApp</p>
+                    <p className="mt-1 text-xs text-zinc-400">Tekan untuk sembang di WhatsApp</p>
                   </div>
                 </a>
 
@@ -77,10 +77,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                      Based In
+                      Lokasi Kami
                     </p>
                     <p className="max-w-xs text-xl leading-relaxed text-zinc-950">
-                      Remote-First — Kuala Lumpur, Malaysia.
+                      Bekerja Secara Jauh (Remote) — Kuala Lumpur, Malaysia.
                     </p>
                   </div>
                 </div>
@@ -97,18 +97,31 @@ export default function Contact() {
                   className="flex flex-col items-start gap-4 border border-zinc-200 bg-zinc-50 p-8"
                 >
                   <CheckCircle2 className="h-8 w-8 text-orange-600" />
-                  <h3 className="text-2xl font-bold tracking-tight text-zinc-950">Message sent.</h3>
+                  <h3 className="text-2xl font-bold tracking-tight text-zinc-950">
+                    Mesej dihantar.
+                  </h3>
                   <p className="text-zinc-600">{state.message}</p>
                 </div>
               ) : (
                 <form action={formAction} className="space-y-8" noValidate>
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="companyWebsite">Company website</label>
+                    <input
+                      id="companyWebsite"
+                      name="companyWebsite"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     <div className="space-y-2">
                       <label
                         htmlFor="firstName"
                         className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                       >
-                        First Name
+                        Nama Depan
                       </label>
                       <input
                         id="firstName"
@@ -116,11 +129,17 @@ export default function Contact() {
                         type="text"
                         required
                         disabled={isPending}
+                        aria-invalid={Boolean(state.fieldErrors?.firstName)}
+                        aria-describedby={
+                          state.fieldErrors?.firstName ? "firstName-error" : undefined
+                        }
                         className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
-                        placeholder="John"
+                        placeholder="Ali"
                       />
                       {state.fieldErrors?.firstName && (
-                        <p className="text-xs text-red-600">{state.fieldErrors.firstName}</p>
+                        <p id="firstName-error" className="text-xs text-red-600">
+                          {state.fieldErrors.firstName}
+                        </p>
                       )}
                     </div>
                     <div className="space-y-2">
@@ -128,7 +147,7 @@ export default function Contact() {
                         htmlFor="lastName"
                         className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                       >
-                        Last Name
+                        Nama Belakang
                       </label>
                       <input
                         id="lastName"
@@ -136,11 +155,17 @@ export default function Contact() {
                         type="text"
                         required
                         disabled={isPending}
+                        aria-invalid={Boolean(state.fieldErrors?.lastName)}
+                        aria-describedby={
+                          state.fieldErrors?.lastName ? "lastName-error" : undefined
+                        }
                         className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
-                        placeholder="Doe"
+                        placeholder="Abu"
                       />
                       {state.fieldErrors?.lastName && (
-                        <p className="text-xs text-red-600">{state.fieldErrors.lastName}</p>
+                        <p id="lastName-error" className="text-xs text-red-600">
+                          {state.fieldErrors.lastName}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -150,7 +175,7 @@ export default function Contact() {
                       htmlFor="email"
                       className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                     >
-                      Work Email
+                      E-mel Kerja
                     </label>
                     <input
                       id="email"
@@ -158,11 +183,15 @@ export default function Contact() {
                       type="email"
                       required
                       disabled={isPending}
+                      aria-invalid={Boolean(state.fieldErrors?.email)}
+                      aria-describedby={state.fieldErrors?.email ? "email-error" : undefined}
                       className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
-                      placeholder="john@company.com"
+                      placeholder="ali@syarikat.com"
                     />
                     {state.fieldErrors?.email && (
-                      <p className="text-xs text-red-600">{state.fieldErrors.email}</p>
+                      <p id="email-error" className="text-xs text-red-600">
+                        {state.fieldErrors.email}
+                      </p>
                     )}
                   </div>
 
@@ -171,7 +200,7 @@ export default function Contact() {
                       htmlFor="projectType"
                       className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                     >
-                      Project Type
+                      Jenis Projek
                     </label>
                     <select
                       id="projectType"
@@ -180,11 +209,11 @@ export default function Contact() {
                       disabled={isPending}
                       className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
                     >
-                      <option>Corporate Website</option>
-                      <option>E-Commerce</option>
-                      <option>Web System (SaaS)</option>
-                      <option>Landing Page</option>
-                      <option>Other</option>
+                      <option value="Corporate Website">Laman Web Korporat</option>
+                      <option value="E-Commerce">Kedai Online (E-Commerce)</option>
+                      <option value="Web System (SaaS)">Sistem Web (SaaS)</option>
+                      <option value="Landing Page">Landing Page</option>
+                      <option value="Other">Lain-lain</option>
                     </select>
                   </div>
 
@@ -193,7 +222,7 @@ export default function Contact() {
                       htmlFor="message"
                       className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                     >
-                      Your Message
+                      Mesej Anda
                     </label>
                     <textarea
                       id="message"
@@ -201,11 +230,15 @@ export default function Contact() {
                       rows={4}
                       required
                       disabled={isPending}
+                      aria-invalid={Boolean(state.fieldErrors?.message)}
+                      aria-describedby={state.fieldErrors?.message ? "message-error" : undefined}
                       className="w-full resize-none border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
-                      placeholder="Tell us a bit about your project goals..."
+                      placeholder="Kongsi sedikit tentang projek anda..."
                     />
                     {state.fieldErrors?.message && (
-                      <p className="text-xs text-red-600">{state.fieldErrors.message}</p>
+                      <p id="message-error" className="text-xs text-red-600">
+                        {state.fieldErrors.message}
+                      </p>
                     )}
                   </div>
 
@@ -225,11 +258,11 @@ export default function Contact() {
                       disabled={isPending}
                       className="flex w-full items-center justify-center gap-4 bg-zinc-950 py-6 text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {isPending ? "Sending..." : "Send Message"}
+                      {isPending ? "Menghantar..." : "Hantar Mesej"}
                       {!isPending && <ArrowRight className="h-5 w-5" />}
                     </button>
                     <p className="mt-6 text-center text-xs text-zinc-400">
-                      We typically respond within 24 business hours.
+                      Kami biasanya akan membalas dalam masa 24 jam waktu bekerja.
                     </p>
                   </div>
                 </form>
