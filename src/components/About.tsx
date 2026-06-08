@@ -15,7 +15,7 @@ const About = () => {
               <div className="relative aspect-[4/5] overflow-hidden border border-zinc-200 bg-zinc-100">
                 <Image
                   src="/about.webp"
-                  alt="Aniq — Lead Digital Architect"
+                  alt="Aniq — pembangun website JomBina"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
@@ -28,28 +28,26 @@ const About = () => {
           <div className="w-full md:w-2/3">
             <FadeIn delay={0.2}>
               <p className="mb-6 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                About Me
+                Siapa Di Sebalik JomBina
               </p>
 
               <h2 className="mb-8 text-3xl leading-tight font-semibold tracking-tighter text-zinc-950 md:text-5xl">
-                Lead Digital Architect.
+                Saya bina website yang owner bisnes boleh faham dan guna.
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
                 <p>
-                  A graduate in Information Technology from KPTM Batu Pahat, built on a foundation
-                  of practical experience in engineering digital solutions for real-world business
-                  cases.
+                  Saya Aniq, pembangun web yang fokus bantu bisnes kecil dan sederhana nampak lebih
+                  yakin di online.
                 </p>
                 <p>
-                  My approach is pragmatic and results-oriented: understanding commercial objectives
-                  first, then applying robust technical execution to deliver websites and systems
-                  that perform at scale.
+                  Cara kerja saya simple: faham dulu apa bisnes anda jual, siapa target customer,
+                  dan apa yang website perlu bantu. Lepas itu baru kita bina struktur, design dan
+                  fungsi.
                 </p>
                 <p>
-                  I collaborate directly with business owners, managers, and marketing teams to
-                  translate requirements into digital assets that drive growth and operational
-                  efficiency.
+                  Anda tak perlu pening dengan istilah teknikal. Saya akan terangkan dalam bahasa
+                  mudah, siapkan website, dan bantu sampai anda boleh mula guna.
                 </p>
               </div>
 
@@ -57,13 +55,13 @@ const About = () => {
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-orange-600" />
                   <span className="font-medium text-zinc-900">
-                    Diploma in Information Technology (KPTM Batu Pahat)
+                    Diploma Teknologi Maklumat (KPTM Batu Pahat)
                   </span>
                 </div>
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-orange-600" />
                   <span className="font-medium text-zinc-900">
-                    Production-grade Business Systems Development
+                    Website, Landing Page, Kedai Online & Sistem Web
                   </span>
                 </div>
               </div>

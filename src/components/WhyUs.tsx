@@ -7,18 +7,18 @@ const WhyUs = () => {
   const reasons = [
     {
       icon: <Zap className="h-8 w-8 text-orange-600" strokeWidth={1.5} />,
-      title: "Rapid Deployment",
-      desc: "Go to market in 7-14 days. We skip the bureaucracy and focus on shipping production-grade software.",
+      title: "Proses Tak Leceh",
+      desc: "Kami susun proses dari awal sampai launch. Anda beri content asas, kami bantu kemaskan jadi website yang nampak profesional.",
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-orange-600" strokeWidth={1.5} />,
-      title: "ROI-Driven Design",
-      desc: "We don't just design for aesthetics. We engineer interfaces using AIDA principles to maximize conversion.",
+      title: "Design Yang Bantu Closing",
+      desc: "Website bukan sekadar cantik. Kami susun ayat, bahagian penting dan butang tindakan supaya pelawat mudah faham dan terus hubungi anda.",
     },
     {
       icon: <LifeBuoy className="h-8 w-8 text-orange-600" strokeWidth={1.5} />,
-      title: "Enterprise Support",
-      desc: "12 months of dedicated technical maintenance. You focus on growth, we ensure 99.9% uptime.",
+      title: "Tak Tinggal Lepas Siap",
+      desc: "Lepas website live, kami bantu semak, guide cara guna, dan support perkara teknikal supaya anda boleh fokus pada bisnes.",
     },
   ];
 
@@ -28,11 +28,11 @@ const WhyUs = () => {
         <FadeIn>
           <div className="mb-24 max-w-2xl">
             <h2 className="mb-6 text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Why JomBina.
+              Kenapa Ramai Owner Bisnes Pilih JomBina.
             </h2>
             <p className="text-lg leading-relaxed text-zinc-500">
-              We bridge the gap between &quot;Corporate Reliability&quot; and &quot;Startup
-              Speed&quot;.
+              Sebab kami bukan sekadar buat website. Kami bantu anda nampak lebih dipercayai, senang
+              dihubungi, dan lebih bersedia untuk jual online.
             </p>
           </div>
         </FadeIn>

@@ -12,7 +12,7 @@ const Work = () => {
         <FadeIn>
           <div className="mb-24 flex items-end justify-between">
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Selected Work.
+              Contoh Kerja Kami.
             </h2>
           </div>
         </FadeIn>

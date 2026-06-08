@@ -12,13 +12,14 @@ const Pricing = () => {
         <FadeIn>
           <div className="mx-auto mb-24 max-w-2xl text-center">
             <p className="mb-4 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-              Investment
+              Pakej Website
             </p>
             <h2 className="mb-6 text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Transparent Pricing.
+              Bajet Jelas Dari Awal.
             </h2>
             <p className="text-lg leading-relaxed text-zinc-500">
-              No hidden charges. Choose a package that fits your business phase.
+              Pilih pakej ikut tahap bisnes anda. Kalau tak pasti, mesej dulu dan kami cadangkan
+              pilihan yang paling masuk akal.
             </p>
           </div>
         </FadeIn>
@@ -31,7 +32,7 @@ const Pricing = () => {
               >
                 {p.highlight && (
                   <div className="absolute top-0 right-0 bg-orange-600 px-3 py-1 text-xs font-bold tracking-widest text-white uppercase">
-                    Popular
+                    Paling Popular
                   </div>
                 )}
 
@@ -67,7 +68,7 @@ const Pricing = () => {
                   href="/contact"
                   className={`w-full py-4 text-center text-sm font-bold tracking-widest uppercase transition-colors ${p.highlight ? "bg-white text-zinc-950 hover:bg-zinc-200" : "bg-zinc-950 text-white hover:bg-orange-600"}`}
                 >
-                  Get Started
+                  Tanya Pakej Ini
                 </Link>
               </div>
             </FadeIn>
@@ -76,7 +77,7 @@ const Pricing = () => {
 
         <div className="mt-16 text-center">
           <p className="text-xs text-zinc-400">
-            *All packages include .com domain & premium hosting for 1 year.
+            *Harga boleh berubah ikut skop sebenar. Kami akan confirm semuanya sebelum projek mula.
           </p>
         </div>
       </div>

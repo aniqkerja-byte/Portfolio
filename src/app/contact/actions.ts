@@ -4,8 +4,8 @@ import { Resend } from "resend";
 import { z } from "zod";
 
 const ContactSchema = z.object({
-  firstName: z.string().trim().min(1, "Nama pertama diperlukan").max(80),
-  lastName: z.string().trim().min(1, "Nama akhir diperlukan").max(80),
+  firstName: z.string().trim().min(1, "Nama diperlukan").max(80),
+  lastName: z.string().trim().min(1, "Nama syarikat atau brand diperlukan").max(80),
   email: z.string().trim().email("Sila masukkan e-mel yang sah"),
   companyWebsite: z.string().trim().max(0),
   projectType: z.enum([
@@ -94,7 +94,7 @@ export async function sendContactEmail(
     return {
       status: "success",
       message:
-        "Terima kasih! Mesej anda telah berjaya dihantar — kami akan menghubungi anda semula dalam masa 24 jam waktu bekerja.",
+        "Terima kasih! Pertanyaan anda dah masuk. Kami akan balas dalam masa 24 jam waktu bekerja.",
     };
   } catch (err) {
     console.error("Contact action error:", err);

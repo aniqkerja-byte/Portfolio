@@ -11,10 +11,10 @@ const Testimonials = () => {
         <FadeIn>
           <div className="mb-24 text-center">
             <p className="mb-4 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-              Success Stories
+              Apa Pelanggan Rasa
             </p>
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Trusted by the Best.
+              Mereka Nak Website Yang Senang Diurus.
             </h2>
           </div>
         </FadeIn>

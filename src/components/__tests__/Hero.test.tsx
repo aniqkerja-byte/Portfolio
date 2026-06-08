@@ -1,27 +1,31 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import Hero from '../Hero';
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import Hero from "../Hero";
 
 // Mock IntersectionObserver required by framer-motion
 class IntersectionObserverMock {
   disconnect() {}
   observe() {}
-  takeRecords() { return []; }
+  takeRecords() {
+    return [];
+  }
   unobserve() {}
 }
-vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
+vi.stubGlobal("IntersectionObserver", IntersectionObserverMock);
 
-describe('Hero Component', () => {
-    it('renders the main heading and start project link', () => {
-        render(<Hero />);
-        
-        const heading = screen.getByText(/we build/i);
-        expect(heading).toBeInTheDocument();
-        
-        const digitalAuthority = screen.getAllByText(/digital/i)[0];
-        expect(digitalAuthority).toBeInTheDocument();
+describe("Hero Component", () => {
+  it("renders the main heading and start project link", () => {
+    render(<Hero />);
 
-        const link = screen.getByText(/Start a Project/i);
-        expect(link).toBeInTheDocument();
+    const heading = screen.getByRole("heading", {
+      name: /website kemas untuk bisnes/i,
     });
+    expect(heading).toBeInTheDocument();
+
+    const businessCopy = screen.getAllByText(/bisnes/i)[0];
+    expect(businessCopy).toBeInTheDocument();
+
+    const link = screen.getByText(/Saya Nak Website/i);
+    expect(link).toBeInTheDocument();
+  });
 });

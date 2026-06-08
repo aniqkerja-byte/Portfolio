@@ -14,8 +14,8 @@ const Footer = () => {
               jombina<span className="text-orange-600">.</span>
             </h2>
             <p className="max-w-lg text-xl leading-relaxed font-light text-zinc-400">
-              Strategic design consultancy for the digital age. We help ambitious brands define
-              their future through precision engineering.
+              Kami bantu owner bisnes bina website, landing page dan sistem web yang nampak
+              profesional, mudah difahami pelanggan, dan senang diurus selepas siap.
             </p>
           </div>
 
@@ -24,7 +24,7 @@ const Footer = () => {
               href="/contact"
               className="group flex items-center gap-4 text-2xl font-semibold tracking-tighter transition-colors hover:text-orange-600 md:text-4xl"
             >
-              <span>Start a Project</span>
+              <span>Tanya Projek</span>
               <ArrowUpRight className="h-8 w-8 transition-transform duration-300 group-hover:rotate-45 md:h-12 md:w-12" />
             </Link>
           </div>
@@ -42,22 +42,22 @@ const Footer = () => {
             <ul className="space-y-4 text-sm font-medium text-zinc-300">
               <li>
                 <Link href="/#work" className="transition-colors hover:text-white">
-                  Selected Work
+                  Projek
                 </Link>
               </li>
               <li>
                 <Link href="/#expertise" className="transition-colors hover:text-white">
-                  Expertise
+                  Servis
                 </Link>
               </li>
               <li>
                 <Link href="/#about" className="transition-colors hover:text-white">
-                  About
+                  Tentang
                 </Link>
               </li>
               <li>
                 <Link href="/#pricing" className="transition-colors hover:text-white">
-                  Pricing
+                  Harga
                 </Link>
               </li>
             </ul>
@@ -65,7 +65,7 @@ const Footer = () => {
 
           <div>
             <h4 className="mb-8 font-mono text-xs tracking-widest text-zinc-500 uppercase">
-              Socials
+              Media Sosial
             </h4>
             <ul className="space-y-4 text-sm font-medium text-zinc-300">
               <li>
@@ -98,17 +98,17 @@ const Footer = () => {
 
           <div>
             <h4 className="mb-8 font-mono text-xs tracking-widest text-zinc-500 uppercase">
-              Legal
+              Polisi & Terma
             </h4>
             <ul className="space-y-4 text-sm font-medium text-zinc-300">
               <li>
                 <Link href="/privacy" className="transition-colors hover:text-white">
-                  Privacy Policy
+                  Dasar Privasi
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="transition-colors hover:text-white">
-                  Terms of Service
+                  Terma & Syarat
                 </Link>
               </li>
             </ul>
@@ -116,20 +116,20 @@ const Footer = () => {
 
           <div>
             <h4 className="mb-8 font-mono text-xs tracking-widest text-zinc-500 uppercase">
-              Office
+              Kawasan Servis
             </h4>
             <address className="space-y-2 text-sm leading-relaxed text-zinc-300 not-italic">
-              <p>Remote-First</p>
-              <p>Serving clients globally</p>
-              <p>from Malaysia</p>
+              <p>Remote dari Malaysia</p>
+              <p>Terima projek seluruh Malaysia</p>
+              <p>dan juga luar negara</p>
             </address>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between font-mono text-xs tracking-wider text-zinc-600 uppercase md:flex-row">
-          <p>&copy; {new Date().getFullYear()} JomBina International. All Rights Reserved.</p>
-          <p className="mt-4 md:mt-0">Designed in Malaysia</p>
+          <p>&copy; {new Date().getFullYear()} JomBina International. Hak Cipta Terpelihara.</p>
+          <p className="mt-4 md:mt-0">Dibina di Malaysia</p>
         </div>
       </div>
     </footer>

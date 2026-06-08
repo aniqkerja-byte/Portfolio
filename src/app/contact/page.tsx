@@ -18,16 +18,16 @@ export default function Contact() {
         <FadeIn>
           <div className="mb-24 max-w-4xl">
             <p className="mb-6 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-              Hubungi Kami
+              Jom Borak Projek
             </p>
             <h1 className="mb-8 text-5xl leading-[0.9] font-semibold tracking-tighter text-zinc-950 md:text-7xl">
-              Mari Bina
+              Cerita Sikit
               <br />
-              <span className="text-zinc-300">Projek Impian Anda.</span>
+              <span className="text-zinc-300">Tentang Website Anda.</span>
             </h1>
             <p className="max-w-2xl text-xl leading-relaxed text-zinc-500">
-              Sedia untuk menukar visi anda menjadi kenyataan digital? Hubungi kami untuk sesi
-              konsultasi percuma.
+              Tak perlu brief yang sempurna. Beritahu saja bisnes anda buat apa, website macam mana
+              yang anda nak, dan bajet kasar kalau ada.
             </p>
           </div>
         </FadeIn>
@@ -43,7 +43,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                      E-mel Rasmi
+                      E-mel
                     </p>
                     <span className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors group-hover:text-orange-600">
                       {contactInfo.email}
@@ -62,12 +62,12 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                      Telefon / WhatsApp
+                      WhatsApp
                     </p>
                     <span className="text-2xl font-medium tracking-tight text-zinc-950 transition-colors group-hover:text-orange-600">
                       {contactInfo.phoneDisplay}
                     </span>
-                    <p className="mt-1 text-xs text-zinc-400">Tekan untuk sembang di WhatsApp</p>
+                    <p className="mt-1 text-xs text-zinc-400">Paling cepat untuk tanya harga</p>
                   </div>
                 </a>
 
@@ -77,10 +77,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                      Lokasi Kami
+                      Lokasi
                     </p>
                     <p className="max-w-xs text-xl leading-relaxed text-zinc-950">
-                      Bekerja Secara Jauh (Remote) — Kuala Lumpur, Malaysia.
+                      Remote dari Malaysia. Terima projek seluruh Malaysia dan luar negara.
                     </p>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ export default function Contact() {
                         htmlFor="firstName"
                         className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                       >
-                        Nama Depan
+                        Nama
                       </label>
                       <input
                         id="firstName"
@@ -147,7 +147,7 @@ export default function Contact() {
                         htmlFor="lastName"
                         className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                       >
-                        Nama Belakang
+                        Nama Syarikat / Brand
                       </label>
                       <input
                         id="lastName"
@@ -160,7 +160,7 @@ export default function Contact() {
                           state.fieldErrors?.lastName ? "lastName-error" : undefined
                         }
                         className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
-                        placeholder="Abu"
+                        placeholder="Syarikat ABC"
                       />
                       {state.fieldErrors?.lastName && (
                         <p id="lastName-error" className="text-xs text-red-600">
@@ -175,7 +175,7 @@ export default function Contact() {
                       htmlFor="email"
                       className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                     >
-                      E-mel Kerja
+                      E-mel
                     </label>
                     <input
                       id="email"
@@ -200,7 +200,7 @@ export default function Contact() {
                       htmlFor="projectType"
                       className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                     >
-                      Jenis Projek
+                      Anda Perlukan Apa?
                     </label>
                     <select
                       id="projectType"
@@ -209,11 +209,11 @@ export default function Contact() {
                       disabled={isPending}
                       className="w-full border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
                     >
-                      <option value="Corporate Website">Laman Web Korporat</option>
-                      <option value="E-Commerce">Kedai Online (E-Commerce)</option>
-                      <option value="Web System (SaaS)">Sistem Web (SaaS)</option>
-                      <option value="Landing Page">Landing Page</option>
-                      <option value="Other">Lain-lain</option>
+                      <option value="Corporate Website">Website bisnes / syarikat</option>
+                      <option value="E-Commerce">Kedai online</option>
+                      <option value="Web System (SaaS)">Sistem web custom</option>
+                      <option value="Landing Page">Landing page jualan</option>
+                      <option value="Other">Tak pasti lagi</option>
                     </select>
                   </div>
 
@@ -222,7 +222,7 @@ export default function Contact() {
                       htmlFor="message"
                       className="text-xs font-bold tracking-widest text-zinc-500 uppercase"
                     >
-                      Mesej Anda
+                      Cerita Ringkas Projek
                     </label>
                     <textarea
                       id="message"
@@ -233,7 +233,7 @@ export default function Contact() {
                       aria-invalid={Boolean(state.fieldErrors?.message)}
                       aria-describedby={state.fieldErrors?.message ? "message-error" : undefined}
                       className="w-full resize-none border-b border-zinc-200 bg-transparent pb-4 text-xl text-zinc-950 placeholder-zinc-300 transition-colors outline-none focus:border-orange-600 disabled:opacity-50"
-                      placeholder="Kongsi sedikit tentang projek anda..."
+                      placeholder="Contoh: Saya jual servis renovasi dan nak website untuk nampak lebih profesional..."
                     />
                     {state.fieldErrors?.message && (
                       <p id="message-error" className="text-xs text-red-600">
@@ -258,11 +258,11 @@ export default function Contact() {
                       disabled={isPending}
                       className="flex w-full items-center justify-center gap-4 bg-zinc-950 py-6 text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {isPending ? "Menghantar..." : "Hantar Mesej"}
+                      {isPending ? "Menghantar..." : "Hantar Pertanyaan"}
                       {!isPending && <ArrowRight className="h-5 w-5" />}
                     </button>
                     <p className="mt-6 text-center text-xs text-zinc-400">
-                      Kami biasanya akan membalas dalam masa 24 jam waktu bekerja.
+                      Kami biasanya balas dalam masa 24 jam waktu bekerja.
                     </p>
                   </div>
                 </form>

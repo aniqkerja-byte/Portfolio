@@ -17,15 +17,15 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
   if (!project) {
     return {
-      title: "Project Not Found",
+      title: "Projek Tak Dijumpai",
     };
   }
 
   return {
-    title: `${project.title} - Case Study`,
+    title: `${project.title} - Contoh Projek`,
     description: project.desc,
     openGraph: {
-      title: `${project.title} | JomBina Work`,
+      title: `${project.title} | Projek JomBina`,
       description: project.desc,
       images: [
         {
@@ -56,7 +56,7 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
               href="/#work"
               className="mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-widest text-zinc-500 uppercase transition-colors hover:text-zinc-950"
             >
-              <ArrowLeft className="h-4 w-4" /> Back to Work
+              <ArrowLeft className="h-4 w-4" /> Tengok Projek Lain
             </Link>
 
             <div className="max-w-4xl">
@@ -89,13 +89,13 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
               <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
                 <div>
                   <h3 className="mb-6 text-2xl font-bold tracking-tight text-zinc-950">
-                    The Challenge
+                    Masalah Yang Nak Diselesaikan
                   </h3>
                   <p className="leading-relaxed text-zinc-600">{project.challenge}</p>
                 </div>
                 <div>
                   <h3 className="mb-6 text-2xl font-bold tracking-tight text-zinc-950">
-                    The Solution
+                    Apa Yang Kami Bina
                   </h3>
                   <p className="leading-relaxed text-zinc-600">{project.solution}</p>
                 </div>
@@ -104,7 +104,7 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
 
             <FadeIn delay={0.4}>
               <div className="bg-zinc-950 p-12 text-white">
-                <h3 className="mb-8 text-2xl font-bold tracking-tight">Key Results</h3>
+                <h3 className="mb-8 text-2xl font-bold tracking-tight">Apa Yang Berubah</h3>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                   {project.results.map((result, i) => (
                     <div key={i} className="flex items-start gap-4">
@@ -122,7 +122,7 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
             <FadeIn delay={0.5}>
               <div className="border border-zinc-200 bg-zinc-50 p-8">
                 <h4 className="mb-6 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                  Technologies
+                  Dibina Dengan
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech, i) => (
@@ -142,7 +142,7 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
                 rel="noopener noreferrer"
                 className="flex w-full items-center justify-center gap-2 bg-orange-600 py-4 font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-700"
               >
-                Visit Live Site <ArrowUpRight className="h-4 w-4" />
+                Buka Website <ArrowUpRight className="h-4 w-4" />
               </a>
             </FadeIn>
           </aside>
