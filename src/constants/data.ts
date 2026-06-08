@@ -160,8 +160,8 @@ export const servicesData = [
 export const pricingPlansData = [
   {
     name: "Landing Page",
-    price: "RM490",
-    priceRange: "- RM890",
+    price: "RM199",
+    priceRange: "- RM499",
     desc: "Sesuai untuk jual satu produk, servis, kelas, webinar atau kempen promosi.",
     features: [
       "Design 1 halaman yang kemas",
@@ -188,9 +188,9 @@ export const pricingPlansData = [
   },
   {
     name: "Kedai Online (E-Commerce)",
-    price: "RM1,890",
-    priceRange: "+",
-    desc: "Untuk bisnes yang nak jual produk online dengan sistem order dan pembayaran.",
+    price: "RM499",
+    priceRange: "- RM999",
+    desc: "Untuk bisnes yang nak jual produk online. Harga boleh bertambah ikut feature tambahan yang diperlukan.",
     features: [
       "Produk, troli dan checkout",
       "Integrasi bayaran FPX / kad",
