@@ -1,10 +1,16 @@
 import { render, screen } from "@testing-library/react";
+import type React from "react";
 import { describe, it, expect, vi } from "vitest";
-import Hero from "../Hero";
 
 vi.mock("@/components/ProjectShowcase", () => ({
   default: () => <div data-testid="project-showcase" />,
 }));
+
+vi.mock("@/components/FadeIn", () => ({
+  FadeIn: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
+
+import Hero from "../Hero";
 
 // Mock IntersectionObserver required by framer-motion
 class IntersectionObserverMock {
