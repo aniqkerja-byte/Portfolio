@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import Hero from "../Hero";
 
+vi.mock("@/components/ProjectShowcase", () => ({
+  default: () => <div data-testid="project-showcase" />,
+}));
+
 // Mock IntersectionObserver required by framer-motion
 class IntersectionObserverMock {
   disconnect() {}

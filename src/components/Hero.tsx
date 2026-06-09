@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
+import ProjectShowcase from "@/components/ProjectShowcase";
 
 const Hero = () => {
   return (
-    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-white px-6 pt-32 pb-20 md:px-12">
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-white pt-32 pb-20">
       {/* Background Graphic - Subtle Architectural Grid */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
@@ -17,7 +18,7 @@ const Hero = () => {
         }}
       />
 
-      <div className="z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-12 lg:grid-cols-12">
+      <div className="z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-12 px-6 md:px-12 lg:grid-cols-12">
         <div className="lg:col-span-9">
           <FadeIn delay={0.1}>
             <h1 className="mb-12 text-6xl leading-[0.9] font-semibold tracking-tighter text-zinc-950 md:text-8xl lg:text-9xl">
@@ -48,7 +49,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-6 animate-bounce opacity-50 md:left-12">
+      <ProjectShowcase />
+
+      <div className="absolute bottom-8 left-6 hidden animate-bounce opacity-50 md:left-12 lg:block">
         <ArrowDown className="h-6 w-6 text-zinc-400" />
       </div>
     </section>
