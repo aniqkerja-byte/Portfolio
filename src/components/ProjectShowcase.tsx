@@ -59,7 +59,7 @@ const ProjectShowcase = () => {
             "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
         }}
       >
-        <div className="flex w-max animate-[marquee_14s_linear_infinite] group-hover/showcase:[animation-play-state:paused] motion-reduce:animate-none sm:animate-[marquee_18s_linear_infinite] md:animate-[marquee_28s_linear_infinite] lg:animate-[marquee_38s_linear_infinite]">
+        <div className="flex w-max animate-[marquee_20s_linear_infinite] group-hover/showcase:[animation-play-state:paused] motion-reduce:animate-none sm:animate-[marquee_24s_linear_infinite] md:animate-[marquee_28s_linear_infinite] lg:animate-[marquee_38s_linear_infinite]">
           {[0, 1].map((group) => (
             <div key={group} className="flex gap-5 pr-5 md:gap-8 md:pr-8" aria-hidden={group === 1}>
               {projectsData.map((project) => (
