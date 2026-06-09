@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { projectsData, type Project } from "@/constants/data";
 
 const ProjectCard = ({ project }: { project: Project }) => (
@@ -36,6 +37,44 @@ const ProjectCard = ({ project }: { project: Project }) => (
 );
 
 const ProjectShowcase = () => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const firstGroupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const firstGroup = firstGroupRef.current;
+    if (!track || !firstGroup) return;
+
+    let frameId = 0;
+    let lastTime = performance.now();
+    let offset = 0;
+
+    const durationForViewport = () => {
+      if (window.innerWidth >= 1024) return 38;
+      if (window.innerWidth >= 768) return 28;
+      if (window.innerWidth >= 640) return 24;
+      return 20;
+    };
+
+    const animate = (time: number) => {
+      const distance = firstGroup.offsetWidth;
+      if (distance > 0) {
+        const elapsed = time - lastTime;
+        const pixelsPerSecond = distance / durationForViewport();
+
+        offset = (offset + (pixelsPerSecond * elapsed) / 1000) % distance;
+        track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      }
+
+      lastTime = time;
+      frameId = requestAnimationFrame(animate);
+    };
+
+    frameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
   return (
     <div className="relative z-10 mt-16 w-full overflow-hidden md:mt-20">
       <div className="mx-auto mb-6 flex max-w-[1400px] items-center justify-between px-6 md:px-12">
@@ -51,9 +90,14 @@ const ProjectShowcase = () => {
       </div>
 
       <div className="project-showcase-viewport flex overflow-hidden px-6 md:px-12">
-        <div className="project-showcase-track flex w-max">
+        <div ref={trackRef} className="project-showcase-track flex w-max">
           {[0, 1].map((group) => (
-            <div key={group} className="flex gap-5 pr-5 md:gap-8 md:pr-8" aria-hidden={group === 1}>
+            <div
+              key={group}
+              ref={group === 0 ? firstGroupRef : undefined}
+              className="flex gap-5 pr-5 md:gap-8 md:pr-8"
+              aria-hidden={group === 1}
+            >
               {projectsData.map((project) => (
                 <ProjectCard key={`${group}-${project.slug}`} project={project} />
               ))}
