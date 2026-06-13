@@ -54,7 +54,7 @@ const pricingPlans: PricingPlan[] = [
       "Borang inquiry / link WhatsApp",
       "Panduan selepas website siap",
     ],
-    highlight: true,
+    highlight: false,
     buttonText: "Tanya Pakej Ini",
     description: "Pakej lengkap yang paling dipercayai",
   },
@@ -71,7 +71,7 @@ const pricingPlans: PricingPlan[] = [
       "Setup penghantaran asas",
       "Training ringkas cara guna",
     ],
-    highlight: false,
+    highlight: true,
     buttonText: "Tanya Pakej Ini",
     description: "Bagus untuk start e-commerce bisnes",
   },
@@ -181,8 +181,8 @@ const Pricing = () => {
                       y: plan.highlight ? -12 : 0,
                       opacity: 1,
                       x: index === 2 ? -20 : index === 0 ? 20 : 0,
-                      scale: index === 0 || index === 2 ? 0.95 : 1.02,
-                      rotateY: index === 0 ? 6 : index === 2 ? -6 : 0,
+                      scale: plan.highlight ? 1.02 : 0.95,
+                      rotateY: plan.highlight ? 0 : index === 0 ? 6 : index === 2 ? -6 : 0,
                     }
                   : { y: 0, opacity: 1, x: 0, scale: 1, rotateY: 0 }
               }
@@ -197,7 +197,7 @@ const Pricing = () => {
               className={cn(
                 "relative flex h-full flex-col rounded-xl border p-8 shadow-sm transition-all duration-300 md:p-10",
                 plan.highlight
-                  ? "z-10 border-orange-600 bg-zinc-950 text-white ring-1 ring-orange-600"
+                  ? "z-10 border-orange-600 bg-zinc-950 text-white shadow-xl ring-1 ring-orange-600"
                   : "z-0 border-zinc-200 bg-white text-zinc-950 hover:border-zinc-300",
                 index === 0 && "origin-right",
                 index === 2 && "origin-left"
