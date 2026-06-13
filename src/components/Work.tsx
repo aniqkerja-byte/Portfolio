@@ -42,6 +42,7 @@ const MobileCardStack = () => {
 
   const [active, setActive] = React.useState(0);
   const [hovering, setHovering] = React.useState(false);
+  const touchStartRef = React.useRef<number | null>(null);
 
   const maxOffset = Math.max(0, Math.floor(MAX_VISIBLE / 2));
   const cardSpacing = Math.max(10, Math.round(CARD_W * (1 - OVERLAP)));
@@ -67,6 +68,24 @@ const MobileCardStack = () => {
     if (e.key === "ArrowRight") next();
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartRef.current === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStartRef.current - touchEnd;
+    const threshold = 40; // min swipe distance in pixels
+
+    if (diff > threshold) {
+      next(); // Swiped left -> show next
+    } else if (diff < -threshold) {
+      prev(); // Swiped right -> show prev
+    }
+    touchStartRef.current = null;
+  };
+
   return (
     <div onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
       {/* Stage */}
@@ -75,6 +94,8 @@ const MobileCardStack = () => {
         style={{ height: CARD_H + 80 }}
         tabIndex={0}
         onKeyDown={onKeyDown}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {/* Subtle glow */}
         <div
@@ -102,25 +123,6 @@ const MobileCardStack = () => {
               const rotateX = isActive ? 0 : TILT_X;
               const zIndex = 100 - abs;
 
-              const dragProps = isActive
-                ? {
-                    drag: "x" as const,
-                    dragConstraints: { left: 0, right: 0 },
-                    dragElastic: 0.18,
-                    onDragEnd: (
-                      _e: unknown,
-                      info: { offset: { x: number }; velocity: { x: number } }
-                    ) => {
-                      if (reduceMotion) return;
-                      const travel = info.offset.x;
-                      const v = info.velocity.x;
-                      const threshold = Math.min(120, CARD_W * 0.22);
-                      if (travel > threshold || v > 650) prev();
-                      else if (travel < -threshold || v < -650) next();
-                    },
-                  }
-                : {};
-
               return (
                 <motion.div
                   key={p.slug}
@@ -146,7 +148,6 @@ const MobileCardStack = () => {
                   }}
                   transition={{ type: "spring", ...SPRING }}
                   onClick={() => setActive(i)}
-                  {...dragProps}
                 >
                   <div
                     className="h-full w-full"
