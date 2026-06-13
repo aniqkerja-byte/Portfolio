@@ -162,7 +162,7 @@ const Work = () => {
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Images Columns */}
           <div
-            className="xs:h-[320px] relative z-10 flex h-[260px] w-full items-center justify-center overflow-visible select-none perspective-[1000px] md:h-[360px] lg:h-[400px]"
+            className="xs:h-[240px] relative z-10 flex h-[200px] w-full items-center justify-center overflow-visible select-none perspective-[1000px] md:h-[300px] lg:h-[340px]"
             ref={imageContainerRef}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -170,7 +170,7 @@ const Work = () => {
             {projects.map((project, index) => (
               <div
                 key={project.slug}
-                className="absolute h-full w-[80%] max-w-[340px] cursor-pointer transition-all duration-300 md:max-w-[420px]"
+                className="absolute aspect-video w-[80%] max-w-[340px] cursor-pointer transition-all duration-300 md:max-w-[480px]"
                 style={getImageStyle(index)}
                 onClick={() => setActiveIndex(index)}
               >
