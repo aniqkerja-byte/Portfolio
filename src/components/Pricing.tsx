@@ -42,23 +42,6 @@ const pricingPlans: PricingPlan[] = [
     description: "Sesuai untuk pelancaran produk pantas",
   },
   {
-    name: "Laman Web Korporat",
-    price: 990,
-    completePrice: 1140,
-    priceSuffix: "+",
-    desc: "Untuk bisnes yang nak website lengkap supaya pelanggan lebih yakin sebelum hubungi.",
-    features: [
-      "Halaman utama, servis, tentang & contact",
-      "Struktur content yang mudah faham",
-      "SEO asas untuk Google",
-      "Borang inquiry / link WhatsApp",
-      "Panduan selepas website siap",
-    ],
-    highlight: false,
-    buttonText: "Tanya Pakej Ini",
-    description: "Pakej lengkap yang paling dipercayai",
-  },
-  {
     name: "Kedai Online (E-Commerce)",
     price: 499,
     completePrice: 649,
@@ -74,6 +57,23 @@ const pricingPlans: PricingPlan[] = [
     highlight: true,
     buttonText: "Tanya Pakej Ini",
     description: "Bagus untuk start e-commerce bisnes",
+  },
+  {
+    name: "Laman Web Korporat",
+    price: 990,
+    completePrice: 1140,
+    priceSuffix: "+",
+    desc: "Untuk bisnes yang nak website lengkap supaya pelanggan lebih yakin sebelum hubungi.",
+    features: [
+      "Halaman utama, servis, tentang & contact",
+      "Struktur content yang mudah faham",
+      "SEO asas untuk Google",
+      "Borang inquiry / link WhatsApp",
+      "Panduan selepas website siap",
+    ],
+    highlight: false,
+    buttonText: "Tanya Pakej Ini",
+    description: "Pakej lengkap yang paling dipercayai",
   },
 ];
 
