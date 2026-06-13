@@ -3,70 +3,76 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as React from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { projectsData } from "@/constants/data";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 
-/* ─── Helpers ──────────────────────────────────────────────── */
-
-function wrapIndex(n: number, len: number) {
-  if (len <= 0) return 0;
-  return ((n % len) + len) % len;
+function calculateGap(width: number) {
+  const minWidth = 1024;
+  const maxWidth = 1456;
+  const minGap = 60;
+  const maxGap = 86;
+  if (width <= minWidth) return minGap;
+  if (width >= maxWidth) return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
+  return minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth));
 }
 
-function signedOffset(i: number, active: number, len: number) {
-  const raw = i - active;
-  const alt = raw > 0 ? raw - len : raw + len;
-  return Math.abs(alt) < Math.abs(raw) ? alt : raw;
-}
-
-/* ─── Mobile Card Stack ────────────────────────────────────── */
-
-const CARD_W = 320;
-const CARD_H = 240;
-const MAX_VISIBLE = 5;
-const OVERLAP = 0.52;
-const SPREAD_DEG = 36;
-const DEPTH_PX = 100;
-const TILT_X = 10;
-const ACTIVE_LIFT = 16;
-const ACTIVE_SCALE = 1.02;
-const INACTIVE_SCALE = 0.92;
-const SPRING = { stiffness: 280, damping: 28 };
-const AUTO_INTERVAL = 3200;
-
-const MobileCardStack = () => {
+const Work = () => {
   const reduceMotion = useReducedMotion();
-  const items = projectsData;
-  const len = items.length;
+  const projects = projectsData;
+  const projectsLength = projects.length;
 
-  const [active, setActive] = React.useState(0);
-  const [hovering, setHovering] = React.useState(false);
-  const touchStartRef = React.useRef<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(1200);
 
-  const maxOffset = Math.max(0, Math.floor(MAX_VISIBLE / 2));
-  const cardSpacing = Math.max(10, Math.round(CARD_W * (1 - OVERLAP)));
-  const stepDeg = maxOffset > 0 ? SPREAD_DEG / maxOffset : 0;
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
-  const prev = React.useCallback(() => {
-    setActive((a) => wrapIndex(a - 1, len));
-  }, [len]);
+  const activeProject = useMemo(() => projects[activeIndex], [activeIndex, projects]);
 
-  const next = React.useCallback(() => {
-    setActive((a) => wrapIndex(a + 1, len));
-  }, [len]);
+  // Responsive gap calculation
+  useEffect(() => {
+    function handleResize() {
+      if (imageContainerRef.current) {
+        setContainerWidth(imageContainerRef.current.offsetWidth);
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  // auto-advance
-  React.useEffect(() => {
-    if (reduceMotion || hovering) return;
-    const id = window.setInterval(() => next(), AUTO_INTERVAL);
-    return () => window.clearInterval(id);
-  }, [hovering, reduceMotion, next]);
+  // Autoplay (resets the 5s timer whenever activeIndex changes)
+  useEffect(() => {
+    if (reduceMotion) return;
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % projectsLength);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [reduceMotion, projectsLength, activeIndex]);
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "ArrowRight") next();
-  };
+  // Navigation handlers
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % projectsLength);
+  }, [projectsLength]);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + projectsLength) % projectsLength);
+  }, [projectsLength]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [handlePrev, handleNext]);
+
+  // Touch handlers for mobile swipe
+  const touchStartRef = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartRef.current = e.touches[0].clientX;
@@ -79,195 +85,187 @@ const MobileCardStack = () => {
     const threshold = 40; // min swipe distance in pixels
 
     if (diff > threshold) {
-      next(); // Swiped left -> show next
+      handleNext();
     } else if (diff < -threshold) {
-      prev(); // Swiped right -> show prev
+      handlePrev();
     }
     touchStartRef.current = null;
   };
 
-  return (
-    <div onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
-      {/* Stage */}
-      <div
-        className="relative mx-auto w-full"
-        style={{ height: CARD_H + 80 }}
-        tabIndex={0}
-        onKeyDown={onKeyDown}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        {/* Subtle glow */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-32 w-[70%] rounded-full bg-zinc-950/5 blur-3xl"
-          aria-hidden="true"
-        />
+  // Compute transforms for each image
+  function getImageStyle(index: number): React.CSSProperties {
+    const gap = calculateGap(containerWidth);
+    const maxStickUp = gap * 0.8;
+    const isActive = index === activeIndex;
+    const isLeft = (activeIndex - 1 + projectsLength) % projectsLength === index;
+    const isRight = (activeIndex + 1) % projectsLength === index;
 
-        <div
-          className="absolute inset-0 flex items-end justify-center"
-          style={{ perspective: "1000px" }}
-        >
-          <AnimatePresence initial={false}>
-            {items.map((p, i) => {
-              const off = signedOffset(i, active, len);
-              const abs = Math.abs(off);
-              if (abs > maxOffset) return null;
+    if (isActive) {
+      return {
+        zIndex: 3,
+        opacity: 1,
+        pointerEvents: "auto",
+        transform: `translateX(0px) translateY(0px) scale(1) rotateY(0deg)`,
+        transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
+      };
+    }
+    if (isLeft) {
+      return {
+        zIndex: 2,
+        opacity: 0.6,
+        pointerEvents: "auto",
+        transform: `translateX(-${gap}px) translateY(-${maxStickUp}px) scale(0.85) rotateY(15deg)`,
+        transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
+      };
+    }
+    if (isRight) {
+      return {
+        zIndex: 2,
+        opacity: 0.6,
+        pointerEvents: "auto",
+        transform: `translateX(${gap}px) translateY(-${maxStickUp}px) scale(0.85) rotateY(-15deg)`,
+        transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
+      };
+    }
+    // Hide all other images
+    return {
+      zIndex: 1,
+      opacity: 0,
+      pointerEvents: "none",
+      transform: `translateX(0px) translateY(0px) scale(0.7) rotateY(0deg)`,
+      transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
+    };
+  }
 
-              const rotateZ = off * stepDeg;
-              const x = off * cardSpacing;
-              const y = abs * 8;
-              const z = -abs * DEPTH_PX;
-              const isActive = off === 0;
-              const scale = isActive ? ACTIVE_SCALE : INACTIVE_SCALE;
-              const lift = isActive ? -ACTIVE_LIFT : 0;
-              const rotateX = isActive ? 0 : TILT_X;
-              const zIndex = 100 - abs;
+  // Framer Motion variants for text content animation
+  const contentVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
 
-              return (
-                <motion.div
-                  key={p.slug}
-                  className={`absolute bottom-0 touch-pan-y overflow-hidden border border-zinc-200 bg-zinc-100 shadow-xl will-change-transform select-none ${
-                    isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
-                  }`}
-                  style={{
-                    width: CARD_W,
-                    height: CARD_H,
-                    zIndex,
-                    transformStyle: "preserve-3d",
-                  }}
-                  initial={
-                    reduceMotion ? false : { opacity: 0, y: y + 40, x, rotateZ, rotateX, scale }
-                  }
-                  animate={{
-                    opacity: 1,
-                    x,
-                    y: y + lift,
-                    rotateZ,
-                    rotateX,
-                    scale,
-                  }}
-                  transition={{ type: "spring", ...SPRING }}
-                  onClick={() => setActive(i)}
-                >
-                  <div
-                    className="h-full w-full"
-                    style={{
-                      transform: `translateZ(${z}px)`,
-                      transformStyle: "preserve-3d",
-                    }}
-                  >
-                    {/* Card content */}
-                    <div className="relative h-full w-full">
-                      <Image
-                        src={p.image}
-                        alt={p.title}
-                        fill
-                        sizes="320px"
-                        className="object-cover"
-                        draggable={false}
-                      />
-                      {/* Gradient overlay */}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                      {/* Text */}
-                      <div className="relative z-10 flex h-full flex-col justify-end p-4">
-                        <h3 className="truncate text-base font-semibold text-white">{p.title}</h3>
-                        <p className="mt-0.5 text-xs text-white/70">
-                          {p.category} · {p.year}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Dots */}
-      <div className="mt-4 flex items-center justify-center gap-2">
-        {items.map((p, idx) => (
-          <button
-            key={p.slug}
-            onClick={() => setActive(idx)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              idx === active ? "w-6 bg-zinc-950" : "w-1.5 bg-zinc-300 hover:bg-zinc-400"
-            }`}
-            aria-label={`Go to ${p.title}`}
-          />
-        ))}
-      </div>
-
-      {/* Active card link */}
-      <div className="mt-6 text-center">
-        <Link
-          href={`/work/${items[active].slug}`}
-          className="inline-flex items-center gap-2 text-sm font-bold tracking-widest text-zinc-950 uppercase transition-colors hover:text-orange-600"
-        >
-          Lihat Projek
-          <span className="h-[1px] w-8 bg-current transition-all duration-300 hover:w-12" />
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-/* ─── Desktop Grid (unchanged) ─────────────────────────────── */
-
-const DesktopGrid = () => (
-  <div className="grid grid-cols-1 gap-x-12 gap-y-24 md:grid-cols-2">
-    {projectsData.map((p, i) => (
-      <FadeIn key={p.slug} delay={i * 0.1}>
-        <Link href={`/work/${p.slug}`} className="group block cursor-pointer">
-          <div className="relative mb-8 aspect-[4/3] w-full overflow-hidden border border-zinc-100 bg-zinc-100">
-            <Image
-              src={p.image}
-              alt={p.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
-          </div>
-
-          <div className="flex items-baseline justify-between border-b border-zinc-200 pb-4 transition-colors group-hover:border-orange-600">
-            <div>
-              <h3 className="mb-1 text-2xl font-medium tracking-tight text-zinc-950">{p.title}</h3>
-              <p className="text-sm text-zinc-500">{p.category}</p>
-            </div>
-            <span className="font-mono text-xs text-zinc-400">{p.year}</span>
-          </div>
-        </Link>
-      </FadeIn>
-    ))}
-  </div>
-);
-
-/* ─── Main Work Section ────────────────────────────────────── */
-
-const Work = () => {
   return (
     <section
       id="work"
-      className="overflow-hidden border-t border-zinc-200 bg-white px-6 py-32 md:px-12"
+      className="overflow-hidden border-t border-zinc-200 bg-white px-6 py-24 md:px-12 md:py-32"
     >
       <div className="mx-auto max-w-[1400px]">
         <FadeIn>
-          <div className="mb-24 flex items-end justify-between">
+          <div className="mb-16 flex items-end justify-between md:mb-24">
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
               Contoh Kerja Kami.
             </h2>
           </div>
         </FadeIn>
 
-        {/* Mobile: Card Stack */}
-        <div className="block md:hidden">
-          <MobileCardStack />
-        </div>
+        {/* Circular perspective grid */}
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
+          {/* Images Columns */}
+          <div
+            className="xs:h-[320px] relative z-10 flex h-[260px] w-full items-center justify-center overflow-visible select-none perspective-[1000px] md:h-[360px] lg:h-[400px]"
+            ref={imageContainerRef}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {projects.map((project, index) => (
+              <div
+                key={project.slug}
+                className="absolute h-full w-[80%] max-w-[340px] cursor-pointer transition-all duration-300 md:max-w-[420px]"
+                style={getImageStyle(index)}
+                onClick={() => setActiveIndex(index)}
+              >
+                <div className="relative h-full w-full overflow-hidden rounded-2xl border border-zinc-200/50 bg-zinc-100 shadow-2xl">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-w-768px) 80vw, 400px"
+                    className="object-cover"
+                    draggable={false}
+                  />
+                  {/* Subtle vignette overlay */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                </div>
+              </div>
+            ))}
+          </div>
 
-        {/* Desktop: Grid */}
-        <div className="hidden md:block">
-          <DesktopGrid />
+          {/* Details Content Column */}
+          <div className="relative z-10 flex min-h-[300px] flex-col justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                variants={contentVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="flex flex-col items-start"
+              >
+                <span className="mb-2 font-mono text-xs tracking-widest text-zinc-400 uppercase">
+                  {activeProject.category} · {activeProject.year}
+                </span>
+
+                <h3 className="mb-6 text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl lg:text-5xl">
+                  {activeProject.title}
+                </h3>
+
+                <div className="mb-8 max-w-xl text-base leading-relaxed text-zinc-600 md:text-lg">
+                  {activeProject.desc.split(" ").map((word, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{
+                        filter: "blur(8px)",
+                        opacity: 0,
+                        y: 4,
+                      }}
+                      animate={{
+                        filter: "blur(0px)",
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                        delay: 0.012 * i,
+                      }}
+                      className="inline-block"
+                    >
+                      {word}&nbsp;
+                    </motion.span>
+                  ))}
+                </div>
+
+                <div className="mb-2">
+                  <Link
+                    href={`/work/${activeProject.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-6 py-3 text-xs font-semibold tracking-widest text-white uppercase shadow-lg transition-all duration-300 hover:scale-105 hover:bg-zinc-800"
+                  >
+                    <span>Lihat Projek</span>
+                    <ChevronRight className="size-4" />
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation buttons */}
+            <div className="relative z-20 mt-8 flex gap-4 border-t border-zinc-100 pt-4">
+              <button
+                onClick={handlePrev}
+                className="flex size-12 cursor-pointer items-center justify-center rounded-full bg-zinc-950 text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-orange-600 active:scale-95"
+                aria-label="Previous project"
+              >
+                <ArrowLeft className="size-5" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="flex size-12 cursor-pointer items-center justify-center rounded-full bg-zinc-950 text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-orange-600 active:scale-95"
+                aria-label="Next project"
+              >
+                <ArrowRight className="size-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
