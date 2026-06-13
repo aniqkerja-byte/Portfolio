@@ -124,7 +124,7 @@ const MobileCardStack = () => {
               return (
                 <motion.div
                   key={p.slug}
-                  className={`absolute bottom-0 overflow-hidden border border-zinc-200 bg-zinc-100 shadow-xl will-change-transform select-none ${
+                  className={`absolute bottom-0 touch-pan-y overflow-hidden border border-zinc-200 bg-zinc-100 shadow-xl will-change-transform select-none ${
                     isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
                   }`}
                   style={{
@@ -246,7 +246,10 @@ const DesktopGrid = () => (
 
 const Work = () => {
   return (
-    <section id="work" className="border-t border-zinc-200 bg-white px-6 py-32 md:px-12">
+    <section
+      id="work"
+      className="overflow-hidden border-t border-zinc-200 bg-white px-6 py-32 md:px-12"
+    >
       <div className="mx-auto max-w-[1400px]">
         <FadeIn>
           <div className="mb-24 flex items-end justify-between">
