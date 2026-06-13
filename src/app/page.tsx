@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
+import ClientLogos from "@/components/ClientLogos";
 import Clients from "@/components/Clients";
 import Work from "@/components/Work";
 import Services from "@/components/Services";
@@ -17,8 +18,9 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-white">
       <Hero />
-      <Clients />
+      <ClientLogos />
       <Work />
+      <Clients />
       <Services />
       <About />
       <WhyUs />
