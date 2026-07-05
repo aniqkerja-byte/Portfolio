@@ -32,22 +32,26 @@ const About = () => {
               </p>
 
               <h2 className="mb-8 text-3xl leading-tight font-semibold tracking-tighter text-zinc-950 md:text-5xl">
-                Saya bina website yang owner bisnes boleh faham dan guna.
+                Saya bina solusi digital yang owner bisnes betul-betul faham dan boleh guna.
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
                 <p>
-                  Saya Aniq, pembangun web yang fokus bantu bisnes kecil dan sederhana nampak lebih
-                  yakin di online.
+                  Saya Aniq, pembangun teknologi yang bantu bisnes kecil dan sederhana selesaikan
+                  masalah operasi melalui digital. Boleh jadi website, boleh jadi sistem dalaman,
+                  atau automasi untuk kerja harian yang selalu makan masa.
                 </p>
                 <p>
-                  Cara kerja saya simple: faham dulu apa bisnes anda jual, siapa target customer,
-                  dan apa yang website perlu bantu. Lepas itu baru kita bina struktur, design dan
-                  fungsi.
+                  Cara saya kerja mudah je. Saya cuba faham dulu apa masalah sebenar dalam bisnes
+                  anda, macam mana proses kerja berjalan sekarang, dan teknologi apa yang paling
+                  sesuai untuk bantu. Lepas tu baru saya mula bina, sama ada website, web app atau
+                  sistem custom, ikut apa yang bisnes anda betul-betul perlukan. Bukan ikut template
+                  yang sama untuk semua orang.
                 </p>
                 <p>
-                  Anda tak perlu pening dengan istilah teknikal. Saya akan terangkan dalam bahasa
-                  mudah, siapkan website, dan bantu sampai anda boleh mula guna.
+                  Saya faham tak semua orang selesa dengan bahasa teknikal. Jadi saya cuba explain
+                  semudah mungkin, siapkan semuanya untuk anda, dan pastikan sistem tu betul-betul
+                  boleh jalan dan tolong bisnes anda bergerak lebih lancar.
                 </p>
               </div>
 
@@ -55,13 +59,14 @@ const About = () => {
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-orange-600" />
                   <span className="font-medium text-zinc-900">
-                    Diploma Teknologi Maklumat (KPTM Batu Pahat)
+                    Pernah bina dan deploy sistem web (inventori, HR, e-learning) yang digunakan
+                    oleh lebih 50 staff dalam syarikat sebenar
                   </span>
                 </div>
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-orange-600" />
                   <span className="font-medium text-zinc-900">
-                    Website, Landing Page, Kedai Online & Sistem Web
+                    Website, Sistem Web, Automasi dan Digital Tools untuk Bisnes
                   </span>
                 </div>
               </div>
