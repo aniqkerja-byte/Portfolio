@@ -28,6 +28,36 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
+    slug: "famyytech-mobile",
+    title: "FamyyTech Mobile",
+    category: "Servis & Baik Pulih",
+    year: "2024",
+    desc: "Website rasmi untuk pusat servis membaiki telefon, memudahkan pelanggan menyemak harga dan info kedai.",
+    challenge:
+      "Kedai perlukan cara mudah untuk tunjukkan senarai harga baik pulih dan meyakinkan pelanggan dengan testimoni pelanggan lepas.",
+    solution:
+      "Kami sediakan rekaan website moden yang fokus pada penyampaian info yang pantas, mudah dibaca dan diakses melalui telefon pintar.",
+    results: ["Reka Bentuk Moden", "Pelanggan Mudah Rujuk Harga", "Capaian Mobile Pantas"],
+    techStack: ["Next.js", "Tailwind CSS"],
+    liveUrl: "https://famyytech.vercel.app/",
+    image: "/work/famyytech_mobile.png?v=1",
+  },
+  {
+    slug: "fyebeauty-ecommerce",
+    title: "FyeBeauty",
+    category: "E-Commerce & Kecantikan",
+    year: "2024",
+    desc: "Kedai online rasmi untuk FyeBeauty, direka khas untuk memudahkan pelanggan membeli produk kosmetik terus dari hujung jari.",
+    challenge:
+      "Jenama kosmetik perlukan platform yang menarik untuk mempamerkan produk di samping memastikan proses pembelian yang sangat mudah.",
+    solution:
+      "Kami membina antaramuka e-commerce yang kemas, memfokuskan kepada kualiti gambar produk dan aliran 'checkout' yang pantas.",
+    results: ["Susunan Produk Jelas", "Checkout Lebih Laju", "Design Mesra Mobile"],
+    techStack: ["Next.js", "Tailwind CSS", "Stripe"],
+    liveUrl: "https://fyebeautyhq.com/",
+    image: "/work/fyebeauty_ecommerce.png?v=3",
+  },
+  {
     slug: "jomenvois",
     title: "JomEnvois",
     category: "Sistem Kewangan",

@@ -9,6 +9,7 @@ const clientLogos = [
   { name: "Bosta", src: "/logo_brand/bosta.png" },
   { name: "Ells Cafe", src: "/logo_brand/ells.png" },
   { name: "FamyyTech Mobile", src: "/logo_brand/famyytech_mobile.png" },
+  { name: "FyeBeauty", src: "/logo_brand/fyebeauty.png" },
   { name: "House of Misses", src: "/logo_brand/house_of_misses.png" },
   { name: "MissGoldenHair", src: "/logo_brand/missgoldenhair.png" },
   { name: "MissPlumpyLips", src: "/logo_brand/missplumpylips.png" },
