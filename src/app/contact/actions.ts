@@ -4,9 +4,9 @@ import { Resend } from "resend";
 import { z } from "zod";
 
 const ContactSchema = z.object({
-  firstName: z.string().trim().min(1, "Nama diperlukan").max(80),
-  lastName: z.string().trim().min(1, "Nama syarikat atau brand diperlukan").max(80),
-  email: z.string().trim().email("Sila masukkan e-mel yang sah"),
+  firstName: z.string().trim().min(1, "Name is required").max(80),
+  lastName: z.string().trim().min(1, "Company or brand name is required").max(80),
+  email: z.string().trim().email("Please enter a valid email address"),
   companyWebsite: z.string().trim().max(0),
   projectType: z.enum([
     "Corporate Website",
@@ -15,7 +15,7 @@ const ContactSchema = z.object({
     "Landing Page",
     "Other",
   ]),
-  message: z.string().trim().min(10, "Mesej mestilah sekurang-kurangnya 10 aksara").max(5000),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(5000),
 });
 
 export type ContactState = {
@@ -47,7 +47,7 @@ export async function sendContactEmail(
     }
     return {
       status: "error",
-      message: "Sila betulkan medan yang ditandakan.",
+      message: "Please fix the highlighted fields.",
       fieldErrors,
     };
   }
@@ -58,7 +58,7 @@ export async function sendContactEmail(
   if (!apiKey) {
     return {
       status: "error",
-      message: "Perkhidmatan e-mel belum dikonfigurasikan. Sila hubungi kami secara terus.",
+      message: "The email service is not configured yet. Please contact us directly.",
     };
   }
 
@@ -71,13 +71,13 @@ export async function sendContactEmail(
       subject: `[JomBina] ${projectType} — ${firstName} ${lastName}`,
       html: `
         <div style="font-family: -apple-system, system-ui, sans-serif; max-width: 560px; margin: 0 auto;">
-          <h2 style="margin:0 0 16px;">Pertanyaan baru dari jombina.site</h2>
+          <h2 style="margin:0 0 16px;">New inquiry from jombina.site</h2>
           <table style="border-collapse: collapse; width: 100%;">
-            <tr><td style="padding:6px 0; color:#71717a; width:140px;">Nama</td><td>${escapeHtml(firstName)} ${escapeHtml(lastName)}</td></tr>
+            <tr><td style="padding:6px 0; color:#71717a; width:140px;">Name</td><td>${escapeHtml(firstName)} ${escapeHtml(lastName)}</td></tr>
             <tr><td style="padding:6px 0; color:#71717a;">Email</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
-            <tr><td style="padding:6px 0; color:#71717a;">Jenis Projek</td><td>${escapeHtml(projectType)}</td></tr>
+            <tr><td style="padding:6px 0; color:#71717a;">Project Type</td><td>${escapeHtml(projectType)}</td></tr>
           </table>
-          <h3 style="margin:24px 0 8px;">Mesej</h3>
+          <h3 style="margin:24px 0 8px;">Message</h3>
           <p style="white-space: pre-wrap; line-height: 1.6;">${escapeHtml(message)}</p>
         </div>
       `,
@@ -87,20 +87,19 @@ export async function sendContactEmail(
       console.error("Resend error:", error);
       return {
         status: "error",
-        message: "Tidak dapat menghantar mesej anda sekarang. Sila cuba sebentar lagi.",
+        message: "We could not send your message right now. Please try again shortly.",
       };
     }
 
     return {
       status: "success",
-      message:
-        "Terima kasih! Pertanyaan anda dah masuk. Kami akan balas dalam masa 24 jam waktu bekerja.",
+      message: "Thank you! Your inquiry has come through. We will reply within 24 business hours.",
     };
   } catch (err) {
     console.error("Contact action error:", err);
     return {
       status: "error",
-      message: "Sesuatu telah berlaku. Sila hantar e-mel terus kepada kami.",
+      message: "Something went wrong. Please email us directly instead.",
     };
   }
 }

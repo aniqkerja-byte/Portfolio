@@ -6,7 +6,7 @@ export const contactInfo = {
   phoneDisplay: "+60 11-2418 7824",
   phoneTel: "+601124187824", // tel: link format
   whatsappNumber: "601124187824", // wa.me format (no '+', no spaces)
-  whatsappGreeting: "Hai JomBina, saya nak tanya pasal servis buat website untuk bisnes saya.",
+  whatsappGreeting: "Hi JomBina, I'd like to ask about your website service for my business.",
 };
 
 export const whatsappUrl = () =>
@@ -30,14 +30,14 @@ export const projectsData: Project[] = [
   {
     slug: "famyytech-mobile",
     title: "FamyyTech Mobile",
-    category: "Servis & Baik Pulih",
+    category: "Repair & Service",
     year: "2024",
-    desc: "Website rasmi untuk pusat servis membaiki telefon, memudahkan pelanggan menyemak harga dan info kedai.",
+    desc: "The official website for a phone repair centre, making it easy for customers to check prices and store details.",
     challenge:
-      "Kedai perlukan cara mudah untuk tunjukkan senarai harga baik pulih dan meyakinkan pelanggan dengan testimoni pelanggan lepas.",
+      "The shop needed a simple way to show its repair price list and reassure new customers with reviews from past clients.",
     solution:
-      "Kami sediakan rekaan website moden yang fokus pada penyampaian info yang pantas, mudah dibaca dan diakses melalui telefon pintar.",
-    results: ["Reka Bentuk Moden", "Pelanggan Mudah Rujuk Harga", "Capaian Mobile Pantas"],
+      "We delivered a modern design focused on getting information across fast, easy to read, and built for phone screens.",
+    results: ["Modern Design", "Prices Easy To Check", "Fast On Mobile"],
     techStack: ["Next.js", "Tailwind CSS"],
     liveUrl: "https://famyytech.vercel.app/",
     image: "/work/famyytech_mobile.png?v=1",
@@ -45,14 +45,14 @@ export const projectsData: Project[] = [
   {
     slug: "fyebeauty-ecommerce",
     title: "FyeBeauty",
-    category: "E-Commerce & Kecantikan",
+    category: "E-Commerce & Beauty",
     year: "2024",
-    desc: "Kedai online rasmi untuk FyeBeauty, direka khas untuk memudahkan pelanggan membeli produk kosmetik terus dari hujung jari.",
+    desc: "The official online store for FyeBeauty, built so customers can buy cosmetics in just a few taps.",
     challenge:
-      "Jenama kosmetik perlukan platform yang menarik untuk mempamerkan produk di samping memastikan proses pembelian yang sangat mudah.",
+      "The cosmetics brand needed an attractive platform to showcase its products while keeping the buying process effortless.",
     solution:
-      "Kami membina antaramuka e-commerce yang kemas, memfokuskan kepada kualiti gambar produk dan aliran 'checkout' yang pantas.",
-    results: ["Susunan Produk Jelas", "Checkout Lebih Laju", "Design Mesra Mobile"],
+      "We built a clean e-commerce interface centred on strong product photography and a fast checkout flow.",
+    results: ["Clear Product Layout", "Faster Checkout", "Mobile-Friendly Design"],
     techStack: ["Next.js", "Tailwind CSS", "Stripe"],
     liveUrl: "https://fyebeautyhq.com/",
     image: "/work/fyebeauty_ecommerce.png?v=3",
@@ -60,14 +60,14 @@ export const projectsData: Project[] = [
   {
     slug: "jomenvois",
     title: "JomEnvois",
-    category: "Sistem Kewangan",
+    category: "Finance System",
     year: "2025",
-    desc: "Sistem buat invoice yang simple, cepat, dan boleh terus preview PDF tanpa setup yang memeningkan.",
+    desc: "A simple, fast invoicing tool with instant PDF preview and none of the confusing setup.",
     challenge:
-      "Freelancer dan bisnes kecil perlukan cara yang cepat untuk buat invoice tanpa belajar software yang berat atau bayar sistem bulanan.",
+      "Freelancers and small businesses needed a quick way to create invoices without learning heavy software or paying a monthly fee.",
     solution:
-      "Kami bina aplikasi web ringan yang boleh terus digunakan dalam browser, lengkap dengan preview PDF dan rekod invoice secara local.",
-    results: ["Invoice Siap Lebih Cepat", "Data Kekal Di Browser", "Sokong Banyak Mata Wang"],
+      "We built a lightweight web app that runs straight in the browser, complete with PDF preview and invoice records stored locally.",
+    results: ["Invoices Done Faster", "Data Stays In The Browser", "Multi-Currency Support"],
     techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     liveUrl: "https://jom-envois.vercel.app/",
     image: "/work/jomenvois.png?v=3",
@@ -75,14 +75,14 @@ export const projectsData: Project[] = [
   {
     slug: "probiozen",
     title: "Probiozen",
-    category: "Kesihatan & Kecergasan",
+    category: "Health & Wellness",
     year: "2024",
-    desc: "Landing page jualan untuk produk kesihatan, disusun supaya pelanggan cepat faham manfaat produk.",
+    desc: "A sales landing page for a health product, structured so customers grasp the benefits quickly.",
     challenge:
-      "Produk kesihatan selalunya ada banyak info. Cabarannya ialah susun ayat supaya nampak jelas, meyakinkan dan tak terlalu berat untuk dibaca.",
+      "Health products come with a lot of information. The challenge was arranging the copy so it reads clearly and convincingly without overwhelming anyone.",
     solution:
-      "Kami susun landing page dengan flow jualan yang kemas, bukti sokongan, testimoni, dan butang tindakan yang mudah nampak.",
-    results: ["Ayat Jualan Lebih Jelas", "Loading Pantas", "Mesra Mobile"],
+      "We laid out the landing page with a tight sales flow, supporting proof, testimonials, and a call to action that is impossible to miss.",
+    results: ["Clearer Sales Copy", "Fast Loading", "Mobile-Friendly"],
     techStack: ["WordPress", "Elementor", "WooCommerce"],
     liveUrl: "https://bosta.com.my/probiozen/",
     image: "/work/probiozen.png?v=3",
@@ -90,14 +90,14 @@ export const projectsData: Project[] = [
   {
     slug: "missgoldenhair",
     title: "MissGoldenHair",
-    category: "Kecantikan & Kosmetik",
+    category: "Beauty & Cosmetics",
     year: "2024",
-    desc: "Kedai online untuk produk penjagaan rambut premium, dengan rupa yang nampak eksklusif dan mudah beli.",
+    desc: "An online store for premium hair care products, with an exclusive look and an easy path to purchase.",
     challenge:
-      "Brand perlu nampak premium, tapi pengalaman membeli tetap kena mudah dan tidak mengelirukan pelanggan.",
+      "The brand had to feel premium, yet the shopping experience still needed to stay simple and never confuse customers.",
     solution:
-      "Kami gunakan visual hitam-emas, susunan produk yang jelas, dan aliran beli yang lebih lancar untuk naikkan keyakinan pelanggan.",
-    results: ["Brand Nampak Premium", "Troli Lebih Mudah", "Produk Senang Dibandingkan"],
+      "We used black-and-gold visuals, a clear product layout, and a smoother buying flow to build customer confidence.",
+    results: ["Premium Brand Feel", "Easier Cart", "Products Easy To Compare"],
     techStack: ["Next.js", "Tailwind CSS", "Stripe"],
     liveUrl: "https://missgoldenhair.vercel.app/",
     image: "/work/missgoldenhair.png?v=3",
@@ -105,14 +105,14 @@ export const projectsData: Project[] = [
   {
     slug: "ellscafe",
     title: "Ells Cafe",
-    category: "Makanan & Minuman",
+    category: "Food & Beverage",
     year: "2023",
-    desc: "Website untuk kafe tempatan supaya pelanggan boleh tengok menu, suasana dan info penting dengan cepat.",
+    desc: "A website for a local cafe so customers can check the menu, the atmosphere and key details at a glance.",
     challenge:
-      "Kafe perlukan website yang terus bagi rasa suasana kedai, bukan sekadar letak nama dan alamat sahaja.",
+      "The cafe needed a website that immediately conveys the feel of the place, not just a name and an address.",
     solution:
-      "Kami susun gambar, menu digital dan info lokasi dalam layout yang mesra mobile supaya pelanggan mudah plan untuk datang.",
-    results: ["Menu Mudah Dilihat", "Bantu Carian Google", "Visual Kafe Lebih Menarik"],
+      "We arranged the photos, digital menu and location details in a mobile-friendly layout so customers can plan a visit easily.",
+    results: ["Menu Easy To Browse", "Helps Google Search", "Stronger Cafe Visuals"],
     techStack: ["WordPress", "PHP", "MySQL"],
     liveUrl: "https://bosta.com.my/ellscafe/",
     image: "/work/ells_cafe.png?v=3",
@@ -120,14 +120,14 @@ export const projectsData: Project[] = [
   {
     slug: "bukupanduansihat",
     title: "Buku Panduan Sihat",
-    category: "Pendidikan Digital",
+    category: "Digital Education",
     year: "2023",
-    desc: "Landing page untuk produk digital kesihatan, fokus pada penerangan nilai dan proses beli yang jelas.",
+    desc: "A landing page for a digital health product, focused on explaining the value and keeping the purchase clear.",
     challenge:
-      "Produk digital perlukan keyakinan. Pelanggan perlu faham apa yang mereka dapat sebelum sanggup bayar.",
+      "Digital products need trust. Customers have to understand exactly what they get before they are willing to pay.",
     solution:
-      "Kami bina landing page format sales letter dengan penerangan manfaat, bukti, visual dan sistem bayaran yang mudah.",
-    results: ["Produk Terhantar Automatik", "Kepercayaan Lebih Kuat", "Bayaran Lebih Mudah"],
+      "We built a sales-letter style landing page covering the benefits, proof, visuals and a simple payment system.",
+    results: ["Automatic Delivery", "Stronger Trust", "Easier Payment"],
     techStack: ["HTML5", "Tailwind CSS", "ToyyibPay"],
     liveUrl: "https://bosta.com.my/bukupanduansihat/",
     image: "/work/buku_panduan_sihat.png?v=3",
@@ -135,14 +135,14 @@ export const projectsData: Project[] = [
   {
     slug: "modul-formula-turun-10kg",
     title: "Modul Formula Turun 10KG",
-    category: "Program Kecergasan",
+    category: "Fitness Program",
     year: "2023",
-    desc: "Portal jualan dan membership untuk program penurunan berat badan.",
+    desc: "A sales and membership portal for a weight-loss program.",
     challenge:
-      "Program berbayar perlu sistem akses yang jelas supaya peserta dapat content yang betul selepas pembayaran.",
+      "A paid program needs clear access control so participants get the right content right after payment.",
     solution:
-      "Kami bina ruang ahli dengan akses terkawal, susunan modul, dan pengalaman pengguna yang senang diikuti.",
-    results: ["Ruang Ahli Tersusun", "Content Mudah Diakses", "Sesuai Untuk Program Berbayar"],
+      "We built a members area with controlled access, organised modules, and an experience that is easy to follow.",
+    results: ["Organised Members Area", "Content Easy To Access", "Built For Paid Programs"],
     techStack: ["WordPress", "LearnDash", "Billplz"],
     liveUrl: "https://bosta.com.my/formula-turun-10kg/",
     image: "/work/modul_formula_turun_10kg.png?v=3",
@@ -150,14 +150,14 @@ export const projectsData: Project[] = [
   {
     slug: "rawat-hormon",
     title: "Rawat Hormon",
-    category: "Acara Langsung",
+    category: "Live Events",
     year: "2024",
-    desc: "Landing page dan sistem pendaftaran untuk webinar kesihatan.",
+    desc: "A landing page and registration system for a health webinar.",
     challenge:
-      "Semasa kempen promosi, ramai pelawat masuk serentak. Page perlu laju dan proses daftar tak boleh menyusahkan.",
+      "During the promo campaign, visitors arrive all at once. The page had to stay fast and registration could not get in the way.",
     solution:
-      "Kami bina page kempen dengan pendaftaran yang jelas, elemen urgency, dan flow pembelian yang lebih lancar.",
-    results: ["Page Tahan Trafik", "Pendaftaran Lebih Mudah", "Follow-Up Automatik"],
+      "We built a campaign page with clear registration, urgency elements, and a smoother purchase flow.",
+    results: ["Handles Traffic Spikes", "Easier Registration", "Automated Follow-Up"],
     techStack: ["Next.js", "Serverless Functions", "SendGrid"],
     liveUrl: "https://bosta.com.my/RawatHormon/",
     image: "/work/rawat_hormon.png?v=3",
@@ -166,23 +166,23 @@ export const projectsData: Project[] = [
 
 export const servicesData = [
   {
-    title: "Website Bisnes & Landing Page",
-    desc: "Untuk owner bisnes yang nak nampak profesional, explain servis dengan jelas, dan mudahkan pelanggan tekan WhatsApp atau buat tempahan.",
-    tags: ["Website Syarikat", "Landing Page", "SEO Asas"],
+    title: "Business Website & Landing Page",
+    desc: "For business owners who want to look professional, explain their services clearly, and make it easy for customers to WhatsApp or book.",
+    tags: ["Company Website", "Landing Page", "Basic SEO"],
   },
   {
-    title: "Kedai Online & Sistem Bayaran",
-    desc: "Sesuai kalau anda nak jual produk, ambil order, terima bayaran, dan urus pelanggan dari satu tempat.",
+    title: "Online Store & Payments",
+    desc: "Ideal if you want to sell products, take orders, accept payments and manage customers from one place.",
     tags: ["E-Commerce", "Payment Gateway", "Order Flow"],
   },
   {
-    title: "Sistem Web Custom",
-    desc: "Untuk bisnes yang perlukan sistem sendiri seperti booking, invoice, dashboard, membership atau automasi kerja harian.",
+    title: "Custom Web Systems",
+    desc: "For businesses that need a system of their own — booking, invoicing, dashboards, memberships or day-to-day automation.",
     tags: ["Dashboard", "Booking", "Membership"],
   },
   {
-    title: "Setup Teknikal & Support",
-    desc: "Kami bantu urus domain, hosting, email, analytics, performance dan perkara teknikal supaya website anda berjalan lancar.",
+    title: "Technical Setup & Support",
+    desc: "We handle the domain, hosting, email, analytics, performance and the technical details so your website keeps running smoothly.",
     tags: ["Domain", "Hosting", "Maintenance"],
   },
 ];
@@ -192,41 +192,41 @@ export const pricingPlansData = [
     name: "Landing Page",
     price: "RM199",
     priceRange: "- RM499",
-    desc: "Sesuai untuk jual satu produk, servis, kelas, webinar atau kempen promosi.",
+    desc: "Ideal for selling a single product, service, class, webinar or promo campaign.",
     features: [
-      "Design 1 halaman yang kemas",
-      "Susunan ayat jualan yang jelas",
-      "Butang WhatsApp / borang inquiry",
-      "Setup domain & hosting asas",
-      "Sesuai untuk mobile",
+      "Clean one-page design",
+      "Clear sales copy structure",
+      "WhatsApp button / inquiry form",
+      "Basic domain & hosting setup",
+      "Built for mobile",
     ],
     highlight: false,
   },
   {
-    name: "Laman Web Korporat",
+    name: "Corporate Website",
     price: "RM990",
     priceRange: "+",
-    desc: "Untuk bisnes yang nak website lengkap supaya pelanggan lebih yakin sebelum hubungi.",
+    desc: "For businesses that want a complete website so customers feel confident before getting in touch.",
     features: [
-      "Halaman utama, servis, tentang & contact",
-      "Struktur content yang mudah faham",
-      "SEO asas untuk Google",
-      "Borang inquiry / link WhatsApp",
-      "Panduan selepas website siap",
+      "Home, services, about & contact pages",
+      "Content structure that is easy to follow",
+      "Basic SEO for Google",
+      "Inquiry form / WhatsApp link",
+      "Guidance once the website is live",
     ],
     highlight: true,
   },
   {
-    name: "Kedai Online (E-Commerce)",
+    name: "Online Store (E-Commerce)",
     price: "RM499",
     priceRange: "- RM999",
-    desc: "Untuk bisnes yang nak jual produk online. Harga boleh bertambah ikut feature tambahan yang diperlukan.",
+    desc: "For businesses that want to sell online. Pricing scales with the extra features you need.",
     features: [
-      "Produk, troli dan checkout",
-      "Integrasi bayaran FPX / kad",
-      "Dashboard urus order",
-      "Setup penghantaran asas",
-      "Training ringkas cara guna",
+      "Products, cart and checkout",
+      "FPX / card payment integration",
+      "Order management dashboard",
+      "Basic shipping setup",
+      "Short walkthrough on how to use it",
     ],
     highlight: false,
   },
@@ -234,52 +234,52 @@ export const pricingPlansData = [
 
 export const faqsData = [
   {
-    question: "Berapa lama biasanya website boleh siap?",
+    question: "How long does a website usually take?",
     answer:
-      "Untuk landing page, biasanya 3 hingga 7 hari bekerja selepas content asas lengkap. Untuk website syarikat atau sistem yang lebih custom, anggaran biasa sekitar 2 hingga 4 minggu ikut skop.",
+      "For a landing page, usually 3 to 7 working days once the basic content is ready. For a company website or a more custom system, expect around 2 to 4 weeks depending on the scope.",
   },
   {
-    question: "Kalau saya belum ada domain dan hosting, boleh bantu?",
+    question: "I don't have a domain or hosting yet. Can you help?",
     answer:
-      "Boleh. Kami boleh bantu cadangkan dan setup domain, hosting, email asas, analytics dan perkara teknikal lain. Anda tak perlu settle semua benda seorang diri.",
+      "Yes. We can recommend and set up your domain, hosting, basic email, analytics and other technical pieces. You don't have to sort everything out on your own.",
   },
   {
-    question: "Ada caj maintenance bulanan?",
+    question: "Is there a monthly maintenance fee?",
     answer:
-      "Bergantung pada jenis website. Untuk website statik yang simple, biasanya hanya perlu renew domain dan hosting. Kalau anda mahu kami jaga update, backup atau tambah content berkala, kami boleh cadangkan pakej maintenance berasingan.",
+      "It depends on the type of website. For a simple static site, usually you only need to renew the domain and hosting. If you want us to handle updates, backups or regular content changes, we can propose a separate maintenance package.",
   },
   {
-    question: "Boleh tak saya update content sendiri nanti?",
+    question: "Can I update the content myself later?",
     answer:
-      "Boleh, kalau projek anda perlukan CMS/admin panel. Kami akan bincang awal-awal. Untuk website simple, kami juga boleh bantu update content bila perlu.",
+      "Yes, if your project needs a CMS or admin panel. We will discuss that early on. For simpler websites, we can also help update the content whenever you need.",
   },
   {
-    question: "Saya tak pandai tulis ayat website. Macam mana?",
+    question: "I'm not good at writing website copy. What then?",
     answer:
-      "Tak apa. Anda boleh beri point kasar tentang bisnes, produk, servis dan pelanggan sasaran. Kami bantu kemaskan ayat supaya lebih jelas dan sesuai untuk website.",
+      "That's fine. Just give us the rough points about your business, products, services and target customers. We will tidy up the wording so it reads clearly and works on a website.",
   },
 ];
 
 export const testimonialsData = [
   {
     quote:
-      "Sebelum ini proses kerja banyak manual. Lepas sistem siap, team kami lebih senang track kerja harian dan kurang tersilap data.",
+      "A lot of our work used to be manual. Once the system went live, our team could track daily work far more easily with fewer data mistakes.",
     author: "Azman Zulkifli",
-    role: "Pengurus Operasi, Logistik Maju",
+    role: "Operations Manager, Logistik Maju",
     rating: 5,
   },
   {
     quote:
-      "Website nampak jauh lebih kemas daripada yang kami bayangkan. Paling best, proses explain servis jadi lebih mudah bila customer tanya.",
+      "The website looks far cleaner than we imagined. Best of all, explaining our services became much easier whenever customers ask.",
     author: "Sarah Lee",
-    role: "Pengasas, Glow Beauty",
+    role: "Founder, Glow Beauty",
     rating: 5,
   },
   {
     quote:
-      "Saya tak begitu teknikal, tapi semuanya diterangkan dengan jelas. Lepas launch pun masih dibantu kalau ada benda yang saya tak pasti.",
+      "I'm not very technical, but everything was explained clearly. Even after launch, they still helped whenever I wasn't sure about something.",
     author: "David Khoo",
-    role: "Pengarah, TechStart Solutions",
+    role: "Director, TechStart Solutions",
     rating: 5,
   },
 ];

@@ -8,10 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { contactInfo, whatsappUrl } from "@/constants/data";
 
 const navItems = [
-  { name: "Projek", href: "#work" },
-  { name: "Servis", href: "#expertise" },
-  { name: "Tentang", href: "#about" },
-  { name: "Harga", href: "#pricing" },
+  { name: "Work", href: "#work" },
+  { name: "Services", href: "#expertise" },
+  { name: "About", href: "#about" },
+  { name: "Pricing", href: "#pricing" },
   { name: "WhatsApp", href: "#contact" },
 ];
 
@@ -68,12 +68,12 @@ const Navbar = () => {
               href={resolveHref("#contact")}
               className="flex items-center gap-2 text-sm font-semibold text-zinc-950 transition-colors hover:text-orange-600"
             >
-              Tanya Harga &rarr;
+              Get A Quote &rarr;
             </Link>
           </div>
 
           <button
-            aria-label={isOpen ? "Tutup menu" : "Buka menu"}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             className="relative -mr-2 flex h-11 w-11 items-center justify-center text-zinc-950 md:hidden"
             onClick={() => setIsOpen((v) => !v)}
@@ -109,7 +109,7 @@ const Navbar = () => {
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-2xl md:hidden"
             role="dialog"
             aria-modal="true"
-            aria-label="Navigasi mudah alih"
+            aria-label="Mobile navigation"
           >
             <div className="flex h-[100dvh] w-full flex-col">
               <div className="h-20 flex-shrink-0 border-b border-zinc-100/60" />
@@ -167,7 +167,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 py-4 text-sm font-semibold tracking-wide text-white transition-all active:scale-[0.98] active:bg-orange-600"
                 >
-                  Tanya Harga
+                  Get A Quote
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
 
@@ -176,7 +176,7 @@ const Navbar = () => {
                     href={`mailto:${contactInfo.email}`}
                     className="py-2 transition-colors hover:text-zinc-950"
                   >
-                    E-mel
+                    Email
                   </a>
                   <span className="mx-4 h-px flex-1 bg-zinc-200" aria-hidden />
                   <a

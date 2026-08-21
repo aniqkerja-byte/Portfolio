@@ -29,51 +29,51 @@ const pricingPlans: PricingPlan[] = [
     price: 199,
     completePrice: 349,
     priceSuffix: "- RM499",
-    desc: "Sesuai untuk jual satu produk, servis, kelas, webinar atau kempen promosi.",
+    desc: "Ideal for selling a single product, service, class, webinar or promo campaign.",
     features: [
-      "Design 1 halaman yang kemas",
-      "Susunan ayat jualan yang jelas",
-      "Butang WhatsApp / borang inquiry",
-      "Setup domain & hosting asas",
-      "Sesuai untuk mobile",
+      "Clean one-page design",
+      "Clear sales copy structure",
+      "WhatsApp button / inquiry form",
+      "Basic domain & hosting setup",
+      "Built for mobile",
     ],
     highlight: false,
-    buttonText: "Tanya Pakej Ini",
-    description: "Sesuai untuk pelancaran produk pantas",
+    buttonText: "Ask About This",
+    description: "Great for a quick product launch",
   },
   {
-    name: "Kedai Online (E-Commerce)",
+    name: "Online Store (E-Commerce)",
     price: 499,
     completePrice: 649,
     priceSuffix: "- RM999",
-    desc: "Untuk bisnes yang nak jual produk online. Harga boleh bertambah ikut feature tambahan yang diperlukan.",
+    desc: "For businesses that want to sell online. Pricing scales with the extra features you need.",
     features: [
-      "Produk, troli dan checkout",
-      "Integrasi bayaran FPX / kad",
-      "Dashboard urus order",
-      "Setup penghantaran asas",
-      "Training ringkas cara guna",
+      "Products, cart and checkout",
+      "FPX / card payment integration",
+      "Order management dashboard",
+      "Basic shipping setup",
+      "Short walkthrough on how to use it",
     ],
     highlight: true,
-    buttonText: "Tanya Pakej Ini",
-    description: "Bagus untuk start e-commerce bisnes",
+    buttonText: "Ask About This",
+    description: "Great for starting an e-commerce business",
   },
   {
-    name: "Laman Web Korporat",
+    name: "Corporate Website",
     price: 990,
     completePrice: 1140,
     priceSuffix: "+",
-    desc: "Untuk bisnes yang nak website lengkap supaya pelanggan lebih yakin sebelum hubungi.",
+    desc: "For businesses that want a complete website so customers feel confident before getting in touch.",
     features: [
-      "Halaman utama, servis, tentang & contact",
-      "Struktur content yang mudah faham",
-      "SEO asas untuk Google",
-      "Borang inquiry / link WhatsApp",
-      "Panduan selepas website siap",
+      "Home, services, about & contact pages",
+      "Content structure that is easy to follow",
+      "Basic SEO for Google",
+      "Inquiry form / WhatsApp link",
+      "Guidance once the website is live",
     ],
     highlight: false,
-    buttonText: "Tanya Pakej Ini",
-    description: "Pakej lengkap yang paling dipercayai",
+    buttonText: "Ask About This",
+    description: "The most trusted complete package",
   },
 ];
 
@@ -124,14 +124,14 @@ const Pricing = () => {
         {/* Title Block */}
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <p className="mb-4 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-            Pakej Website
+            Website Packages
           </p>
           <h2 className="mb-6 text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-            Bajet Jelas Dari Awal.
+            Clear Budget From Day One.
           </h2>
           <p className="text-lg leading-relaxed text-zinc-500">
-            Pilih pakej ikut tahap bisnes anda. Kalau tak pasti, mesej dulu dan kami cadangkan
-            pilihan yang paling masuk akal.
+            Pick the package that matches where your business is. Not sure? Message us and we will
+            suggest the option that makes the most sense.
           </p>
         </div>
 
@@ -143,7 +143,7 @@ const Pricing = () => {
               isMonthly ? "text-zinc-950" : "text-zinc-400"
             )}
           >
-            Pakej Asas (Tanpa Hosting)
+            Basic Package (No Hosting)
           </span>
 
           <label className="relative inline-flex cursor-pointer items-center">
@@ -162,7 +162,7 @@ const Pricing = () => {
               !isMonthly ? "text-zinc-950" : "text-zinc-400"
             )}
           >
-            Pakej Lengkap <span className="font-bold text-orange-600">(+ Domain & Hosting)</span>
+            Complete Package <span className="font-bold text-orange-600">(+ Domain & Hosting)</span>
           </span>
         </div>
 
@@ -206,7 +206,7 @@ const Pricing = () => {
               {plan.highlight && (
                 <div className="absolute -top-3 right-8 flex items-center gap-1 rounded-full bg-orange-600 px-3 py-1 text-[10px] font-bold tracking-widest text-white uppercase shadow-sm">
                   <Star className="h-3 w-3 fill-current text-white" />
-                  <span>Paling Popular</span>
+                  <span>Most Popular</span>
                 </div>
               )}
 
@@ -306,7 +306,8 @@ const Pricing = () => {
         {/* Footer Note */}
         <div className="mt-16 text-center">
           <p className="text-xs text-zinc-400">
-            *Harga boleh berubah ikut skop sebenar. Kami akan confirm semuanya sebelum projek mula.
+            *Prices may change based on the actual scope. We confirm everything before the project
+            starts.
           </p>
         </div>
       </div>

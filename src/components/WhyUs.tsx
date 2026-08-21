@@ -7,18 +7,18 @@ const WhyUs = () => {
   const reasons = [
     {
       icon: <Zap className="h-8 w-8 text-orange-600" strokeWidth={1.5} />,
-      title: "Proses Tak Leceh",
-      desc: "Kami susun proses dari awal sampai launch. Anda beri content asas, kami bantu kemaskan jadi website yang nampak profesional.",
+      title: "A Process Without The Hassle",
+      desc: "We map out every step from kickoff to launch. You give us the basic content, we shape it into a website that looks professional.",
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-orange-600" strokeWidth={1.5} />,
-      title: "Design Yang Bantu Closing",
-      desc: "Website bukan sekadar cantik. Kami susun ayat, bahagian penting dan butang tindakan supaya pelawat mudah faham dan terus hubungi anda.",
+      title: "Design That Helps You Close",
+      desc: "A website is not just about looking nice. We arrange the copy, the key sections and the call-to-action buttons so visitors understand quickly and reach out.",
     },
     {
       icon: <LifeBuoy className="h-8 w-8 text-orange-600" strokeWidth={1.5} />,
-      title: "Tak Tinggal Lepas Siap",
-      desc: "Lepas website live, kami bantu semak, guide cara guna, dan support perkara teknikal supaya anda boleh fokus pada bisnes.",
+      title: "We Do Not Disappear After Launch",
+      desc: "Once the site is live we help you review it, walk you through how to use it, and support the technical side so you can focus on the business.",
     },
   ];
 
@@ -28,11 +28,11 @@ const WhyUs = () => {
         <FadeIn>
           <div className="mb-24 max-w-2xl">
             <h2 className="mb-6 text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Kenapa Ramai Owner Bisnes Pilih JomBina.
+              Why Business Owners Choose JomBina.
             </h2>
             <p className="text-lg leading-relaxed text-zinc-500">
-              Sebab kami bukan sekadar buat website. Kami bantu anda nampak lebih dipercayai, senang
-              dihubungi, dan lebih bersedia untuk jual online.
+              Because we do not just build websites. We help you look more credible, stay easy to
+              reach, and get ready to sell online.
             </p>
           </div>
         </FadeIn>

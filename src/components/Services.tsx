@@ -11,11 +11,11 @@ const Services = () => {
         <FadeIn>
           <div className="mb-24 flex flex-col items-start justify-between md:flex-row md:items-end">
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Servis Yang Kami Buat.
+              What We Do.
             </h2>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-zinc-500 md:mt-0">
-              Dari website simple sampai sistem custom, kami bantu susun ikut bajet dan matlamat
-              bisnes anda.
+              From simple websites to custom systems, we shape the scope around your budget and
+              business goals.
             </p>
           </div>
         </FadeIn>

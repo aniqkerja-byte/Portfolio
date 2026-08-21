@@ -22,9 +22,9 @@ const Hero = () => {
         <div className="lg:col-span-9">
           <FadeIn delay={0.1}>
             <h1 className="mb-12 text-6xl leading-[0.9] font-semibold tracking-tighter text-zinc-950 md:text-8xl lg:text-9xl">
-              WEBSITE <br />
-              <span className="text-zinc-400">KEMAS</span> <br />
-              UNTUK BISNES.
+              WEBSITES <br />
+              <span className="text-zinc-400">THAT WORK</span> <br />
+              FOR BUSINESS.
             </h1>
           </FadeIn>
         </div>
@@ -32,8 +32,8 @@ const Hero = () => {
         <div className="flex flex-col items-start justify-end lg:col-span-3 lg:items-end">
           <FadeIn delay={0.4} className="space-y-8">
             <p className="max-w-xs text-left text-lg leading-relaxed text-zinc-600 lg:text-right">
-              Kami bantu owner bisnes bina website, landing page dan sistem web yang nampak
-              profesional, laju, dan senang pelanggan percaya.
+              We help business owners build websites, landing pages and web systems that look
+              professional, load fast, and earn customer trust.
             </p>
 
             <div className="flex flex-col items-start gap-4 lg:items-end">
@@ -41,7 +41,7 @@ const Hero = () => {
                 href="/contact"
                 className="group flex items-center gap-4 text-sm font-bold tracking-widest text-zinc-950 uppercase"
               >
-                Saya Nak Website
+                I Want A Website
                 <span className="h-[1px] w-12 bg-zinc-950 transition-all duration-300 group-hover:w-20" />
               </Link>
             </div>

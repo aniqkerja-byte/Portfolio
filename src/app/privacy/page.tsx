@@ -2,11 +2,11 @@ import { FadeIn } from "@/components/FadeIn";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-const LAST_UPDATED = "Jun 2026";
+const LAST_UPDATED = "June 2026";
 
 export const metadata = {
-  title: "Dasar Privasi",
-  description: "Dasar Privasi untuk JomBina Digital.",
+  title: "Privacy Policy",
+  description: "Privacy Policy for JomBina Digital.",
 };
 
 export default function PrivacyPage() {
@@ -18,88 +18,87 @@ export default function PrivacyPage() {
             href="/"
             className="mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-widest text-zinc-500 uppercase transition-colors hover:text-zinc-950"
           >
-            <ArrowLeft className="h-4 w-4" /> Kembali ke Laman Utama
+            <ArrowLeft className="h-4 w-4" /> Back to Homepage
           </Link>
 
           <h1 className="mb-12 text-4xl font-bold tracking-tighter md:text-6xl">
-            Dasar Privasi<span className="text-orange-600">.</span>
+            Privacy Policy<span className="text-orange-600">.</span>
           </h1>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <div className="max-w-none space-y-6 text-lg leading-relaxed text-zinc-600">
             <p className="mb-12 text-xl font-light text-zinc-500 md:text-2xl">
-              Kemaskini Terakhir: {LAST_UPDATED}
+              Last Updated: {LAST_UPDATED}
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              1. Pengenalan
+              1. Introduction
             </h3>
             <p>
-              JomBina (&quot;kami&quot;) menghormati privasi anda dan komited untuk melindungi data
-              peribadi anda. Dasar privasi ini menerangkan cara kami mengendalikan data peribadi
-              anda apabila anda melawat laman web kami serta hak privasi anda dan bagaimana
-              undang-undang melindungi anda.
+              JomBina (&quot;we&quot;) respects your privacy and is committed to protecting your
+              personal data. This privacy policy explains how we handle your personal data when you
+              visit our website, along with your privacy rights and how the law protects you.
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              2. Data yang Kami Kumpul
+              2. Data We Collect
             </h3>
             <p>
-              Kami mungkin mengumpul, menggunakan, menyimpan dan memindahkan beberapa jenis data
-              peribadi anda seperti berikut:
+              We may collect, use, store and transfer several types of your personal data, as
+              follows:
             </p>
             <ul className="list-disc space-y-2 pl-6">
               <li>
-                <strong className="font-semibold text-zinc-900">Data Identiti</strong> termasuk nama
-                pertama, nama keluarga, nama pengguna atau pengecam yang serupa.
+                <strong className="font-semibold text-zinc-900">Identity Data</strong> including
+                first name, last name, username or similar identifiers.
               </li>
               <li>
-                <strong className="font-semibold text-zinc-900">Data Hubungan</strong> termasuk
-                alamat bil, alamat penghantaran, alamat e-mel dan nombor telefon.
+                <strong className="font-semibold text-zinc-900">Contact Data</strong> including
+                billing address, delivery address, email address and phone number.
               </li>
               <li>
-                <strong className="font-semibold text-zinc-900">Data Teknikal</strong> termasuk
-                alamat protokol internet (IP), data log masuk anda, jenis dan versi pelayar, tetapan
-                zon masa dan lokasi, serta teknologi lain pada peranti yang anda gunakan untuk
-                mengakses laman web ini.
+                <strong className="font-semibold text-zinc-900">Technical Data</strong> including
+                internet protocol (IP) address, your login data, browser type and version, time zone
+                setting and location, and other technology on the devices you use to access this
+                website.
               </li>
             </ul>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              3. Cara Kami Menggunakan Data Anda
+              3. How We Use Your Data
             </h3>
             <p>
-              Kami hanya akan menggunakan data peribadi anda apabila dibenarkan oleh undang-undang.
-              Kebiasaannya, kami menggunakan data anda untuk perkara berikut:
+              We will only use your personal data when the law allows us to. Most commonly, we use
+              your data in the following circumstances:
             </p>
             <ul className="list-disc space-y-2 pl-6">
               <li>
-                Untuk memenuhi kontrak/perjanjian yang akan atau telah kami persetujui dengan anda.
+                To perform a contract we are about to enter into or have entered into with you.
               </li>
               <li>
-                Untuk kepentingan sah kami (atau pihak ketiga) selagi ia tidak menjejaskan hak
-                privasi asas anda.
+                For our legitimate interests (or those of a third party) provided your fundamental
+                privacy rights are not overridden.
               </li>
-              <li>Untuk mematuhi undang-undang atau peraturan yang ditetapkan.</li>
+              <li>To comply with a legal or regulatory obligation.</li>
             </ul>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              4. Keselamatan Data
+              4. Data Security
             </h3>
             <p>
-              Kami telah mengambil langkah keselamatan yang sewajarnya untuk mengelakkan data
-              peribadi anda daripada hilang, diguna, diakses tanpa kebenaran, diubah atau didedahkan
-              secara tidak sengaja. Selain itu, kami mengehadkan akses data anda hanya kepada
-              pekerja atau rakan kongsi yang mempunyai keperluan perniagaan untuk mengetahuinya.
+              We have put appropriate security measures in place to prevent your personal data from
+              being accidentally lost, used, accessed without authorisation, altered or disclosed.
+              In addition, we limit access to your data to employees or partners who have a business
+              need to know it.
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              5. Hubungi Kami
+              5. Contact Us
             </h3>
             <p>
-              Jika anda mempunyai sebarang soalan mengenai dasar privasi ini atau amalan privasi
-              kami, sila hubungi kami di:{" "}
+              If you have any questions about this privacy policy or our privacy practices, please
+              contact us at:{" "}
               <a href="mailto:jombina.site@gmail.com" className="text-orange-600 hover:underline">
                 jombina.site@gmail.com
               </a>

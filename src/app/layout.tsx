@@ -14,32 +14,32 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://jombina.site"),
   title: {
-    default: "JomBina Digital | Servis Bina Website Untuk Bisnes",
+    default: "JomBina Digital | Website Development For Business",
     template: "%s | JomBina Digital",
   },
   description:
-    "Kami bantu owner bisnes bina website, landing page, kedai online dan sistem web yang nampak kemas, laju, dan senang pelanggan percaya.",
+    "We help business owners build websites, landing pages, online stores and web systems that look sharp, load fast, and earn customer trust.",
   keywords: [
-    "Bina Laman Web",
-    "Bina Website",
-    "Servis Buat Website",
-    "Website Bisnes",
-    "Pembangunan Perisian",
+    "Web Design",
+    "Website Development",
+    "Website Development Service",
+    "Business Website",
+    "Software Development",
     "Next.js",
     "React",
-    "Sistem Web",
-    "Transformasi Digital",
+    "Web Systems",
+    "Digital Transformation",
     "Malaysia",
   ],
-  authors: [{ name: "Pasukan JomBina" }],
+  authors: [{ name: "The JomBina Team" }],
   creator: "JomBina International",
   openGraph: {
     type: "website",
-    locale: "ms_MY",
+    locale: "en_MY",
     url: "https://jombina.site",
-    title: "JomBina Digital | Website Kemas Untuk Bisnes Anda",
+    title: "JomBina Digital | Sharp Websites For Your Business",
     description:
-      "Nak website yang nampak profesional dan bantu pelanggan yakin? JomBina bina laman web, landing page dan sistem web untuk bisnes anda.",
+      "Want a website that looks professional and gives customers confidence? JomBina builds websites, landing pages and web systems for your business.",
     siteName: "JomBina Digital",
     images: [
       {
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JomBina Digital | Website Kemas Untuk Bisnes Anda",
+    title: "JomBina Digital | Sharp Websites For Your Business",
     description:
-      "Kami bina website, landing page dan sistem web yang sesuai untuk bisnes yang nak nampak yakin online.",
+      "We build websites, landing pages and web systems for businesses that want to look credible online.",
     images: ["/og-image.png"],
     creator: "@jombina_tech",
   },
@@ -71,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ms" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} bg-background text-foreground flex min-h-screen flex-col font-sans antialiased selection:bg-orange-600 selection:text-white`}
       >

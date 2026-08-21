@@ -15,10 +15,10 @@ const FAQ = () => {
         <FadeIn>
           <div className="mb-24 text-center">
             <p className="mb-4 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-              Soalan Biasa
+              Common Questions
             </p>
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Selalu Ditanya Sebelum Buat Website.
+              Asked Before Every Website Project.
             </h2>
           </div>
         </FadeIn>

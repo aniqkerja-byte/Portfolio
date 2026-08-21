@@ -7,19 +7,19 @@ export default function NotFound() {
       <FadeIn>
         <h1 className="mb-4 text-9xl font-bold tracking-tighter text-white">404</h1>
         <h2 className="mb-12 text-2xl font-light text-zinc-400 md:text-3xl">
-          Halaman ini tak jumpa.
+          This page cannot be found.
         </h2>
 
         <p className="mx-auto mb-12 max-w-md leading-relaxed text-zinc-500">
-          Mungkin link lama atau alamat tersilap. Jom balik ke laman utama dan sambung tengok servis
-          kami.
+          The link may be outdated or the address mistyped. Head back to the homepage and keep
+          exploring what we do.
         </p>
 
         <Link
           href="/"
           className="inline-flex items-center justify-center bg-orange-600 px-8 py-4 font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-700"
         >
-          Balik Ke Laman Utama
+          Back To Homepage
         </Link>
       </FadeIn>
     </div>

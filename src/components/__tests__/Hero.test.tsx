@@ -28,14 +28,14 @@ describe("Hero Component", () => {
     render(<Hero />);
 
     const heading = screen.getByRole("heading", {
-      name: /website kemas untuk bisnes/i,
+      name: /websites that work for business/i,
     });
     expect(heading).toBeInTheDocument();
 
-    const businessCopy = screen.getAllByText(/bisnes/i)[0];
+    const businessCopy = screen.getAllByText(/business/i)[0];
     expect(businessCopy).toBeInTheDocument();
 
-    const link = screen.getByText(/Saya Nak Website/i);
+    const link = screen.getByText(/I Want A Website/i);
     expect(link).toBeInTheDocument();
   });
 });

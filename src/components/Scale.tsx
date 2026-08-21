@@ -4,18 +4,18 @@ const Scale = () => {
   const stats = [
     {
       value: "100+",
-      label: "Landing Page Dibina",
-      desc: "Halaman jualan untuk kempen produk, servis, kelas, webinar dan promosi bisnes.",
+      label: "Landing Pages Built",
+      desc: "Sales pages for product campaigns, services, classes, webinars and business promos.",
     },
     {
       value: "20+",
-      label: "Website & Sistem Web",
-      desc: "Untuk bisnes yang perlukan booking, invoice, dashboard, membership atau workflow khas.",
+      label: "Websites & Web Systems",
+      desc: "For businesses that need booking, invoicing, dashboards, memberships or a custom workflow.",
     },
     {
-      value: "PENUH",
-      label: "Setup Sampai Live",
-      desc: "Dari idea, design, coding, domain, hosting, testing sampai website boleh digunakan.",
+      value: "FULL",
+      label: "Setup Until Live",
+      desc: "From idea, design and coding to domain, hosting and testing until the website is ready to use.",
     },
   ];
 
@@ -24,11 +24,11 @@ const Scale = () => {
       <div className="mx-auto max-w-[1400px]">
         <div className="mx-auto mb-24 max-w-3xl text-center">
           <h2 className="mb-6 text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-            Bukan Sekadar Design Cantik.
+            More Than Just A Pretty Design.
           </h2>
           <p className="text-lg leading-relaxed text-zinc-500">
-            Kami bina website yang nampak kemas, jelas untuk pelanggan, dan mudah diurus selepas
-            siap.
+            We build websites that look sharp, read clearly for customers, and stay easy to manage
+            after launch.
           </p>
         </div>
 
@@ -48,8 +48,8 @@ const Scale = () => {
 
         <div className="mt-24 text-center">
           <p className="font-mono text-xs text-zinc-400 italic">
-            Sesuai untuk founder, peniaga online, coach, consultant, kedai fizikal dan syarikat
-            servis.
+            Built for founders, online sellers, coaches, consultants, physical stores and service
+            companies.
           </p>
         </div>
       </div>

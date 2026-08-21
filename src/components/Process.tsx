@@ -6,23 +6,23 @@ const Process = () => {
   const steps = [
     {
       number: "01",
-      title: "Kita Borak Dulu",
-      desc: "Kami fahamkan bisnes, target customer, bajet dan apa yang website perlu bantu.",
+      title: "We Talk First",
+      desc: "We get to know your business, your target customers, your budget and what the website needs to do.",
     },
     {
       number: "02",
-      title: "Susun Content & Design",
-      desc: "Kami bantu susun flow, ayat penting, layout dan rupa website supaya mudah pelanggan faham.",
+      title: "Content & Design",
+      desc: "We help structure the flow, the key copy, the layout and the look so customers understand it easily.",
     },
     {
       number: "03",
-      title: "Bina & Test",
-      desc: "Website dibina, disambungkan dengan fungsi yang perlu, kemudian diuji di desktop dan mobile.",
+      title: "Build & Test",
+      desc: "The website gets built, wired up with the features you need, then tested on desktop and mobile.",
     },
     {
       number: "04",
       title: "Launch & Guide",
-      desc: "Kami bantu publish, serah akses, dan guide cara guna supaya anda tak terpinga-pinga.",
+      desc: "We help publish it, hand over the access, and walk you through how to use it so you are never left guessing.",
     },
   ];
 
@@ -32,14 +32,14 @@ const Process = () => {
         <FadeIn>
           <div className="mx-auto mb-24 max-w-2xl text-center">
             <p className="mb-4 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-              Cara Kerja
+              How We Work
             </p>
             <h2 className="mb-6 text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Dari Idea Sampai Website Live.
+              From Idea To Live Website.
             </h2>
             <p className="text-lg leading-relaxed text-zinc-500">
-              Kami pecahkan proses supaya projek jelas, mudah follow, dan tak berulang-ulang tanpa
-              hala tuju.
+              We break the process into clear steps so the project stays easy to follow and never
+              goes in circles.
             </p>
           </div>
         </FadeIn>

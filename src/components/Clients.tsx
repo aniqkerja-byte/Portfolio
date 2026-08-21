@@ -60,7 +60,7 @@ const Clients = () => {
     >
       <div className="mx-auto mb-16 max-w-[1400px] text-center">
         <p className="font-mono text-xs tracking-widest text-zinc-400 uppercase">
-          Teknologi Yang Kami Guna Untuk Bina Website Anda
+          The Technology We Use To Build Your Website
         </p>
       </div>
 

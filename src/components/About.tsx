@@ -15,7 +15,7 @@ const About = () => {
               <div className="relative aspect-[4/5] overflow-hidden border border-zinc-200 bg-zinc-100">
                 <Image
                   src="/about.webp"
-                  alt="Aniq — pembangun website JomBina"
+                  alt="Aniq — web developer at JomBina"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
@@ -28,30 +28,29 @@ const About = () => {
           <div className="w-full md:w-2/3">
             <FadeIn delay={0.2}>
               <p className="mb-6 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                Siapa Di Sebalik JomBina
+                Who Is Behind JomBina
               </p>
 
               <h2 className="mb-8 text-3xl leading-tight font-semibold tracking-tighter text-zinc-950 md:text-5xl">
-                Saya bina solusi digital yang owner bisnes betul-betul faham dan boleh guna.
+                I build digital solutions that business owners genuinely understand and use.
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
                 <p>
-                  Saya Aniq, pembangun teknologi yang bantu bisnes kecil dan sederhana selesaikan
-                  masalah operasi melalui digital. Boleh jadi website, boleh jadi sistem dalaman,
-                  atau automasi untuk kerja harian yang selalu makan masa.
+                  I am Aniq, a developer who helps small and medium businesses solve operational
+                  problems with digital tools. That could be a website, an internal system, or
+                  automation for the daily tasks that keep eating up your time.
                 </p>
                 <p>
-                  Cara saya kerja mudah je. Saya cuba faham dulu apa masalah sebenar dalam bisnes
-                  anda, macam mana proses kerja berjalan sekarang, dan teknologi apa yang paling
-                  sesuai untuk bantu. Lepas tu baru saya mula bina, sama ada website, web app atau
-                  sistem custom, ikut apa yang bisnes anda betul-betul perlukan. Bukan ikut template
-                  yang sama untuk semua orang.
+                  My approach is simple. I start by understanding the real problem in your business,
+                  how the process runs today, and which technology actually fits. Only then do I
+                  start building, whether that is a website, a web app or a custom system, based on
+                  what your business truly needs. Not the same template as everyone else.
                 </p>
                 <p>
-                  Saya faham tak semua orang selesa dengan bahasa teknikal. Jadi saya cuba explain
-                  semudah mungkin, siapkan semuanya untuk anda, dan pastikan sistem tu betul-betul
-                  boleh jalan dan tolong bisnes anda bergerak lebih lancar.
+                  I know not everyone is comfortable with technical jargon. So I explain things as
+                  plainly as I can, set everything up for you, and make sure the system genuinely
+                  runs and helps your business move more smoothly.
                 </p>
               </div>
 
@@ -59,14 +58,14 @@ const About = () => {
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-orange-600" />
                   <span className="font-medium text-zinc-900">
-                    Pernah bina dan deploy sistem web (inventori, HR, e-learning) yang digunakan
-                    oleh lebih 50 staff dalam syarikat sebenar
+                    Built and deployed web systems (inventory, HR, e-learning) used by more than 50
+                    staff inside a real company
                   </span>
                 </div>
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-orange-600" />
                   <span className="font-medium text-zinc-900">
-                    Website, Sistem Web, Automasi dan Digital Tools untuk Bisnes
+                    Websites, Web Systems, Automation and Digital Tools for Business
                   </span>
                 </div>
               </div>

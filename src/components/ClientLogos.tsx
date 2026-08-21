@@ -42,7 +42,7 @@ const ClientLogos = () => {
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
         <div className="mb-12 text-center">
           <p className="font-mono text-xs tracking-widest text-zinc-400 uppercase">
-            Dipercayai Oleh Pelbagai Bisnes & Brand Tempatan
+            Trusted By Businesses & Local Brands
           </p>
         </div>
 
@@ -53,7 +53,7 @@ const ClientLogos = () => {
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-6 py-3 text-xs font-semibold tracking-widest text-white uppercase shadow-xl transition-all duration-300 hover:scale-105 hover:bg-zinc-800"
             >
-              <span>Hubungi Kami</span>
+              <span>Contact Us</span>
               <ChevronRight className="size-4" />
             </Link>
           </div>

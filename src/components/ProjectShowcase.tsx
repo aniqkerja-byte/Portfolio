@@ -10,7 +10,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
   <Link
     href={`/work/${project.slug}`}
     className="group/project w-[78vw] flex-none sm:w-[380px] lg:w-[430px]"
-    aria-label={`Lihat projek ${project.title}`}
+    aria-label={`View the ${project.title} project`}
   >
     <div className="border border-zinc-200 bg-white p-3 transition-colors duration-300 group-hover/project:border-orange-600">
       <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
@@ -79,13 +79,13 @@ const ProjectShowcase = () => {
     <div className="relative z-10 mt-16 w-full overflow-hidden md:mt-20">
       <div className="mx-auto mb-6 flex max-w-[1400px] items-center justify-between px-6 md:px-12">
         <p className="font-mono text-xs tracking-widest text-zinc-400 uppercase">
-          Preview Projek Yang Pernah Dibina
+          A Preview Of Projects We Have Built
         </p>
         <Link
           href="/#work"
           className="hidden items-center gap-2 text-xs font-bold tracking-widest text-zinc-500 uppercase transition-colors hover:text-orange-600 sm:flex"
         >
-          Tengok Semua <ArrowUpRight className="h-3.5 w-3.5" />
+          View All <ArrowUpRight className="h-3.5 w-3.5" />
         </Link>
       </div>
 

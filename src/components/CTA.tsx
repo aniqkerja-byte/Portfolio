@@ -13,22 +13,22 @@ const CTA = () => {
         <div>
           <FadeIn>
             <h2 className="mb-8 text-5xl leading-[0.9] font-semibold tracking-tighter md:text-7xl lg:text-8xl">
-              NAK WEBSITE <br />
-              YANG NAMPAK READY?
+              NEED A WEBSITE <br />
+              THAT LOOKS READY?
             </h2>
           </FadeIn>
         </div>
         <div className="pb-4">
           <FadeIn delay={0.2}>
             <p className="mb-12 max-w-md text-lg leading-relaxed text-zinc-500 md:text-xl">
-              Cerita sikit tentang bisnes anda. Kami akan cadangkan website, landing page atau
-              sistem yang paling sesuai dengan bajet dan matlamat anda.
+              Tell us a bit about your business. We will suggest the website, landing page or system
+              that best fits your budget and your goals.
             </p>
             <Link
               href="/contact"
               className="inline-flex w-full items-center justify-center bg-orange-600 px-12 py-6 font-bold tracking-widest text-white uppercase transition-colors hover:bg-orange-700 md:w-auto"
             >
-              Tanya Dulu
+              Get In Touch
             </Link>
           </FadeIn>
         </div>

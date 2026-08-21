@@ -153,7 +153,7 @@ const Work = () => {
         <FadeIn>
           <div className="mb-16 flex items-end justify-between md:mb-24">
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
-              Contoh Kerja Kami.
+              Our Recent Work.
             </h2>
           </div>
         </FadeIn>
@@ -241,7 +241,7 @@ const Work = () => {
                     href={`/work/${activeProject.slug}`}
                     className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-6 py-3 text-xs font-semibold tracking-widest text-white uppercase shadow-lg transition-all duration-300 hover:scale-105 hover:bg-zinc-800"
                   >
-                    <span>Lihat Projek</span>
+                    <span>View Project</span>
                     <ChevronRight className="size-4" />
                   </Link>
                 </div>

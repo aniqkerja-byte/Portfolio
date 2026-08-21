@@ -2,11 +2,11 @@ import { FadeIn } from "@/components/FadeIn";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-const LAST_UPDATED = "Jun 2026";
+const LAST_UPDATED = "June 2026";
 
 export const metadata = {
-  title: "Terma & Syarat",
-  description: "Terma & Syarat untuk JomBina Digital.",
+  title: "Terms & Conditions",
+  description: "Terms & Conditions for JomBina Digital.",
 };
 
 export default function TermsPage() {
@@ -18,77 +18,76 @@ export default function TermsPage() {
             href="/"
             className="mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-widest text-zinc-500 uppercase transition-colors hover:text-zinc-950"
           >
-            <ArrowLeft className="h-4 w-4" /> Kembali ke Laman Utama
+            <ArrowLeft className="h-4 w-4" /> Back to Homepage
           </Link>
 
           <h1 className="mb-12 text-4xl font-bold tracking-tighter md:text-6xl">
-            Terma & Syarat<span className="text-orange-600">.</span>
+            Terms & Conditions<span className="text-orange-600">.</span>
           </h1>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <div className="max-w-none space-y-6 text-lg leading-relaxed text-zinc-600">
             <p className="mb-12 text-xl font-light text-zinc-500 md:text-2xl">
-              Kemaskini Terakhir: {LAST_UPDATED}
+              Last Updated: {LAST_UPDATED}
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              1. Persetujuan Terma
+              1. Agreement to Terms
             </h3>
             <p>
-              Terma & Syarat ini merupakan perjanjian sah antara anda (secara peribadi atau bagi
-              pihak syarikat) dan JomBina (&quot;kami&quot;), mengenai akses dan penggunaan laman
-              web ini serta sebarang saluran media lain yang berkaitan dengannya (secara kolektif
-              dirujuk sebagai &quot;Laman Web&quot;).
+              These Terms &amp; Conditions form a legally binding agreement between you (personally
+              or on behalf of a company) and JomBina (&quot;we&quot;), concerning your access to and
+              use of this website as well as any related media channels (collectively referred to as
+              the &quot;Website&quot;).
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              2. Hak Harta Intelek
+              2. Intellectual Property Rights
             </h3>
             <p>
-              Melainkan dinyatakan sebaliknya, Laman Web ini adalah hak milik kami sepenuhnya. Semua
-              kod sumber, pangkalan data, fungsi perisian, reka bentuk laman web, audio, video,
-              teks, gambar, grafik (secara kolektif dirujuk sebagai &quot;Kandungan&quot;) serta
-              tanda dagangan dan logo di dalamnya adalah dimiliki atau dikawal oleh kami dan
-              dilindungi oleh undang-undang hak cipta dan harta intelek.
+              Unless otherwise stated, this Website is our proprietary property. All source code,
+              databases, software functionality, website design, audio, video, text, photographs and
+              graphics (collectively referred to as the &quot;Content&quot;), along with the
+              trademarks and logos contained within it, are owned or controlled by us and protected
+              by copyright and intellectual property laws.
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              3. Tanggungjawab Pengguna
+              3. User Responsibilities
             </h3>
             <p>
-              Dengan menggunakan Laman Web ini, anda mengakui dan menjamin bahawa: (1) semua
-              maklumat yang anda berikan adalah betul, tepat dan lengkap; (2) anda akan sentiasa
-              memastikan maklumat tersebut tepat; (3) anda mempunyai kapasiti undang-undang dan
-              bersetuju untuk mematuhi Terma & Syarat ini.
+              By using this Website, you represent and warrant that: (1) all information you submit
+              is true, accurate and complete; (2) you will keep that information accurate at all
+              times; (3) you have the legal capacity and agree to comply with these Terms &amp;
+              Conditions.
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              4. Aktiviti yang Dilarang
+              4. Prohibited Activities
             </h3>
             <p>
-              Anda tidak boleh mengakses atau menggunakan Laman Web ini untuk sebarang tujuan selain
-              daripada apa yang kami sediakan. Laman Web ini tidak boleh digunakan untuk sebarang
-              tujuan komersial yang lain melainkan mendapat kebenaran bertulis daripada kami.
+              You may not access or use this Website for any purpose other than the one we make it
+              available for. This Website may not be used for any other commercial purpose without
+              our written permission.
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              5. Perubahan dan Gangguan
+              5. Modifications and Interruptions
             </h3>
             <p>
-              Kami berhak untuk mengubah, mengubah suai atau membuang kandungan Laman Web pada
-              bila-bila masa atas budi bicara kami sendiri tanpa sebarang notis. Kami juga berhak
-              untuk mengubah suai atau menghentikan sebahagian atau keseluruhan Laman Web tanpa
-              notis pada bila-bila masa.
+              We reserve the right to change, modify or remove the contents of the Website at any
+              time, at our sole discretion and without notice. We also reserve the right to modify
+              or discontinue all or part of the Website without notice at any time.
             </p>
 
             <h3 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-zinc-950">
-              6. Undang-undang Terpakai
+              6. Governing Law
             </h3>
             <p>
-              Terma & Syarat ini dikawal dan ditafsirkan mengikut undang-undang Malaysia. JomBina
-              dan anda bersetuju bahawa mahkamah di Malaysia mempunyai bidang kuasa eksklusif untuk
-              menyelesaikan sebarang pertikaian yang timbul berkaitan terma ini.
+              These Terms &amp; Conditions are governed by and construed in accordance with the laws
+              of Malaysia. JomBina and you agree that the courts of Malaysia shall have exclusive
+              jurisdiction to resolve any dispute arising in connection with these terms.
             </p>
           </div>
         </FadeIn>

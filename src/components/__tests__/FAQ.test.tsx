@@ -18,20 +18,20 @@ describe("FAQ Component", () => {
     render(<FAQ />);
 
     // Check main heading
-    expect(screen.getByText(/Selalu Ditanya Sebelum Buat Website/i)).toBeInTheDocument();
+    expect(screen.getByText(/Asked Before Every Website Project/i)).toBeInTheDocument();
 
     // Find a question
-    const questionBtn = screen.getByText(/Berapa lama biasanya website boleh siap/i);
+    const questionBtn = screen.getByText(/How long does a website usually take/i);
     expect(questionBtn).toBeInTheDocument();
 
     // Answer shouldn't be in document before click
-    expect(screen.queryByText(/Untuk landing page/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/For a landing page/i)).not.toBeInTheDocument();
 
     // Click to open
     fireEvent.click(questionBtn);
 
     // Answer should now be in the document
-    const answer = screen.getByText(/Untuk landing page/i);
+    const answer = screen.getByText(/For a landing page/i);
     expect(answer).toBeInTheDocument();
 
     // Click to close
