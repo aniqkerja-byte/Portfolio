@@ -10,7 +10,7 @@ const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="border-t border-zinc-200 bg-white px-6 py-32 md:px-12">
+    <section id="faq" className="border-t border-zinc-200 bg-zinc-50 px-6 py-32 md:px-12">
       <div className="mx-auto max-w-[1000px]">
         <FadeIn>
           <div className="mb-24 text-center">
