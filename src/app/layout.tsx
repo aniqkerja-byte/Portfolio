@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { siteUrl } from "@/constants/data";
+import { professionalServiceSchema } from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jombina.site"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "JomBina Digital | Website Development For Business",
     template: "%s | JomBina Digital",
@@ -36,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_MY",
-    url: "https://jombina.site",
+    url: siteUrl,
     title: "JomBina Digital | Sharp Websites For Your Business",
     description:
       "Want a website that looks professional and gives customers confidence? JomBina builds websites, landing pages and web systems for your business.",
@@ -72,12 +76,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+        />
+      </head>
       <body
         className={`${inter.variable} bg-background text-foreground flex min-h-screen flex-col font-sans antialiased selection:bg-orange-600 selection:text-white`}
       >
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
