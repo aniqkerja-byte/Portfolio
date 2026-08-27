@@ -151,10 +151,17 @@ const Work = () => {
     >
       <div className="mx-auto max-w-[1400px]">
         <FadeIn>
-          <div className="mb-16 flex items-end justify-between md:mb-24">
+          <div className="mb-16 max-w-2xl md:mb-24">
+            <span className="mb-3 block font-mono text-xs tracking-widest text-zinc-400 uppercase">
+              Featured Portfolio · 2023 — 2026
+            </span>
             <h2 className="text-4xl font-semibold tracking-tighter text-zinc-950 md:text-6xl">
               Our Recent Work.
             </h2>
+            <p className="mt-4 text-base leading-relaxed text-zinc-500 md:text-lg">
+              Explore our latest websites, e-commerce stores, and web systems built for real
+              results.
+            </p>
           </div>
         </FadeIn>
 
@@ -162,7 +169,7 @@ const Work = () => {
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Images Columns */}
           <div
-            className="xs:h-[240px] relative z-10 flex h-[200px] w-full items-center justify-center overflow-visible select-none perspective-[1000px] md:h-[300px] lg:h-[340px]"
+            className="xs:h-[260px] relative z-10 flex h-[220px] w-full items-center justify-center overflow-visible select-none perspective-[1000px] md:h-[340px] lg:h-[380px]"
             ref={imageContainerRef}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -170,21 +177,19 @@ const Work = () => {
             {projects.map((project, index) => (
               <div
                 key={project.slug}
-                className="absolute aspect-video w-[80%] max-w-[340px] cursor-pointer transition-all duration-300 md:max-w-[480px]"
+                className="absolute aspect-[4/3] w-[85%] max-w-[380px] cursor-pointer transition-all duration-300 md:max-w-[480px]"
                 style={getImageStyle(index)}
                 onClick={() => setActiveIndex(index)}
               >
-                <div className="relative h-full w-full overflow-hidden rounded-2xl border border-zinc-200/50 bg-zinc-100 shadow-2xl">
+                <div className="relative h-full w-full">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-w-768px) 80vw, 400px"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 85vw, 480px"
+                    className="object-contain drop-shadow-2xl"
                     draggable={false}
                   />
-                  {/* Subtle vignette overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>
               </div>
             ))}
@@ -267,6 +272,19 @@ const Work = () => {
             </div>
           </div>
         </div>
+
+        {/* Bottom Link: View All Projects */}
+        <FadeIn delay={0.2}>
+          <div className="mt-16 flex items-center justify-center border-t border-zinc-100 pt-8 sm:mt-24">
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-zinc-950 uppercase transition-colors hover:text-orange-600"
+            >
+              <span>View All Projects</span>
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

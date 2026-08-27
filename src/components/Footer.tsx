@@ -3,6 +3,14 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+// Only accounts that actually exist. An empty profile link costs more trust
+// than a missing one — add a row here when a new account goes live.
+const socialLinks = [
+  { name: "Instagram", href: "https://www.instagram.com/jombina.site/" },
+  { name: "TikTok", href: "https://www.tiktok.com/@jombina.site" },
+  { name: "Threads", href: "https://www.threads.com/@jombina.site" },
+];
+
 const Footer = () => {
   return (
     <footer className="border-t border-zinc-900 bg-zinc-950 px-6 pt-32 pb-12 text-white md:px-12">
@@ -42,11 +50,16 @@ const Footer = () => {
             <ul className="space-y-4 text-sm font-medium text-zinc-300">
               <li>
                 <Link href="/#work" className="transition-colors hover:text-white">
-                  Work
+                  Featured Work
                 </Link>
               </li>
               <li>
-                <Link href="/#expertise" className="transition-colors hover:text-white">
+                <Link href="/work" className="transition-colors hover:text-white">
+                  All Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="transition-colors hover:text-white">
                   Services
                 </Link>
               </li>
@@ -56,7 +69,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/#pricing" className="transition-colors hover:text-white">
+                <Link href="/pricing" className="transition-colors hover:text-white">
                   Pricing
                 </Link>
               </li>
@@ -68,31 +81,18 @@ const Footer = () => {
               Social Media
             </h4>
             <ul className="space-y-4 text-sm font-medium text-zinc-300">
-              <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Threads
-                </a>
-              </li>
-              <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Twitter
-                </a>
-              </li>
+              {socialLinks.map((social) => (
+                <li key={social.name}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-white"
+                  >
+                    {social.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 

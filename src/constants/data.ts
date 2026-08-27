@@ -1,3 +1,7 @@
+// Canonical origin — single source of truth for metadataBase, sitemap,
+// robots and JSON-LD. No trailing slash.
+export const siteUrl = "https://jombina.site";
+
 // Contact info — single source of truth.
 // Swap `whatsappNumber` to the real number (digits only, with country code,
 // no '+', no spaces, no dashes — wa.me format).
@@ -28,9 +32,122 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
+    slug: "cekdoku",
+    title: "CekDoku",
+    category: "Web System",
+    year: "2026",
+    desc: "A privacy-first AI document checker that scans PDF files entirely in-memory for typos, grammar, and cross-page factual contradictions.",
+    challenge:
+      "Users need fast, reliable document error detection without exposing sensitive business contracts and proposals to permanent cloud storage.",
+    solution:
+      "We built a retro-themed, zero-storage web application with multi-LLM support (Groq/Llama, Gemini, DeepSeek) delivering instant error logs.",
+    results: ["100% In-Memory Privacy", "Multi-LLM Integration", "Sub-Second Error Reports"],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Groq AI"],
+    liveUrl: "https://cekdoku.com/",
+    image: "/work/cekdoku.png",
+  },
+  {
+    slug: "perodua-budget-checker",
+    title: "Perodua Budget Checker",
+    category: "Web System",
+    year: "2026",
+    desc: "A Malay-language budget checker a Perodua sales advisor runs live on TikTok — enter a net monthly salary and it scores every model and variant as affordable or not.",
+    challenge:
+      'The advisor worked instalments out in an Excel sheet during live sessions. It was unreadable on a phone screen, viewers could not follow the maths, and every "boleh afford tak?" in the comments had to be answered by hand, one at a time.',
+    solution:
+      "We built a screen-first checker in Malay: it turns net salary into a safe monthly budget, then marks all six models Lulus or Belum sesuai down to the variant, with tenure and down payment adjustable mid-stream and the advisor's number on screen throughout.",
+    results: [
+      "Excel Sheet Retired",
+      "All Six Models Scored At Once",
+      "Advisor's Number On Every Result",
+    ],
+    techStack: ["Next.js", "Tailwind CSS"],
+    liveUrl: "https://peroduacarloan.vercel.app/",
+    image: "/work/perodua_budget_checker.png",
+  },
+  {
+    slug: "kowa-gaming-studio",
+    title: "Kowa Gaming Studio",
+    category: "E-Commerce",
+    year: "2024",
+    desc: "An exclusive e-commerce storefront for custom mechanical keyboards, artisanal keycaps, and premium gaming peripherals.",
+    challenge:
+      "The brand required an aesthetic, playful storefront with international currency support, product bundles, and seamless checkout.",
+    solution:
+      "We created a custom pastel-themed e-commerce store with smooth product previews, instant currency conversion, and lightning-fast checkout.",
+    results: ["Aesthetic Brand Identity", "Global Checkout Flow", "Mobile-Optimised Showcase"],
+    techStack: ["Next.js", "Tailwind CSS", "Stripe"],
+    liveUrl: "https://kowagaming.com/",
+    image: "/work/kowa_gaming_studio.png",
+  },
+  {
+    slug: "glow-mask-explorer",
+    title: "Glow-Mask Explorer",
+    category: "Web System",
+    year: "2026",
+    desc: "An interactive skin analysis and Telang flower formulation web app engineered for SK Tunku Mahmood (2) Kluang's 2026 Exhibition.",
+    challenge:
+      "Creating an interactive digital exhibit for visitors and judges to assess skin types in under 1 minute and receive personalized natural formulations.",
+    solution:
+      "We engineered a kiosk-ready interactive app featuring facial scanning simulation, a quick skin quiz, and automated recipe generation.",
+    results: [
+      "Interactive Exhibition Stand",
+      "Instant 1-Minute Analysis",
+      "Engaging Student Innovation",
+    ],
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "https://glowmask.jombina.site/",
+    image: "/work/Glow_mask_explorer.png",
+  },
+  {
+    slug: "house-of-misses",
+    title: "House of Misses",
+    category: "E-Commerce",
+    year: "2024",
+    desc: "A boutique cosmetics e-commerce store specializing in daily lip essentials with an editorial, high-fashion aesthetic.",
+    challenge:
+      "Building a luxury beauty shopping experience that highlights lip shades with high-resolution photography and fast mobile cart flows.",
+    solution:
+      "We designed a minimalist, photo-centric e-commerce website with instant cart drawers and frictionless mobile checkout.",
+    results: ["High Conversion Design", "Ultra-fast Page Speed", "Seamless Cart Experience"],
+    techStack: ["Next.js", "Tailwind CSS", "Stripe"],
+    liveUrl: "https://houseofmisses.com/",
+    image: "/work/houseofmisses.png",
+  },
+  {
+    slug: "fatimah-khairunisa-aia",
+    title: "Fatimah Khairunisa (AIA Takaful)",
+    category: "Corporate & Service",
+    year: "2026",
+    desc: "High-converting personal branding landing page and consultation funnel for an accredited AIA Public Takaful Life Advisor.",
+    challenge:
+      "Establishing immediate trust and credibility while prompting potential clients to calculate coverage needs and book free consultations.",
+    solution:
+      "We crafted a bold, persuasive landing page with live inquiry notifications, social proof, and a direct WhatsApp appointment booking system.",
+    results: ["High-Trust Personal Brand", "Direct Consultation Leads", "Mobile-Optimized Funnel"],
+    techStack: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "https://takafuladvisor.jombina.site/",
+    image: "/work/aia takaful agent.png",
+  },
+  {
+    slug: "bosta",
+    title: "Bosta",
+    category: "E-Commerce",
+    year: "2024",
+    desc: "Official e-commerce website and brand hub for Bosta Keto coffee and cocoa lifestyle dietary products.",
+    challenge:
+      "Directing ad traffic into an engaging online store that explains keto benefits clearly and drives multi-pack trial purchases.",
+    solution:
+      "We developed a structured product catalog with bundle pricing, subscription options, and clear nutritional breakdowns.",
+    results: ["Increased Average Order Value", "Clear Dietary Benefits", "Fast Checkout Flow"],
+    techStack: ["WordPress", "WooCommerce", "Elementor"],
+    liveUrl: "https://bosta.com.my/",
+    image: "/work/bosta.png",
+  },
+  {
     slug: "famyytech-mobile",
     title: "FamyyTech Mobile",
-    category: "Repair & Service",
+    category: "Corporate & Service",
     year: "2024",
     desc: "The official website for a phone repair centre, making it easy for customers to check prices and store details.",
     challenge:
@@ -45,7 +162,7 @@ export const projectsData: Project[] = [
   {
     slug: "fyebeauty-ecommerce",
     title: "FyeBeauty",
-    category: "E-Commerce & Beauty",
+    category: "E-Commerce",
     year: "2024",
     desc: "The official online store for FyeBeauty, built so customers can buy cosmetics in just a few taps.",
     challenge:
@@ -60,7 +177,7 @@ export const projectsData: Project[] = [
   {
     slug: "jomenvois",
     title: "JomEnvois",
-    category: "Finance System",
+    category: "Web System",
     year: "2025",
     desc: "A simple, fast invoicing tool with instant PDF preview and none of the confusing setup.",
     challenge:
@@ -75,7 +192,7 @@ export const projectsData: Project[] = [
   {
     slug: "probiozen",
     title: "Probiozen",
-    category: "Health & Wellness",
+    category: "Landing Page",
     year: "2024",
     desc: "A sales landing page for a health product, structured so customers grasp the benefits quickly.",
     challenge:
@@ -90,9 +207,9 @@ export const projectsData: Project[] = [
   {
     slug: "missgoldenhair",
     title: "MissGoldenHair",
-    category: "Beauty & Cosmetics",
+    category: "Landing Page",
     year: "2024",
-    desc: "An online store for premium hair care products, with an exclusive look and an easy path to purchase.",
+    desc: "An online store and sales landing for premium hair care products, with an exclusive look and an easy path to purchase.",
     challenge:
       "The brand had to feel premium, yet the shopping experience still needed to stay simple and never confuse customers.",
     solution:
@@ -105,7 +222,7 @@ export const projectsData: Project[] = [
   {
     slug: "ellscafe",
     title: "Ells Cafe",
-    category: "Food & Beverage",
+    category: "Corporate & Service",
     year: "2023",
     desc: "A website for a local cafe so customers can check the menu, the atmosphere and key details at a glance.",
     challenge:
@@ -120,7 +237,7 @@ export const projectsData: Project[] = [
   {
     slug: "bukupanduansihat",
     title: "Buku Panduan Sihat",
-    category: "Digital Education",
+    category: "Landing Page",
     year: "2023",
     desc: "A landing page for a digital health product, focused on explaining the value and keeping the purchase clear.",
     challenge:
@@ -135,7 +252,7 @@ export const projectsData: Project[] = [
   {
     slug: "modul-formula-turun-10kg",
     title: "Modul Formula Turun 10KG",
-    category: "Fitness Program",
+    category: "Landing Page",
     year: "2023",
     desc: "A sales and membership portal for a weight-loss program.",
     challenge:
@@ -150,7 +267,7 @@ export const projectsData: Project[] = [
   {
     slug: "rawat-hormon",
     title: "Rawat Hormon",
-    category: "Live Events",
+    category: "Landing Page",
     year: "2024",
     desc: "A landing page and registration system for a health webinar.",
     challenge:
@@ -164,34 +281,77 @@ export const projectsData: Project[] = [
   },
 ];
 
-export const servicesData = [
+export type Service = {
+  slug: string;
+  title: string;
+  desc: string;
+  tags: string[];
+  /**
+   * Which `Project.category` values count as examples of this service, so
+   * /services can show real work instead of marketing copy. An empty array
+   * means the service is support work bundled into every project rather than
+   * something with a portfolio of its own — render it without an examples block.
+   */
+  projectCategories: string[];
+};
+
+export const servicesData: Service[] = [
   {
+    slug: "business-website",
     title: "Business Website & Landing Page",
     desc: "For business owners who want to look professional, explain their services clearly, and make it easy for customers to WhatsApp or book.",
     tags: ["Company Website", "Landing Page", "Basic SEO"],
+    projectCategories: ["Landing Page", "Corporate & Service"],
   },
   {
+    slug: "online-store",
     title: "Online Store & Payments",
     desc: "Ideal if you want to sell products, take orders, accept payments and manage customers from one place.",
     tags: ["E-Commerce", "Payment Gateway", "Order Flow"],
+    projectCategories: ["E-Commerce"],
   },
   {
+    slug: "web-systems",
     title: "Custom Web Systems",
     desc: "For businesses that need a system of their own — booking, invoicing, dashboards, memberships or day-to-day automation.",
     tags: ["Dashboard", "Booking", "Membership"],
+    projectCategories: ["Web System"],
   },
   {
+    slug: "technical-setup",
     title: "Technical Setup & Support",
     desc: "We handle the domain, hosting, email, analytics, performance and the technical details so your website keeps running smoothly.",
     tags: ["Domain", "Hosting", "Maintenance"],
+    projectCategories: [],
   },
 ];
 
-export const pricingPlansData = [
+export type PricingPlan = {
+  name: string;
+  /** Basic package (no hosting). */
+  price: number;
+  /** Complete package (+ domain & hosting) — the toggled-on price. */
+  completePrice: number;
+  /** Upper bound of the range, rendered after the number. */
+  priceSuffix: string;
+  desc: string;
+  features: string[];
+  /** Exactly one plan should be true — it renders the MOST POPULAR badge. */
+  highlight: boolean;
+  buttonText: string;
+  description: string;
+};
+
+// Single source of truth for pricing. `Pricing.tsx` renders this, `schema.ts`
+// derives priceRange from it, and any future /pricing page must read it too —
+// a second copy is how the homepage and a pricing page end up disagreeing on
+// which package is "most popular". Order here is the display order.
+export const pricingPlansData: PricingPlan[] = [
   {
     name: "Landing Page",
-    price: "RM199",
-    priceRange: "- RM499",
+    price: 199,
+    completePrice: 349,
+    priceSuffix: "- RM499",
     desc: "Ideal for selling a single product, service, class, webinar or promo campaign.",
     features: [
       "Clean one-page design",
@@ -201,25 +361,14 @@ export const pricingPlansData = [
       "Built for mobile",
     ],
     highlight: false,
-  },
-  {
-    name: "Corporate Website",
-    price: "RM990",
-    priceRange: "+",
-    desc: "For businesses that want a complete website so customers feel confident before getting in touch.",
-    features: [
-      "Home, services, about & contact pages",
-      "Content structure that is easy to follow",
-      "Basic SEO for Google",
-      "Inquiry form / WhatsApp link",
-      "Guidance once the website is live",
-    ],
-    highlight: true,
+    buttonText: "Ask About This",
+    description: "Great for a quick product launch",
   },
   {
     name: "Online Store (E-Commerce)",
-    price: "RM499",
-    priceRange: "- RM999",
+    price: 499,
+    completePrice: 649,
+    priceSuffix: "- RM999",
     desc: "For businesses that want to sell online. Pricing scales with the extra features you need.",
     features: [
       "Products, cart and checkout",
@@ -228,7 +377,26 @@ export const pricingPlansData = [
       "Basic shipping setup",
       "Short walkthrough on how to use it",
     ],
+    highlight: true,
+    buttonText: "Ask About This",
+    description: "Great for starting an e-commerce business",
+  },
+  {
+    name: "Corporate Website",
+    price: 990,
+    completePrice: 1140,
+    priceSuffix: "+",
+    desc: "For businesses that want a complete website so customers feel confident before getting in touch.",
+    features: [
+      "Home, services, about & contact pages",
+      "Content structure that is easy to follow",
+      "Basic SEO for Google",
+      "Inquiry form / WhatsApp link",
+      "Guidance once the website is live",
+    ],
     highlight: false,
+    buttonText: "Ask About This",
+    description: "The most trusted complete package",
   },
 ];
 

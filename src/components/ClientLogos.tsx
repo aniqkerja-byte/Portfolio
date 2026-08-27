@@ -11,9 +11,11 @@ const clientLogos = [
   { name: "FamyyTech Mobile", src: "/logo_brand/famyytech_mobile.png" },
   { name: "FyeBeauty", src: "/logo_brand/fyebeauty.png" },
   { name: "House of Misses", src: "/logo_brand/house_of_misses.png" },
+  { name: "Kowa Gaming Studio", src: "/logo_brand/kowa_gaming_studio.png" },
   { name: "MissGoldenHair", src: "/logo_brand/missgoldenhair.png" },
   { name: "MissPlumpyLips", src: "/logo_brand/missplumpylips.png" },
   { name: "Probiozen", src: "/logo_brand/probiozen.png" },
+  { name: "SK Tunku Mahmood (2)", src: "/logo_brand/logo_sekolah.png" },
 ];
 
 const transitionVariants = {
@@ -46,7 +48,7 @@ const ClientLogos = () => {
           </p>
         </div>
 
-        <div className="group relative mx-auto max-w-4xl">
+        <div className="group relative mx-auto max-w-6xl">
           {/* Centered Hover Overlay Button */}
           <div className="pointer-events-none absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100">
             <Link
@@ -70,7 +72,7 @@ const ClientLogos = () => {
               },
               ...transitionVariants,
             }}
-            className="mx-auto grid grid-cols-2 gap-x-8 gap-y-8 transition-all duration-500 group-hover:opacity-40 group-hover:blur-[2px] sm:grid-cols-4 sm:gap-x-16 sm:gap-y-12 lg:gap-x-20"
+            className="mx-auto grid grid-cols-2 gap-x-8 gap-y-8 transition-all duration-500 group-hover:opacity-40 group-hover:blur-[2px] sm:grid-cols-3 sm:gap-x-12 sm:gap-y-12 md:grid-cols-4 lg:grid-cols-6 lg:gap-x-14"
           >
             {clientLogos.map((logo, index) => (
               <div key={index} className="flex h-20 items-center justify-center">

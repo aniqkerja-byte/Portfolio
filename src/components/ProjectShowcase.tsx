@@ -13,13 +13,14 @@ const ProjectCard = ({ project }: { project: Project }) => (
     aria-label={`View the ${project.title} project`}
   >
     <div className="border border-zinc-200 bg-white p-3 transition-colors duration-300 group-hover/project:border-orange-600">
-      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
+      {/* overflow-hidden is load-bearing: the image scales on hover. */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden p-2">
         <Image
           src={project.image}
           alt={project.title}
           fill
           sizes="(max-width: 640px) 78vw, (max-width: 1024px) 380px, 430px"
-          className="object-cover transition-transform duration-700 group-hover/project:scale-105"
+          className="object-contain transition-transform duration-700 group-hover/project:scale-105"
         />
       </div>
 
@@ -82,7 +83,7 @@ const ProjectShowcase = () => {
           A Preview Of Projects We Have Built
         </p>
         <Link
-          href="/#work"
+          href="/work"
           className="hidden items-center gap-2 text-xs font-bold tracking-widest text-zinc-500 uppercase transition-colors hover:text-orange-600 sm:flex"
         >
           View All <ArrowUpRight className="h-3.5 w-3.5" />
