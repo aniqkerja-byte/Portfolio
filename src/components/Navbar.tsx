@@ -9,9 +9,9 @@ import { contactInfo, whatsappUrl } from "@/constants/data";
 
 const navItems = [
   { name: "Work", href: "#work" },
-  { name: "Services", href: "#expertise" },
+  { name: "Services", href: "/services" },
   { name: "About", href: "#about" },
-  { name: "Pricing", href: "#pricing" },
+  { name: "Pricing", href: "/pricing" },
   { name: "WhatsApp", href: "#contact" },
 ];
 
@@ -20,7 +20,10 @@ const Navbar = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  const resolveHref = (href: string) => (isHome ? href : `/${href}`);
+  // Anchors need the "/" prefix when we are not on the homepage; real routes
+  // are already absolute and would turn into "//pricing" if prefixed.
+  const resolveHref = (href: string) =>
+    href.startsWith("#") ? (isHome ? href : `/${href}`) : href;
 
   useEffect(() => {
     if (!isOpen) return;

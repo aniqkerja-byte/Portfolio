@@ -1,10 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { servicesData as services } from "@/constants/data";
 
-const Services = () => {
+type ServicesProps = {
+  /** "teaser" adds a link out to /services, where the real examples live. */
+  variant?: "full" | "teaser";
+};
+
+const Services = ({ variant = "full" }: ServicesProps) => {
   return (
     <section id="expertise" className="bg-zinc-50 px-6 py-32 md:px-12">
       <div className="mx-auto max-w-[1400px]">
@@ -52,6 +58,18 @@ const Services = () => {
             </FadeIn>
           ))}
         </div>
+
+        {variant === "teaser" && (
+          <div className="mt-16 text-center">
+            <Link
+              href="/services"
+              className="group inline-flex items-center gap-3 text-xs font-bold tracking-widest text-zinc-950 uppercase transition-colors hover:text-orange-600"
+            >
+              See Each Service With Real Examples
+              <span className="h-[1px] w-8 bg-current transition-all duration-300 group-hover:w-14" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
