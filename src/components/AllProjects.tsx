@@ -23,6 +23,7 @@ const projectCategoryMap: Record<string, string> = {
   "fyebeauty-ecommerce": "ecommerce",
 
   // Landing Pages
+  "program-bangnaih": "landing",
   probiozen: "landing",
   bukupanduansihat: "landing",
   "rawat-hormon": "landing",
@@ -36,6 +37,7 @@ const projectCategoryMap: Record<string, string> = {
   "perodua-budget-checker": "websystem",
 
   // Corporate / Business / Services
+  "koperasi-pkns": "corporate",
   "fatimah-khairunisa-aia": "corporate",
   ellscafe: "corporate",
   "famyytech-mobile": "corporate",
@@ -93,7 +95,7 @@ export default function AllProjects() {
 
             <div className="max-w-4xl">
               <p className="mb-6 font-mono text-xs tracking-widest text-zinc-400 uppercase">
-                Selected Works · 2023 — 2025
+                Selected Works · 2023 — 2026
               </p>
 
               <h1 className="mb-8 text-6xl leading-[0.9] font-semibold tracking-tighter text-zinc-950 md:text-8xl lg:text-9xl">

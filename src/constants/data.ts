@@ -32,6 +32,44 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
+    slug: "koperasi-pkns",
+    title: "Koperasi PKNS",
+    category: "Corporate & Service",
+    year: "2026",
+    desc: "Official corporate portal for Koperasi PKNS Berhad (established 1972), presenting its four core business pillars, governance, and member self-service links.",
+    challenge:
+      "With over five decades of history across real estate, services, financing and retail, the cooperative needed a structured, trustworthy web presence where members can quickly access forms, membership portals, and corporate governance updates.",
+    solution:
+      "We built a clean corporate website featuring quick-access member services (PDF form downloads, membership information links, and inquiries), dedicated sections for all four business pillars, leadership & compliance recognition, and a media news centre.",
+    results: [
+      "Quick-Access Member Services",
+      "Structured 4-Pillar Showcase",
+      "Verified Governance & Awards",
+    ],
+    techStack: ["WordPress", "Elementor", "Contact Form 7"],
+    liveUrl: "https://koperasipkns.com/",
+    image: "/work/koperasi_pkns.png",
+  },
+  {
+    slug: "program-bangnaih",
+    title: "Program Bangnaih (30 Hari Turun Lemak)",
+    category: "Landing Page",
+    year: "2026",
+    desc: "A high-converting Malay-language sales landing page for Academy Kekingan's 30-day fat-loss ebook and workout program, complete with tiered packages and guided checkout.",
+    challenge:
+      "Fitness prospects needed to see real participant proof, clear program inclusions (ebooks, workout videos, meal plans, and group access), and an effortless way to pick a package and register from mobile.",
+    solution:
+      "We crafted a focused, mobile-first campaign landing page with package comparison (Standard and Advanced tiers), participant WhatsApp proof sliders, live order summary, and a step-by-step QR payment and registration flow.",
+    results: [
+      "Two-Tier Package Selection",
+      "Interactive Participant Proof",
+      "Guided QR Checkout Flow",
+    ],
+    techStack: ["HTML5", "CSS3", "JavaScript", "Meta Pixel"],
+    liveUrl: "https://kekingan.com/perubahan30hari/",
+    image: "/work/program_bangnaih.png",
+  },
+  {
     slug: "cekdoku",
     title: "CekDoku",
     category: "Web System",
